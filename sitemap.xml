@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2018-02-10T18:19:18.491Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/02/11/HDOJ-2544-%E6%9C%80%E7%9F%AD%E8%B7%AF/</loc>
     
     <lastmod>2018-02-10T17:45:30.498Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://yoursite.com/2018/02/10/HDOJ-1026-Ignatius-and-the-Princess-I/</loc>
     
     <lastmod>2018-02-09T17:29:22.556Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2018-02-09T17:26:54.587Z</lastmod>
     
   </url>
   
