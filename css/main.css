@@ -1823,7 +1823,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #1dffff;
+  background: #94a4e8;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2995,12 +2995,13 @@ body {
   background: url("https://images.unsplash.com/photo-1503506632168-a3d7400e55c8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c4aca543b80b6a86dafc87b92971a4e&auto=format&fit=crop&w=1350&q=80");
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: cover;
   background-position: 50% 50%;
 }
 main-inner {
-  margin-top: 60px;
-  padding: 60px 60px 60px 60px;
+  margin-top: 1000px;
+  padding: 100px 100px 100px 100px;
   background: #fff;
   opacity: 0.8;
-  min-height: 500px;
+  min-height: 1000px;
 }
