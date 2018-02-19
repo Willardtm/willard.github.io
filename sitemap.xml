@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/02/19/sqlilab-Less-7-writeup/</loc>
+    
+    <lastmod>2018-02-19T13:10:38.624Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/02/19/sqlilabs-Less-5~6/</loc>
     
     <lastmod>2018-02-19T11:11:10.412Z</lastmod>
