@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Floyd," />
+  <meta name="keywords" content="PHP," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="这道题有可以有很多种做法，这里我写的是Floyd算法的版本，也可以用Dijkstra来解决。现学现卖，所以先写的是Floyd算法的版本，Dijkstra的版本后续再贴出来。这道题解题的关键在于：让这个代码不超时…事实证明，使用函数效率更快。题目链接： http://acm.hdu.edu.cn/showproblem.php?pid=1869。 12345678910111213141516171">
-<meta name="keywords" content="Floyd">
+<meta name="description" content="选择Discuz作为第一个审计的CMS大概是因为某天（具体日期我忘了）我下了个源码放在根目录下，that’s it。Here we go~审计环境：本地搭建的Discuz源码+phpStudy+MySQL+Windows 在本地环境下打开源码后直接定位到了forum.php这个文件下，所以从这里开始审计。这里请求了两个文件12require &apos;./source/class/class_core.p">
+<meta name="keywords" content="PHP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HDOJ 1869 六度分离">
-<meta property="og:url" content="http://yoursite.com/2018/02/12/HDOJ-1869/index.html">
+<meta property="og:title" content="DiscuzCMS 代码审计(更新ing)">
+<meta property="og:url" content="http://yoursite.com/2018/03/09/DiscuzCMS-代码审计-更新ing/index.html">
 <meta property="og:site_name" content="Willard&#39;s Blog">
-<meta property="og:description" content="这道题有可以有很多种做法，这里我写的是Floyd算法的版本，也可以用Dijkstra来解决。现学现卖，所以先写的是Floyd算法的版本，Dijkstra的版本后续再贴出来。这道题解题的关键在于：让这个代码不超时…事实证明，使用函数效率更快。题目链接： http://acm.hdu.edu.cn/showproblem.php?pid=1869。 12345678910111213141516171">
+<meta property="og:description" content="选择Discuz作为第一个审计的CMS大概是因为某天（具体日期我忘了）我下了个源码放在根目录下，that’s it。Here we go~审计环境：本地搭建的Discuz源码+phpStudy+MySQL+Windows 在本地环境下打开源码后直接定位到了forum.php这个文件下，所以从这里开始审计。这里请求了两个文件12require &apos;./source/class/class_core.p">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-11T18:35:28.679Z">
+<meta property="og:updated_time" content="2018-03-09T15:33:11.655Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HDOJ 1869 六度分离">
-<meta name="twitter:description" content="这道题有可以有很多种做法，这里我写的是Floyd算法的版本，也可以用Dijkstra来解决。现学现卖，所以先写的是Floyd算法的版本，Dijkstra的版本后续再贴出来。这道题解题的关键在于：让这个代码不超时…事实证明，使用函数效率更快。题目链接： http://acm.hdu.edu.cn/showproblem.php?pid=1869。 12345678910111213141516171">
+<meta name="twitter:title" content="DiscuzCMS 代码审计(更新ing)">
+<meta name="twitter:description" content="选择Discuz作为第一个审计的CMS大概是因为某天（具体日期我忘了）我下了个源码放在根目录下，that’s it。Here we go~审计环境：本地搭建的Discuz源码+phpStudy+MySQL+Windows 在本地环境下打开源码后直接定位到了forum.php这个文件下，所以从这里开始审计。这里请求了两个文件12require &apos;./source/class/class_core.p">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/12/HDOJ-1869/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/09/DiscuzCMS-代码审计-更新ing/"/>
 
 
 
 
 
-  <title>HDOJ 1869 六度分离 | Willard's Blog</title>
+  <title>DiscuzCMS 代码审计(更新ing) | Willard's Blog</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/12/HDOJ-1869/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/09/DiscuzCMS-代码审计-更新ing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Willard">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HDOJ 1869 六度分离</h1>
+          <h1 class="post-title" itemprop="name headline">DiscuzCMS 代码审计(更新ing)</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T02:29:57+08:00">
-                2018-02-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-09T22:53:04+08:00">
+                2018-03-09
               </time>
             
 
@@ -315,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
+                  <a href="/categories/代码审计/" itemprop="url" rel="index">
+                    <span itemprop="name">代码审计</span>
                   </a>
                 </span>
 
@@ -352,8 +352,12 @@
       
 
       
-        <p>这道题有可以有很多种做法，这里我写的是Floyd算法的版本，也可以用Dijkstra来解决。<br>现学现卖，所以先写的是Floyd算法的版本，Dijkstra的版本后续再贴出来。<br>这道题解题的关键在于：让这个代码不超时…事实证明，使用函数效率更快。<br>题目链接： <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1869。" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1869。</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 0x3f3f3f</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> maps[<span class="number">105</span>][<span class="number">105</span>],n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;y) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">floyd</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,k;</span><br><span class="line">    <span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;n;k++)</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">                maps[i][j]=min(maps[i][j],maps[i][k]+maps[k][j]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">check</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxx=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;n;j++)</span><br><span class="line">                <span class="keyword">if</span>(maps[i][j]&gt;maxx)</span><br><span class="line">                    maxx=maps[i][j];</span><br><span class="line">    <span class="keyword">return</span> maxx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>,&amp;n,&amp;m)!=EOF)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(i==j) maps[i][j]=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span> maps[i][j]=inf;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;m; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x,y;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>,&amp;x,&amp;y);</span><br><span class="line">            maps[x][y]=<span class="number">1</span>;</span><br><span class="line">            maps[y][x]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        floyd();</span><br><span class="line">        <span class="keyword">int</span> maxx=check();</span><br><span class="line">        <span class="keyword">if</span>(maxx&gt;<span class="number">7</span>) <span class="built_in">printf</span>(<span class="string">"No\n"</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"Yes\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>选择Discuz作为第一个审计的CMS大概是因为某天（具体日期我忘了）我下了个源码放在根目录下，that’s it。<br>Here we go~<br>审计环境：本地搭建的Discuz源码+phpStudy+MySQL+Windows</p>
+<p>在本地环境下打开源码后直接定位到了forum.php这个文件下，所以从这里开始审计。<br>这里请求了两个文件<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> <span class="string">'./source/class/class_core.php'</span>;</span><br><span class="line"><span class="built_in">require</span> <span class="string">'./source/function/function_forum.php'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>毫无疑问后面会调用到这两个文件中的相关函数，在文件的60行有一个loadforum();函数，查看定义后该函数来自于/source/function/function_forum.php。<br>进入到该函数里进行审计，发现这个函数的篇幅很长，涉及到的其他函数也很多，所以可以肯定这个函数是function_forum.php这个文件的核心函数，继续,下面的是部分代码。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadforum</span><span class="params">($fid = null, $tid = null)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">global</span> $_G;</span><br><span class="line">	$tid = intval(<span class="keyword">isset</span>($tid) ? $tid : getgpc(<span class="string">'tid'</span>));</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">isset</span>($fid)) &#123;</span><br><span class="line">		$fid = intval($fid);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		$fid = getgpc(<span class="string">'fid'</span>);</span><br><span class="line">		<span class="keyword">if</span>(!$fid &amp;&amp; getgpc(<span class="string">'gid'</span>)) &#123;</span><br><span class="line">			$fid = intval(getgpc(<span class="string">'gid'</span>));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>有两个函数值得注意，intval()和getgpc()，intval()是PHP函数自带的，获取变量的整数值，这里有一道过滤机制，然后查看getgpc()，这个函数是开发者自定的，位于/source/function/function_core.php。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getgpc</span><span class="params">($k, $type=<span class="string">'GP'</span>)</span> </span>&#123;</span><br><span class="line">	$type = strtoupper($type);</span><br><span class="line">	<span class="keyword">switch</span>($type) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'G'</span>: $var = &amp;$_GET; <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'P'</span>: $var = &amp;$_POST; <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'C'</span>: $var = &amp;$_COOKIE; <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[$k])) &#123;</span><br><span class="line">				$var = &amp;$_GET;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				$var = &amp;$_POST;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">isset</span>($var[$k]) ? $var[$k] : <span class="keyword">NULL</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里看来不属于过滤机制，而是对值的获取方式进行定义，返回后再在loadforum()函数里进行intval()过滤。</p>
+
       
     </div>
     
@@ -370,7 +374,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Floyd/" rel="tag"># Floyd</a>
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
           
         </div>
       
@@ -383,8 +387,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/11/HDOJ-2066-一个人的旅行/" rel="next" title="HDOJ 2066 一个人的旅行">
-                <i class="fa fa-chevron-left"></i> HDOJ 2066 一个人的旅行
+              <a href="/2018/03/05/浅谈凸包算法/" rel="next" title="浅谈凸包算法">
+                <i class="fa fa-chevron-left"></i> 浅谈凸包算法
               </a>
             
           </div>
@@ -392,10 +396,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/12/HDOJ-1385/" rel="prev" title="HDOJ 1385 Minimum Transport Cost">
-                HDOJ 1385 Minimum Transport Cost <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
