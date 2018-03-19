@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="well，鉴于需要对PHP的Larvel框架进行相关的学习，在继昨天对HTML的学习后，今天开始学习基础的JavaScript，以便明天能正式开始学习Larvel。 JavaScript的放置位置基于昨天写过的文章，HTML的页面有body和head这两种标签，同样，JavaScript的代码是在script标签下执行的，由于在页面中插入位置的不同，执行的先后顺序是不一样的，下面举栗子。 写在he">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基础学习">
+<meta property="og:url" content="http://yoursite.com/2018/03/19/JavaScript基础学习/index.html">
+<meta property="og:site_name" content="Willard&#39;s Blog">
+<meta property="og:description" content="well，鉴于需要对PHP的Larvel框架进行相关的学习，在继昨天对HTML的学习后，今天开始学习基础的JavaScript，以便明天能正式开始学习Larvel。 JavaScript的放置位置基于昨天写过的文章，HTML的页面有body和head这两种标签，同样，JavaScript的代码是在script标签下执行的，由于在页面中插入位置的不同，执行的先后顺序是不一样的，下面举栗子。 写在he">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2018/03/19/5aaf9f6d60ef7.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/03/19/5aafaf666a662.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/03/19/5aafbac78b1f3.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/03/19/5aafbac78ba44.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/03/19/5aafc79549f3b.jpg">
+<meta property="og:updated_time" content="2018-03-19T15:10:12.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript基础学习">
+<meta name="twitter:description" content="well，鉴于需要对PHP的Larvel框架进行相关的学习，在继昨天对HTML的学习后，今天开始学习基础的JavaScript，以便明天能正式开始学习Larvel。 JavaScript的放置位置基于昨天写过的文章，HTML的页面有body和head这两种标签，同样，JavaScript的代码是在script标签下执行的，由于在页面中插入位置的不同，执行的先后顺序是不一样的，下面举栗子。 写在he">
+<meta name="twitter:image" content="https://i.loli.net/2018/03/19/5aaf9f6d60ef7.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/19/JavaScript基础学习/"/>
+
+
+
+
+
+  <title>JavaScript基础学习 | Willard's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Willard's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我上去就是一个阿瓦达索命~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/19/JavaScript基础学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Willard">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2018/02/19/5a8ad395132b9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Willard's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript基础学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T19:12:57+08:00">
+                2018-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/XSS漏洞学习/" itemprop="url" rel="index">
+                    <span itemprop="name">XSS漏洞学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>well，鉴于需要对PHP的Larvel框架进行相关的学习，在继昨天对HTML的学习后，今天开始学习基础的JavaScript，以便明天能正式开始学习Larvel。</p>
+<h3 id="JavaScript的放置位置"><a href="#JavaScript的放置位置" class="headerlink" title="JavaScript的放置位置"></a>JavaScript的放置位置</h3><p>基于昨天写过的文章，HTML的页面有body和head这两种标签，同样，JavaScript的代码是在script标签下执行的，由于在页面中插入位置的不同，执行的先后顺序是不一样的，下面举栗子。</p>
+<h4 id="写在head标签下的JavaScript"><a href="#写在head标签下的JavaScript" class="headerlink" title="写在head标签下的JavaScript"></a>写在head标签下的JavaScript</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>A Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">		alert(<span class="string">"Hello World!"</span>);</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2018/03/19/5aaf9f6d60ef7.jpg" alt=""></p>
+<h4 id="写在body标签下的JavaScript"><a href="#写在body标签下的JavaScript" class="headerlink" title="写在body标签下的JavaScript"></a>写在body标签下的JavaScript</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>A Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">		alert(<span class="string">"Hello World!"</span>);</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="直接外部引用"><a href="#直接外部引用" class="headerlink" title="直接外部引用"></a>直接外部引用</h4><p>oh dear，这个和html直接引用外部html是一模一样的操作，代码如下。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>A Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"1.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>1.js里面直接写<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"Hello World"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="JavaScript中的变量"><a href="#JavaScript中的变量" class="headerlink" title="JavaScript中的变量"></a>JavaScript中的变量</h3><p>JavaScript中声明变量和C++中声明变量差不多，不过JavaScript声明变量只需要一个var即可。</p>
+<h4 id="声明数字"><a href="#声明数字" class="headerlink" title="声明数字"></a>声明数字</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">num</span>=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> <span class="built_in">num</span>=<span class="number">2.56</span>;</span><br></pre></td></tr></table></figure>
+<p>JavaScript只有一种数字类型，带小数点或者不带小数点。</p>
+<h4 id="声明数组"><a href="#声明数组" class="headerlink" title="声明数组"></a>声明数组</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var boys=new Array()<span class="comment">;</span></span><br><span class="line">boys[<span class="number">0</span>]=<span class="string">"Tom"</span><span class="comment">;</span></span><br><span class="line">boys[<span class="number">1</span>]=<span class="string">"Frank"</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>或者直接使用这样的方式进行声明。<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> boys=<span class="keyword">new</span> <span class="type">Array</span>(<span class="string">"Tom"</span>,<span class="string">"Frank"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>或者直接用C++的声明方式。<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">boys</span>=[<span class="string">"Tom"</span>,<span class="string">"Frank"</span>];</span><br></pre></td></tr></table></figure></p>
+<h4 id="声明字符串"><a href="#声明字符串" class="headerlink" title="声明字符串"></a>声明字符串</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">var str</span>=<span class="string">"test a test"</span>;</span><br><span class="line"><span class="attribute">var str</span>=<span class="string">"www.baidu.com"</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="关于布尔值"><a href="#关于布尔值" class="headerlink" title="关于布尔值"></a>关于布尔值</h4><p>JavaScript的布尔值和C++一样，是false和true。</p>
+<h3 id="JavaScript中的运算符"><a href="#JavaScript中的运算符" class="headerlink" title="JavaScript中的运算符"></a>JavaScript中的运算符</h3><p>well，这个只有一句话，同C++。</p>
+<h3 id="JavaScript基本语法"><a href="#JavaScript基本语法" class="headerlink" title="JavaScript基本语法"></a>JavaScript基本语法</h3><p>emmmm，怎么说呢，这个语法和C/C++差不多，只是输出那里有那么一丢丢的变化，输出的时候用的是document.write()！<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>A Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)</span></span><br><span class="line"><span class="undefined">		&#123;</span></span><br><span class="line"><span class="javascript">			<span class="built_in">document</span>.write(<span class="string">"This is num i :"</span>+i+<span class="string">'&lt;/br&gt;'</span>);</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/03/19/5aafaf666a662.jpg" alt=""></p>
+<h3 id="JavaScript事件"><a href="#JavaScript事件" class="headerlink" title="JavaScript事件"></a>JavaScript事件</h3><p>HTML 事件是发生在 HTML 元素上的事情。当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。</p>
+<h4 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>A Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">		<span class="function"><span class="keyword">function</span> <span class="title">click_button</span><span class="params">()</span></span></span></span><br><span class="line"><span class="undefined">		&#123;</span></span><br><span class="line"><span class="actionscript">			alert(<span class="string">"Hello World!"</span>);</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"click_button()"</span>&gt;</span>click here<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>哇这里我超气der，这个点击事件不需要写script标签…之前写了导致一直有问题。<br><img src="https://i.loli.net/2018/03/19/5aafbac78b1f3.jpg" alt=""><br><img src="https://i.loli.net/2018/03/19/5aafbac78ba44.jpg" alt=""></p>
+<h4 id="常用事件"><a href="#常用事件" class="headerlink" title="常用事件"></a>常用事件</h4><p>除了onclick意外还有很多JavaScript的常用事件，这里主要学习了以下两个事件。</p>
+<h4 id="onmouseover-和-onmouseout"><a href="#onmouseover-和-onmouseout" class="headerlink" title="onmouseover 和 onmouseout"></a>onmouseover 和 onmouseout</h4><p>作用：鼠标移到该元素上即触发该事件。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>A Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"background-color:gray;width:200px;height:50px;margin:20px;padding-top:10px;color:0#ffffff;font-weight:bold;font-size:20px;text-align:center;"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">onmouseover</span>=<span class="string">"this.innerHTML='Hello'"</span> </span></span><br><span class="line"><span class="tag">	<span class="attr">onmouseout</span>=<span class="string">"this.innerHTML='World'"</span>&gt;</span></span><br><span class="line">	move your mouse here.</span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>style下的设置是对显示框进行相关修饰，去掉style标签同样可以直接操作。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>A Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">	<span class="attr">onmouseover</span>=<span class="string">"this.innerHTML='Hello'"</span> </span></span><br><span class="line"><span class="tag">	<span class="attr">onmouseout</span>=<span class="string">"this.innerHTML='World'"</span>&gt;</span></span><br><span class="line">	move your mouse here.</span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="onmousedown和onmouseup"><a href="#onmousedown和onmouseup" class="headerlink" title="onmousedown和onmouseup"></a>onmousedown和onmouseup</h4><p>调用方式和之前一样，首先在script下声明函数，然后在div标签下进行调用。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>A Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">	<span class="function"><span class="keyword">function</span> <span class="title">mUp</span><span class="params">(obj)</span></span></span></span><br><span class="line"><span class="undefined">	&#123;</span></span><br><span class="line"><span class="actionscript">		obj.style.background=<span class="string">"gray"</span>;</span></span><br><span class="line"><span class="actionscript">		obj.innerHTML=<span class="string">"Press Here"</span>;</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="actionscript">	<span class="function"><span class="keyword">function</span> <span class="title">mDown</span><span class="params">(obj)</span></span></span></span><br><span class="line"><span class="undefined">	&#123;</span></span><br><span class="line"><span class="actionscript">		obj.style.background=<span class="string">"yellow"</span>;</span></span><br><span class="line"><span class="actionscript">		obj.innerHTML=<span class="string">"Release Your Mouse"</span>;</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">	<span class="attr">onmouseup</span>=<span class="string">"mUp(this)"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">onmousedown</span>=<span class="string">"mDown(this)"</span>&gt;</span></span><br><span class="line">	put your mouse on it.</span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="JavaScript对象"><a href="#JavaScript对象" class="headerlink" title="JavaScript对象"></a>JavaScript对象</h3><p>well，JavaScript所有的数据都可以被视为对象，每个对象都有其对应的属性和方法。</p>
+<h4 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h4><p>创建JavaScript对象有很多种形式，这里只记录最常用也是最方便的一种。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">	<span class="function"><span class="keyword">function</span> <span class="title">student</span><span class="params">(name,age)</span></span></span></span><br><span class="line"><span class="undefined">	&#123;</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">this</span>.name=name;</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">this</span>.age=age;</span></span><br><span class="line"><span class="undefined">		</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">this</span>.study=<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span></span><br><span class="line"><span class="undefined">		&#123;</span></span><br><span class="line"><span class="javascript">			<span class="built_in">document</span>.write(<span class="string">"Computer"</span>);</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">this</span>.show_info=<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span></span><br><span class="line"><span class="undefined">		&#123;</span></span><br><span class="line"><span class="javascript">			<span class="built_in">document</span>.write(<span class="keyword">this</span>.name+<span class="string">":"</span>+<span class="keyword">this</span>.age);</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>创建方法和C++很相似，比较容易理解。</p>
+<h4 id="访问创建的对象"><a href="#访问创建的对象" class="headerlink" title="访问创建的对象"></a>访问创建的对象</h4><p>和C++不同的是访问的量只需要加上var就OK。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>A Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">	<span class="function"><span class="keyword">function</span> <span class="title">student</span><span class="params">(name,age)</span></span></span></span><br><span class="line"><span class="undefined">	&#123;</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">this</span>.name=name;</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">this</span>.age=age;</span></span><br><span class="line"><span class="undefined">		</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">this</span>.study=<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span></span><br><span class="line"><span class="undefined">		&#123;</span></span><br><span class="line"><span class="javascript">			<span class="built_in">document</span>.write(<span class="string">"Computer"</span>+<span class="string">"&lt;/br&gt;"</span>);</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">this</span>.show_info=<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span></span><br><span class="line"><span class="undefined">		&#123;</span></span><br><span class="line"><span class="javascript">			<span class="built_in">document</span>.write(<span class="keyword">this</span>.name+<span class="string">":"</span>+<span class="keyword">this</span>.age+<span class="string">"&lt;/br&gt;"</span>);</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="actionscript">	<span class="keyword">var</span> student1=<span class="keyword">new</span> student(<span class="string">"Frank"</span>,<span class="string">"19"</span>);</span></span><br><span class="line"><span class="javascript">	<span class="built_in">document</span>.write(<span class="string">"name:"</span>+student1.name+<span class="string">'&lt;/br&gt;'</span>);</span></span><br><span class="line"><span class="javascript">	<span class="built_in">document</span>.write(<span class="string">"age:"</span>+student1.age+<span class="string">'&lt;/br&gt;'</span>);</span></span><br><span class="line"><span class="undefined">	student1.study();</span></span><br><span class="line"><span class="undefined">	student1.show_info();</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/03/19/5aafc79549f3b.jpg" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/18/HTML学习记录/" rel="next" title="HTML学习记录">
+                <i class="fa fa-chevron-left"></i> HTML学习记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.loli.net/2018/02/19/5a8ad395132b9.jpg"
+                alt="Willard" />
+            
+              <p class="site-author-name" itemprop="name">Willard</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://030.im/" title="Misaka030" target="_blank">Misaka030</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript的放置位置"><span class="nav-number">1.</span> <span class="nav-text">JavaScript的放置位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在head标签下的JavaScript"><span class="nav-number">1.1.</span> <span class="nav-text">写在head标签下的JavaScript</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写在body标签下的JavaScript"><span class="nav-number">1.2.</span> <span class="nav-text">写在body标签下的JavaScript</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接外部引用"><span class="nav-number">1.3.</span> <span class="nav-text">直接外部引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript中的变量"><span class="nav-number">2.</span> <span class="nav-text">JavaScript中的变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明数字"><span class="nav-number">2.1.</span> <span class="nav-text">声明数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明数组"><span class="nav-number">2.2.</span> <span class="nav-text">声明数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明字符串"><span class="nav-number">2.3.</span> <span class="nav-text">声明字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于布尔值"><span class="nav-number">2.4.</span> <span class="nav-text">关于布尔值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript中的运算符"><span class="nav-number">3.</span> <span class="nav-text">JavaScript中的运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript基本语法"><span class="nav-number">4.</span> <span class="nav-text">JavaScript基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript事件"><span class="nav-number">5.</span> <span class="nav-text">JavaScript事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件处理程序"><span class="nav-number">5.1.</span> <span class="nav-text">事件处理程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用事件"><span class="nav-number">5.2.</span> <span class="nav-text">常用事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onmouseover-和-onmouseout"><span class="nav-number">5.3.</span> <span class="nav-text">onmouseover 和 onmouseout</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onmousedown和onmouseup"><span class="nav-number">5.4.</span> <span class="nav-text">onmousedown和onmouseup</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript对象"><span class="nav-number">6.</span> <span class="nav-text">JavaScript对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建对象"><span class="nav-number">6.1.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问创建的对象"><span class="nav-number">6.2.</span> <span class="nav-text">访问创建的对象</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Willard</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
