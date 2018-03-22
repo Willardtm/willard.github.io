@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/03/22/5ab3b3a14886f.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/03/22/5ab3b5048b55a.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/03/22/5ab3b5b25336f.jpg">
-<meta property="og:updated_time" content="2018-03-22T13:55:36.488Z">
+<meta property="og:updated_time" content="2018-03-22T14:22:56.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2017强网杯 Web Writeup">
 <meta name="twitter:description" content="broken打开以后就是一大串jsfuck的代码，直接扔到控制台运行但是报错，修复以后在开头的[[改成[]]就好。1flag&amp;#123;f_f_l_u_a_c_g_k&amp;#125; 解密网站：1https://enkhee-osiris.github.io/Decoder-JSFuck/ who are you?这道题第一部分很简单，抓包那里有个参数role，base64加密的rot13，解码以后是">
@@ -374,6 +374,7 @@
 <p><img src="https://i.loli.net/2018/03/22/5ab3b3a14886f.jpg" alt=""><br>拿列。<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span>union select column_name from information_schema.columns where table_name=<span class="number">0</span>x75736572</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.loli.net/2018/03/22/5ab3b5048b55a.jpg" alt=""><br>题目上提示admin的电话了，所以直接查admin的电话就好。<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> <span class="title">group_concat</span>(<span class="title">phone</span>) <span class="title">from</span> <span class="title">user</span></span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.loli.net/2018/03/22/5ab3b5b25336f.jpg" alt=""><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;<span class="number">6</span>dd303b0<span class="number">-8</span>fce<span class="number">-2396</span><span class="number">-9</span>ad8-d9f7a72f84b0&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Musee-de-X"><a href="#Musee-de-X" class="headerlink" title="Musee de X"></a>Musee de X</h2><p>哇…看到题目就懵了…这是啥…但是在/view这个目录下能看到一些Python相关信息，然后就不知道怎么弄了，查了一下这个是Jinja2模板注入…好吧，这个我也不会，不过Y老师说了…难的东西才有价值…我抽空学了Jinja2再做吧，和hash拓展长度攻击一起。</p>
 
       
     </div>
@@ -562,7 +563,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#broken"><span class="nav-number">1.</span> <span class="nav-text">broken</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#who-are-you"><span class="nav-number">2.</span> <span class="nav-text">who are you?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#phone-number"><span class="nav-number">3.</span> <span class="nav-text">phone number</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#broken"><span class="nav-number">1.</span> <span class="nav-text">broken</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#who-are-you"><span class="nav-number">2.</span> <span class="nav-text">who are you?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#phone-number"><span class="nav-number">3.</span> <span class="nav-text">phone number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Musee-de-X"><span class="nav-number">4.</span> <span class="nav-text">Musee de X</span></a></li></ol></div>
             
 
           </div>
