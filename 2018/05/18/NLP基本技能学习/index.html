@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/05/18/5afe83e9bbcec.png">
 <meta property="og:image" content="https://i.loli.net/2018/05/18/5afe840808250.png">
 <meta property="og:image" content="https://i.loli.net/2018/05/18/5afe841ddc207.png">
-<meta property="og:updated_time" content="2018-05-18T07:45:18.901Z">
+<meta property="og:updated_time" content="2018-05-18T12:22:09.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP基本技能学习">
 <meta name="twitter:description" content="由于nltk主要争对英文，所以这里先对主要针对中文的jieba的基本用法进行学习，为后续的学习做铺垫。 计算字符中出现频次最多的字符 collections库下面的Counter函数可以直接计算一个字符串里各个字符出现的次数。count.keys()：取出键值；count.values()：取出键对应的数值。 关于正则匹配具体匹配形式用到再查，说几个比较重要的匹配概念。(1){}，花括号加在匹配的">
@@ -377,8 +377,9 @@
 <p>注意到神经网络可以被切分为多个词组，神经/网络/神经网/神经网络。</p>
 <h3 id="添加与划分"><a href="#添加与划分" class="headerlink" title="添加与划分"></a>添加与划分</h3><p><img src="https://i.loli.net/2018/05/18/5afe831b518a7.png" alt=""><br>举个栗子：<br><img src="https://i.loli.net/2018/05/18/5afe83412e512.png" alt=""><br><img src="https://i.loli.net/2018/05/18/5afe8373114f1.png" alt=""><br><img src="https://i.loli.net/2018/05/18/5afe838a799e5.png" alt=""></p>
 <p>注意到它把中将作为了一个名字，所以第二个演示就是告诉它’中’和’将’需要分开考虑。</p>
-<h3 id="关键词提取"><a href="#关键词提取" class="headerlink" title="关键词提取"></a>关键词提取</h3><p>基于TF-IDF算法的关键词提取<br>关于TF-IDF：<br>tf-idf（英语：term frequency–inverse document frequency）是一种用于信息检索与文本挖掘的常用加权技术。tf-idf是一种统计方法，用以评估一字词对于一个文件集或一个语料库中的其中一份文件的重要程度。字词的重要性随着它在文件中出现的次数成正比增加，但同时会随着它在语料库中出现的频率成反比下降。<br>之前说到的jieba库下面的jieba.analyse可以直接调用 extract_tags()  这个函数来划分词汇，根据出现的词汇来标注出tags。<br><img src="https://i.loli.net/2018/05/18/5afe83aa8795b.png" alt=""></p>
-<p>解释一下相关参数：<br>jieba.analyse.extract_tags(sentence,topK=20,withWeight=False,allowPOS=())<br>sentence：需要检查的文本<br>topK：返回几个TF-IDF权重最大的关键词，默认值为20<br>withWeight：设定True或False来表示是否需要返回关键词的权重<br>allowPOS：仅包括指定词性的词<br>另外一个函数就是 textrank() 总的用法和extract_tags()差不多，参数几乎是一样的。<br><img src="https://i.loli.net/2018/05/18/5afe83e9bbcec.png" alt=""><br>设置withWeight值为True的时候会返回tags的权重，不设置的话则不显示，allowPOS(‘n’)表示只给出名词属性的tags。<br>不过一般情况下最好是使用extract_tags()，效果相较于textrank()要好一些。<br>查看词性标记可以参考：<a href="http://ictclas.nlpir.org/nlpir/html/readme.htm" target="_blank" rel="noopener">http://ictclas.nlpir.org/nlpir/html/readme.htm</a></p>
+<h3 id="关键词提取"><a href="#关键词提取" class="headerlink" title="关键词提取"></a>关键词提取</h3><p>基于TF-IDF算法的关键词提取<br>关于TF-IDF：<br>tf-idf（英语：term frequency–inverse document frequency）是一种用于信息检索与文本挖掘的常用加权技术。tf-idf是一种统计方法，用以评估一字词对于一个文件集或一个语料库中的其中一份文件的重要程度。字词的重要性随着它在文件中出现的次数成正比增加，但同时会随着它在语料库中出现的频率成反比下降。<br>之前说到的jieba库下面的jieba.analyse可以直接调用 extract_tags()这个函数来划分词汇，根据出现的词汇来标注出tags。<br><img src="https://i.loli.net/2018/05/18/5afe83aa8795b.png" alt=""></p>
+<p>解释一下相关参数：<br>jieba.analyse.extract_tags(sentence,topK=20,withWeight=False,allowPOS=())<br>sentence：需要检查的文本<br>topK：返回几个TF-IDF权重最大的关键词，默认值为20<br>withWeight：设定True或False来表示是否需要返回关键词的权重<br>allowPOS：仅包括指定词性的词<br>另外一个函数就是 textrank() 总的用法和extract_tags()差不多，参数几乎是一样的。</p>
+<p><img src="https://i.loli.net/2018/05/18/5afe83e9bbcec.png" alt=""><br>设置withWeight值为True的时候会返回tags的权重，不设置的话则不显示，allowPOS(‘n’)表示只给出名词属性的tags。<br>不过一般情况下最好是使用extract_tags()，效果相较于textrank()要好一些。<br>查看词性标记可以参考：<a href="http://ictclas.nlpir.org/nlpir/html/readme.htm" target="_blank" rel="noopener">http://ictclas.nlpir.org/nlpir/html/readme.htm</a></p>
 <h3 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h3><p>jieba.posseg.POSTokenizer(tokenizer=None)新建自定义分词器<br>tokenizer参数可指定内部使用的jieba.Tokenizer分词器，jieba,posseg.dt为默认词性标注分词器。<br>标注句子分词后每个词的词性，采用和ictclas兼容的标记法。<br><img src="https://i.loli.net/2018/05/18/5afe840808250.png" alt=""></p>
 <h3 id="Tokenize"><a href="#Tokenize" class="headerlink" title="Tokenize"></a>Tokenize</h3><p>返回经过分词后的部分在原文的起始位置以及结束位置<br><img src="https://i.loli.net/2018/05/18/5afe841ddc207.png" alt=""></p>
 <h3 id="载入自定义词典"><a href="#载入自定义词典" class="headerlink" title="载入自定义词典"></a>载入自定义词典</h3><p>开发者可以指定自己自定义的词典，以便包含 jieba 词库里没有的词。虽然 jieba 有新词识别能力，但是自行添加新词可以保证更高的正确率<br>用法： jieba.load_userdict(file_name) # file_name 为文件类对象或自定义词典的路径<br>词典格式为：一个词占一行；每一行分三部分：词语、词频（可省略）、词性（可省略），用空格隔开，顺序不可颠倒。file_name 若为路径或二进制方式打开的文件，则文件必须为 UTF-8 编码。</p>
