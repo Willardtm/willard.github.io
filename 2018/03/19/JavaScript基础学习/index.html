@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/03/19/5aafbac78b1f3.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/03/19/5aafbac78ba44.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/03/19/5aafc79549f3b.jpg">
-<meta property="og:updated_time" content="2018-07-25T08:18:51.946Z">
+<meta property="og:updated_time" content="2018-07-25T09:10:03.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript基础学习">
 <meta name="twitter:description" content="well，鉴于需要对PHP的Laravel框架进行相关的学习，在继昨天对HTML的学习后，今天开始学习基础的JavaScript，以便明天能正式开始学习Larvel。 JavaScript的放置位置基于昨天写过的文章，HTML的页面有body和head这两种标签，同样，JavaScript的代码是在script标签下执行的，由于在页面中插入位置的不同，执行的先后顺序是不一样的，下面举栗子。">
@@ -64,9 +64,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -101,6 +101,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript的放置位置"><span class="toc-number">1.</span> <span class="toc-text">JavaScript的放置位置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#写在head标签下的JavaScript"><span class="toc-number">1.1.</span> <span class="toc-text">写在head标签下的JavaScript</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#写在body标签下的JavaScript"><span class="toc-number">1.2.</span> <span class="toc-text">写在body标签下的JavaScript</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#直接外部引用"><span class="toc-number">1.3.</span> <span class="toc-text">直接外部引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript中的变量"><span class="toc-number">2.</span> <span class="toc-text">JavaScript中的变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#声明数字"><span class="toc-number">2.1.</span> <span class="toc-text">声明数字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#声明数组"><span class="toc-number">2.2.</span> <span class="toc-text">声明数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#声明字符串"><span class="toc-number">2.3.</span> <span class="toc-text">声明字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于布尔值"><span class="toc-number">2.4.</span> <span class="toc-text">关于布尔值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript中的运算符"><span class="toc-number">3.</span> <span class="toc-text">JavaScript中的运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript基本语法"><span class="toc-number">4.</span> <span class="toc-text">JavaScript基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript事件"><span class="toc-number">5.</span> <span class="toc-text">JavaScript事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#事件处理程序"><span class="toc-number">5.1.</span> <span class="toc-text">事件处理程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用事件"><span class="toc-number">5.2.</span> <span class="toc-text">常用事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#onmouseover-和-onmouseout"><span class="toc-number">5.3.</span> <span class="toc-text">onmouseover 和 onmouseout</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#onmousedown和onmouseup"><span class="toc-number">5.4.</span> <span class="toc-text">onmousedown和onmouseup</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript对象"><span class="toc-number">6.</span> <span class="toc-text">JavaScript对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建对象"><span class="toc-number">6.1.</span> <span class="toc-text">创建对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问创建的对象"><span class="toc-number">6.2.</span> <span class="toc-text">访问创建的对象</span></a></li></ol></li></ol>
+		  </div>
+		
         <p>well，鉴于需要对PHP的Laravel框架进行相关的学习，在继昨天对HTML的学习后，今天开始学习基础的JavaScript，以便明天能正式开始学习Larvel。</p>
 <h3 id="JavaScript的放置位置"><a href="#JavaScript的放置位置" class="headerlink" title="JavaScript的放置位置"></a>JavaScript的放置位置</h3><p>基于昨天写过的文章，HTML的页面有body和head这两种标签，同样，JavaScript的代码是在script标签下执行的，由于在页面中插入位置的不同，执行的先后顺序是不一样的，下面举栗子。<br><a id="more"></a></p>
 <h4 id="写在head标签下的JavaScript"><a href="#写在head标签下的JavaScript" class="headerlink" title="写在head标签下的JavaScript"></a>写在head标签下的JavaScript</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>A Test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">		alert(<span class="string">"Hello World!"</span>);</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -135,7 +142,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/JavaScript基础学习/" data-id="cjk0v38mp000fnwv44gphz787" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2018/03/19/JavaScript基础学习/" data-id="cjk0wt76g000q84v4dmfi5o2j" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -147,7 +154,7 @@
 <nav id="article-nav">
   
     <a href="/2018/03/22/2017强网杯Writeup/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Neuer</strong>
       <div class="article-nav-title">
         
           2017强网杯 Web Writeup
@@ -157,7 +164,7 @@
   
   
     <a href="/2018/03/18/HTML学习记录/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Älter</strong>
       <div class="article-nav-title">HTML学习记录</div>
     </a>
   
@@ -172,7 +179,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Catégories</h3>
+    <h3 class="widget-title">Kategorien</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li></ul>
     </div>
@@ -182,7 +189,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Mot-clés</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF-Web/">CTF_Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL-injection/">SQL_injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/凸包算法/">凸包算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境配置/">环境配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法考核/">算法考核</a></li></ul>
     </div>
@@ -192,7 +199,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
       <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 20px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/SQL-injection/" style="font-size: 16.67px;">SQL_injection</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a>
     </div>
@@ -201,7 +208,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -211,7 +218,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
         
@@ -259,7 +266,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2018 Klaus<br>
-      Propulsé par <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
