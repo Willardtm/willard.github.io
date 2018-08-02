@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/07/28/5b5c3096cd304.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/07/28/5b5c30cc41f23.jpg">
 <meta property="og:image" content="http://118.190.20.162/RequireFile.do?fid=gbLRbhR7">
-<meta property="og:updated_time" content="2018-08-02T06:55:30.209Z">
+<meta property="og:updated_time" content="2018-08-02T14:35:40.792Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCF CSP备考刷题记录">
 <meta name="twitter:description" content="がんばって！ 以下所写代码均为通过测试的AC代码。">
@@ -69,9 +69,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -178,11 +178,15 @@
 <h2 id="2015-3"><a href="#2015-3" class="headerlink" title="2015-3"></a>2015-3</h2><h3 id="图像旋转"><a href="#图像旋转" class="headerlink" title="图像旋转"></a>图像旋转</h3><p>问题描述<br>　　旋转是图像处理的基本操作，在这个问题中，你需要将一个图像逆时针旋转90度。<br>　　计算机中的图像表示可以用一个矩阵来表示，为了旋转一个图像，只需要将对应的矩阵旋转即可。<br>输入格式<br>　　输入的第一行包含两个整数n, m，分别表示图像矩阵的行数和列数。<br>　　接下来n行每行包含m个整数，表示输入的图像。<br>输出格式<br>　　输出m行，每行包含n个整数，表示原始矩阵逆时针旋转90度后的矩阵。<br>样例输入<br>2 3<br>1 5 3<br>3 2 4<br>样例输出<br>3 4<br>5 2<br>1 3<br>评测用例规模与约定<br>　　1 ≤ n, m ≤ 1,000，矩阵中的数都是不超过1000的非负整数。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> maps[<span class="number">1005</span>][<span class="number">1005</span>];</span><br><span class="line"><span class="keyword">int</span> copy_maps[<span class="number">1005</span>][<span class="number">1005</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;maps[i][j];</span><br><span class="line">    <span class="keyword">int</span> k,l,i,j;</span><br><span class="line">    <span class="keyword">for</span>(j=m<span class="number">-1</span>,k=<span class="number">0</span>;j&gt;=<span class="number">0</span>;j--,k++)</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>,l=<span class="number">0</span>;i&lt;n;i++,l++)</span><br><span class="line">            copy_maps[k][l]=maps[i][j];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;l;j++)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;copy_maps[i][j]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="数字排序"><a href="#数字排序" class="headerlink" title="数字排序"></a>数字排序</h3><p>问题描述<br>　　给定n个整数，请统计出每个整数出现的次数，按出现次数从多到少的顺序输出。<br>输入格式<br>　　输入的第一行包含一个整数n，表示给定数字的个数。<br>　　第二行包含n个整数，相邻的整数之间用一个空格分隔，表示所给定的整数。<br>输出格式<br>　　输出多行，每行包含两个整数，分别表示一个给定的整数和它出现的次数。按出现次数递减的顺序输出。如果两个整数出现的次数一样多，则先输出值较小的，然后输出值较大的。<br>样例输入<br>12<br>5 2 3 3 1 3 4 2 5 2 3 5<br>样例输出<br>3 4<br>2 3<br>5 3<br>1 1<br>4 1<br>评测用例规模与约定<br>　　1 ≤ n ≤ 1000，给出的数都是不超过1000的非负整数。</p>
+<p>AC版本1:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,a[<span class="number">1005</span>],book[<span class="number">1005</span>];</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="built_in">memset</span>(book,<span class="number">-1</span>,<span class="keyword">sizeof</span>(book));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">    sort(a,a+n);</span><br><span class="line">    <span class="keyword">int</span> tmp=a[<span class="number">0</span>];</span><br><span class="line">    book[tmp]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]==tmp) book[tmp]+=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            tmp=a[i];</span><br><span class="line">            book[tmp]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1000</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=<span class="number">1000</span>;j++)</span><br><span class="line">            <span class="keyword">if</span>(book[j]==i)<span class="comment">//确保次数出现最多的最先输出</span></span><br><span class="line">                <span class="built_in">cout</span>&lt;&lt;j&lt;&lt;<span class="string">" "</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>AC版本2,在写第一个版本前我就考虑到使用map来计数，然后直接排序，可是我不造怎么弄，然后代码越写越臭，后来参考了一个大佬的博客才有了下面这个版本，我也才知道如果要对map数据类型进行排序的话是需要转换成pair才能执行的，STL真强大。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; PAIR;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(PAIR x,PAIR y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x.second==y.second) <span class="keyword">return</span> x.first&lt;y.first;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> x.second&gt;y.second;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;cnt;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> x;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;x;</span><br><span class="line">        cnt[x]+=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span>&lt;PAIR&gt;vec(cnt.begin(),cnt.end());</span><br><span class="line">    sort(vec.begin(),vec.end(),cmp);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;vec.size();i++)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;vec[i].first&lt;&lt;<span class="string">" "</span>&lt;&lt;vec[i].second&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考博客:<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>blog.csdn.net<span class="regexp">/qq_16234613/</span>article<span class="regexp">/details/</span><span class="number">52223629</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/06/CCF-CSP备考刷题记录/" data-id="cjkb97n4f000be4v4z28b48w1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/06/CCF-CSP备考刷题记录/" data-id="cjkcnxviu002n34v4bj9cgjew" class="article-share-link">Compartir</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li></ul>
@@ -194,7 +198,7 @@
 <nav id="article-nav">
   
     <a href="/2018/07/15/C-STL相关库应用实例/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">Nuevo</strong>
       <div class="article-nav-title">
         
           C++ STL相关库应用实例
@@ -204,7 +208,7 @@
   
   
     <a href="/2018/05/25/凤凰金融/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Viejo</strong>
       <div class="article-nav-title">凤凰金融量化投资比赛-预赛总结</div>
     </a>
   
@@ -219,7 +223,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Categorías</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li></ul>
     </div>
@@ -239,7 +243,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nube de Tags</h3>
     <div class="widget tagcloud">
       <a href="/tags/Algorithm/" style="font-size: 13.33px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 20px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/SQL-injection/" style="font-size: 16.67px;">SQL_injection</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a>
     </div>
@@ -248,7 +252,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archivos</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -258,7 +262,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Posts recientes</h3>
     <div class="widget">
       <ul>
         
@@ -306,7 +310,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2018 Klaus<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Construido por <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
