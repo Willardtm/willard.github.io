@@ -7,18 +7,18 @@
   
   <title>Python logging模块简述 | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。 logging.getLogger():返回一个logger对象。举个栗子：12345678910#!/usr/bin/env python#coding=utf-8import loggingimport sysimpo">
+  <meta name="description" content="Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python logging模块简述">
 <meta property="og:url" content="http://yoursite.com/2018/08/20/Python-logging模块简述/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
-<meta property="og:description" content="Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。 logging.getLogger():返回一个logger对象。举个栗子：12345678910#!/usr/bin/env python#coding=utf-8import loggingimport sysimpo">
+<meta property="og:description" content="Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-20T01:15:41.046Z">
+<meta property="og:updated_time" content="2018-08-20T01:44:47.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python logging模块简述">
-<meta name="twitter:description" content="Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。 logging.getLogger():返回一个logger对象。举个栗子：12345678910#!/usr/bin/env python#coding=utf-8import loggingimport sysimpo">
+<meta name="twitter:description" content="Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -58,9 +58,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -102,14 +102,22 @@
 			
 		  </div>
 		
-        <p>Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。</p>
-<p><b><em>logging.getLogger()</em></b>:返回一个logger对象。<br>举个栗子：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line">import logging</span><br><span class="line">import sys</span><br><span class="line">import os.path</span><br><span class="line"> </span><br><span class="line"><span class="attribute">program</span>=os.path.basename(sys.argv[0])</span><br><span class="line"><span class="attribute">logger</span>=logging.getLogger(program)</span><br><span class="line"><span class="builtin-name">print</span>(logger)</span><br></pre></td></tr></table></figure></p>
-<p>运行结果：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS E:\NLP_Program\wiki&gt; python3 .\test.py</span><br><span class="line">&lt;Logger test<span class="selector-class">.py</span> (WARNING)&gt;</span><br></pre></td></tr></table></figure></p>
+        <p>Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。<br><a id="more"></a></p>
+<p><b>logging.getLogger()</b>:返回一个logger对象。<br>举个栗子：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line">import logging</span><br><span class="line">import sys</span><br><span class="line">import os.path</span><br><span class="line"> </span><br><span class="line"><span class="attribute">program</span>=os.path.basename(sys.argv[0])</span><br><span class="line"><span class="attribute">logger</span>=logging.getLogger(program)</span><br><span class="line"><span class="builtin-name">print</span>(logger)</span><br></pre></td></tr></table></figure></p>
+<p>运行结果,可以看到这里的logger对象就是本次运行的test.py<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS E:\NLP_Program\wiki&gt; python3 .\test.py</span><br><span class="line">&lt;Logger test<span class="selector-class">.py</span> (WARNING)&gt;</span><br></pre></td></tr></table></figure></p>
+<p><b>logging.DEBUG,logging.INFO,logging.WARNING,logging.ERROR,logging.CRITICAL</b><br>这几个模块属于设定logging下面的等级，依次是10,20,30,40,50.<br>代码演示：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line">import logging</span><br><span class="line">import sys</span><br><span class="line">import os.path</span><br><span class="line"> </span><br><span class="line"><span class="builtin-name">print</span>(logging.DEBUG)</span><br><span class="line"><span class="builtin-name">print</span>(logging.INFO)</span><br><span class="line"><span class="builtin-name">print</span>(logging.WARNING)</span><br><span class="line"><span class="builtin-name">print</span>(logging.ERROR)</span><br><span class="line"><span class="builtin-name">print</span>(logging.CRITICAL)</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PS E:<span class="symbol">\N</span>LP_Program<span class="symbol">\w</span>iki&gt; python3 .<span class="symbol">\t</span>est.py10</span><br><span class="line">20</span><br><span class="line">30</span><br><span class="line">40</span><br><span class="line">50</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DEBUG	详细信息，典型地调试问题时会感兴趣。</span><br><span class="line">INFO	证明事情按预期工作。</span><br><span class="line">WARNING	表明发生了一些意外，或者不久的将来会发生问题（如‘磁盘满了’）。软件还是在正常工作。</span><br><span class="line"><span class="keyword">ERROR	</span>由于更严重的问题，软件已不能执行一些功能了。</span><br><span class="line">CRITICAL	严重错误，表明软件已不能继续运行了。</span><br></pre></td></tr></table></figure>
+<p>知道这些参数的值以后，下面就应该是看这些值的作用是什么~<br>设定等级值使用的是logging.setLevel()，setLevel里面的参数是level，低于设定值的级别将被忽略，下面举个栗子<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line">import logging</span><br><span class="line">import sys</span><br><span class="line">import os.path</span><br><span class="line"> </span><br><span class="line"><span class="attribute">program</span>=os.path.basename(sys.argv[0])</span><br><span class="line"><span class="attribute">logger</span>=logging.getLogger(program)</span><br><span class="line">logger.setLevel(<span class="attribute">level</span>=logging.DEBUG)</span><br></pre></td></tr></table></figure></p>
+<p>这里设定的level是logging.DEBUG,是最低的级别，可以根据需求换成上述需要的级别。</p>
+<p>同时，logging下面可以设置提示信息，举个栗子(这里偷个懒直接在cmd里模拟了<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; import logging</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; logging.warning(<span class="string">'This is a warning message'</span>)</span></span><br><span class="line">WARNING:root:This is a warning message</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; logging.debug(<span class="string">'This is a debug message'</span>)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; logging.critical(<span class="string">'This is a critical message'</span>)</span></span><br><span class="line">CRITICAL:root:This is a critical message</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; logging.error(<span class="string">'This is a error message'</span>)</span></span><br><span class="line">ERROR:root:This is a error message</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; logging.info(<span class="string">'This is a info message'</span>)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><b>logging.info()</b>主要用于在控制台输出日志信息。</p>
+<p><b>logging.basicConfig()</b>：用于设置基本信息，比如输出消息的基本格式。<br>比如这样<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logging.basicConfig(<span class="attribute">format</span>=<span class="string">'%(asctime)s: %(levelname)s: %(message)s'</span>)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/20/Python-logging模块简述/" data-id="cjl1lahjz000dx0v4eua4audq" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2018/08/20/Python-logging模块简述/" data-id="cjl1lahjz000dx0v4eua4audq" class="article-share-link">Compartir</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
@@ -122,7 +130,7 @@
   
   
     <a href="/2018/07/23/一些假期电影杂谈/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
+      <strong class="article-nav-caption">Viejo</strong>
       <div class="article-nav-title">一些假期电影杂谈</div>
     </a>
   
@@ -137,7 +145,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
+    <h3 class="widget-title">Categorías</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
     </div>
@@ -157,7 +165,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nube de Tags</h3>
     <div class="widget tagcloud">
       <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 20px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SQL-injection/" style="font-size: 15px;">SQL_injection</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a>
     </div>
@@ -166,7 +174,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archivos</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -176,7 +184,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Posts recientes</h3>
     <div class="widget">
       <ul>
         
@@ -224,7 +232,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2018 Klaus<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Construido por <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
