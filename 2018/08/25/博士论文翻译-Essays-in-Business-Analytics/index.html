@@ -5,19 +5,19 @@
   
 
   
-  <title>[博士论文翻译] Essays in Business Analytics | Klaus&#39;s Blog</title>
+  <title>[论文翻译] Essays in Business Analytics | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="翻译初衷前段时间在读武大一篇情感分析论文的时候留意到其中使用的文本降噪技术出自于这篇博士论文，刚好我在做的一个文本训练也需要进行降噪，否则得到的结果会不精准，于是我就找来了这篇论文。碰巧这一个多月来我都在经历严重的失眠…直到前几天我打开这篇论文看了30分钟不到我就开始困…于是那天是这一个多月以来我睡得最早的一天，出于对这篇论文的感谢以及对文本降噪的需求，于是我决定翻译这篇144页的博士论文，文中用">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[博士论文翻译] Essays in Business Analytics">
+<meta property="og:title" content="[论文翻译] Essays in Business Analytics">
 <meta property="og:url" content="http://yoursite.com/2018/08/25/博士论文翻译-Essays-in-Business-Analytics/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
 <meta property="og:description" content="翻译初衷前段时间在读武大一篇情感分析论文的时候留意到其中使用的文本降噪技术出自于这篇博士论文，刚好我在做的一个文本训练也需要进行降噪，否则得到的结果会不精准，于是我就找来了这篇论文。碰巧这一个多月来我都在经历严重的失眠…直到前几天我打开这篇论文看了30分钟不到我就开始困…于是那天是这一个多月以来我睡得最早的一天，出于对这篇论文的感谢以及对文本降噪的需求，于是我决定翻译这篇144页的博士论文，文中用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-29T15:13:59.373Z">
+<meta property="og:updated_time" content="2018-08-30T15:29:55.684Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[博士论文翻译] Essays in Business Analytics">
+<meta name="twitter:title" content="[论文翻译] Essays in Business Analytics">
 <meta name="twitter:description" content="翻译初衷前段时间在读武大一篇情感分析论文的时候留意到其中使用的文本降噪技术出自于这篇博士论文，刚好我在做的一个文本训练也需要进行降噪，否则得到的结果会不精准，于是我就找来了这篇论文。碰巧这一个多月来我都在经历严重的失眠…直到前几天我打开这篇论文看了30分钟不到我就开始困…于是那天是这一个多月以来我睡得最早的一天，出于对这篇论文的感谢以及对文本降噪的需求，于是我决定翻译这篇144页的博士论文，文中用">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
@@ -60,7 +60,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -87,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      [博士论文翻译] Essays in Business Analytics
+      [论文翻译] Essays in Business Analytics
     </h1>
   
 
@@ -99,30 +99,56 @@
 		
 		  <div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#翻译初衷"><span class="toc-number">1.</span> <span class="toc-text">翻译初衷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">2.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鸣谢"><span class="toc-number">3.</span> <span class="toc-text">鸣谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挖掘消费者对产品的反馈到自动化市场结构分析"><span class="toc-number">4.</span> <span class="toc-text">挖掘消费者对产品的反馈到自动化市场结构分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">4.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文献回顾和相关理论"><span class="toc-number">4.2.</span> <span class="toc-text">文献回顾和相关理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#市场结构分析"><span class="toc-number">4.2.1.</span> <span class="toc-text">市场结构分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#产品属性的层次结构"><span class="toc-number">4.2.2.</span> <span class="toc-text">产品属性的层次结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文本挖掘和情感分析"><span class="toc-number">4.2.3.</span> <span class="toc-text">文本挖掘和情感分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#贡献"><span class="toc-number">4.2.4.</span> <span class="toc-text">贡献</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#市场结构分析方法"><span class="toc-number">4.3.</span> <span class="toc-text">市场结构分析方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#从评论中提取产品属性（步骤1-3）"><span class="toc-number">4.3.1.</span> <span class="toc-text">从评论中提取产品属性（步骤1-3）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性等级确认（步骤4）"><span class="toc-number">4.3.2.</span> <span class="toc-text">属性等级确认（步骤4）</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#翻译初衷"><span class="toc-number">1.</span> <span class="toc-text">翻译初衷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">2.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鸣谢"><span class="toc-number">3.</span> <span class="toc-text">鸣谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挖掘消费者对产品的反馈到自动化市场结构分析"><span class="toc-number">4.</span> <span class="toc-text">挖掘消费者对产品的反馈到自动化市场结构分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">4.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文献回顾和相关理论"><span class="toc-number">4.2.</span> <span class="toc-text">文献回顾和相关理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#市场结构分析"><span class="toc-number">4.2.1.</span> <span class="toc-text">市场结构分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#产品属性的层次结构"><span class="toc-number">4.2.2.</span> <span class="toc-text">产品属性的层次结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文本挖掘和情感分析"><span class="toc-number">4.2.3.</span> <span class="toc-text">文本挖掘和情感分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#贡献"><span class="toc-number">4.2.4.</span> <span class="toc-text">贡献</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#市场结构分析方法"><span class="toc-number">4.3.</span> <span class="toc-text">市场结构分析方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#从评论中提取产品属性（步骤1-3）"><span class="toc-number">4.3.1.</span> <span class="toc-text">从评论中提取产品属性（步骤1-3）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性等级确认（步骤4）"><span class="toc-number">4.3.2.</span> <span class="toc-text">属性等级确认（步骤4）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#情感分析和感知映射"><span class="toc-number">4.3.3.</span> <span class="toc-text">情感分析和感知映射</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实证分析与评估"><span class="toc-number">4.4.</span> <span class="toc-text">实证分析与评估</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#平板电脑的实证研究"><span class="toc-number">4.4.1.</span> <span class="toc-text">平板电脑的实证研究</span></a></li></ol></li></ol></li></ol>
 		  </div>
 		
         <h2 id="翻译初衷"><a href="#翻译初衷" class="headerlink" title="翻译初衷"></a>翻译初衷</h2><p>前段时间在读武大一篇情感分析论文的时候留意到其中使用的文本降噪技术出自于这篇博士论文，刚好我在做的一个文本训练也需要进行降噪，否则得到的结果会不精准，于是我就找来了这篇论文。碰巧这一个多月来我都在经历严重的失眠…直到前几天我打开这篇论文看了30分钟不到我就开始困…于是那天是这一个多月以来我睡得最早的一天，出于对这篇论文的感谢以及对文本降噪的需求，于是我决定翻译这篇144页的博士论文，文中用词不当的地方还请指出，同时，等我完成相关算法复现的时候我会把代码放到github上并在此处提供下载链接，以上。（捂脸）</p>
 <a id="more"></a>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这些结构化和非结构化的数据随着机器学习及其工具的兴起，同时给商业带来了挑战和机会。这篇文章的三篇论文涉及企业的重要方面，如营销和使用新兴业务分析方法的运营。这篇文章主要分为两个主题进行分析：无监督学习方法的优势和非结构化文本分析。<br>在文章1里面我们通过结合计算语言，机器学习以及相关市场理论披露的消费者对于自由形式产品的见解，开发了一套商业智能框架和先进的市场结构分析。我们的文本分析方法能够给产品特征建立一个等级，发掘消费者的情绪，以及建立市场结构感知图(原文：and construct<br>market structure perceptual maps，这里似乎翻译得不准)。在文章2里面，我们使用了深度学习和聚类来学习市场细分动态。我们使用skip-gram模型来学习可计算的，向量化的特征表示。此外，进化聚类模型把时间平滑度的度量(a measure of temporal smoothness)结合到整体度量中聚类质量，因此可以被随时用来作为研究市场结构的方法。在文章3里面，我们使用期望值最大化( expectation-maximization)，这是一种应用广泛的数理统计推断方法，被用来解决在运营管理中很多的离散优化问题。我们将优化问题构建为一个半监督学习问题并开发出一套启发式解决容量聚类问题及其随机变量(原文： develop a<br>heuristic to solve a capacitated clustering problem and its stochastic variant 这段翻译比较迷)。</p>
-<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p>首先，我想感谢我的导师，Mike Fry，以及同组成员 Roger Chiang, David Curry, and<br>Jeff Ohlmann。他们提供了价值很高的指导和慷慨的支持。他们对研究的投入对我一直是一种激励。我也想感谢在OBAIS部门的教授们。我诚挚地感激一切从他们身上学到的东西。<br>我感谢我的妈妈Zhengming Lin这些年对我的爱。感谢我的朋友和博士期间的同学，尤其是Xin, Wei, Muer, SK, CJ,感谢他们给我的鼓励和支持。<br>最后，我将这篇论文献给Han Jiang的爱的记忆。</p>
-<h2 id="挖掘消费者对产品的反馈到自动化市场结构分析"><a href="#挖掘消费者对产品的反馈到自动化市场结构分析" class="headerlink" title="挖掘消费者对产品的反馈到自动化市场结构分析"></a>挖掘消费者对产品的反馈到自动化市场结构分析</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>21世纪的第一个十年是商业智能和社交媒体的时代。社交媒体的日益普及导致了令人震惊的增长可用的数字数据量，2012年时候达到了2.7泽字节，其中的80%都是非结构化的数据。众包系统已经激起了巨大的用户生成内容的增长，在数量和重要性上，以及产品评论，博客，还有其他的消费者发起的贡献。由一些供应商比如亚马逊，eBay以及Netflix主导的消费者导向的市场活动重要地增加这个大数据现象。在线的产品评论由消费者自由创建并且可读性足以成为市场调查的有效信息。不像由遗留系统(legacy systems)收集的交易记录和通过从消费者的调查和采访获取的消费者的经验和观点，线上产品评论包含了一个巨大的数量和丰富的消费者观点以及行为信息。学者们和实业家们已经开始使用这个新的数据资源来从评论里更好地倾听消费者们的声音。<br>Elrod和Keane(1995)定义了一种新的市场结构来作为消费者在产品属性中表现的解释。市场结构分析定义了市场中不同品牌竞争的范围。传统的市场结构分析方法分析调查和采访结果来定义竞争品牌间的替代物和互补关系。(Traditional market<br>structure analysis methods analyze survey and interview results to define substitution and<br>complementary relationships among competing brands.)这个市场结构很大程度上是由消费者决定的，并且被他们的特殊使用情况和经历影响着。<br>对市场结构分析使用用户原创内容（UGC）已经成为一种新兴的，重要的市场研究主题。正如Lee和Bradlow描述的那样，“观点的优势，随着时间的推移持续不断的评论，提供了实际的输入给增加传统的处理来推测品牌情绪分析以及能被做得连续，自动，价格低廉，并且是实时的。”根据Netzer所说，通过分析网上的产品评论，“公司可以从大体上获得网上讨论内容的更好的理解和市场机遇，市场结构，竞争格局，以及他们自身的特征还有消费者所讨论的他们竞争对手的产品。”然而，这也是一个挑战，由于有大量的，非结构化的数据，同时缺乏工具来有效地发掘用户原创内容(UFC)。文本分析和其相关的大数据分析领域提供了越来越多的有效的办法来应对这些挑战。<br>目前的研究目标是推进市场结构分析，通过结合营销理论和计算语言学的进步，揭示更深层次的市场产品评论的见解。我们研发了一套创新的文本分析框架来给产品属性进行分级，发掘消费者的情绪，以及构建市场结构感知图。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这些结构化和非结构化的数据随着机器学习及其工具的兴起，同时给商业带来了挑战和机会。这篇文章的三篇论文涉及企业的重要方面，如营销和使用新兴业务分析方法的运营。这篇文章主要分为两个主题进行分析：无监督学习方法的优势和非结构化文本分析。</p>
+<p>在文章1里面我们通过结合计算语言，机器学习以及相关市场理论披露的消费者对于自由形式产品的见解，开发了一套商业智能框架和先进的市场结构分析。我们的文本分析方法能够给产品特征建立一个等级，发掘消费者的情绪，以及建立市场结构感知图(原文：and construct<br>market structure perceptual maps，这里似乎翻译得不准)。在文章2里面，我们使用了深度学习和聚类来学习市场细分动态。我们使用skip-gram模型来学习可计算的，向量化的特征表示。此外，进化聚类模型把时间平滑度的度量(a measure of temporal smoothness)结合到整体度量中聚类质量，因此可以被随时用来作为研究市场结构的方法。在文章3里面，我们使用期望值最大化( expectation-maximization)，这是一种应用广泛的数理统计推断方法，被用来解决在运营管理中很多的离散优化问题。我们将优化问题构建为一个半监督学习问题并开发出一套启发式解决容量聚类问题及其随机变量(原文： develop a<br>heuristic to solve a capacitated clustering problem and its stochastic variant 这段翻译比较迷)。</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p>首先，我想感谢我的导师，Mike Fry，以及同组成员 Roger Chiang, David Curry, and<br>Jeff Ohlmann。他们提供了价值很高的指导和慷慨的支持。他们对研究的投入对我一直是一种激励。我也想感谢在OBAIS部门的教授们。我诚挚地感激一切从他们身上学到的东西。</p>
+<p>我感谢我的妈妈Zhengming Lin这些年对我的爱。感谢我的朋友和博士期间的同学，尤其是Xin, Wei, Muer, SK, CJ,感谢他们给我的鼓励和支持。</p>
+<p>最后，我将这篇论文献给Han Jiang的爱的记忆。</p>
+<h2 id="挖掘消费者对产品的反馈到自动化市场结构分析"><a href="#挖掘消费者对产品的反馈到自动化市场结构分析" class="headerlink" title="挖掘消费者对产品的反馈到自动化市场结构分析"></a>挖掘消费者对产品的反馈到自动化市场结构分析</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>21世纪的第一个十年是商业智能和社交媒体的时代。社交媒体的日益普及导致了令人震惊的增长可用的数字数据量，2012年时候达到了2.7泽字节，其中的80%都是非结构化的数据。众包系统已经激起了巨大的用户生成内容的增长，在数量和重要性上，以及产品评论，博客，还有其他的消费者发起的贡献。由一些供应商比如亚马逊，eBay以及Netflix主导的消费者导向的市场活动重要地增加这个大数据现象。在线的产品评论由消费者自由创建并且可读性足以成为市场调查的有效信息。不像由遗留系统(legacy systems)收集的交易记录和通过从消费者的调查和采访获取的消费者的经验和观点，线上产品评论包含了一个巨大的数量和丰富的消费者观点以及行为信息。学者们和实业家们已经开始使用这个新的数据资源来从评论里更好地倾听消费者们的声音。</p>
+<p>Elrod和Keane(1995)定义了一种新的市场结构来作为消费者在产品属性中表现的解释。市场结构分析定义了市场中不同品牌竞争的范围。传统的市场结构分析方法分析调查和采访结果来定义竞争品牌间的替代物和互补关系。(Traditional market<br>structure analysis methods analyze survey and interview results to define substitution and<br>complementary relationships among competing brands.)这个市场结构很大程度上是由消费者决定的，并且被他们的特殊使用情况和经历影响着。</p>
+<p>对市场结构分析使用用户原创内容（UGC）已经成为一种新兴的，重要的市场研究主题。正如Lee和Bradlow描述的那样，“观点的优势，随着时间的推移持续不断的评论，提供了实际的输入给增加传统的处理来推测品牌情绪分析以及能被做得连续，自动，价格低廉，并且是实时的。”根据Netzer所说，通过分析网上的产品评论，“公司可以从大体上获得网上讨论内容的更好的理解和市场机遇，市场结构，竞争格局，以及他们自身的特征还有消费者所讨论的他们竞争对手的产品。”然而，这也是一个挑战，由于有大量的，非结构化的数据，同时缺乏工具来有效地发掘用户原创内容(UFC)。文本分析和其相关的大数据分析领域提供了越来越多的有效的办法来应对这些挑战。</p>
+<p>目前的研究目标是推进市场结构分析，通过结合营销理论和计算语言学的进步，揭示更深层次的市场产品评论的见解。我们研发了一套创新的文本分析框架来给产品属性进行分级，发掘消费者的情绪，以及构建市场结构感知图。</p>
 <p>Figure 1代表了我们的研究前提和文本分析方法的定位与传统的市场结构分析方法作比较。在文本分析方法中，我们把提供评论的消费者作为一个巨大的焦点小组。我们发掘并分析线上产品评论来作为顾客之声(VOC,Voice Of Consumer)，不需要向顾客问任何一个问题。</p>
-<p>先前Lee，Bradlow和Netzer建立了基础的用来分析市场结构的基于用于原创内容的文本分析方法。(这句话翻译得有点怪…原文在这里，Pioneering work by Lee and Bradlow (2011) and Netzer et al. (2012) establishes the<br>foundation of a text analytics approach for conducting market structure analysis using UGC. )我们的研究通过填补两个空白来增强这种新兴方法。首先，鉴于研究者们已经使用了大量的分析技术来进行市场结构分析，他们倾向于只做有限文本使用的分析，比如such as pro–con列表。(这里译者也不清楚pro–con具体是什么，也没有查到相关说明，欢迎补充。)自由形式的评论可以说是UGC更常见的形式，但大部分被忽略作为营销研究的数据来源。如Figure 2中所示，关于消费者如何使用产品的信息和他们对特定产品属性的看法出现在大多数自由形式中评论。我们证明了文本挖掘方法如何提取信息中心到市场结构分析，同时也揭露了额外的知识。<br>第二，传统的市场结构分析首先提供“客户概要对产品属性的现有产品的看法和评价”，用于解释市场竞争。这个方面在Lee，Bradlow，Netzer的研究方法中缺乏可解释性，这个没有进行额外分析时不能说明品牌间的相似性。随着情感分析使用机器学习方法的时候，我们寻找来建立和验证一个更有原则的方法来自动化进行市场结构分析。我们的框架将产品属性的评估纳入在品牌之间建立感知相似性的过程之中。</p>
-<p>在下一个部分，我们回顾文献，相关的理论以及讨论我们的贡献。我们然后介绍一种实证研究来分析超过45000份消费者产生的关于台式电脑的评论来验证我们框架的有效性。Web附录包含我们提出的方法的技术和实施细节。</p>
-<h3 id="文献回顾和相关理论"><a href="#文献回顾和相关理论" class="headerlink" title="文献回顾和相关理论"></a>文献回顾和相关理论</h3><h4 id="市场结构分析"><a href="#市场结构分析" class="headerlink" title="市场结构分析"></a>市场结构分析</h4><p>根据Elrod的定义，市场结构分析是为了解释大环境下各个公司与他们之间产品的竞争。使用多属性的可用理论，研究人员可以通过分析客户对预定产品属性集的价值或者根据偏好或选择数据对衍生维度进行事后解释来推导市场结构。（这里翻译得我要吐血了…）外部分析假定研究院知道哪种属性驱动了选择；内部分析相反地是帮助认定重要的维度和偏好数据是否符合现有品牌的位置。Elrod和Myers以及Tauber提供了这些市场结构分析模型的广阔的综述。<br>经典的市场结构分析方法是没有限制的。举个例子，通过用户调查来提取产品属性的进行由市场经理主导，市场经理需要分析不同的问题而不仅是消费者提出的问题。我们的文本分析方法主要在利用用户评论来弥补这些限制。通过挖掘产品评论来发掘隐藏的产品属性，制造商可以识别并解决以前没有预料到的问题并且添加新的针对消费者需求的产品属性。此外，在社交媒体环境中，与主要数据收集方法相比，可以快速，频繁地以较低的成本收集消费者的声音。自动的用户评论分析可以增加市场结构投资分析的回报，公司就能拓展对用户行为的理解。</p>
-<h4 id="产品属性的层次结构"><a href="#产品属性的层次结构" class="headerlink" title="产品属性的层次结构"></a>产品属性的层次结构</h4><p>产品属性的层次结构已经被研究得很广泛了。这些研究支持属性与产品相关的观点，从具体到抽象。因为他们的信息进程限制，消费者更喜欢使用更少的抽象属性来聚合具体属性。为了推断属性关系，研究人员传统上从人类评判中收集数据，然后应用层次聚类来聚合属性。<br>我们提出的属性层次结构的另一个理论基础来自于均值链理论，根据该理论，消费者将具体的产品属性与其产品使用或消费情况联系起来，从而为它们带来益处。属性层次结构的底层包含相对具体的属性。更高级别聚合这些属性，反映消费者在概念上如何根据其使用情况对属性进行分组以实现期望的结束或有价值的状态。Hofstede在这种理论的基础上提出了一种国际市场细分模型，其中根据利益和价值来评估消费者的选择方案，而不是物理属性。我们研究的意义是我们能发现消费者的使用情况并且构建了一个属性等级以用来自动发现使用情况。<br>市场细分的文献也提出了相似的观点。当细分消费者市场，Haley建议管理者们更多地去注重抽象产品的利益而不是具体的产品因素。尽管信息会在抽象的过程中遗失，但大致相同的信息仍然包含在一些抽象属性里面。抽象属性是综合的，尤其是当推导分析异常具体的属性时极其有帮助。举个例子，平板电脑有各种各样的存储选项，比较两种平板电脑如何满足消费者的存储需求，而不是衡量SD等个别物理属性的实用性，这是直观而自然的卡和硬盘。<br>一些市场研究讨论了一些自动从客户产生的评论里提取市场属性的方法，虽然只有Lee和Bradlow测试过如何如何用层级方法来聚合层级属性。他们使用了元属性，最初由Ghose和Rao提出，为了在更高级别表示产品属性包。为了保持一致，我们还用元属性来表示更高的级别，更抽象的属性。然而，Lee和Bradlow提出的只有一个元属性的单层；举个例子，对于一个数码相机，他们定义三个产品元属性：自动聚焦，手动聚焦和电脑连接。这三个相机的属性被分开由多个不同的相机物理组件控制，然而，与自动对焦和PC连接相比，自动对焦和手动对焦可能更接近消费者的感知空间，因为他们涉及到相同的使用场景。我们的方法构造了一个属性层次结构，以根据其使用情况捕获如何将属性聚合到多个更高级别，如Figure 3所示。我们相信这种多级属性层次结构更能代表客户使用情况和属性关系。客户之声，正如使用情况和属性同义词，被属性等级捕获来证明公司掌握了有价值的信息后他们可以设计和提升他们的产品。<br>此处插入Figure 3（译者注:并没有在原文中看到类似图片的东西…）</p>
-<h4 id="文本挖掘和情感分析"><a href="#文本挖掘和情感分析" class="headerlink" title="文本挖掘和情感分析"></a>文本挖掘和情感分析</h4><p>文本挖掘从非结构化的文本中揭露了有质量的信息，这些信息更有用，更有意义，并且不平凡。它体现在几个方面，包括计算机语言学，信息检索，机器学习，自然语言处理，还有统计学。它最初在计算机科学中使用，但如今在商业应用中起到了更广泛的应用。情感分析，也被称为观点挖掘，通过分析非结构化的文本来推测情感极性。最近，文本挖掘和情感分析被应用于市场研究中。Archak研究了产品属性和电子产品销售量间的关系，Ghose联系了文本挖掘和众包方法来估算酒店需求。Tirunillai和Tellis验证了product chatter(这里chatter是喋喋不休的意思，译者也不晓得怎么翻译了)，由量级，情感，还有产品评论的星级所定义，可以预测公司的股票表现。Decker和Trusov通过对产品评论进行文本挖掘来估计消费者的产品属性偏好，而且Onishi和Manchanda研究了在线博客在传统媒体存在情况下的预测能力。<br>虽然为了市场结构分析来文本挖掘用户原创内容是一种引人注目的市场研究方向，据我们所知，只有两篇文章提到了它，而且没有研究结合了文本挖掘和情感分析来进行市场结构分析。Lee和Bradlow从用户产生的pro-con(译者在上文提到过这个词不知道怎么翻译)列表分析了产品属性，根据他们属性计数中的不同点使用对应分析来描述品牌距离(brand distances)。Netzer研究了用户原创内容如何通过分析在线论坛的讨论中的品牌共现来提供有关竞争市场结构的信息。两种方法在有较好的正确性下都创造了市场结构感知地图，超过了传统方法并且提供了传统方法所不能提供的信息。然而，为了超出当前关于两个品牌是替代品还是补足品这个问题，两种方法都需要额外的临时分析。Netzer使用了回归方法来解释汽车模型，使用汽车特征和共同的讨论条款(discussion terms)来作为解释变量。Lee和Bradlow的对应分析地图也有解释力的限制，因为这条轴线只是反映了品牌间下面的属性计数的相关不同点。<br>就是这样，由对应分析提供的市场结构提出了属性的重要性，而不是评估产品的消费者如何区分他们。</p>
-<h4 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h4><p>根据文献回顾，我们的研究至少做了三个独一无二的贡献。首先，我们的方法结合了市场理论，计算机语言学，还有文本挖掘来自动构建属性等级。这提出了多层的属性等级可以获取消费者使用情况和潜在的大量市场研究的需要。<br>其次，我们在这个模型中结合了市场结构的这个发现和竞争市场的解释。不适用品牌共现和属性频率数据，我们的方法分析了评论来揭露消费者的情感走向属性并且依靠发现的情绪来获取市场洞察率。我们通过超出消费者提及品牌，产品及其属性的频率来评估消费者的产品使用情况和情绪，从而调查产品位置和市场细分。<br>最后提出的方法是为了处理自由形式的评论而定制的。计算机语言学的进步让我们能够分析评论句子间的语法关系，因此揭露了复杂的消费者偏好和欣赏眼光。我们通过将实证结果与现有文本挖掘方法和不使用用户原创内容(UGC)的外部数据得出的市场结构进行比较验证了所提出的方法。我们的方法给了市场研究者和创业者们一个工具来获取更深层次的消费者和市场洞察力。</p>
+<p>先前Lee，Bradlow和Netzer建立了基础的用来分析市场结构的基于用于原创内容的文本分析方法。(这句话翻译得有点怪…原文在这里，Pioneering work by Lee and Bradlow (2011) and Netzer et al. (2012) establishes the<br>foundation of a text analytics approach for conducting market structure analysis using UGC. )我们的研究通过填补两个空白来增强这种新兴方法。首先，鉴于研究者们已经使用了大量的分析技术来进行市场结构分析，他们倾向于只做有限文本使用的分析，比如such as pro–con列表。(这里译者也不清楚pro–con具体是什么，也没有查到相关说明，欢迎补充。)自由形式的评论可以说是UGC更常见的形式，但大部分被忽略作为营销研究的数据来源。如Figure 2中所示，关于消费者如何使用产品的信息和他们对特定产品属性的看法出现在大多数自由形式中评论。我们证明了文本挖掘方法如何提取信息中心到市场结构分析，同时也揭露了额外的知识。</p>
+<p>第二，传统的市场结构分析首先提供“客户概要对产品属性的现有产品的看法和评价”，用于解释市场竞争。这个方面在Lee，Bradlow，Netzer的研究方法中缺乏可解释性，这个没有进行额外分析时不能说明品牌间的相似性。随着情感分析使用机器学习方法的时候，我们寻找来建立和验证一个更有原则的方法来自动化进行市场结构分析。我们的框架将产品属性的评估纳入在品牌之间建立感知相似性的过程之中。</p>
+<p>在下一个部分，我们回顾文献，相关的理论以及讨论我们的贡献。我们然后介绍一种实证研究来分析超过45000份消费者产生的关于平板电脑的评论来验证我们框架的有效性。Web附录包含我们提出的方法的技术和实施细节。</p>
+<h3 id="文献回顾和相关理论"><a href="#文献回顾和相关理论" class="headerlink" title="文献回顾和相关理论"></a>文献回顾和相关理论</h3><h4 id="市场结构分析"><a href="#市场结构分析" class="headerlink" title="市场结构分析"></a>市场结构分析</h4><p>根据Elrod的定义，市场结构分析是为了解释大环境下各个公司与他们之间产品的竞争。使用多属性的可用理论，研究人员可以通过分析客户对预定产品属性集的价值或者根据偏好或选择数据对衍生维度进行事后解释来推导市场结构。（这里翻译得我要吐血了…）外部分析假定研究院知道哪种属性驱动了选择；内部分析相反地是帮助认定重要的维度和偏好数据是否符合现有品牌的位置。Elrod和Myers以及Tauber提供了这些市场结构分析模型的广阔的综述。</p>
+<p>经典的市场结构分析方法是没有限制的。举个例子，通过用户调查来提取产品属性的进行由市场经理主导，市场经理需要分析不同的问题而不仅是消费者提出的问题。我们的文本分析方法主要在利用用户评论来弥补这些限制。通过挖掘产品评论来发掘隐藏的产品属性，制造商可以识别并解决以前没有预料到的问题并且添加新的针对消费者需求的产品属性。此外，在社交媒体环境中，与主要数据收集方法相比，可以快速，频繁地以较低的成本收集消费者的声音。自动的用户评论分析可以增加市场结构投资分析的回报，公司就能拓展对用户行为的理解。</p>
+<h4 id="产品属性的层次结构"><a href="#产品属性的层次结构" class="headerlink" title="产品属性的层次结构"></a>产品属性的层次结构</h4><p>产品属性的层次结构已经被研究得很广泛了。这些研究支持属性与产品相关的观点，从具体到抽象。因为他们的信息进程限制，消费者更喜欢使用更少的抽象属性来聚合具体属性。为了推断属性关系，研究人员传统上从人类评判中收集数据，然后应用层次聚类来聚合属性。</p>
+<p>我们提出的属性层次结构的另一个理论基础来自于均值链理论，根据该理论，消费者将具体的产品属性与其产品使用或消费情况联系起来，从而为它们带来益处。属性层次结构的底层包含相对具体的属性。更高级别聚合这些属性，反映消费者在概念上如何根据其使用情况对属性进行分组以实现期望的结束或有价值的状态。Hofstede在这种理论的基础上提出了一种国际市场细分模型，其中根据利益和价值来评估消费者的选择方案，而不是物理属性。我们研究的意义是我们能发现消费者的使用情况并且构建了一个属性等级以用来自动发现使用情况。</p>
+<p>市场细分的文献也提出了相似的观点。当细分消费者市场，Haley建议管理者们更多地去注重抽象产品的利益而不是具体的产品因素。尽管信息会在抽象的过程中遗失，但大致相同的信息仍然包含在一些抽象属性里面。抽象属性是综合的，尤其是当推导分析异常具体的属性时极其有帮助。举个例子，平板电脑有各种各样的存储选项，比较两种平板电脑如何满足消费者的存储需求，而不是衡量SD等个别物理属性的实用性，这是直观而自然的卡和硬盘。</p>
+<p>一些市场研究讨论了一些自动从客户产生的评论里提取市场属性的方法，虽然只有Lee和Bradlow测试过如何如何用层级方法来聚合层级属性。他们使用了元属性，最初由Ghose和Rao提出，为了在更高级别表示产品属性包。为了保持一致，我们还用元属性来表示更高的级别，更抽象的属性。然而，Lee和Bradlow提出的只有一个元属性的单层；举个例子，对于一个数码相机，他们定义三个产品元属性：自动聚焦，手动聚焦和电脑连接。这三个相机的属性被分开由多个不同的相机物理组件控制，然而，与自动对焦和PC连接相比，自动对焦和手动对焦可能更接近消费者的感知空间，因为他们涉及到相同的使用场景。我们的方法构造了一个属性层次结构，以根据其使用情况捕获如何将属性聚合到多个更高级别，如Figure 3所示。我们相信这种多级属性层次结构更能代表客户使用情况和属性关系。客户之声，正如使用情况和属性同义词，被属性等级捕获来证明公司掌握了有价值的信息后他们可以设计和提升他们的产品。</p>
+<p>此处插入Figure 3（译者注:并没有在原文中看到类似图片的东西…）</p>
+<h4 id="文本挖掘和情感分析"><a href="#文本挖掘和情感分析" class="headerlink" title="文本挖掘和情感分析"></a>文本挖掘和情感分析</h4><p>文本挖掘从非结构化的文本中揭露了有质量的信息，这些信息更有用，更有意义，并且不平凡。它体现在几个方面，包括计算机语言学，信息检索，机器学习，自然语言处理，还有统计学。它最初在计算机科学中使用，但如今在商业应用中起到了更广泛的应用。情感分析，也被称为观点挖掘，通过分析非结构化的文本来推测情感极性。最近，文本挖掘和情感分析被应用于市场研究中。Archak研究了产品属性和电子产品销售量间的关系，Ghose联系了文本挖掘和众包方法来估算酒店需求。Tirunillai和Tellis验证了product chatter(这里chatter是喋喋不休的意思，译者也不晓得怎么翻译了)，由量级，情感，还有产品评论的星级所定义，可以预测公司的股票表现。Decker和Trusov通过对产品评论进行文本挖掘来估计消费者的产品属性偏好，而且Onishi和Manchanda研究了在线博客在传统媒体存在情况下的预测能力。</p>
+<p>虽然为了市场结构分析来文本挖掘用户原创内容是一种引人注目的市场研究方向，据我们所知，只有两篇文章提到了它，而且没有研究结合了文本挖掘和情感分析来进行市场结构分析。Lee和Bradlow从用户产生的pro-con(译者在上文提到过这个词不知道怎么翻译)列表分析了产品属性，根据他们属性计数中的不同点使用对应分析来描述品牌距离(brand distances)。Netzer研究了用户原创内容如何通过分析在线论坛的讨论中的品牌共现来提供有关竞争市场结构的信息。两种方法在有较好的正确性下都创造了市场结构感知地图，超过了传统方法并且提供了传统方法所不能提供的信息。然而，为了超出当前关于两个品牌是替代品还是补足品这个问题，两种方法都需要额外的临时分析。Netzer使用了回归方法来解释汽车模型，使用汽车特征和共同的讨论条款(discussion terms)来作为解释变量。Lee和Bradlow的对应分析地图也有解释力的限制，因为这条轴线只是反映了品牌间下面的属性计数的相关不同点。</p>
+<p>就是这样，由对应分析提供的市场结构提出了属性的重要性，而不是评估产品的消费者如何区分他们。</p>
+<h4 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h4><p>根据文献回顾，我们的研究至少做了三个独一无二的贡献。首先，我们的方法结合了市场理论，计算机语言学，还有文本挖掘来自动构建属性等级。这提出了多层的属性等级可以获取消费者使用情况和潜在的大量市场研究的需要。</p>
+<p>其次，我们在这个模型中结合了市场结构的这个发现和竞争市场的解释。不适用品牌共现和属性频率数据，我们的方法分析了评论来揭露消费者的情感走向属性并且依靠发现的情绪来获取市场洞察率。我们通过超出消费者提及品牌，产品及其属性的频率来评估消费者的产品使用情况和情绪，从而调查产品位置和市场细分。</p>
+<p>最后提出的方法是为了处理自由形式的评论而定制的。计算机语言学的进步让我们能够分析评论句子间的语法关系，因此揭露了复杂的消费者偏好和欣赏眼光。我们通过将实证结果与现有文本挖掘方法和不使用用户原创内容(UGC)的外部数据得出的市场结构进行比较验证了所提出的方法。我们的方法给了市场研究者和创业者们一个工具来获取更深层次的消费者和市场洞察力。</p>
 <h3 id="市场结构分析方法"><a href="#市场结构分析方法" class="headerlink" title="市场结构分析方法"></a>市场结构分析方法</h3><p>我们提出的方法包含了五个步骤：（1）线上评论收集；（2）文本预处理；（3）产品属性提取；（4）属性等级定义；（5）情感分析和感知映射。我们在Web附录A中提供了一个关于这5个步骤的简单的讨论和当前技术的实现细节。</p>
-<h4 id="从评论中提取产品属性（步骤1-3）"><a href="#从评论中提取产品属性（步骤1-3）" class="headerlink" title="从评论中提取产品属性（步骤1-3）"></a>从评论中提取产品属性（步骤1-3）</h4><p>我们从自动收集，清理，组织有趣的产品评论目录开始，其中包括了去除HTML标签，补全了拼写不全的单词，提取了注入上架日期和品牌这类相关细节。在步骤2里面，我们通过三个任务分解了非结构化的产品评论到语言组件来进行文本分析：符号化，词性（part-of-speech）标记,依赖分析。第二步也定义词语之间词性和文法的关系，以便后续进行分析。第二步还确定了词语之间的词性和语法关系，以便进行后续分析。<br>在属性提取的这个步骤中，自然语言处理技术让我们可以从评论的句子冲推断出一组最显著的产品属性。我们的算法在Hu和Liu的基础上，通过在最常见的名词和名词词组上引用了一组过滤器来提高了挖掘消费者观点的水平。这个步骤给传统的属性抽取程序提供了一个办法，那就是使用个体或团体观点。我们可以使用产品类别中感兴趣的预定属性列表，但是我们的方法反而用NLP技术来自动判定产品属性，具有一些有价值的含义。第一，正如Myers和Alpert笔记中那样，只有有限的一部分观点对消费者是有用的，而且文本分析可以识别这些属性以及相对重要性。第二，根据Lee和Bradlow，消费者可能会使用不同的术语引用(refer to)相同的属性;我们的方法发现了属性同义词。第三，消费者们讨论的属性可能会被传统的方法所忽略，但是可以被产品观点挖掘提取出来。</p>
-<h4 id="属性等级确认（步骤4）"><a href="#属性等级确认（步骤4）" class="headerlink" title="属性等级确认（步骤4）"></a>属性等级确认（步骤4）</h4><p>第四步建立了属性等级。消费者对于属性关系的观点被他们的产品评论关联性或者语义相似性所评估。根据他们的语义相关性，我们执行了等级聚类聚合属性到一个多层级的等级中。之后我们可以在这个属性等级中选择任何等级来获得任意一簇低等级的元属性。属性等级的建立是产品类别实体学习的一种形式。<br>语言学里面的分配假设给属性等级的建立提供了一个理论发现。Harris建议含义相近的词往往会出现在相似的邻词旁，就像“实体的含义以及它们之中语法关系的意义，都与这些实体和其他实体的组合的限制有关。”因此，当消费者在评论中表达他们的产品经历使用不同的属性时，我们可以推断出他们的使用情况以及这些属性如何与消费者的需求，动机和目标相关。<br>参考两条平板电脑的评论：“在蓝牙功能下可以从音乐流式切换到扬声器，”和“我的蓝牙键盘现在不能工作。”我们可以推断出蓝牙是一种和其他硬件外设相关的属性，就像扬声器和键盘。这条评论，“USB支持在FAT下格式化的键盘，闪存驱动器/外部硬盘驱动器。”和“全USB的接口允许你介入一个平通的无线或有线鼠标或键盘。”意味着USB虽然通常被认为是不同的产品属性，但很大程度上与蓝牙共享其使用情况。两者都是用来连接外设硬件的，比如，键盘。因此，我们可以认为USB和蓝牙是相似的，并且把它们聚合到一个元属性当中，与硬件连接使用情况有关。<br>为了计算已经认证的产品属性的语义相似性，我们首先从评论句子中的语法关系推测了他们的使用情况。在这个句子中，“这个USB支持键盘，”主题USB在直接对象键盘上执行支持操作。对于每一个属性，我们用一个语义向量大量总结了在评论中表达的语法关系。每一个语义向量在一个属性和它的相关动作词语中包含了重要的语法依赖关系。最终，一对词语的相似度可以通过使用一个在对应语义向量中的相似度估计来计算(在我们的方法中，使用余弦(cosine)距离)。基于大量文本的语义相似性也称为分布式统计自然语言处理的相似性。<br>先前对于市场的研究支持我们的方法。产品属性的相似性和他们的使用情况相关。使用情况在消费者对产品的感觉以及决定消费者寻找的好处中扮演了一个重要的角色。此外，从消费者的观点看，消费者要的是不同场景中产品使用的好处，这也决定了产品的市场。换句话说，当两个产品属性和相同的使用情况相关时，他们被视为可以提供相似的好处。<br>我们采用层次聚类来构造属性层次结构，如图3(译者注：原文里我真没看到图…后面那个Panel b也没有…)中的Panel b所示，有几个原因。第一，聚类分析在市场研究中被作为一个基本工具。Srivastava建议使用层次聚类和产品使用数据来解释产品分类的差异。Lee和Bradlow使用聚类分析来根据消费者生成的评论对产品属性进行分组，尽管我们使用的相似性度量基于不同的理论。第二，在知识发现文献(knowledge discovery literature)中，聚类分析支持从文本中进行实体学习。在这个研究中，实行属性等级代表了主要实体，概念（属性）及其在产品类别中的关系。第三，使用系统树图来表示属性等级，根据我们的分析需要，我们可以通过在特定级别切割树形图来获得具有不同抽象级别的元属性。</p>
-<p>19页完。</p>
+<h4 id="从评论中提取产品属性（步骤1-3）"><a href="#从评论中提取产品属性（步骤1-3）" class="headerlink" title="从评论中提取产品属性（步骤1-3）"></a>从评论中提取产品属性（步骤1-3）</h4><p>我们从自动收集，清理，组织有趣的产品评论目录开始，其中包括了去除HTML标签，补全了拼写不全的单词，提取了注入上架日期和品牌这类相关细节。在步骤2里面，我们通过三个任务分解了非结构化的产品评论到语言组件来进行文本分析：符号化，词性（part-of-speech）标记,依赖分析。第二步也定义词语之间词性和文法的关系，以便后续进行分析。第二步还确定了词语之间的词性和语法关系，以便进行后续分析。</p>
+<p>在属性提取的这个步骤中，自然语言处理技术让我们可以从评论的句子冲推断出一组最显著的产品属性。我们的算法在Hu和Liu的基础上，通过在最常见的名词和名词词组上引用了一组过滤器来提高了挖掘消费者观点的水平。这个步骤给传统的属性抽取程序提供了一个办法，那就是使用个体或团体观点。我们可以使用产品类别中感兴趣的预定属性列表，但是我们的方法反而用NLP技术来自动判定产品属性，具有一些有价值的含义。第一，正如Myers和Alpert笔记中那样，只有有限的一部分观点对消费者是有用的，而且文本分析可以识别这些属性以及相对重要性。第二，根据Lee和Bradlow，消费者可能会使用不同的术语引用(refer to)相同的属性;我们的方法发现了属性同义词。第三，消费者们讨论的属性可能会被传统的方法所忽略，但是可以被产品观点挖掘提取出来。</p>
+<h4 id="属性等级确认（步骤4）"><a href="#属性等级确认（步骤4）" class="headerlink" title="属性等级确认（步骤4）"></a>属性等级确认（步骤4）</h4><p>第四步建立了属性等级。消费者对于属性关系的观点被他们的产品评论关联性或者语义相似性所评估。根据他们的语义相关性，我们执行了等级聚类聚合属性到一个多层级的等级中。之后我们可以在这个属性等级中选择任何等级来获得任意一簇低等级的元属性。属性等级的建立是产品类别实体学习的一种形式。</p>
+<p>语言学里面的分配假设给属性等级的建立提供了一个理论发现。Harris建议含义相近的词往往会出现在相似的邻词旁，就像“实体的含义以及它们之中语法关系的意义，都与这些实体和其他实体的组合的限制有关。”因此，当消费者在评论中表达他们的产品经历使用不同的属性时，我们可以推断出他们的使用情况以及这些属性如何与消费者的需求，动机和目标相关。</p>
+<p>参考两条平板电脑的评论：“在蓝牙功能下可以从音乐流式切换到扬声器，”和“我的蓝牙键盘现在不能工作。”我们可以推断出蓝牙是一种和其他硬件外设相关的属性，就像扬声器和键盘。这条评论，“USB支持在FAT下格式化的键盘，闪存驱动器/外部硬盘驱动器。”和“全USB的接口允许你介入一个平通的无线或有线鼠标或键盘。”意味着USB虽然通常被认为是不同的产品属性，但很大程度上与蓝牙共享其使用情况。两者都是用来连接外设硬件的，比如，键盘。因此，我们可以认为USB和蓝牙是相似的，并且把它们聚合到一个元属性当中，与硬件连接使用情况有关。</p>
+<p>为了计算已经认证的产品属性的语义相似性，我们首先从评论句子中的语法关系推测了他们的使用情况。在这个句子中，“这个USB支持键盘，”主题USB在直接对象键盘上执行支持操作。对于每一个属性，我们用一个语义向量大量总结了在评论中表达的语法关系。每一个语义向量在一个属性和它的相关动作词语中包含了重要的语法依赖关系。最终，一对词语的相似度可以通过使用一个在对应语义向量中的相似度估计来计算(在我们的方法中，使用余弦(cosine)距离)。基于大量文本的语义相似性也称为分布式统计自然语言处理的相似性。</p>
+<p>先前对于市场的研究支持我们的方法。产品属性的相似性和他们的使用情况相关。使用情况在消费者对产品的感觉以及决定消费者寻找的好处中扮演了一个重要的角色。此外，从消费者的观点看，消费者要的是不同场景中产品使用的好处，这也决定了产品的市场。换句话说，当两个产品属性和相同的使用情况相关时，他们被视为可以提供相似的好处。</p>
+<p>我们采用层次聚类来构造属性层次结构，如图3(译者注：原文里我真没看到图…后面那个Panel b也没有…)中的Panel b所示，有几个原因。第一，聚类分析在市场研究中被作为一个基本工具。Srivastava建议使用层次聚类和产品使用数据来解释产品分类的差异。Lee和Bradlow使用聚类分析来根据消费者生成的评论对产品属性进行分组，尽管我们使用的相似性度量基于不同的理论。第二，在知识发现文献(knowledge discovery literature)中，聚类分析支持从文本中进行实体学习。在这个研究中，实行属性等级代表了主要实体，概念（属性）及其在产品类别中的关系。第三，使用系统树图来表示属性等级，根据我们的分析需要，我们可以通过在特定级别切割树形图来获得具有不同抽象级别的元属性。</p>
+<h4 id="情感分析和感知映射"><a href="#情感分析和感知映射" class="headerlink" title="情感分析和感知映射"></a>情感分析和感知映射</h4><p>在最后一步中，我们使用情感分析技术总结消费者对产品属性的看法。不像之前的研究那样使用品牌共现数据或者属性频率数据，我们获取用户的情绪，可以直接解释为什么他们感知或评估竞争产品不同。属性等级和元属性也提供了一种属性简化框架来总结相关的稀少的用户对于产品属性的情绪。</p>
+<p>情感分类器都属于机器学习算法，可以自动探测用户的对于产品的情绪是积极的还是消极的。用户的情绪可以由下列测量：让MA𝑖j成为品牌i的元属性j，它是一组低级属性。我们发现所有评论句子的子集在产品属性中都提到了一个最低等级的MAij。然后我们把这些句子放到一个由句子的子集训练好并且做了标记的情感分类器中。这个分类器输出Pij，这是评论的句子中有积极情绪的数目，还有Nij，这是评论的句子中有消极情绪的数目。我们选择Pij/Nij的概率作为MAij的情绪评分。Web附录A4中详细描述了情感分析和情绪分类器的实现。</p>
+<p>通过这些得到的消费者情绪，我们使用多维缩放来生成市场结构感知地图。多维缩放是一种受欢迎的多元技术，用以发现品牌在消费者的感知和偏爱方面的关系；它把消费者对于品牌相似度或者偏爱的判定转换到多维度空间的距离表示。MDS地图显示了所有品牌的相对定位。我们推进Netzer的工作，将MDS扩展到通常依赖调查和实验数据，以包括用户原创内容。我们展示了以经验为主地在自由形式评论上的情绪分析，包括了一种传统的MDS技术，具有构建具有高面子和外部有效性的感知图的潜力很大。</p>
+<h3 id="实证分析与评估"><a href="#实证分析与评估" class="headerlink" title="实证分析与评估"></a>实证分析与评估</h3><h4 id="平板电脑的实证研究"><a href="#平板电脑的实证研究" class="headerlink" title="平板电脑的实证研究"></a>平板电脑的实证研究</h4><p>通过根据我们的方法开发的原型系统，我们进行了实证研究，以分析从亚马逊收集的平板电脑评论。平板电脑是一种电子产品合集中的代表，在消费者的生活中提供了很多功能。因为涉及了大量的部分，对于生厂商来说很难决定在一台平板电脑中有完美的属性结合，而且许多传统的电脑生厂商试图进入市场但收到了失望的结果。例如，惠普公司在推出后不到两个月就停止了Touchpad的生产，并在认识到该产品与消费者脱节之后以大幅折扣出售剩余库存。为了给制造商提供新的见解，我们会考虑在线产品评论如何能够揭示(shed light)这个快速发展的市场。亚马逊的产品评论合理地代表了线上用户原创内容的价值，因为亚马逊是最大也是最成功的电子商务网站之一。</p>
+<p>21页完。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/25/博士论文翻译-Essays-in-Business-Analytics/" data-id="cjlfa7mui0013lcv47f73ce8e" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2018/08/25/博士论文翻译-Essays-in-Business-Analytics/" data-id="cjlfa7mui0013lcv47f73ce8e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -135,7 +161,7 @@
   
   
     <a href="/2018/08/20/Python-logging模块简述/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Python logging模块简述</div>
     </a>
   
@@ -150,7 +176,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/NLP/">NLP</a></li></ul></li></ul>
     </div>
@@ -179,7 +205,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -189,12 +215,12 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2018/08/25/博士论文翻译-Essays-in-Business-Analytics/">[博士论文翻译] Essays in Business Analytics</a>
+            <a href="/2018/08/25/博士论文翻译-Essays-in-Business-Analytics/">[论文翻译] Essays in Business Analytics</a>
           </li>
         
           <li>
