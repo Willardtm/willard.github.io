@@ -15,10 +15,12 @@
 <meta property="og:site_name" content="Klaus&#39;s Blog">
 <meta property="og:description" content="翻译初衷前段时间在读武大一篇情感分析论文的时候留意到其中使用的文本降噪技术出自于这篇博士论文，刚好我在做的一个文本训练也需要进行降噪，否则得到的结果会不精准，于是我就找来了这篇论文。碰巧这一个多月来我都在经历严重的失眠…直到前几天我打开这篇论文看了30分钟不到我就开始困…于是那天是这一个多月以来我睡得最早的一天，出于对这篇论文的感谢以及对文本降噪的需求，于是我决定翻译这篇144页的博士论文，文中用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-30T15:29:55.684Z">
+<meta property="og:image" content="https://i.loli.net/2018/08/31/5b88b051d9b5c.jpg">
+<meta property="og:updated_time" content="2018-08-31T03:14:36.657Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[论文翻译] Essays in Business Analytics">
 <meta name="twitter:description" content="翻译初衷前段时间在读武大一篇情感分析论文的时候留意到其中使用的文本降噪技术出自于这篇博士论文，刚好我在做的一个文本训练也需要进行降噪，否则得到的结果会不精准，于是我就找来了这篇论文。碰巧这一个多月来我都在经历严重的失眠…直到前几天我打开这篇论文看了30分钟不到我就开始困…于是那天是这一个多月以来我睡得最早的一天，出于对这篇论文的感谢以及对文本降噪的需求，于是我决定翻译这篇144页的博士论文，文中用">
+<meta name="twitter:image" content="https://i.loli.net/2018/08/31/5b88b051d9b5c.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -58,9 +60,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -99,7 +101,7 @@
 		
 		  <div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#翻译初衷"><span class="toc-number">1.</span> <span class="toc-text">翻译初衷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">2.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鸣谢"><span class="toc-number">3.</span> <span class="toc-text">鸣谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挖掘消费者对产品的反馈到自动化市场结构分析"><span class="toc-number">4.</span> <span class="toc-text">挖掘消费者对产品的反馈到自动化市场结构分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">4.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文献回顾和相关理论"><span class="toc-number">4.2.</span> <span class="toc-text">文献回顾和相关理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#市场结构分析"><span class="toc-number">4.2.1.</span> <span class="toc-text">市场结构分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#产品属性的层次结构"><span class="toc-number">4.2.2.</span> <span class="toc-text">产品属性的层次结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文本挖掘和情感分析"><span class="toc-number">4.2.3.</span> <span class="toc-text">文本挖掘和情感分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#贡献"><span class="toc-number">4.2.4.</span> <span class="toc-text">贡献</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#市场结构分析方法"><span class="toc-number">4.3.</span> <span class="toc-text">市场结构分析方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#从评论中提取产品属性（步骤1-3）"><span class="toc-number">4.3.1.</span> <span class="toc-text">从评论中提取产品属性（步骤1-3）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性等级确认（步骤4）"><span class="toc-number">4.3.2.</span> <span class="toc-text">属性等级确认（步骤4）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#情感分析和感知映射"><span class="toc-number">4.3.3.</span> <span class="toc-text">情感分析和感知映射</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实证分析与评估"><span class="toc-number">4.4.</span> <span class="toc-text">实证分析与评估</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#平板电脑的实证研究"><span class="toc-number">4.4.1.</span> <span class="toc-text">平板电脑的实证研究</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#翻译初衷"><span class="toc-number">1.</span> <span class="toc-text">翻译初衷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">2.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鸣谢"><span class="toc-number">3.</span> <span class="toc-text">鸣谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挖掘消费者对产品的反馈到自动化市场结构分析"><span class="toc-number">4.</span> <span class="toc-text">挖掘消费者对产品的反馈到自动化市场结构分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">4.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文献回顾和相关理论"><span class="toc-number">4.2.</span> <span class="toc-text">文献回顾和相关理论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#市场结构分析"><span class="toc-number">4.2.1.</span> <span class="toc-text">市场结构分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#产品属性的层次结构"><span class="toc-number">4.2.2.</span> <span class="toc-text">产品属性的层次结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文本挖掘和情感分析"><span class="toc-number">4.2.3.</span> <span class="toc-text">文本挖掘和情感分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#贡献"><span class="toc-number">4.2.4.</span> <span class="toc-text">贡献</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#市场结构分析方法"><span class="toc-number">4.3.</span> <span class="toc-text">市场结构分析方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#从评论中提取产品属性（步骤1-3）"><span class="toc-number">4.3.1.</span> <span class="toc-text">从评论中提取产品属性（步骤1-3）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性等级确认（步骤4）"><span class="toc-number">4.3.2.</span> <span class="toc-text">属性等级确认（步骤4）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#情感分析和感知映射"><span class="toc-number">4.3.3.</span> <span class="toc-text">情感分析和感知映射</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实证分析与评估"><span class="toc-number">4.4.</span> <span class="toc-text">实证分析与评估</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#平板电脑的实证研究"><span class="toc-number">4.4.1.</span> <span class="toc-text">平板电脑的实证研究</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#平板电脑的属性和属性等级"><span class="toc-number">4.4.2.</span> <span class="toc-text">平板电脑的属性和属性等级</span></a></li></ol></li></ol></li></ol>
 		  </div>
 		
         <h2 id="翻译初衷"><a href="#翻译初衷" class="headerlink" title="翻译初衷"></a>翻译初衷</h2><p>前段时间在读武大一篇情感分析论文的时候留意到其中使用的文本降噪技术出自于这篇博士论文，刚好我在做的一个文本训练也需要进行降噪，否则得到的结果会不精准，于是我就找来了这篇论文。碰巧这一个多月来我都在经历严重的失眠…直到前几天我打开这篇论文看了30分钟不到我就开始困…于是那天是这一个多月以来我睡得最早的一天，出于对这篇论文的感谢以及对文本降噪的需求，于是我决定翻译这篇144页的博士论文，文中用词不当的地方还请指出，同时，等我完成相关算法复现的时候我会把代码放到github上并在此处提供下载链接，以上。（捂脸）</p>
@@ -142,13 +144,19 @@
 <h4 id="情感分析和感知映射"><a href="#情感分析和感知映射" class="headerlink" title="情感分析和感知映射"></a>情感分析和感知映射</h4><p>在最后一步中，我们使用情感分析技术总结消费者对产品属性的看法。不像之前的研究那样使用品牌共现数据或者属性频率数据，我们获取用户的情绪，可以直接解释为什么他们感知或评估竞争产品不同。属性等级和元属性也提供了一种属性简化框架来总结相关的稀少的用户对于产品属性的情绪。</p>
 <p>情感分类器都属于机器学习算法，可以自动探测用户的对于产品的情绪是积极的还是消极的。用户的情绪可以由下列测量：让MA𝑖j成为品牌i的元属性j，它是一组低级属性。我们发现所有评论句子的子集在产品属性中都提到了一个最低等级的MAij。然后我们把这些句子放到一个由句子的子集训练好并且做了标记的情感分类器中。这个分类器输出Pij，这是评论的句子中有积极情绪的数目，还有Nij，这是评论的句子中有消极情绪的数目。我们选择Pij/Nij的概率作为MAij的情绪评分。Web附录A4中详细描述了情感分析和情绪分类器的实现。</p>
 <p>通过这些得到的消费者情绪，我们使用多维缩放来生成市场结构感知地图。多维缩放是一种受欢迎的多元技术，用以发现品牌在消费者的感知和偏爱方面的关系；它把消费者对于品牌相似度或者偏爱的判定转换到多维度空间的距离表示。MDS地图显示了所有品牌的相对定位。我们推进Netzer的工作，将MDS扩展到通常依赖调查和实验数据，以包括用户原创内容。我们展示了以经验为主地在自由形式评论上的情绪分析，包括了一种传统的MDS技术，具有构建具有高面子和外部有效性的感知图的潜力很大。</p>
-<h3 id="实证分析与评估"><a href="#实证分析与评估" class="headerlink" title="实证分析与评估"></a>实证分析与评估</h3><h4 id="平板电脑的实证研究"><a href="#平板电脑的实证研究" class="headerlink" title="平板电脑的实证研究"></a>平板电脑的实证研究</h4><p>通过根据我们的方法开发的原型系统，我们进行了实证研究，以分析从亚马逊收集的平板电脑评论。平板电脑是一种电子产品合集中的代表，在消费者的生活中提供了很多功能。因为涉及了大量的部分，对于生厂商来说很难决定在一台平板电脑中有完美的属性结合，而且许多传统的电脑生厂商试图进入市场但收到了失望的结果。例如，惠普公司在推出后不到两个月就停止了Touchpad的生产，并在认识到该产品与消费者脱节之后以大幅折扣出售剩余库存。为了给制造商提供新的见解，我们会考虑在线产品评论如何能够揭示(shed light)这个快速发展的市场。亚马逊的产品评论合理地代表了线上用户原创内容的价值，因为亚马逊是最大也是最成功的电子商务网站之一。</p>
-<p>21页完。</p>
+<h3 id="实证分析与评估"><a href="#实证分析与评估" class="headerlink" title="实证分析与评估"></a>实证分析与评估</h3><h4 id="平板电脑的实证研究"><a href="#平板电脑的实证研究" class="headerlink" title="平板电脑的实证研究"></a>平板电脑的实证研究</h4><p>通过根据我们的方法开发的原型系统，我们进行了实证研究，以分析从亚马逊收集的平板电脑评论。平板电脑是一种电子产品合集中的代表，在消费者的生活中提供了很多功能。因为涉及了大量的部分，对于生厂商来说很难决定在一台平板电脑中有完美的属性结合，而且许多传统的电脑生厂商试图进入市场但收到了失望的结果。例如，惠普公司在推出后不到两个月就停止了Touchpad的生产，并在认识到该产品与消费者脱节之后以大幅折扣出售剩余库存。为了给制造商提供新的见解，我们会考虑在线产品评论如何能够揭示(shed light)这个快速发展的市场。亚马逊的产品评论合理地代表了线上用户原创内容的价值，因为亚马逊是最大也是最成功的电子商务网站之一。2012年六月，我们使用网页数据抽取软件收集超过2w条平板电脑评论并且与产品信息结合起来。</p>
+<p>在文本预处理清理了收集的数据后，我们使用斯坦福核心NLP来完善了文本预处理任务，包括位置标记和依存关系语法分析(dependency parsing)。这个数据集覆盖了20157条评论中包含的190个品牌，703个平板电脑产品。每条评论平均包含了13个句子，平均每个句子包含了17个单词。总计我们分析了270497条评论句子和4578180个单词。</p>
+<h4 id="平板电脑的属性和属性等级"><a href="#平板电脑的属性和属性等级" class="headerlink" title="平板电脑的属性和属性等级"></a>平板电脑的属性和属性等级</h4><p>在表1中我们提供了九个名词词组和它们相关的语言措施来阐释用来提取产品属性的方法。支持措施(support measure)表明了名词词组的频率。名词短语的纯粹支持反映了短语出现的评论的比例，但不是短语的任何超集(superset)。一个低纯度的支持-支持（support-to-support）比率表名名词词组本身意义很小。似然比表明了名词短语相对于产品上下文的相对重要性。对于这些措施的定义，见Web附录A2。</p>
+<p>我们将纯支持-支持比率阈值设置为1，并且可能比率截止到2000。因为他们的低似然概率，我们排除了条款一(terms one)和时间。这些名词短语对平板电脑来说不够特别。名词短语市场和生活因其较小的纯支持率而被淘汰，表明它们在评论中并不显眼。相反，安卓市场和电池声明被定义为平板电脑属性。我们手动过滤了平板电脑这个名词短语，因为它涉及到了产品类别。</p>
+<p>在支持阈值0.00385下，93个属性可以被抽取出来。这个阀值可以被客观调整，依赖于数据集以及研究者想要市场结构如何详细。我们尝试了不同的阀值并且得出了在我们的数据中表现得最好的，在表2(论文里译者没看到哪里有表2)里。我们在Web附录A2里详细阐释了属性抽取。</p>
+<p>有了这93个平板电脑属性，我们通过首先确定每个产品属性的语义向量，然后确定每对的余弦距离来计算每对之间的语义相似度。每一个语义向量在属性和它的依赖词之间包括了点间互信息(pointwise mutual information (PMI) )。我们使用添加一个平滑(add-one smoothing)来计算PMI，公式为<br><img src="https://i.loli.net/2018/08/31/5b88b051d9b5c.jpg" alt=""><br>C(word1)是句子中包含word1的频率。</p>
+<p>说明一下，表3，Panel a，三个产品属性的语义向量列表：油管，webcam，以及USB电缆(USB cable)。我们仅显示每个产品属性的向量的最高PMI分数。这些条目包含了关于产品属性的有价值信息，并代表最常见的使用情况。USB电缆的条目显示，在产品评论中，USB电缆是与费用的依赖关系中的直接对象，并且PMI得分3.4966表示其高信息内容。相似地，其他使用情况设计到USB电缆的包括了链接和识别其他硬件以及它是否在产品中容易损坏，是否能被插入以及被识别出来。</p>
+<p>23页完。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/25/博士论文翻译-Essays-in-Business-Analytics/" data-id="cjlfa7mui0013lcv47f73ce8e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/25/博士论文翻译-Essays-in-Business-Analytics/" data-id="cjlhfdkfq0014ewv4g444t4gu" class="article-share-link">Compartir</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -161,7 +169,7 @@
   
   
     <a href="/2018/08/20/Python-logging模块简述/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Viejo</strong>
       <div class="article-nav-title">Python logging模块简述</div>
     </a>
   
@@ -176,7 +184,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Categorías</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/NLP/">NLP</a></li></ul></li></ul>
     </div>
@@ -196,7 +204,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nube de Tags</h3>
     <div class="widget tagcloud">
       <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 20px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 13.33px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/SQL-injection/" style="font-size: 16.67px;">SQL_injection</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a>
     </div>
@@ -205,7 +213,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archivos</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -215,7 +223,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Posts recientes</h3>
     <div class="widget">
       <ul>
         
@@ -263,7 +271,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2018 Klaus<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Construido por <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
