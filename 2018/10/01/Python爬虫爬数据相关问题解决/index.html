@@ -16,7 +16,8 @@
 <meta property="og:description" content="打算系统的学习Python爬数据，期间遇到的相关问题会在这篇文章里进行相关整理，感谢阅读~">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2018/10/01/5bb241b77c792.jpg">
-<meta property="og:updated_time" content="2018-10-01T16:07:27.292Z">
+<meta property="og:image" content="https://i.loli.net/2018/10/02/5bb30f952799c.jpg">
+<meta property="og:updated_time" content="2018-10-02T06:30:57.016Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python爬虫爬数据相关问题解决">
 <meta name="twitter:description" content="打算系统的学习Python爬数据，期间遇到的相关问题会在这篇文章里进行相关整理，感谢阅读~">
@@ -62,7 +63,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -112,12 +113,14 @@
 <h2 id="中文乱码问题"><a href="#中文乱码问题" class="headerlink" title="中文乱码问题"></a>中文乱码问题</h2><p>接上，这里爬虫库使用的是requests，requests.get里面放上url和headers，但是最后结果里面的text里面中文是乱码，解决这个问题只需要在输出前加上一行代码：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.<span class="attribute">decoding</span>=<span class="string">'utf-8'</span></span><br></pre></td></tr></table></figure></p>
 <p>加上这行代码问题就能顺利解决，下面是完整代码：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"><span class="meta">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="built_in">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">   url=<span class="string">"https://www.zhihu.com/question/47194806/answer/499404598"</span></span><br><span class="line">   headers=&#123;</span><br><span class="line">       <span class="string">'user-agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'</span></span><br><span class="line">   &#125;</span><br><span class="line">   r=requests.<span class="built_in">get</span>(url,headers=headers)</span><br><span class="line">   r.decoding=<span class="string">'utf-8'</span></span><br><span class="line">   <span class="built_in">print</span>(r.<span class="built_in">text</span>)</span><br></pre></td></tr></table></figure></p>
 <p>在Python 2.7里面可以使用下面的办法,由于我使用的Python版本是3.6,reload会报错：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line"><span class="function"><span class="title">reload</span><span class="params">(sys)</span></span></span><br><span class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="ConnectionRefusedError-WinError-10061"><a href="#ConnectionRefusedError-WinError-10061" class="headerlink" title="ConnectionRefusedError: [WinError 10061]"></a>ConnectionRefusedError: [WinError 10061]</h2><p>Python自然语言处理那本书上举的几个初始网络文本我一个都爬不下来，全部报的都是这个错误。</p>
+<h2 id="ConnectionRefusedError-WinError-10061"><a href="#ConnectionRefusedError-WinError-10061" class="headerlink" title="ConnectionRefusedError: [WinError 10061]"></a>ConnectionRefusedError: [WinError 10061]</h2><p>Python自然语言处理那本书上(就是那本鲸鱼书)举的几个初始网络文本我一个都爬不下来，全部报的都是这个错误，令人绝望，不过好在讨厌的问题还是解决了啊哈哈哈~<br>解决的办法就是设置代理，proxies，而且代理里不需要写东西，设置为None即可,甚至不需要写headers,如下<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">proxies=&#123;</span><br><span class="line">        <span class="string">'http'</span><span class="symbol">:None</span>,</span><br><span class="line">        <span class="string">'https'</span><span class="symbol">:None</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>完整版代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    url=<span class="string">"http://www.gutenberg.org/files/2554/2554-0.txt"</span></span><br><span class="line">    proxies=&#123;</span><br><span class="line">        <span class="string">'http'</span>:<span class="keyword">None</span>,</span><br><span class="line">        <span class="string">'https'</span>:<span class="keyword">None</span></span><br><span class="line">    &#125;</span><br><span class="line">    raw=requests.get(url,proxies=proxies)</span><br><span class="line">    print(raw.text)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/10/02/5bb30f952799c.jpg" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/01/Python爬虫爬数据相关问题解决/" data-id="cjmqhn023000ie8v493oopnhk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/01/Python爬虫爬数据相关问题解决/" data-id="cjmqhn023000ie8v493oopnhk" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li></ul>
@@ -130,7 +133,7 @@
   
   
     <a href="/2018/09/22/HDOJ-字符串类型/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Älter</strong>
       <div class="article-nav-title">HDOJ 字符串类型</div>
     </a>
   
@@ -145,7 +148,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Kategorien</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/NLP/">NLP</a></li></ul></li></ul>
     </div>
@@ -174,7 +177,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -184,7 +187,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
         
