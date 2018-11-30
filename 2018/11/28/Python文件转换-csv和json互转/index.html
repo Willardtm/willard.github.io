@@ -5,21 +5,21 @@
   
 
   
-  <title>Python文件转换 csv和json互转 | Klaus&#39;s Blog</title>
+  <title>Python文件转换 csv/json/html | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="这个这个不要Python要期末考了吗，这个知识点不太熟悉，那就只能学习一下了呀…">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python文件转换 csv和json互转">
+<meta property="og:title" content="Python文件转换 csv&#x2F;json&#x2F;html">
 <meta property="og:url" content="http://yoursite.com/2018/11/28/Python文件转换-csv和json互转/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
 <meta property="og:description" content="这个这个不要Python要期末考了吗，这个知识点不太熟悉，那就只能学习一下了呀…">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2018/11/28/5bfd928192903.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/11/28/5bfd92c6385a1.jpg">
-<meta property="og:updated_time" content="2018-11-27T19:22:39.859Z">
+<meta property="og:updated_time" content="2018-11-30T15:47:58.216Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python文件转换 csv和json互转">
+<meta name="twitter:title" content="Python文件转换 csv&#x2F;json&#x2F;html">
 <meta name="twitter:description" content="这个这个不要Python要期末考了吗，这个知识点不太熟悉，那就只能学习一下了呀…">
 <meta name="twitter:image" content="https://i.loli.net/2018/11/28/5bfd928192903.jpg">
   
@@ -63,7 +63,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -86,7 +86,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Python文件转换 csv和json互转
+      Python文件转换 csv/json/html
     </h1>
   
 
@@ -99,11 +99,11 @@
         <p>这个这个不要Python要期末考了吗，这个知识点不太熟悉，那就只能学习一下了呀…<br><a id="more"></a></p>
 <h3 id="csv转json"><a href="#csv转json" class="headerlink" title="csv转json"></a>csv转json</h3><p>举个栗子，下图是自定义的csv文件，csvTest.csv<br><img src="https://i.loli.net/2018/11/28/5bfd928192903.jpg" alt=""><br>然后需要转换为.json文件<br><img src="https://i.loli.net/2018/11/28/5bfd92c6385a1.jpg" alt=""><br>关键操作在于csv文件读取后值的处理，众所周知，csv文件是以逗号分隔，使用split相关就很容易处理了。<br>代码如下:<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env  python</span></span><br><span class="line"><span class="comment"># -*- utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">input_file = <span class="string">'./csvTest.csv'</span></span><br><span class="line"><span class="keyword">lines</span> = <span class="built_in">open</span>(input_file, <span class="string">"r"</span>).readlines()</span><br><span class="line"><span class="keyword">lines</span> = [<span class="built_in">line</span>.strip() <span class="keyword">for</span> <span class="built_in">line</span> <span class="keyword">in</span> <span class="keyword">lines</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取键值</span></span><br><span class="line"><span class="built_in">keys</span> = <span class="keyword">lines</span>[<span class="number">0</span>].<span class="built_in">split</span>(<span class="string">','</span>)</span><br><span class="line"></span><br><span class="line">line_num = <span class="number">1</span></span><br><span class="line">total_lines = <span class="built_in">len</span>(<span class="keyword">lines</span>)</span><br><span class="line"></span><br><span class="line">parsed_datas = []</span><br><span class="line"><span class="keyword">while</span> line_num &lt; total_lines:</span><br><span class="line">        values = <span class="keyword">lines</span>[line_num].<span class="built_in">split</span>(<span class="string">","</span>)</span><br><span class="line">        parsed_datas.append(dict(zip(<span class="built_in">keys</span>, values)))</span><br><span class="line"></span><br><span class="line">        line_num += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">json_str = json.dumps(parsed_datas, ensure_ascii=False, indent=<span class="number">5</span>)</span><br><span class="line">output_file = input_file.<span class="built_in">replace</span>(<span class="string">"csv"</span>, <span class="string">"json"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># write to the file</span></span><br><span class="line">f = <span class="built_in">open</span>(output_file, <span class="string">"w"</span>, encoding=<span class="string">"utf-8"</span>)</span><br><span class="line">f.<span class="built_in">write</span>(json_str)</span><br><span class="line">f.<span class="built_in">close</span>()</span><br></pre></td></tr></table></figure></p>
 <h3 id="json转csv"><a href="#json转csv" class="headerlink" title="json转csv"></a>json转csv</h3><p>这里读取的文件中含有中文字符，注意一下utf-8的问题。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#-*- utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_json</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> json.loads(open(filename,encoding=<span class="string">'utf-8'</span>).read())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_csv</span><span class="params">(data, filename)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(filename, <span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> outf:</span><br><span class="line">        dw = csv.DictWriter(outf, data[<span class="number">0</span>].keys())</span><br><span class="line">        <span class="comment"># 写入栏目</span></span><br><span class="line">        dw.writeheader()</span><br><span class="line">        <span class="comment"># 写入 具体数据</span></span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> data:</span><br><span class="line">            dw.writerow(row)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">write_csv(read_json(<span class="string">'jsonTest.json'</span>), <span class="string">'csvOut.csv'</span>)</span><br></pre></td></tr></table></figure></p>
-
+<h3 id="csv转html"><a href="#csv转html" class="headerlink" title="csv转html"></a>csv转html</h3><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">#!/usr/bin/env python</span></span><br><span class="line"><span class="xml"># -*- utf-8 -*-</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">import sys</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">seg1 = '''</span></span><br><span class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE HTML&gt;</span>\n<span class="tag">&lt;<span class="name">html</span>&gt;</span>\n<span class="tag">&lt;<span class="name">body</span>&gt;</span>\n<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">gb2312</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span>神tmPython考试<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">'1'</span> <span class="attr">align</span>=<span class="string">"center"</span> <span class="attr">width</span>=<span class="string">70%</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">bgcolor</span>=<span class="string">'orange'</span>&gt;</span>\n'''</span></span><br><span class="line"><span class="xml">seg2 = "<span class="tag">&lt;/<span class="name">tr</span>&gt;</span>\n"</span></span><br><span class="line"><span class="xml">seg3 = "<span class="tag">&lt;/<span class="name">table</span>&gt;</span>\n<span class="tag">&lt;/<span class="name">body</span>&gt;</span>\n<span class="tag">&lt;/<span class="name">html</span>&gt;</span>"</span></span><br><span class="line"><span class="xml">def fill_data(locls):</span></span><br><span class="line"><span class="xml">    seg = '<span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span></span><span class="template-variable">&#123;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span></span><span class="template-variable">&#123;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span></span><span class="template-variable">&#123;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span></span><span class="template-variable">&#123;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span>\n'.format(*locls)</span></span><br><span class="line"><span class="xml">    return seg</span></span><br><span class="line"><span class="xml">fr = open("csvTest.csv", "r")</span></span><br><span class="line"><span class="xml">ls = []</span></span><br><span class="line"><span class="xml">for line in fr:</span></span><br><span class="line"><span class="xml">    line = line.replace("\n","")</span></span><br><span class="line"><span class="xml">    ls.append(line.split(","))</span></span><br><span class="line"><span class="xml">fr.close()</span></span><br><span class="line"><span class="xml">fw = open("rhtml.html", "w")</span></span><br><span class="line"><span class="xml">fw.write(seg1)</span></span><br><span class="line"><span class="xml">fw.write('<span class="tag">&lt;<span class="name">th</span> <span class="attr">width</span>=<span class="string">"25%"</span>&gt;</span></span><span class="template-variable">&#123;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">th</span>&gt;</span>\n<span class="tag">&lt;<span class="name">th</span> <span class="attr">width</span>=<span class="string">"25%"</span>&gt;</span></span><span class="template-variable">&#123;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">th</span>&gt;</span>\n<span class="tag">&lt;<span class="name">th</span> <span class="attr">width</span>=<span class="string">"25%"</span>&gt;</span></span><span class="template-variable">&#123;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">th</span>&gt;</span>\n<span class="tag">&lt;<span class="name">th</span> <span class="attr">width</span>=<span class="string">"25%"</span>&gt;</span></span><span class="template-variable">&#123;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">th</span>&gt;</span>\n'.format(*ls[0]))</span></span><br><span class="line"><span class="xml">fw.write(seg2)</span></span><br><span class="line"><span class="xml">for i in range(len(ls)-1):</span></span><br><span class="line"><span class="xml">    fw.write(fill_data(ls[i+1]))</span></span><br><span class="line"><span class="xml">fw.write(seg3)</span></span><br><span class="line"><span class="xml">fw.close()</span></span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/28/Python文件转换-csv和json互转/" data-id="cjp04kv7l000lasv46kad8m3a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/28/Python文件转换-csv和json互转/" data-id="cjp47m27a000id8v42zuqakem" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
@@ -116,7 +116,7 @@
   
   
     <a href="/2018/10/06/Ubuntu18-04-Hadoop伪分布-集群配置/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Älter</strong>
       <div class="article-nav-title">Ubuntu18.04 Hadoop伪分布/集群配置</div>
     </a>
   
@@ -131,7 +131,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Kategorien</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/NLP/">NLP</a></li></ul></li></ul>
     </div>
@@ -160,7 +160,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -170,12 +170,12 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2018/11/28/Python文件转换-csv和json互转/">Python文件转换 csv和json互转</a>
+            <a href="/2018/11/28/Python文件转换-csv和json互转/">Python文件转换 csv/json/html</a>
           </li>
         
           <li>
