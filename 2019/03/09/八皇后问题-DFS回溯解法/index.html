@@ -5,15 +5,22 @@
   
 
   
-  <title>Tag: SQL_injection | Klaus&#39;s Blog</title>
+  <title>N皇后问题-DFS回溯解法 | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Klaus&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/SQL-injection/index.html">
+  <meta name="description" content="搜索经典题目，两年前一直没有想清楚的问题，今天终于想明白了。下面：N皇后问题的DFS回溯解法。">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="N皇后问题-DFS回溯解法">
+<meta property="og:url" content="http://yoursite.com/2019/03/09/八皇后问题-DFS回溯解法/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
+<meta property="og:description" content="搜索经典题目，两年前一直没有想清楚的问题，今天终于想明白了。下面：N皇后问题的DFS回溯解法。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2019/03/09/5c829f6c8dc47.jpg">
+<meta property="og:updated_time" content="2019-03-08T17:00:48.984Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Klaus&#39;s Blog">
+<meta name="twitter:title" content="N皇后问题-DFS回溯解法">
+<meta name="twitter:description" content="搜索经典题目，两年前一直没有想清楚的问题，今天终于想明白了。下面：N皇后问题的DFS回溯解法。">
+<meta name="twitter:image" content="https://i.loli.net/2019/03/09/5c829f6c8dc47.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -64,97 +71,72 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/20/sqlilabs-Less8-Less10-writeup/" class="archive-article-date">
-  <time datetime="2018-02-20T01:57:57.000Z" itemprop="datePublished">Feb 20</time>
+        <section id="main"><article id="post-八皇后问题-DFS回溯解法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/09/八皇后问题-DFS回溯解法/" class="article-date">
+  <time datetime="2019-03-08T16:42:33.000Z" itemprop="datePublished">2019-03-09</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/20/sqlilabs-Less8-Less10-writeup/">sqlilabs Less8~Less10 writeup</a>
+    <h1 class="article-title" itemprop="name">
+      N皇后问题-DFS回溯解法
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/19/sqlilab-Less-7-writeup/" class="archive-article-date">
-  <time datetime="2018-02-19T11:19:27.000Z" itemprop="datePublished">Feb 19</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/19/sqlilab-Less-7-writeup/">sqlilabs Less-7 writeup</a>
-    </h1>
-  
+	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			
+		  </div>
+		
+        <p>搜索经典题目，两年前一直没有想清楚的问题，今天终于想明白了。下面：N皇后问题的DFS回溯解法。<br><a id="more"></a></p>
+<p>n皇后问题：一个n×n的棋盘，在棋盘上摆n个皇后，满足任意两个皇后不能在同一行、同一列或同一斜线上的方案有多少种？</p>
+<p>这道题的解题关键有两点：<br>1.回溯；<br>2.判断行列是否重合以及是否存在斜线问题。</p>
+<p>原先做这道题的时候我只想着用一个二维数组去模拟整个棋盘，然鹅忽略了一点，这道题本来可以用一维数组进行解决。<br>举个栗子<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">queue</span>[<span class="number">105</span>];</span><br><span class="line"><span class="built_in">queue</span>[<span class="number">0</span>]=<span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
+<p>这样也就表示第0行第一列放上了queen，这列可以把queue置为全局变量，直接把所有值初始化为0。<br>从第0行开始遍历，每次dfs都进行dfs(s+1),s表示开始遍历的行数，如果放置queen的数量=n-1（从0开始计数），则说明这一种放置方案成立。</p>
+<p>关于对角线上的判断，这里只需要判断当前需要放的第i个皇后是否和前面放置的第i-1个皇后形成对角线即可，如下图所示。<br>这张图完整的解释了queen[n]-queen[i]=n-i是怎么来的。<br><img src="https://i.loli.net/2019/03/09/5c829f6c8dc47.jpg" alt=""></p>
+<p>上代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1005</span></span><br><span class="line"><span class="keyword">int</span> vec[maxn];</span><br><span class="line"><span class="keyword">int</span> n,ans=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(vec[i]==vec[s] || <span class="built_in">fabs</span>(vec[i]-vec[s])==<span class="built_in">fabs</span>(s-i))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        vec[s]=i;</span><br><span class="line">        <span class="keyword">if</span>(check(s))<span class="comment">// 检查该点是否可以放queen</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s==n<span class="number">-1</span>) ans+=<span class="number">1</span>;<span class="comment">// 已经放好8个皇后，答案数+1</span></span><br><span class="line">            <span class="keyword">else</span> dfs(s+<span class="number">1</span>);<span class="comment">// 继续遍历下一行</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    dfs(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/19/sqlilabs-Less-5~6/" class="archive-article-date">
-  <time datetime="2018-02-19T09:56:35.000Z" itemprop="datePublished">Feb 19</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/19/sqlilabs-Less-5~6/">sqlilabs Less-5~Less-6 writeup</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/17/sqlilab-wp/" class="archive-article-date">
-  <time datetime="2018-02-16T16:22:45.000Z" itemprop="datePublished">Feb 17</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/09/八皇后问题-DFS回溯解法/" data-id="cjt0b3tta001eqkv4f1ye5fqb" class="article-share-link">Teilen</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/17/sqlilab-wp/">sqlilabs Less-1~Less-4 writeup</a>
-    </h1>
-  
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/11/28/Python文件转换-csv和json互转/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Python文件转换 csv/json/html</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         
