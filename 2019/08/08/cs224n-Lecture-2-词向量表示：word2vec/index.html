@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/08/08/RJ8Ws2ZLTjfz7Gc.jpg">
 <meta property="og:image" content="https://i.loli.net/2019/08/08/PJiNZm5YxcHMW7a.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/08/DOuU6JIaLjQidhP.png">
-<meta property="og:updated_time" content="2019-08-07T18:44:23.629Z">
+<meta property="og:updated_time" content="2019-08-07T18:45:44.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cs224n-Lecture-2 词向量表示：word2vec">
 <meta name="twitter:description" content="笔记主要为个人学习记录，资料来源于斯坦福CS224N课程。">
@@ -78,7 +78,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -131,11 +131,11 @@
 <font color="#0099ff">注：这种方法完全基于单词的向量表示。</font>
 
 <p>通俗来说，Softmax 就是使用词汇 c 来获取 词汇o 的概率。</p>
-<h2 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h2><p>把所有的参数写进向量θ，对 d 维的词向量和大小为 V 的词汇表来讲，有：<br><img src="https://i.loli.net/2019/08/08/YsBw12ZT6Dj7Poa.png" alt="clipboard.png"></p>
-<p>对于每个单词，都有一个 d 维的小向量，不管它是中心词汇还是上下文词汇，这样就拥有一个代表上下文中 aardvark 的向量。在上述矩阵中，<font color="#0099ff">v是上下文词的向量，u是中心词的向量</font>，这个向量的总长度是2dV。<br>因为有两个向量（中心词和上下文词），所以是2dV。<br><img src="https://i.loli.net/2019/08/08/Mm2Z4KnoNRayqkO.png" alt="clipboard.png"><br><img src="https://i.loli.net/2019/08/08/VY4XunNLksfqd5e.png" alt="clipboard.png"></p>
+<h2 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h2><p>把所有的参数写进向量θ，对 d 维的词向量和大小为 V 的词汇表来讲，有：<br><img src="https://i.loli.net/2019/08/08/YsBw12ZT6Dj7Poa.png" alt=""></p>
+<p>对于每个单词，都有一个 d 维的小向量，不管它是中心词汇还是上下文词汇，这样就拥有一个代表上下文中 aardvark 的向量。在上述矩阵中，<font color="#0099ff">v是上下文词的向量，u是中心词的向量</font>，这个向量的总长度是2dV。<br>因为有两个向量（中心词和上下文词），所以是2dV。<br><img src="https://i.loli.net/2019/08/08/Mm2Z4KnoNRayqkO.png" alt=""><br><img src="https://i.loli.net/2019/08/08/VY4XunNLksfqd5e.png" alt=""></p>
 <p>在上述的θ公式中，我们得到了目标函数，想要最小化它的负对数似然，上面的概率分布中包含了中心词汇和上下文词汇，思路是要调整参数，也就是这些向量，以便让负的对数似然项最小化，从而使预测的概率最大化。</p>
 <h2 id="课后作业"><a href="#课后作业" class="headerlink" title="课后作业"></a>课后作业</h2><h3 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h3><p>(1) 证明SoftMax对于输入中的恒定偏移是不变的，也就是说，对于任何输入向量x和任何常数c，都存在如下：<br>Softmax(x)=Softmax(x+c)</p>
-<p>其中，x+c意味着将常数c添加到x的每个维度：<br><img src="https://i.loli.net/2019/08/08/1K4rBnO5vgupZ6M.png" alt="clipboard.png"></p>
+<p>其中，x+c意味着将常数c添加到x的每个维度：<br><img src="https://i.loli.net/2019/08/08/1K4rBnO5vgupZ6M.png" alt=""></p>
 <p>Softmax的直观理解如下：<br><img src="https://i.loli.net/2019/08/08/WZmXdVOHBGqbuAg.png" alt=""><br>假如给定一张图片需要进行分类，通过wx+b得到的分类的结果是cat，car，还有frog，其中，分类为cat的结果是3.2，是car的结果是5.1，是frog的结果是-1.7。再通过指数化得到24.5,164,0.18三个值，最后通过归一化得到最后的结果。</p>
 <p>推导过程如下：<br><img src="https://i.loli.net/2019/08/08/sNQ1gryGZWTlHOP.png" alt=""></p>
 <p>(2) 编程实现Softmax<br>给定N行和D列的输入矩阵，利用部分优化计算每一行的Softmax预测，将实现写入q1_softmax.py，通过执行 q1_softmax.py 来进行测试。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">def softmax(x):</span><br><span class="line">    orig_shape = x.shape</span><br><span class="line">    <span class="keyword">if</span> len(x.shape) &gt; 1:</span><br><span class="line">        # 假如输入的x是一个矩阵，则len(x.shape)&gt;1</span><br><span class="line">        # Matrix</span><br><span class="line">        <span class="attribute">x-</span>=np.max(x,axis=1,keepdims=True)</span><br><span class="line">        # <span class="attribute">axis</span>=1 表示从行里查找值,<span class="attribute">axis</span>=0表示从竖直方向查找</span><br><span class="line">        # keepdims 保持维度不变</span><br><span class="line">        # 相减的部分利用了常数不变性质</span><br><span class="line">        <span class="attribute">x</span>=np.exp(x)/np.sum(np.exp(x),axis=1,keepdims=True)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        # Vector</span><br><span class="line">        <span class="attribute">x-</span>=np.max(x,axis=0,keepdims=True)</span><br><span class="line">        # 这里只有单个向量，因此是从列中寻找最大值</span><br><span class="line">        <span class="attribute">x</span>=np.exp(x)/np.sum(np.exp(x),axis=0)</span><br><span class="line">    assert x.shape == orig_shape</span><br><span class="line">    return x</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="attribute">__name__</span>=="__main__":</span><br><span class="line">    <span class="attribute">x1</span>=np.array([[1,2,3],[2,5,6]])</span><br><span class="line">    <span class="attribute">result1</span>=softmax(x1)</span><br><span class="line">    <span class="builtin-name">print</span>(result1)</span><br><span class="line">    <span class="attribute">x2</span>=np.array([1,2,3])</span><br><span class="line">    <span class="attribute">result2</span>=softmax(x2)</span><br><span class="line">    <span class="builtin-name">print</span>(result2)</span><br></pre></td></tr></table></figure></p>
@@ -148,7 +148,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/08/cs224n-Lecture-2-词向量表示：word2vec/" data-id="cjz1lqrox001d0sv42avynsng" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/08/cs224n-Lecture-2-词向量表示：word2vec/" data-id="cjz1ls8rc001go4v4rc7cta71" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -161,7 +161,7 @@
   
   
     <a href="/2018/11/28/Python文件转换-csv和json互转/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Älter</strong>
       <div class="article-nav-title">Python文件转换 csv/json/html</div>
     </a>
   
@@ -176,7 +176,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Kategorien</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
     </div>
@@ -205,7 +205,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -215,7 +215,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
         
