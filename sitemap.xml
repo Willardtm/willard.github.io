@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/08/08/cs224n-Lecture-2-%E8%AF%8D%E5%90%91%E9%87%8F%E8%A1%A8%E7%A4%BA%EF%BC%9Aword2vec/</loc>
+    
+    <lastmod>2019-08-14T19:07:07.204Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/15/cs224n-Lecture-5-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E5%92%8C%E9%A1%B9%E7%9B%AE%E5%BB%BA%E8%AE%AE/</loc>
+    
+    <lastmod>2019-08-14T19:01:20.731Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/08/14/cs224n-Lecture-4-Word-Window%E5%88%86%E7%B1%BB%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</loc>
     
     <lastmod>2019-08-14T14:28:36.032Z</lastmod>
@@ -40,13 +54,6 @@
     <loc>http://yoursite.com/2019/08/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Week-2-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</loc>
     
     <lastmod>2019-08-11T18:12:56.789Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/08/08/cs224n-Lecture-2-%E8%AF%8D%E5%90%91%E9%87%8F%E8%A1%A8%E7%A4%BA%EF%BC%9Aword2vec/</loc>
-    
-    <lastmod>2019-08-07T18:45:44.270Z</lastmod>
     
   </url>
   
