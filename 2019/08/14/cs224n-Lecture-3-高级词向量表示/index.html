@@ -50,7 +50,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/14/mPsyex.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/14/mPs6w6.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/14/mPscTK.png">
-<meta property="og:updated_time" content="2019-08-13T19:26:53.821Z">
+<meta property="og:updated_time" content="2019-08-28T07:31:10.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cs224n-Lecture-3 高级词向量表示">
 <meta name="twitter:description" content="由于没有相关基础（GloVe etc），第三讲中的内容听起来有些晦涩，所以这里引入吴恩达老师序列模型课程第二周的内容辅助学习。">
@@ -94,9 +94,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -144,7 +144,7 @@
 <p>即使我们知道 I want a glass of orange 后面的空格应该填上 juice，但是，如果 orange 换成 apple 之后，由于使用的是 one-hot 编码，算法不知道苹果和橙子之间的关系比橙子与其他词的关系更近（比如 man 和 woman，king 和 queen），所以算法很难从已经知道的橙子果汁是一种很常见的东西来理解苹果果汁也是。这是因为任何两个one-hot向量的内积都是0。<br>因此，这些内积计算并没有什么价值，苹果（apple）和橙子（orange）要比国王（king）和橙子（orange）或者王后（queen）和橙子（orange）要相似很多。</p>
 <p>所以，如果我们不用one-hot表示这些词，而是用特征化的表示来表示每个词。<br>假如以gender作为一个特征，我们需要知道gender和 man ,woman,king,queen,apple,orange这些词的关系，假定man性别为-1，woman则为1，最终，根据经验，king是-0.95，queen是0.97，apple是0.00，orange是0.01，apple和orange没有性别可言。<br>同理，再以Royal（高贵）作为一个特征，royal 和 man 以及 woman 没有太大关系，所以值接近于0，然而 king 和 queen 很 royal，所以相关值就更高。</p>
 <p>完整的表格如下图所示：<br><img src="https://s2.ax1x.com/2019/08/14/mPr3VK.png" alt=""><br>除了上述列出来的特征之外，还可以有其他更多特征，比如 size，cost，alive等。<br>假如有300个不同的特征，就组成了一个300维的向量来表示man，其他同理。<br>因此，如果用这种方式来表示apple 和 orange，那么二者一定会非常相似。</p>
-<font color="red">注：如果我们可以把一个300维的向量压缩到一个2维空间中，那么我们就可以可视化这些向量所表示的词汇（常用算法：t-SNE）。</font><br><img src="https://s2.ax1x.com/2019/08/14/mPr8UO.png" alt=""><br><br>(字写得略丑(捂脸)<br>这里需要注意，相似的词，学习到的特征也会很相近，下图粗略的展示了如何把高维向量映射到低维空间。<br><img src="https://s2.ax1x.com/2019/08/14/mPrG5D.png" alt=""><br><br>## 使用词嵌入<br><br>前面提到了使用特征向量来表示词汇，本次将把词嵌入方法应用到NLP中。<br>以命名体识别（Named Entity Recognition）为例。<br><img src="https://s2.ax1x.com/2019/08/14/mPrYPe.png" alt=""><br><br>Sally Johnson被识别为一个人名，因为可以知道种橙子的农民一定是一个人。<br><img src="https://s2.ax1x.com/2019/08/14/mPrt8H.png" alt=""><br><br>同理，如果这里有一个已经学习好的词嵌入集，即使将 orange 换成 durian，farmer 换成 cultivation，模型仍然可以识别出Robert Lin 是一个人。<br><br>词嵌入可以达到这种效果，其中一个原因就是，学习词嵌入的算法会考察非常大的文本集，可以是一亿个单词甚至是一百亿个单词，所以大量的只有无标签的文本的训练集，通过考察大量的无标签文本，可以发现 orange 和 durian 非常相近，farmer 和 cultivation 非常相近。<br>通过学习这种词嵌入把它们聚集在一起，通过读取大量的互联网文本，发现了 orange 和 durian 都是水果，因此，接下来可以将这个词嵌入应用到命名体识别当中。<br><br><font color="##0099ff">总结：如何使用词嵌入做迁移学习？<br>1.先从大量的文本集中学习嵌入一个非常大的文本集（或者可以从网上寻找已经训练好的词嵌入集合）；<br>2.将嵌入模型应用到只有少量标训练集的任务当中，这样做的好处是，可以用更低维度的特征向量代替原来的10000维的 one-hot 向量；<br>3. 可选（Optional）:继续用新数据对单词embeddings进行微调。</font>
+<font color="red">注：如果我们可以把一个300维的向量压缩到一个2维空间中，那么我们就可以可视化这些向量所表示的词汇（常用算法：t-SNE）。</font><br><img src="https://s2.ax1x.com/2019/08/14/mPr8UO.png" alt=""><br><br>(字写得略丑(捂脸))<br>这里需要注意，相似的词，学习到的特征也会很相近，下图粗略的展示了如何把高维向量映射到低维空间。<br><img src="https://s2.ax1x.com/2019/08/14/mPrG5D.png" alt=""><br><br>## 使用词嵌入<br><br>前面提到了使用特征向量来表示词汇，本次将把词嵌入方法应用到NLP中。<br>以命名体识别（Named Entity Recognition）为例。<br><img src="https://s2.ax1x.com/2019/08/14/mPrYPe.png" alt=""><br><br>Sally Johnson被识别为一个人名，因为可以知道种橙子的农民一定是一个人。<br><img src="https://s2.ax1x.com/2019/08/14/mPrt8H.png" alt=""><br><br>同理，如果这里有一个已经学习好的词嵌入集，即使将 orange 换成 durian，farmer 换成 cultivation，模型仍然可以识别出Robert Lin 是一个人。<br><br>词嵌入可以达到这种效果，其中一个原因就是，学习词嵌入的算法会考察非常大的文本集，可以是一亿个单词甚至是一百亿个单词，所以大量的只有无标签的文本的训练集，通过考察大量的无标签文本，可以发现 orange 和 durian 非常相近，farmer 和 cultivation 非常相近。<br>通过学习这种词嵌入把它们聚集在一起，通过读取大量的互联网文本，发现了 orange 和 durian 都是水果，因此，接下来可以将这个词嵌入应用到命名体识别当中。<br><br><font color="##0099ff">总结：如何使用词嵌入做迁移学习？<br>1.先从大量的文本集中学习嵌入一个非常大的文本集（或者可以从网上寻找已经训练好的词嵌入集合）；<br>2.将嵌入模型应用到只有少量标训练集的任务当中，这样做的好处是，可以用更低维度的特征向量代替原来的10000维的 one-hot 向量；<br>3. 可选（Optional）:继续用新数据对单词embeddings进行微调。</font>
 
 <p>在迁移学习中，如果从A迁移到B，只有A中有大量数据，而B中数据量较少时，迁移的过程才有用。</p>
 <h2 id="词嵌入的特性"><a href="#词嵌入的特性" class="headerlink" title="词嵌入的特性"></a>词嵌入的特性</h2><p>词嵌入可以帮助实现类比推理。<br> 下面给定一组词嵌入矩阵：<br><img src="https://s2.ax1x.com/2019/08/14/mPrN2d.png" alt=""></p>
@@ -205,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/14/cs224n-Lecture-3-高级词向量表示/" data-id="cjzuts0ym002py0v4beiy0dri" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/14/cs224n-Lecture-3-高级词向量表示/" data-id="ck068serw001r08v4widd84yw" class="article-share-link">Compartir</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -217,7 +217,7 @@
 <nav id="article-nav">
   
     <a href="/2019/08/14/cs224n-Lecture-4-Word-Window分类与神经网络/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">Nuevo</strong>
       <div class="article-nav-title">
         
           cs224n-Lecture-4 Word Window分类与神经网络
@@ -227,7 +227,7 @@
   
   
     <a href="/2019/08/14/Logistic-Regression在文本分类中的应用/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Viejo</strong>
       <div class="article-nav-title">Logistic Regression在文本分类中的应用</div>
     </a>
   
@@ -242,7 +242,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Categorías</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/神经网络/">神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
     </div>
@@ -262,18 +262,18 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nube de Tags</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Algorithm/" style="font-size: 15px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 20px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 12.5px;">Python</a> <a href="/tags/SQL-injection/" style="font-size: 15px;">SQL_injection</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 12.5px;">大数据</a> <a href="/tags/数据挖掘/" style="font-size: 12.5px;">数据挖掘</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/神经网络/" style="font-size: 17.5px;">神经网络</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a>
+      <a href="/tags/Algorithm/" style="font-size: 14px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 18px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 12px;">Python</a> <a href="/tags/SQL-injection/" style="font-size: 14px;">SQL_injection</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 12px;">大数据</a> <a href="/tags/数据挖掘/" style="font-size: 12px;">数据挖掘</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/神经网络/" style="font-size: 16px;">神经网络</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archivos</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
   </div>
 
@@ -281,9 +281,17 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Posts recientes</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/09/05/cs224n-Lecture-8-RNN和语言模式/">cs224n-Lecture 8 RNN和语言模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/05/cs224n-Lecture-7-TensorFlow入门/">cs224n-Lecture 7 TensorFlow入门</a>
+          </li>
         
           <li>
             <a href="/2019/08/28/cs224n-Lecture-6-依存分析/">cs224n-Lecture-6 依存分析</a>
@@ -295,14 +303,6 @@
         
           <li>
             <a href="/2019/08/16/吴恩达神经网络与深度学习-Week-4-学习记录/">吴恩达神经网络与深度学习 Week-4 学习记录</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/15/吴恩达神经网络与深度学习-Week-3-学习记录/">吴恩达神经网络与深度学习 Week-3 学习记录</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/15/cs224n-Lecture-5-反向传播和项目建议/">cs224n-Lecture-5 反向传播和项目建议</a>
           </li>
         
       </ul>
@@ -329,7 +329,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2019 Klaus<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Construido por <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
