@@ -5,15 +5,38 @@
   
 
   
-  <title>Klaus&#39;s Blog</title>
+  <title>《统计学习方法》第四章 朴素贝叶斯法 | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Klaus&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+  <meta name="description" content="这个方法在很多场景有用，但是自身对于朴素贝叶斯的熟悉度还不够，因此补课。后续会对《统计学习方法》一书进行系统的学习，博客按章更新。">
+<meta name="keywords" content="统计学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《统计学习方法》第四章 朴素贝叶斯法">
+<meta property="og:url" content="http://yoursite.com/2019/10/14/《统计学习方法》第四章-朴素贝叶斯法/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
+<meta property="og:description" content="这个方法在很多场景有用，但是自身对于朴素贝叶斯的熟悉度还不够，因此补课。后续会对《统计学习方法》一书进行系统的学习，博客按章更新。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzIe9U.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzInc4.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzI0HI.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzIrUP.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzIggg.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzI2vQ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzIjbR.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzIzUx.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzoC8O.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzoP2D.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzoixe.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzoEqA.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzoQxg.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzo3rj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzoJZn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzoYaq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/14/uzoaGT.png">
+<meta property="og:updated_time" content="2019-10-14T04:10:37.674Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Klaus&#39;s Blog">
+<meta name="twitter:title" content="《统计学习方法》第四章 朴素贝叶斯法">
+<meta name="twitter:description" content="这个方法在很多场景有用，但是自身对于朴素贝叶斯的熟悉度还不够，因此补课。后续会对《统计学习方法》一书进行系统的学习，博客按章更新。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/10/14/uzIe9U.png">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -64,16 +87,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-XXE漏洞学习分析" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-《统计学习方法》第四章-朴素贝叶斯法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/02/16/XXE漏洞学习分析/" class="article-date">
-  <time datetime="2018-02-16T08:52:36.000Z" itemprop="datePublished">2018-02-16</time>
+    <a href="/2019/10/14/《统计学习方法》第四章-朴素贝叶斯法/" class="article-date">
+  <time datetime="2019-10-14T03:50:45.000Z" itemprop="datePublished">2019-10-14</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/漏洞学习/">漏洞学习</a>
+    <a class="article-category-link" href="/categories/统计学系/">统计学系</a>
   </div>
 
   </div>
@@ -83,8 +104,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/16/XXE漏洞学习分析/">XXE漏洞学习分析</a>
+    <h1 class="article-title" itemprop="name">
+      《统计学习方法》第四章 朴素贝叶斯法
     </h1>
   
 
@@ -92,129 +113,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于XXE漏洞，到目前为止我遇见过两次，一次在SWPUCTF线上赛，另一次在Jarvis OJ上，看过一些大牛们写的分析，但是自己没认真地研究过这个漏洞，反正春节我也想躲个清静，那就研究一下这个漏洞吧！</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/02/16/XXE漏洞学习分析/#more">Read More</a>
-          </p>
-        
+	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#先验概率"><span class="toc-number">1.</span> <span class="toc-text">先验概率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后验概率"><span class="toc-number">2.</span> <span class="toc-text">后验概率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件概率"><span class="toc-number">3.</span> <span class="toc-text">条件概率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#朴素贝叶斯法"><span class="toc-number">4.</span> <span class="toc-text">朴素贝叶斯法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考来源"><span class="toc-number">5.</span> <span class="toc-text">参考来源</span></a></li></ol>
+		  </div>
+		
+        <p>这个方法在很多场景有用，但是自身对于朴素贝叶斯的熟悉度还不够，因此补课。<br>后续会对《统计学习方法》一书进行系统的学习，博客按章更新。<br><a id="more"></a></p>
+<h2 id="先验概率"><a href="#先验概率" class="headerlink" title="先验概率"></a>先验概率</h2><p>事件发生前的预判概率。可以是基于历史数据的统计，可以由背景常识得出，也可以是人的主观观点给出。一般都是单独事件概率，如P(x),P(y)。</p>
+<h2 id="后验概率"><a href="#后验概率" class="headerlink" title="后验概率"></a>后验概率</h2><p>事件发生后求的反向条件概率；或者说，基于先验概率求得的反向条件概率。概率形式与条件概率相同。</p>
+<h2 id="条件概率"><a href="#条件概率" class="headerlink" title="条件概率"></a>条件概率</h2><p>一个事件发生后另一个事件发生的概率。一般的形式为P(x|y)表示y发生的条件下x发生的概率。<br>条件概率公式：<br><img src="https://s2.ax1x.com/2019/10/14/uzIe9U.png" alt=""></p>
+<p>其他公式补充：<br>(1)乘法公式：<br><img src="https://s2.ax1x.com/2019/10/14/uzInc4.png" alt=""><br>乘法公式可以推广到：<br><img src="https://s2.ax1x.com/2019/10/14/uzI0HI.png" alt=""></p>
+<p>(2)全概率公式：<br>假设 E 的样本空间为S，A为E的时间，B1，B2，…，Bn为S的一个划分，且P(Bi)&gt;0(i=1.2，…，n)，则<br><img src="https://s2.ax1x.com/2019/10/14/uzIrUP.png" alt=""></p>
+<p>(3)贝叶斯公式：<br><img src="https://s2.ax1x.com/2019/10/14/uzIggg.png" alt=""><br>上式可以理解为：<br><img src="https://s2.ax1x.com/2019/10/14/uzI2vQ.png" alt=""></p>
+<p>其中A以及B为随机事件，且P(B)不为0。P(A|B)是指在事件B发生的情况下事件A发现的概率。<br>在贝叶斯定理中，每个名词都有约定俗称的名称：<br>P(A|B)是已知B发生后，A的条件概率。也由于得自B的取值而被称作A的后验概率。<br>P(A)是A的先验概率(或边缘概率)。之所以称为“先验”是因为它不用考虑任何B方面的因素。<br>P(B|A)是已知A发生后，B的条件概率。也由于得自A的取值而被称作B的后延概率。<br>P(B)是B的先验概率。</p>
+<p>按这些术语，贝叶斯定理可表述为：<br>后验概率 = (似然性*先验概率)/标准化常量<br>也就是说，后验概率与先验概率和相似度的乘积成正比。<br>另外，比例 P(B|A)/P(B)也有时被称作标准似然度，贝叶斯定理可以表示为：<br>后验概率=标准似然度*先验概率</p>
+<p>完整的贝叶斯公式：<br><img src="https://s2.ax1x.com/2019/10/14/uzIjbR.png" alt=""></p>
+<p>(4)全概率公式和贝叶斯公式的应用<br><img src="https://s2.ax1x.com/2019/10/14/uzIzUx.png" alt=""></p>
+<p>(5)联合概率分布公式<br><img src="https://s2.ax1x.com/2019/10/14/uzoC8O.png" alt=""></p>
+<p>(6)条件概率分布<br><img src="https://s2.ax1x.com/2019/10/14/uzoP2D.png" alt=""></p>
+<h2 id="朴素贝叶斯法"><a href="#朴素贝叶斯法" class="headerlink" title="朴素贝叶斯法"></a>朴素贝叶斯法</h2><p>朴素贝叶斯法是基于贝叶斯定理与特征条件独立假设的分类方法。对于给定的训练数据集，首先基于特征条件独立假设学习输入输出的联合概率分布；然后基于此模型，对给定的输入x，利用贝叶斯定理求出后验概率最大的输出y。</p>
+<p>先验概率分布：<br><img src="https://s2.ax1x.com/2019/10/14/uzoixe.png" alt=""></p>
+<p>条件概率分布：<br><img src="https://s2.ax1x.com/2019/10/14/uzoEqA.png" alt=""></p>
+<p>朴素贝叶斯法对条件概率分布作了独立性的假设：<br><img src="https://s2.ax1x.com/2019/10/14/uzoQxg.png" alt=""><br>朴素贝叶斯法分类时，对给定的输入x，通过学习到得模型计算后验概率分布P(Y=ck|X=x)，将后验概率最大的类作为 x 的类输出。<br><img src="https://s2.ax1x.com/2019/10/14/uzo3rj.png" alt=""><br>将独立性假设的式子带入后验概率，可以得到：<br><img src="https://s2.ax1x.com/2019/10/14/uzoJZn.png" alt=""><br>其中 ck 可以理解为类别，j 可以理解为特征个数。</p>
+<p>因此，朴素贝叶斯分类器可以表示为：<br><img src="https://s2.ax1x.com/2019/10/14/uzoYaq.png" alt=""></p>
+<p>在朴素贝叶斯分类器中，分母对所有ck都是相同的，所以，<br><img src="https://s2.ax1x.com/2019/10/14/uzoaGT.png" alt=""></p>
+<h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><p>[1]<a href="https://blog.csdn.net/yangang908/article/details/62215209" target="_blank" rel="noopener">https://blog.csdn.net/yangang908/article/details/62215209</a><br>[2]<a href="https://zh.wikipedia.org/wiki/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86</a><br>[3]李航《统计学习方法》第二版<br>[4]概率论与数理统计(课本)<br>[5]<a href="https://zhuanlan.zhihu.com/p/22467549" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/22467549</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/16/XXE漏洞学习分析/" data-id="ck1pwdkzn0021mkv4putueaxq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/14/《统计学习方法》第四章-朴素贝叶斯法/" data-id="ck1pwdl0h0033mkv4p9r6zvha" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XXE/">XXE</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/统计学习/">统计学习</a></li></ul>
 
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-JarvisOJ" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/15/JarvisOJ/" class="article-date">
-  <time datetime="2018-02-15T15:11:51.000Z" itemprop="datePublished">2018-02-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF/">CTF</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/15/JarvisOJ/">JarvisOJ Writeup</a>
-    </h1>
+    <a href="/2019/10/11/cs224n-2019-Lecture-7-梯度消失和有趣的RNN/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">cs224n(2019)-Lecture 7 梯度消失和有趣的RNN</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="写在最前"><a href="#写在最前" class="headerlink" title="写在最前"></a>写在最前</h3><p>前天做了MOCTF，有些遗憾，本来能做出来的题却没能做出来(嚎啕大哭)，这次的失误也是因为以前自己做过的题并没有好好总结复习导致的，所以决定重新把之前做过的CTF题翻出来重新做一遍，重新学习吧！<br>由于难度问题，JarvisOJ上的题我还没有完全全部做完，这里先贴出我已经做出来的题目。<br>JarvisOJ：<a href="https://www.jarvisoj.com" target="_blank" rel="noopener">https://www.jarvisoj.com</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/02/15/JarvisOJ/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/15/JarvisOJ/" data-id="ck1pwdkz8001omkv4t6rwei6c" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF-Web/">CTF_Web</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-Ubuntu搭建漏洞环境" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/10/Ubuntu搭建漏洞环境/" class="article-date">
-  <time datetime="2018-02-09T17:36:56.000Z" itemprop="datePublished">2018-02-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/环境配置/">环境配置</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/10/Ubuntu搭建漏洞环境/">Ubuntu搭建漏洞环境</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h4><p>直接命令行：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> iinstall apache2</span><br></pre></td></tr></table></figure>
-<p>输入完成以后打开内置的Firefox查看localhost，看是否有It works（类似于phpinfo()）的东西出现，如果有，那就安装成功。<br>默认根目录：/var/www</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/02/10/Ubuntu搭建漏洞环境/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/10/Ubuntu搭建漏洞环境/" data-id="ck1pwdkzi001umkv42vmyp3kh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/环境配置/">环境配置</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-  </nav>
 
 </section>
         
