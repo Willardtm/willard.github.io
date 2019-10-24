@@ -5,15 +5,20 @@
   
 
   
-  <title>Tag: 凸包算法 | Klaus&#39;s Blog</title>
+  <title>从零实现基于医疗知识图谱的问答系统(一)-数据收集 | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Klaus&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/凸包算法/index.html">
+  <meta name="description" content="开始进入知识图谱的相关学习，一直苦于没有较好的实践项目，在github上找到了刘焕勇老师的开源项目，希望通过老师的开源代码进行学习，在此感激老师能将代码分享出来，原项目链接：(基于医药领域的知识图谱自动问答系统)[https://github.com/liuhuanyong/QASystemOnMedicalKG]。学习笔记是根据老师的代码和思路实现一遍相同的系统，走完KGQA应用的构建流程，也作">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零实现基于医疗知识图谱的问答系统(一)-数据收集">
+<meta property="og:url" content="http://yoursite.com/2019/10/23/从零实现基于医疗知识图谱的问答系统-一/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
+<meta property="og:description" content="开始进入知识图谱的相关学习，一直苦于没有较好的实践项目，在github上找到了刘焕勇老师的开源项目，希望通过老师的开源代码进行学习，在此感激老师能将代码分享出来，原项目链接：(基于医药领域的知识图谱自动问答系统)[https://github.com/liuhuanyong/QASystemOnMedicalKG]。学习笔记是根据老师的代码和思路实现一遍相同的系统，走完KGQA应用的构建流程，也作">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-24T07:17:32.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Klaus&#39;s Blog">
+<meta name="twitter:title" content="从零实现基于医疗知识图谱的问答系统(一)-数据收集">
+<meta name="twitter:description" content="开始进入知识图谱的相关学习，一直苦于没有较好的实践项目，在github上找到了刘焕勇老师的开源项目，希望通过老师的开源代码进行学习，在此感激老师能将代码分享出来，原项目链接：(基于医药领域的知识图谱自动问答系统)[https://github.com/liuhuanyong/QASystemOnMedicalKG]。学习笔记是根据老师的代码和思路实现一遍相同的系统，走完KGQA应用的构建流程，也作">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -64,40 +69,65 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/05/浅谈凸包算法/" class="archive-article-date">
-  <time datetime="2018-03-05T12:23:18.000Z" itemprop="datePublished">Mar 5</time>
+        <section id="main"><article id="post-从零实现基于医疗知识图谱的问答系统-一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/23/从零实现基于医疗知识图谱的问答系统-一/" class="article-date">
+  <time datetime="2019-10-23T08:28:21.000Z" itemprop="datePublished">2019-10-23</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/05/浅谈凸包算法/">浅谈凸包算法</a>
+    <h1 class="article-title" itemprop="name">
+      从零实现基于医疗知识图谱的问答系统(一)-数据收集
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			
+		  </div>
+		
+        <p>开始进入知识图谱的相关学习，一直苦于没有较好的实践项目，在github上找到了刘焕勇老师的开源项目，希望通过老师的开源代码进行学习，在此感激老师能将代码分享出来，原项目链接：(基于医药领域的知识图谱自动问答系统)[<a href="https://github.com/liuhuanyong/QASystemOnMedicalKG]。" target="_blank" rel="noopener">https://github.com/liuhuanyong/QASystemOnMedicalKG]。</a><br>学习笔记是根据老师的代码和思路实现一遍相同的系统，走完KGQA应用的构建流程，也作为监督自己学习进度的记录，再次感谢老师的分享！<br><a id="more"></a><br>笔记的第一篇主要是数据的收集工作，也就是爬虫工作，老师使用的是urllib进行爬取，由于10061错误，我把操作更换为requests，之前写过关于爬虫被ban的解决办法：(Python爬虫爬数据相关问题解决)[<a href="http://klausvon.cn/2018/10/01/Python%E7%88%AC%E8%99%AB%E7%88%AC%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/]。博客里我提供了之前报错时的各种解决办法，亲测有效。" target="_blank" rel="noopener">http://klausvon.cn/2018/10/01/Python%E7%88%AC%E8%99%AB%E7%88%AC%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/]。博客里我提供了之前报错时的各种解决办法，亲测有效。</a></p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/23/从零实现基于医疗知识图谱的问答系统-一/" data-id="ck24dwhu9003l9ov4a0z8ohn6" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/18/Skip-Gram模型与CBOW模型代码实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Skip-Gram模型与CBOW模型代码实现</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
