@@ -17,7 +17,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/24/KU8NPU.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/24/KU8ya6.png">
-<meta property="og:updated_time" content="2019-10-25T08:26:30.750Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/28/K6wiJf.png">
+<meta property="og:updated_time" content="2019-10-28T03:37:47.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零实现基于医疗知识图谱的问答系统(一)-数据收集">
 <meta name="twitter:description" content="开始进入知识图谱的相关学习，一直苦于没有较好的实践项目，在github上找到了刘焕勇老师的开源项目，希望通过老师的开源代码进行学习，在此感激老师能将代码分享出来，原项目链接：基于医药领域的知识图谱自动问答系统。学习笔记是根据老师的代码和思路实现一遍相同的系统，走完KGQA应用的构建流程，也作为监督自己学习进度的记录，再次感谢老师的分享！！！！！！">
@@ -63,7 +64,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -130,12 +131,14 @@
 <p>7.common_spider</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''通用模块解析'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">common_spider</span><span class="params">(self,url)</span>:</span></span><br><span class="line">    <span class="comment"># 通用模块下面包含了疾病预防和疾病起因的内容</span></span><br><span class="line">    html=self.get_html(url)</span><br><span class="line">    selector=etree.HTML(html)</span><br><span class="line">    ps=selector.xpath(<span class="string">'//p'</span>)</span><br><span class="line">    infobox=[]</span><br><span class="line">    <span class="keyword">for</span> p <span class="keyword">in</span> ps:</span><br><span class="line">        info=p.xpath(<span class="string">'string(.)'</span>).replace(<span class="string">'\r'</span>, <span class="string">''</span>).replace(<span class="string">'\n'</span>, <span class="string">''</span>).replace(<span class="string">'\xa0'</span>, <span class="string">''</span>).replace(<span class="string">'   '</span>, <span class="string">''</span>) \</span><br><span class="line">            .replace(<span class="string">'\t'</span>, <span class="string">''</span>).replace(<span class="string">' '</span>, <span class="string">''</span>)</span><br><span class="line">        <span class="keyword">if</span> info:</span><br><span class="line">            infobox.append(info)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'\n'</span>.join(infobox)</span><br></pre></td></tr></table></figure>
 <p>最后，data_spider.py构建的类中有一个检查项抓取模块。<br>这里和刘老师写得有一点差距，他这里没有返回相应的data，但是不清楚后续会不会有返回值，所以这里我先让data进行返回值设置。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''检查项抓取模块'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inspect_crawl</span><span class="params">(self)</span>:</span></span><br><span class="line">    data = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">3685</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            url=<span class="string">'http://jck.xywy.com/jc_%s.html'</span>%page</span><br><span class="line">            html = self.get_html(url)</span><br><span class="line">            data[<span class="string">'url'</span>] = url</span><br><span class="line">            data[<span class="string">'html'</span>] = html</span><br><span class="line">            self.db[<span class="string">'jc'</span>].insert(data)</span><br><span class="line">            print(url)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            print(e)</span><br><span class="line">    <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure></p>
-<h2 id="数据存储模块"><a href="#数据存储模块" class="headerlink" title="数据存储模块"></a>数据存储模块</h2><p>通过爬虫把数据爬下来之后要把数据存储起来，刘老师用的是pymongo。<br>我之前装的数据库里面只有MySQL，这里统一用mongodb吧，首先是mongodb在Windows的配置和安装。<br>参考来源：<br><a href="https://www.cnblogs.com/pejsidney/p/8989058.html" target="_blank" rel="noopener">mongodb在windows下的配置和安装</a></p>
+<h2 id="数据存储模块"><a href="#数据存储模块" class="headerlink" title="数据存储模块"></a>数据存储模块</h2><p>通过爬虫把数据爬下来之后要把数据存储起来，刘老师用的是pymongo。<br>我之前装的数据库里面只有MySQL，这里统一用mongodb吧，首先是mongodb在Windows的配置和安装。<br>参考来源：<br><a href="https://blog.csdn.net/stormdony/article/details/79837480" target="_blank" rel="noopener">mongodb在windows下的配置和安装</a><br>按照上述安装方法进行安装是一定可以装上的，也是我看过的比较靠谱的安装教程了。</p>
+<p>之前在cmd窗口下测试mongo数据库的连接操作，然而一直10061拒绝连接，后来我意识到是没有启动mongo服务，启动mongo服务命令如下：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod –dbpath D:<span class="symbol">\m</span>ongodb<span class="symbol">\d</span>ata<span class="symbol">\d</span>b</span><br></pre></td></tr></table></figure></p>
+<p>启动之后重新测试mongodb的连接：<br><img src="https://s2.ax1x.com/2019/10/28/K6wiJf.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/23/从零实现基于医疗知识图谱的问答系统-一/" data-id="ck25w4e11003p64v4lgajv9me" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2019/10/23/从零实现基于医疗知识图谱的问答系统-一/" data-id="ck29viykt0032qwv4oc2a39da" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -148,7 +151,7 @@
   
   
     <a href="/2019/10/18/Skip-Gram模型与CBOW模型代码实现/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Skip-Gram模型与CBOW模型代码实现</div>
     </a>
   
@@ -163,7 +166,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/神经网络/">神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/统计学系/">统计学系</a></li></ul>
     </div>
@@ -192,7 +195,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -202,7 +205,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
