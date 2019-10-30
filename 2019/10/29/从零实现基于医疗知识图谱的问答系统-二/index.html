@@ -15,10 +15,15 @@
 <meta property="og:site_name" content="Klaus&#39;s Blog">
 <meta property="og:description" content="这篇开始知识图谱的生成，其中也包括Neo4j的使用和其他数据的处理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-30T04:11:08.403Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/30/KhqGGQ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/30/KhqTRH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/30/K4pNQS.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/10/30/K49mYq.png">
+<meta property="og:updated_time" content="2019-10-30T07:41:39.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零实现基于医疗知识图谱的问答系统(二)-使用Neo4j构建知识图谱">
 <meta name="twitter:description" content="这篇开始知识图谱的生成，其中也包括Neo4j的使用和其他数据的处理。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/10/30/KhqGGQ.png">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -99,15 +104,25 @@
 		
 		  <div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Neo4j的基本操作"><span class="toc-number">1.</span> <span class="toc-text">Neo4j的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在Python代码中设置Neo4j的连接"><span class="toc-number">1.1.</span> <span class="toc-text">在Python代码中设置Neo4j的连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Neo4j创建节点"><span class="toc-number">1.2.</span> <span class="toc-text">使用Neo4j创建节点</span></a></li></ol></li></ol>
 		  </div>
 		
         <p>这篇开始知识图谱的生成，其中也包括Neo4j的使用和其他数据的处理。<br><a id="more"></a></p>
+<p>Python下面通过py2neo这个库来控制Neo4j的操作，但是操作Neo4j之前需要在本地先配置好Neo4j。<br>由于很久之前我就已经装好了Neo4j了（但是拖到现在才开始学图谱操作，我反省），所以这里不再赘述安装过程，放一个安装参考链接：<br><a href="https://blog.csdn.net/u012052268/article/details/89553588" target="_blank" rel="noopener">Neo4j安装参考</a></p>
+<p>先讲一下Neo4j的相关操作吧.</p>
+<h2 id="Neo4j的基本操作"><a href="#Neo4j的基本操作" class="headerlink" title="Neo4j的基本操作"></a>Neo4j的基本操作</h2><p>首先启动Neo4j。<br>cmd进入Windows Neo4j所在的文件夹下面，执行命令：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin<span class="string">\neo4j</span> <span class="built_in">console</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://s2.ax1x.com/2019/10/30/KhqGGQ.png" alt=""></p>
+<p>输入相应的网址：localhost:7474<br><img src="https://s2.ax1x.com/2019/10/30/KhqTRH.png" alt=""></p>
+<p>这个样子Neo4j就算是安装成功了。</p>
+<h3 id="在Python代码中设置Neo4j的连接"><a href="#在Python代码中设置Neo4j的连接" class="headerlink" title="在Python代码中设置Neo4j的连接"></a>在Python代码中设置Neo4j的连接</h3><p>-host：主机名称<br>-http_port：端口号<br>-user：用户名<br>-password：密码<br>用户名和密码如果没改过的话则统一都是neo4j，这里是本机控制的neo4j，所以是127.0.0.1，7474是neo4j的默认端口。<br>如果忘了设置的密码，就进入/data/dbms文件夹下面删除auth后重新启动再次设置密码即可。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> py2neo import Graph, Node</span><br><span class="line"></span><br><span class="line">g = Graph(</span><br><span class="line">    <span class="attribute">host</span>=<span class="string">'127.0.0.1'</span>,</span><br><span class="line">    <span class="attribute">http_port</span>=7474,</span><br><span class="line">    <span class="attribute">user</span>=<span class="string">'neo4j'</span>,</span><br><span class="line">    <span class="attribute">password</span>=<span class="string">'123456'</span>)</span><br><span class="line"></span><br><span class="line">运行代码，成功则不显示任何消息。</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用Neo4j创建节点"><a href="#使用Neo4j创建节点" class="headerlink" title="使用Neo4j创建节点"></a>使用Neo4j创建节点</h3><p>Node函数的第一个参数是label，其余参数是节点属性。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">from</span> py2neo import Graph, Node</span><br><span class="line"></span><br><span class="line">g = Graph(</span><br><span class="line">    host=<span class="string">'127.0.0.1'</span>,</span><br><span class="line">    http_port=<span class="number">7474</span>,</span><br><span class="line">    user=<span class="string">'neo4j'</span>,</span><br><span class="line">    password=<span class="string">'123456'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建节点</span></span><br><span class="line">node1=Node(<span class="string">'Bayern'</span>,name=<span class="string">'thomas'</span>,id=<span class="string">'25'</span>,location=<span class="string">'Munich'</span>)</span><br><span class="line">node2=Node(<span class="string">'Bayern'</span>,name=<span class="string">'levy'</span>,id=<span class="string">'09'</span>,location=<span class="string">'Munich'</span>)</span><br><span class="line">node3=Node(<span class="string">'Bayern'</span>,name=<span class="string">'javi'</span>,id=<span class="string">'08'</span>,location=<span class="string">'Munich'</span>)</span><br><span class="line"></span><br><span class="line">g.<span class="built_in">create</span>(node1)</span><br><span class="line">g.<span class="built_in">create</span>(node2)</span><br><span class="line">g.<span class="built_in">create</span>(node3)</span><br></pre></td></tr></table></figure></p>
+<p>运行上面代码，查看Neo4j web端界面，可以看到Node Lable这里多出了之前床前的Bayern这个操作。<br><img src="https://s2.ax1x.com/2019/10/30/K4pNQS.png" alt=""></p>
+<p>点击其中的一个节点，可以看到节点的属性：<br><img src="https://s2.ax1x.com/2019/10/30/K49mYq.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/29/从零实现基于医疗知识图谱的问答系统-二/" data-id="ck2crdgk70037icv4sa6x2h4i" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2019/10/29/从零实现基于医疗知识图谱的问答系统-二/" data-id="ck2cz1vy100321ov4a5z54zc5" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
