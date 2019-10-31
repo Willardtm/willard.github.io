@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/29/K2Digx.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/29/K2DeVe.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/30/KhSslF.png">
-<meta property="og:updated_time" content="2019-10-30T03:56:46.096Z">
+<meta property="og:updated_time" content="2019-10-31T09:03:22.589Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零实现基于医疗知识图谱的问答系统(一)-数据收集">
 <meta name="twitter:description" content="开始进入知识图谱的相关学习，一直苦于没有较好的实践项目，在github上找到了刘焕勇老师的开源项目，希望通过老师的开源代码进行学习，在此感激老师能将代码分享出来，原项目链接：基于医药领域的知识图谱自动问答系统。学习笔记是根据老师的代码和思路实现一遍相同的系统，走完KGQA应用的构建流程，也作为监督自己学习进度的记录，再次感谢老师的分享！！！！！！">
@@ -154,7 +154,6 @@
 <p>其中medical为数据库的名字，-o 后面的参数是文件夹的位置。<br>做好备份之后即使数据出现丢失也能及时恢复，恢复的命令如下：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongorestore -h localhost:27017 -d medical  F:<span class="symbol">\m</span>ongoDB<span class="symbol">\b</span>ackup<span class="symbol">\m</span>edical</span><br></pre></td></tr></table></figure></p>
 <p>后续构建知识图谱的过程中刘老师用了medical.json文件进行读取，所以这里执行MongoDB命令来将数据导出为json格式。<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">mongoexport</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">host</span> <span class="comment">localhost</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">port</span> <span class="comment">27017</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">collection</span> <span class="comment">data</span>  <span class="literal">-</span><span class="literal">-</span><span class="comment">db</span> <span class="comment">medical</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">out</span> <span class="comment">F:\MongoDB\export\medical</span><span class="string">.</span><span class="comment">json</span></span><br></pre></td></tr></table></figure></p>
 <p>参数说明：<br>-collection：数据集合<br>-db：数据库名称<br>-out：输出文件的位置</p>
-<p>导出后的数据如下所示：</p>
 <p>后续为知识图谱构建部分。</p>
 
       
