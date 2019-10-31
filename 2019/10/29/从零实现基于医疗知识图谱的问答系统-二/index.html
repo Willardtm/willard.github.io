@@ -5,12 +5,12 @@
   
 
   
-  <title>从零实现基于医疗知识图谱的问答系统(二)-使用Neo4j构建知识图谱 | Klaus&#39;s Blog</title>
+  <title>从零实现基于医疗知识图谱的问答系统(二)-Neo4j构建知识图谱 | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="这篇开始知识图谱的生成，其中也包括Neo4j的使用和其他数据的处理。">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零实现基于医疗知识图谱的问答系统(二)-使用Neo4j构建知识图谱">
+<meta property="og:title" content="从零实现基于医疗知识图谱的问答系统(二)-Neo4j构建知识图谱">
 <meta property="og:url" content="http://yoursite.com/2019/10/29/从零实现基于医疗知识图谱的问答系统-二/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
 <meta property="og:description" content="这篇开始知识图谱的生成，其中也包括Neo4j的使用和其他数据的处理。">
@@ -23,9 +23,9 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/30/K4lNlD.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/31/Ko9zo4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/31/KoCZwD.png">
-<meta property="og:updated_time" content="2019-10-31T08:54:14.688Z">
+<meta property="og:updated_time" content="2019-10-31T08:57:48.330Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从零实现基于医疗知识图谱的问答系统(二)-使用Neo4j构建知识图谱">
+<meta name="twitter:title" content="从零实现基于医疗知识图谱的问答系统(二)-Neo4j构建知识图谱">
 <meta name="twitter:description" content="这篇开始知识图谱的生成，其中也包括Neo4j的使用和其他数据的处理。">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/10/30/KhqGGQ.png">
   
@@ -69,7 +69,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -96,7 +96,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      从零实现基于医疗知识图谱的问答系统(二)-使用Neo4j构建知识图谱
+      从零实现基于医疗知识图谱的问答系统(二)-Neo4j构建知识图谱
     </h1>
   
 
@@ -162,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/29/从零实现基于医疗知识图谱的问答系统-二/" data-id="ck2eh2y9h002zi8v4q0zg7ev2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/29/从零实现基于医疗知识图谱的问答系统-二/" data-id="ck2eh2y9h002zi8v4q0zg7ev2" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -175,7 +175,7 @@
   
   
     <a href="/2019/10/23/从零实现基于医疗知识图谱的问答系统-一/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Älter</strong>
       <div class="article-nav-title">从零实现基于医疗知识图谱的问答系统(一)-数据收集</div>
     </a>
   
@@ -228,7 +228,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -238,12 +238,12 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2019/10/29/从零实现基于医疗知识图谱的问答系统-二/">从零实现基于医疗知识图谱的问答系统(二)-使用Neo4j构建知识图谱</a>
+            <a href="/2019/10/29/从零实现基于医疗知识图谱的问答系统-二/">从零实现基于医疗知识图谱的问答系统(二)-Neo4j构建知识图谱</a>
           </li>
         
           <li>
