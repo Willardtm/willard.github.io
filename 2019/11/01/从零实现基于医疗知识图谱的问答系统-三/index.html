@@ -5,15 +5,20 @@
   
 
   
-  <title>Archives: 2018/2 | Klaus&#39;s Blog</title>
+  <title>从零实现基于医疗知识图谱的问答系统(三) | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Klaus&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/02/index.html">
+  <meta name="description" content="在第一篇博客和第二篇博客中，已经完成了数据的采集和知识图谱的构建，在这篇博客中将讲解问答系统的构建过程。">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零实现基于医疗知识图谱的问答系统(三)">
+<meta property="og:url" content="http://yoursite.com/2019/11/01/从零实现基于医疗知识图谱的问答系统-三/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
+<meta property="og:description" content="在第一篇博客和第二篇博客中，已经完成了数据的采集和知识图谱的构建，在这篇博客中将讲解问答系统的构建过程。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-01T02:12:49.545Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Klaus&#39;s Blog">
+<meta name="twitter:title" content="从零实现基于医疗知识图谱的问答系统(三)">
+<meta name="twitter:description" content="在第一篇博客和第二篇博客中，已经完成了数据的采集和知识图谱的构建，在这篇博客中将讲解问答系统的构建过程。">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -64,154 +69,69 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/27/HGAME2018-Week-2-Writeup/" class="archive-article-date">
-  <time datetime="2018-02-27T11:20:39.000Z" itemprop="datePublished">Feb 27</time>
+        <section id="main"><article id="post-从零实现基于医疗知识图谱的问答系统-三" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/01/从零实现基于医疗知识图谱的问答系统-三/" class="article-date">
+  <time datetime="2019-11-01T02:05:04.000Z" itemprop="datePublished">2019-11-01</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/27/HGAME2018-Week-2-Writeup/">HGAME2018 Week-2 Web Writeup</a>
+    <h1 class="article-title" itemprop="name">
+      从零实现基于医疗知识图谱的问答系统(三)
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/20/sqlilabs-Less8-Less10-writeup/" class="archive-article-date">
-  <time datetime="2018-02-20T01:57:57.000Z" itemprop="datePublished">Feb 20</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/20/sqlilabs-Less8-Less10-writeup/">sqlilabs Less8~Less10 writeup</a>
-    </h1>
-  
+	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ahocorasick的安装问题"><span class="toc-number">1.</span> <span class="toc-text">ahocorasick的安装问题</span></a></li></ol>
+		  </div>
+		
+        <p>在第一篇博客和第二篇博客中，已经完成了数据的采集和知识图谱的构建，在这篇博客中将讲解问答系统的构建过程。</p>
+<a id="more"></a>
+<h2 id="ahocorasick的安装问题"><a href="#ahocorasick的安装问题" class="headerlink" title="ahocorasick的安装问题"></a>ahocorasick的安装问题</h2><p>首先介绍一下ahocorasick是什么：ahocorasick是个python模块，Aho-Corasick算法是多模式匹配中的经典算法，目前在实际应用中较多。<br>既然需要做问答，那就需要对问题先进行匹配。然而，库是非常的好的库，装上去还是有点麻烦的，下面说一下我安装过程中遇到的各种坑。</p>
+<font color="##0099FF"><strong>_Problem</strong> <strong>1</strong> <strong>不存在ahocorasick这个库_</strong></font><br>exo 喵？？？不存在我怎么装？？？<br>后来我查了一下…原来改名了，叫pyahocorasick。<br><br><font color="##0099FF"><strong>_Problem</strong> <strong>2</strong> <strong>Microsoft</strong> <strong>Visual_</strong> <strong>C++</strong> <strong>14.0</strong> <strong>is</strong> <strong>required_</strong></font>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/19/sqlilabs-Less-5~6/" class="archive-article-date">
-  <time datetime="2018-02-19T09:56:35.000Z" itemprop="datePublished">Feb 19</time>
-</a>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/19/sqlilabs-Less-5~6/">sqlilabs Less-5~Less-6 writeup</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/17/sqlilab-wp/" class="archive-article-date">
-  <time datetime="2018-02-16T16:22:45.000Z" itemprop="datePublished">Feb 17</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/01/从零实现基于医疗知识图谱的问答系统-三/" data-id="ck2fi6ire002vlcv4zjy26s5a" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/17/sqlilab-wp/">sqlilabs Less-1~Less-4 writeup</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/16/XXE漏洞学习分析/" class="archive-article-date">
-  <time datetime="2018-02-16T08:52:36.000Z" itemprop="datePublished">Feb 16</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/16/XXE漏洞学习分析/">XXE漏洞学习分析</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/15/JarvisOJ/" class="archive-article-date">
-  <time datetime="2018-02-15T15:11:51.000Z" itemprop="datePublished">Feb 15</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/15/JarvisOJ/">JarvisOJ Writeup</a>
-    </h1>
   
+    <a href="/2019/10/29/从零实现基于医疗知识图谱的问答系统-二/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">从零实现基于医疗知识图谱的问答系统(二)-Neo4j构建知识图谱</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/10/Ubuntu搭建漏洞环境/" class="archive-article-date">
-  <time datetime="2018-02-09T17:36:56.000Z" itemprop="datePublished">Feb 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/10/Ubuntu搭建漏洞环境/">Ubuntu搭建漏洞环境</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
 
 </section>
         
