@@ -5,15 +5,20 @@
   
 
   
-  <title>Tag: HTML | Klaus&#39;s Blog</title>
+  <title>Neo4j数据库查询语句总结-v- | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Klaus&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/HTML/index.html">
+  <meta name="description" content="开始从事KG相关工作啦，写篇查询语句总结的博客放在这里，以后方便自己查询~过程中会持续更新~">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Neo4j数据库查询语句总结-v-">
+<meta property="og:url" content="http://yoursite.com/2019/11/04/Neo4j数据库查询语句总结-v/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
+<meta property="og:description" content="开始从事KG相关工作啦，写篇查询语句总结的博客放在这里，以后方便自己查询~过程中会持续更新~">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-04T09:28:14.416Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Klaus&#39;s Blog">
+<meta name="twitter:title" content="Neo4j数据库查询语句总结-v-">
+<meta name="twitter:description" content="开始从事KG相关工作啦，写篇查询语句总结的博客放在这里，以后方便自己查询~过程中会持续更新~">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -64,40 +69,68 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/18/HTML学习记录/" class="archive-article-date">
-  <time datetime="2018-03-18T11:44:20.000Z" itemprop="datePublished">Mar 18</time>
+        <section id="main"><article id="post-Neo4j数据库查询语句总结-v" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/04/Neo4j数据库查询语句总结-v/" class="article-date">
+  <time datetime="2019-11-04T08:28:53.000Z" itemprop="datePublished">2019-11-04</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/18/HTML学习记录/">HTML学习记录</a>
+    <h1 class="article-title" itemprop="name">
+      Neo4j数据库查询语句总结-v-
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			
+		  </div>
+		
+        <p>开始从事KG相关工作啦，写篇查询语句总结的博客放在这里，以后方便自己查询~过程中会持续更新~<br><a id="more"></a></p>
+<p>1.查询属性为特定值的节点<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">MATCH</span> (m:节点名字) <span class="keyword">where</span> m.属性<span class="number">1</span>=xx <span class="keyword">RETURN</span> 返回特定结果</span><br></pre></td></tr></table></figure></p>
+<p>2.MATCH匹配关系<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MATCH (<span class="string">m:</span>节点名称)-[<span class="string">r:</span>关系标签]-&gt;(<span class="string">n:</span>节点名称) WHERE m.属性=xx RETURN 返回特定结果</span><br></pre></td></tr></table></figure></p>
+<p>3.查找与n节点相关的所有节点<br><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">MATCH</span> (<span class="symbol">n:</span>节点名称) return <span class="built_in">n</span></span><br></pre></td></tr></table></figure></p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/04/Neo4j数据库查询语句总结-v/" data-id="ck2k5y8e2000x0gv49142fypw" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/01/从零实现基于医疗知识图谱的问答系统-三/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">从零实现基于医疗知识图谱的问答系统(三)-问题解析处理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
