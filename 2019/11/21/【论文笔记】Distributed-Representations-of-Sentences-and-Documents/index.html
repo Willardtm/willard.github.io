@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>\[论文笔记]Distributed Representations of Sentences and Documents | Klaus&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇笔记是基于Mikolov大神的论文《Distributed Representations of Sentences and Documents》，句子和文档的分布式表示。">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="\[论文笔记]Distributed Representations of Sentences and Documents">
+<meta property="og:url" content="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/index.html">
+<meta property="og:site_name" content="Klaus&#39;s Blog">
+<meta property="og:description" content="这篇笔记是基于Mikolov大神的论文《Distributed Representations of Sentences and Documents》，句子和文档的分布式表示。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5Z78I.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5eni9.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5eYIH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5eaRI.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5ydET.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5bUSI.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5zMZt.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/21/MIS9Sg.png">
+<meta property="og:updated_time" content="2019-11-21T07:24:42.920Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="\[论文笔记]Distributed Representations of Sentences and Documents">
+<meta name="twitter:description" content="这篇笔记是基于Mikolov大神的论文《Distributed Representations of Sentences and Documents》，句子和文档的分布式表示。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/11/21/M5Z78I.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Klaus&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">MIA SAN MIA</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-【论文笔记】Distributed-Representations-of-Sentences-and-Documents" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" class="article-date">
+  <time datetime="2019-11-21T01:20:21.000Z" itemprop="datePublished">2019-11-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      \[论文笔记]Distributed Representations of Sentences and Documents
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文章主要解决的问题及作用"><span class="toc-number">1.</span> <span class="toc-text">文章主要解决的问题及作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型算法"><span class="toc-number">2.</span> <span class="toc-text">模型算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#学习单词的向量表示"><span class="toc-number">2.1.</span> <span class="toc-text">学习单词的向量表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#段落向量：一种分布式的记忆模型"><span class="toc-number">2.2.</span> <span class="toc-text">段落向量：一种分布式的记忆模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无词序的段落向量：分布式词袋"><span class="toc-number">2.3.</span> <span class="toc-text">无词序的段落向量：分布式词袋</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验"><span class="toc-number">3.</span> <span class="toc-text">实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用斯坦福情感树库数据集进行情感分析"><span class="toc-number">3.1.</span> <span class="toc-text">使用斯坦福情感树库数据集进行情感分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#树库情感分析实验设置"><span class="toc-number">3.1.1.</span> <span class="toc-text">树库情感分析实验设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#树库情感分析实验结果"><span class="toc-number">3.1.2.</span> <span class="toc-text">树库情感分析实验结果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#超越单句：用IMDB数据集进行情感分析"><span class="toc-number">3.2.</span> <span class="toc-text">超越单句：用IMDB数据集进行情感分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IMDB情感分析实验设置"><span class="toc-number">3.2.1.</span> <span class="toc-text">IMDB情感分析实验设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IMDB情感分析实验结果"><span class="toc-number">3.2.2.</span> <span class="toc-text">IMDB情感分析实验结果</span></a></li></ol></li></ol></li></ol>
+		  </div>
+		
+        <p>这篇笔记是基于Mikolov大神的论文《Distributed Representations of Sentences and Documents》，句子和文档的分布式表示。<br><a id="more"></a></p>
+<h2 id="文章主要解决的问题及作用"><a href="#文章主要解决的问题及作用" class="headerlink" title="文章主要解决的问题及作用"></a>文章主要解决的问题及作用</h2><p>本文提出了一种从句子、段落和文档等可变长度的文本中学习固定长度特征表示的无监督算法。段落向量算法（Paragraph Vector）用一个密集的向量来表示每个文档，该向量被训练来预测文档中的单词。</p>
+<p>Bag-of-Words模型和Bag-of-n-grams模型对单词的语义或更正式的单词之间的距离几乎没有意义。这意味着，尽管从语义上讲，powerful应该比Paris更接近strong，但strong、strong和Paris这三个词之间的距离是一样的。</p>
+<p>作者提出的分布式模型可以应用于可变长度的文本，从短语或句子到大型文档的任何内容。</p>
+<p>更确切地说，作者是将段落向量与一个段落中的几个单词向量连接起来，并在给定的上下文中预测以下单词。训练词向量和段落向量,通过随机梯度下降和反向传播(Rumelhart等，1986)。尽管段落中段落向量是唯一的，但是单词向量是共享的。在预测时间，段落向量是通过固定单词向量和训练新的段落向量来推断的，直到收敛为止。</p>
+<h2 id="模型算法"><a href="#模型算法" class="headerlink" title="模型算法"></a>模型算法</h2><h3 id="学习单词的向量表示"><a href="#学习单词的向量表示" class="headerlink" title="学习单词的向量表示"></a>学习单词的向量表示</h3><p>学习词向量分布表示的著名框架如图1所示,其任务是根据上下文中的其他单词来预测一个单词。在此框架中，每个字被映射到由矩阵W中的列表示的唯一矢量。列通过词汇表中的字的位置进行索引。词向量的连接或和被用来作为预测句子中下一个单词的特征。<br><img src="https://s2.ax1x.com/2019/11/21/M5Z78I.png" alt="Figure 1"></p>
+<p>给出一系列训练单词，w1,w2,w3…,wt，词向量模型的目标就是最大化平均对数概率。<br><img src="https://s2.ax1x.com/2019/11/21/M5eni9.png" alt=""></p>
+<p>预测任务通常通过多类分类器(如Softmax)来完成:<br><img src="https://s2.ax1x.com/2019/11/21/M5eYIH.png" alt=""></p>
+<p>对于每个输出单词i，每个yi都是非标准化的对数概率，计算为：<br><img src="https://s2.ax1x.com/2019/11/21/M5eaRI.png" alt=""></p>
+<p>其中U、b为Softmax参数。h由从W提取的单词向量的连接或平均值构成。</p>
+<p>在实际训练中，分层Softmax训练更快。本文中的分层SoftMax的结构是一个二进制霍夫曼树，其中短代码被分配给频繁的字。<br>Mikolov大神在Word2vec一文中也详细地讲过词向量的训练方法了，词向量训练结束之后会将意义相近的单词映射到向量空间中的相似位置。</p>
+<h3 id="段落向量：一种分布式的记忆模型"><a href="#段落向量：一种分布式的记忆模型" class="headerlink" title="段落向量：一种分布式的记忆模型"></a>段落向量：一种分布式的记忆模型</h3><p>段落向量也被要求来从给定的许多段落样本的上下文中来做预测下一个词的任务。</p>
+<p>段落向量的结构图如图2所示，每个段落被映射为一个单独的向量，由矩阵D中的一列表示。同时，每个单词也被映射为一个单独的向量，由矩阵W中的一列表示。词向量和段落向量连接起来或者计算平均后来预测下一个单词。<br><img src="https://s2.ax1x.com/2019/11/21/M5ydET.png" alt="Figure 2"></p>
+<p>段落向量模型和词向量模型中唯一的不同就是h来自于W和D。</p>
+<p>段落标记可以看作是另一个词。它作为记忆来记忆当前上下文中缺少的内容–或者段落中的主题。出于这个原因，常称其为建立段落向量的分布式存储模型(Distributed Memory<br>Model of Paragraph Vectors，PV-DM).</p>
+<p>上下文是固定长度的，并从段落上方的滑动窗口中取样.段落向量在同一段落生成的所有上下文中共享，但不跨段落共享。然后词向量矩阵W在段落间是共享的。在随机梯度下降的每一步，都可以从随机段落中抽取固定长度的上下文，从图2中的网络中计算误差梯度，并使用梯度更新模型中的参数。</p>
+<p>在预测时，需要执行一个推断步骤来计算新段落的段落向量。这也是通过梯度下降得到的。在这个步骤中，其余的参数该模型，字向量W和软件最大权值是固定的。</p>
+<p>假设有N个段落需要映射到p维，W个词汇需要映射到q维，模型的参数总数为：N*p+W*q。即使当N很大时，参数的数目也可能很大，但是训练期间的更新通常是稀疏的，因此是有效的。</p>
+<p>总的来说，论文中的算法有两个关键步骤：<br>(1)对已经出现的段落训练来得到词向量W，softmax权重U,b，以及段落向量D；<br>(2)“推断阶段”(inference stage)，通过在D中增加更多的列，并在D上降梯度，同时保持W、U、b不变，从而得到新段落的段落向量D(以前从未见过)。我们用D来做一个关于使用标准分类器的一些特殊标签，例如Logistic回归。</p>
+<p>段落向量的优点：段落向量的一个重要优点是，它们是从未标记的数据中学习的，因此可以在没有足够标记数据的任务中很好地工作。</p>
+<h3 id="无词序的段落向量：分布式词袋"><a href="#无词序的段落向量：分布式词袋" class="headerlink" title="无词序的段落向量：分布式词袋"></a>无词序的段落向量：分布式词袋</h3><p>上述方法考虑段落向量与单词向量的连接，以预测文本窗口中的下一单词。另一种方法是忽略输入中的上下文词，而是强制模型预测输出中段落中随机抽取的单词。实际上，这意味着在随机梯度下降的每次迭代中，先对一个文本窗口采样，然后从文本窗口中随机抽取一个单词，并给定段落向量形成一个分类任务。</p>
+<p>这个过程称作分布式词袋版本的段落向量（Distributed<br>Bag of Words version of Paragraph Vector，PV-DBOW），相当于前面提到的PV-DM，结构如图3所示：<br><img src="https://s2.ax1x.com/2019/11/21/M5bUSI.png" alt="Figure 3 训练段落向量以预测小窗口中的单词,"></p>
+<p>在作者的实验中，段落向量由以下两部分组成：<br>(1)一种由分布式记忆的标准段落组成；<br>(2)另一种由分布式词袋的段落向量组成。</p>
+<p>PV-DM在大多数任务上具有较好的性能，但是它与PV-DBOW的结合通常在我们尝试的许多任务中更加一致，因此强烈推荐使用它们的结合版。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>作者进行实验来更好地理解段落向量的行为。为了实现这一点，作者在两个文本理解问题上对段落向量进行了基准测试，这两个问题需要段落的固定长度向量表示:情感分析和信息检索。</p>
+<p>情感分析使用了两种数据集：<br>(1)IMDB电影评论集；<br>(2)斯坦福情感树库数据集。</p>
+<p>同时作者还在信息检索任务上测试模型，目标是确定该算法是否能在给定查询的情况下检索文档。</p>
+<h3 id="使用斯坦福情感树库数据集进行情感分析"><a href="#使用斯坦福情感树库数据集进行情感分析" class="headerlink" title="使用斯坦福情感树库数据集进行情感分析"></a>使用斯坦福情感树库数据集进行情感分析</h3><p>Soher等人提出了两种方法来作为基准线。首先，我们可以考虑一个5路细粒度的分类任务，其中标签是{Very Negative, Negative, Neutral, Positive, Very Positive}，或者是双向粗粒度的分类任务。标签为{Negative, Positive}。另一个变化轴是我们是否应该标记整个句子或句子中的所有短语。在本文中，作者只考虑标注标签完整的句子。</p>
+<h4 id="树库情感分析实验设置"><a href="#树库情感分析实验设置" class="headerlink" title="树库情感分析实验设置"></a>树库情感分析实验设置</h4><p>遵循如(Socher等人，2013b)所述的实验方案。为了利用可用的标记数据，在我们的模型中，每个子短语被视为一个独立的句子，我们学习训练集中所有子短语的表示。</p>
+<p>在学习了训练句子及其子短语的向量表示后，将它们反馈给逻辑回归，以学习电影评分的预测器。</p>
+<p>在测试时，我们冻结每个单词的向量表示，并使用梯度下降学习句子的表示。一旦学习了测试句子的向量表示，我们就通过逻辑回归来预测电影评分。</p>
+<p>在我们的实验中，我们使用验证集交叉验证窗口大小，最佳窗口大小为8。给分类器的向量是两个向量的串联，一个来自PV-DBOW，一个来自PV-DM。在PV-DBOW中，学习向量表示有400维。在PV-DM中，学习向量表示对于单词和段落都有400个维度。为了预测第8个单词，将段落向量和7个单词向量连接起来。其中特殊的符号，比如,!…等被看作是一个常规的单词，如果段落少于9个单词，使用一个特殊的NULL来填补。</p>
+<h4 id="树库情感分析实验结果"><a href="#树库情感分析实验结果" class="headerlink" title="树库情感分析实验结果"></a>树库情感分析实验结果</h4><p>情感分析结果如表1所示，其中NB,SVM,BiNB的表现效果较差，单纯的计算向量的平均值（针对词袋模型）也不会提高结果。这是因为袋的单词模型不考虑每个句子是如何构成的(例如，单词排序)，因此不能识别出许多复杂的语言现象，例如挖苦。<br><img src="https://s2.ax1x.com/2019/11/21/M5zMZt.png" alt="Table 1"></p>
+<h3 id="超越单句：用IMDB数据集进行情感分析"><a href="#超越单句：用IMDB数据集进行情感分析" class="headerlink" title="超越单句：用IMDB数据集进行情感分析"></a>超越单句：用IMDB数据集进行情感分析</h3><p>之前的一些技巧只适用于句子，但不是段落/文件有几个句子。作者提出的方法不需要解析，因此它可以为一个由多个句子组成的长文档生成一个表示。这个优点使他们的方法比其他方法更通用。</p>
+<h4 id="IMDB情感分析实验设置"><a href="#IMDB情感分析实验设置" class="headerlink" title="IMDB情感分析实验设置"></a>IMDB情感分析实验设置</h4><p>作者使用了75,000个训练文档(25,000个标记的和50,000个未标记的实例)来学习向量和段落向量。然后，通过一个有50个隐含层的神经网络和一个逻辑分类器输入25,000个标记实例的段落向量，以学习预测情绪。</p>
+<p>在测试时，给定一个测试句子，再次冻结网络的其余部分，并通过梯度下降法学习用于测试复习的段落向量。一旦学习了向量，我们通过神经网络来预测评论的情绪。</p>
+<p>我们的段落向量模型的超参数的选择方式与以前的任务相同。特别是，我们交叉验证了窗口的大小，最优的窗口大小是10字。T型向分类器提出的矢量是两个向量的级联，一个来自PV-DBOW，另一个来自PV-DM。在PV-DBOW中，学习到的向量表示有400维.在PV-DM中，学习向量表示对于单词和文档都有400个维度。为了预测第10个单词，我们将段落向量和单词向量连接起来。特殊字符，如，!?被视为正常的单词。如果文档少于9个单词，我们使用一个特殊的空单词符号NULL进行预填充。</p>
+<h4 id="IMDB情感分析实验结果"><a href="#IMDB情感分析实验结果" class="headerlink" title="IMDB情感分析实验结果"></a>IMDB情感分析实验结果</h4><p>实验结果如表2所示：<br><img src="https://s2.ax1x.com/2019/11/21/MIS9Sg.png" alt="Table 2"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" data-id="ck38e6e5f0000lwv4rdx8xmkc" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/05/从零实现基于医疗知识图谱的问答系统目录及总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">从零实现基于医疗知识图谱的问答系统目录及总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">联系方式</h3>
+    <div class="widget">
+	  <li><a>klausvon@163.com</a></li>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">目录</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI-Learning/">AI_Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/XSS漏洞学习/">XSS漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/代码审计/">代码审计</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/漏洞学习/">漏洞学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境配置/">环境配置</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/神经网络/">神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/统计学习/">统计学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF-Web/">CTF_Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL-injection/">SQL_injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/凸包算法/">凸包算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境配置/">环境配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神经网络/">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法考核/">算法考核</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学习/">统计学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algorithm/" style="font-size: 15px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 18.33px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 11.67px;">Python</a> <a href="/tags/SQL-injection/" style="font-size: 13.33px;">SQL_injection</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 11.67px;">大数据</a> <a href="/tags/数据挖掘/" style="font-size: 11.67px;">数据挖掘</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/神经网络/" style="font-size: 16.67px;">神经网络</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a> <a href="/tags/统计学习/" style="font-size: 10px;">统计学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/">\[论文笔记]Distributed Representations of Sentences and Documents</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/05/从零实现基于医疗知识图谱的问答系统目录及总结/">从零实现基于医疗知识图谱的问答系统目录及总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/从零实现基于医疗知识图谱的问答系统-四/">从零实现基于医疗知识图谱的问答系统(四)-构建回答</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/Neo4j数据库查询语句总结-v/">Neo4j数据库查询语句总结-v-</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/01/从零实现基于医疗知识图谱的问答系统-三/">从零实现基于医疗知识图谱的问答系统(三)-问题解析处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+	  <li><a href="http://030.im/" title="Misaka030">Misaka030</a></li>
+      <li><a href="http://cicisite.me/" title="cici's blog">cici</a></li>
+	  <li><a href="http://guoxiaobo.com/" title="Guo Sir">Guo Sir</a></li>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Klaus<br>
+      Propulsé par <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
