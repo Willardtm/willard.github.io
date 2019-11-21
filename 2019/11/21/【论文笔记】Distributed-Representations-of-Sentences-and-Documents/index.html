@@ -27,8 +27,9 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5ydET.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5bUSI.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5zMZt.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/21/MIx4l4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/MIS9Sg.png">
-<meta property="og:updated_time" content="2019-11-21T08:59:12.962Z">
+<meta property="og:updated_time" content="2019-11-21T13:12:29.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文笔记】Distributed Representations of Sentences and Documents">
 <meta name="twitter:description" content="这篇笔记是基于Mikolov大神的论文《Distributed Representations of Sentences and Documents》，句子和文档的分布式表示。">
@@ -161,14 +162,14 @@
 <h4 id="树库情感分析实验结果"><a href="#树库情感分析实验结果" class="headerlink" title="树库情感分析实验结果"></a>树库情感分析实验结果</h4><p>情感分析结果如下表所示，其中NB,SVM,BiNB的表现效果较差，单纯的计算向量的平均值（针对词袋模型）也不会提高结果。这是因为袋的单词模型不考虑每个句子是如何构成的(例如，单词排序)，因此不能识别出许多复杂的语言现象，例如挖苦。<br><img src="https://s2.ax1x.com/2019/11/21/M5zMZt.png" width="400" height="400" div="" align="center/"></p>
 <h3 id="超越单句：用IMDB数据集进行情感分析"><a href="#超越单句：用IMDB数据集进行情感分析" class="headerlink" title="超越单句：用IMDB数据集进行情感分析"></a>超越单句：用IMDB数据集进行情感分析</h3><p>之前的一些技巧只适用于句子，但不是段落/文件有几个句子。作者提出的方法不需要解析，因此它可以为一个由多个句子组成的长文档生成一个表示。这个优点使他们的方法比其他方法更通用。</p>
 <h4 id="IMDB情感分析实验设置"><a href="#IMDB情感分析实验设置" class="headerlink" title="IMDB情感分析实验设置"></a>IMDB情感分析实验设置</h4><p>作者使用了75,000个训练文档(25,000个标记的和50,000个未标记的实例)来学习向量和段落向量。然后，通过一个有50个隐含层的神经网络和一个逻辑分类器输入25,000个标记实例的段落向量，以学习预测情绪。</p>
-<p>在测试时，给定一个测试句子，再次冻结网络的其余部分，并通过梯度下降法学习用于测试复习的段落向量。一旦学习了向量，我们通过神经网络来预测评论的情绪。</p>
+<p>在测试时，给定一个测试句子，再次冻结网络的其余部分，并通过梯度下降法学习用于测试复习的段落向量。一旦学习了向量，我们通过神经网络来预测评论的情绪。<br>固定模型结构示意图，圈起来的部分是固定的，初始化段落向量：<br><img src="https://s2.ax1x.com/2019/11/21/MIx4l4.png" width="400" height="400" div="" align="center/"></p>
 <p>我们的段落向量模型的超参数的选择方式与以前的任务相同。特别是，我们交叉验证了窗口的大小，最优的窗口大小是10字。T型向分类器提出的矢量是两个向量的级联，一个来自PV-DBOW，另一个来自PV-DM。在PV-DBOW中，学习到的向量表示有400维.在PV-DM中，学习向量表示对于单词和文档都有400个维度。为了预测第10个单词，我们将段落向量和单词向量连接起来。特殊字符，如，!?被视为正常的单词。如果文档少于9个单词，我们使用一个特殊的空单词符号NULL进行预填充。</p>
 <h4 id="IMDB情感分析实验结果"><a href="#IMDB情感分析实验结果" class="headerlink" title="IMDB情感分析实验结果"></a>IMDB情感分析实验结果</h4><p>实验结果如下表所示：<br><img src="https://s2.ax1x.com/2019/11/21/MIS9Sg.png" width="400" height="400" div="" align="center/"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" data-id="ck38p9ay2002z4gv4d326nae7" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" data-id="ck38qk87v002whsv4704jlobd" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
