@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/MImuaF.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/MIuBut.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/MIKnVf.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/11/21/MInf0K.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/22/Mofkon.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5Z78I.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5eni9.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5eYIH.png">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5zMZt.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/MIx4l4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/MIS9Sg.png">
-<meta property="og:updated_time" content="2019-11-21T14:21:24.643Z">
+<meta property="og:updated_time" content="2019-11-22T01:50:10.966Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文笔记】Distributed Representations of Sentences and Documents">
 <meta name="twitter:description" content="这篇笔记是基于Mikolov大神的论文《Distributed Representations of Sentences and Documents》，句子和文档的分布式表示。">
@@ -75,7 +75,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -128,7 +128,7 @@
 <p>更确切地说，作者是将段落向量与一个段落中的几个单词向量连接起来，并在给定的上下文中预测以下单词。训练词向量和段落向量,通过随机梯度下降和反向传播(Rumelhart等，1986)。尽管段落中段落向量是唯一的，但是单词向量是共享的。在预测时间，段落向量是通过固定单词向量和训练新的段落向量来推断的，直到收敛为止。</p>
 <h2 id="模型算法"><a href="#模型算法" class="headerlink" title="模型算法"></a>模型算法</h2><h3 id="学习单词的向量表示"><a href="#学习单词的向量表示" class="headerlink" title="学习单词的向量表示"></a>学习单词的向量表示</h3><h4 id="基于深度学习模型学习词向量"><a href="#基于深度学习模型学习词向量" class="headerlink" title="基于深度学习模型学习词向量"></a>基于深度学习模型学习词向量</h4><p>首先构建词表，再使用Word2Vec的方法进行训练来得到词向量，再将句子输入神经网络得到句子的分布式表示。<br><img src="https://s2.ax1x.com/2019/11/21/MImuaF.png" width="300" height="300" div="" align="center/"><br>这类模型的缺点在于必须使用标注数据进行训练。</p>
 <h4 id="基于语言模型的词向量训练"><a href="#基于语言模型的词向量训练" class="headerlink" title="基于语言模型的词向量训练"></a>基于语言模型的词向量训练</h4><p>语言模型可以给出句子是句子的概率：<br><img src="https://s2.ax1x.com/2019/11/21/MIuBut.png" width="300" height="100" div="" align="center/"><br>每个词的概率定义为n-gram形式，即每个词出现只与前n-1个词有关：<br><img src="https://s2.ax1x.com/2019/11/21/MIKnVf.png" width="300" height="100" div="" align="center/"></p>
-<p>模型示意：<br><img src="https://s2.ax1x.com/2019/11/21/MInf0K.png" width="350" height="350" div="" align="center/"><br>评价语言模型的好坏是指标困惑度。</p>
+<p>模型示意：<br><img src="https://s2.ax1x.com/2019/11/22/Mofkon.png" width="350" height="350" div="" align="center/"><br>评价语言模型的好坏是指标困惑度。</p>
 <h3 id="论文中的词向量训练方法"><a href="#论文中的词向量训练方法" class="headerlink" title="论文中的词向量训练方法"></a>论文中的词向量训练方法</h3><p>学习词向量分布表示的著名框架如图1所示,其任务是根据上下文中的其他单词来预测一个单词。在此框架中，每个字被映射到由矩阵W中的列表示的唯一矢量。列通过词汇表中的字的位置进行索引。词向量的连接或和被用来作为预测句子中下一个单词的特征。<br><img src="https://s2.ax1x.com/2019/11/21/M5Z78I.png" width="300" height="300" div="" align="center/"></p>
 <p>给出一系列训练单词，w1,w2,w3…,wt，词向量模型的目标就是最大化平均对数概率。<br><img src="https://s2.ax1x.com/2019/11/21/M5eni9.png" width="400" height="250" div="" align="center/"></p>
 <p>预测任务通常通过多类分类器(如Softmax)来完成:<br><img src="https://s2.ax1x.com/2019/11/21/M5eYIH.png" width="400" height="250" div="" align="center/"></p>
@@ -169,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" data-id="ck38qk87v002whsv4704jlobd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" data-id="ck39hmeka0034xwv4ei3d67gv" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -182,7 +182,7 @@
   
   
     <a href="/2019/11/05/从零实现基于医疗知识图谱的问答系统目录及总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Älter</strong>
       <div class="article-nav-title">从零实现基于医疗知识图谱的问答系统目录及总结</div>
     </a>
   
@@ -235,7 +235,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -245,7 +245,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
         
