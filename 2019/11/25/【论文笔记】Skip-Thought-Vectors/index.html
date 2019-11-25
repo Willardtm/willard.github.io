@@ -5,22 +5,20 @@
   
 
   
-  <title>Softmax的交叉熵损失函数求导推导 | Klaus&#39;s Blog</title>
+  <title>【论文笔记】Skip-Thought Vectors | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="cs224n第四讲的课程中主要涉及的就是Softmax交叉熵等的计算，所以这篇博客对Softmax的交叉熵损失函数进行一遍完整的推导，加深理解吧！">
-<meta name="keywords" content="神经网络,NLP">
+  <meta name="description" content="本篇笔记基于《Skip-Thought Vectors》论文编写。">
+<meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Softmax的交叉熵损失函数求导推导">
-<meta property="og:url" content="http://yoursite.com/2019/08/17/Softmax的交叉熵损失函数求导推导/index.html">
+<meta property="og:title" content="【论文笔记】Skip-Thought Vectors">
+<meta property="og:url" content="http://yoursite.com/2019/11/25/【论文笔记】Skip-Thought-Vectors/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
-<meta property="og:description" content="cs224n第四讲的课程中主要涉及的就是Softmax交叉熵等的计算，所以这篇博客对Softmax的交叉熵损失函数进行一遍完整的推导，加深理解吧！">
+<meta property="og:description" content="本篇笔记基于《Skip-Thought Vectors》论文编写。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/08/17/mmX8Y9.png">
-<meta property="og:updated_time" content="2019-08-16T17:56:27.033Z">
+<meta property="og:updated_time" content="2019-11-25T08:22:43.023Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Softmax的交叉熵损失函数求导推导">
-<meta name="twitter:description" content="cs224n第四讲的课程中主要涉及的就是Softmax交叉熵等的计算，所以这篇博客对Softmax的交叉熵损失函数进行一遍完整的推导，加深理解吧！">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/08/17/mmX8Y9.png">
+<meta name="twitter:title" content="【论文笔记】Skip-Thought Vectors">
+<meta name="twitter:description" content="本篇笔记基于《Skip-Thought Vectors》论文编写。">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -71,14 +69,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Softmax的交叉熵损失函数求导推导" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-【论文笔记】Skip-Thought-Vectors" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/08/17/Softmax的交叉熵损失函数求导推导/" class="article-date">
-  <time datetime="2019-08-16T16:57:03.000Z" itemprop="datePublished">2019-08-17</time>
+    <a href="/2019/11/25/【论文笔记】Skip-Thought-Vectors/" class="article-date">
+  <time datetime="2019-11-25T08:20:40.000Z" itemprop="datePublished">2019-11-25</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/NLP/">NLP</a>►<a class="article-category-link" href="/categories/神经网络/">神经网络</a>
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
   </div>
 
   </div>
@@ -89,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Softmax的交叉熵损失函数求导推导
+      【论文笔记】Skip-Thought Vectors
     </h1>
   
 
@@ -101,21 +99,29 @@
 		
 		  <div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Softmax相关推导"><span class="toc-number">1.</span> <span class="toc-text">Softmax相关推导</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前期知识补充"><span class="toc-number">1.</span> <span class="toc-text">前期知识补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#词表示加权-gt-句子表示"><span class="toc-number">1.1.</span> <span class="toc-text">词表示加权-&gt;句子表示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TF-IDF"><span class="toc-number">1.1.1.</span> <span class="toc-text">TF-IDF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SIF"><span class="toc-number">1.1.2.</span> <span class="toc-text">SIF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于神经网络的词表示"><span class="toc-number">1.2.</span> <span class="toc-text">基于神经网络的词表示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mikolov提出的Sentence-Embedding"><span class="toc-number">1.2.1.</span> <span class="toc-text">Mikolov提出的Sentence Embedding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于复述句匹配的句表示"><span class="toc-number">1.2.2.</span> <span class="toc-text">基于复述句匹配的句表示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两类方法对比"><span class="toc-number">1.3.</span> <span class="toc-text">两类方法对比</span></a></li></ol></li></ol>
 		  </div>
 		
-        <p>cs224n第四讲的课程中主要涉及的就是Softmax交叉熵等的计算，所以这篇博客对Softmax的交叉熵损失函数进行一遍完整的推导，加深理解吧！<br><a id="more"></a></p>
-<h2 id="Softmax相关推导"><a href="#Softmax相关推导" class="headerlink" title="Softmax相关推导"></a>Softmax相关推导</h2><p>softmax和sigmoid不同，softmax主要用于多分类，将输出映射到（0,1）区间，再分别计算每个可能的输出y对应的概率是多少，概率最高的则是最有可能分类正确的结果（所有概率之和为1），简而言之，就是通过softmax计算得到分类结果。</p>
-<p><img src="https://s2.ax1x.com/2019/08/17/mmX8Y9.png" alt=""></p>
-<p>参考材料：<br>[1]<a href="https://zhuanlan.zhihu.com/p/25723112" target="_blank" rel="noopener">详解softmax函数以及相关求导过程</a><br>[2]<a href="https://blog.csdn.net/qian99/article/details/78046329" target="_blank" rel="noopener">简单易懂的softmax交叉熵损失函数求导</a></p>
+        <p>本篇笔记基于《Skip-Thought Vectors》论文编写。<br><a id="more"></a></p>
+<h2 id="前期知识补充"><a href="#前期知识补充" class="headerlink" title="前期知识补充"></a>前期知识补充</h2><h3 id="词表示加权-gt-句子表示"><a href="#词表示加权-gt-句子表示" class="headerlink" title="词表示加权-&gt;句子表示"></a>词表示加权-&gt;句子表示</h3><p>词向量的加权方式一般遵循一个准则：越常见的词权重越小。</p>
+<h4 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h4><p>TF-IDF(x)=TF(x)*IDF(x)</p>
+<p>TF(x)=x 表示x在语料库中出现的次数,x即词语</p>
+<p>IDF(x)=log(N/N(x))</p>
+<p>N是语料库中的句子总数,N(x)位当前语料库中出现x的句子个数</p>
+<h4 id="SIF"><a href="#SIF" class="headerlink" title="SIF"></a>SIF</h4><p>SIF(x)=α/(TF(x)+α)</p>
+<p>其中α是为了防止TF(x)等于0的情况</p>
+<h3 id="基于神经网络的词表示"><a href="#基于神经网络的词表示" class="headerlink" title="基于神经网络的词表示"></a>基于神经网络的词表示</h3><h4 id="Mikolov提出的Sentence-Embedding"><a href="#Mikolov提出的Sentence-Embedding" class="headerlink" title="Mikolov提出的Sentence Embedding"></a>Mikolov提出的Sentence Embedding</h4><h4 id="基于复述句匹配的句表示"><a href="#基于复述句匹配的句表示" class="headerlink" title="基于复述句匹配的句表示"></a>基于复述句匹配的句表示</h4><p>·测试数据集包含情感分类、主题分类、语义相似性度量、复述句检测、文本蕴含等<br>·测试方法为：固定句表示，在对应任务等训练数据集上学习分类器</p>
+<font color="##0099ff">需要补充复述句相关的材料</font>
+
+<h3 id="两类方法对比"><a href="#两类方法对比" class="headerlink" title="两类方法对比"></a>两类方法对比</h3><p>(1)基于语言模型的句子表示，利用了词与词之间的共现信息，可大规模训练:<br>-优点：可以利用无监督预料，成本低.<br>-缺点：忽略了句子间的语义信息.<br>(2)基于复述句对的句表示方法,预料可通过机器翻译大规模获得，建模句对关系:<br>-优点：建模了句对之间的相似与不相似关系.<br>-缺点：仅仅建模了相关性，忽略了句子间复杂的语义关系.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/17/Softmax的交叉熵损失函数求导推导/" data-id="ck3e5yq3t001hwgv4xw02ke2g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/25/【论文笔记】Skip-Thought-Vectors/" data-id="ck3e5yq4o002swgv45zczdn8b" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/神经网络/">神经网络</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
 
     </footer>
   </div>
@@ -123,19 +129,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/08/28/cs224n-Lecture-6-依存分析/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          cs224n-Lecture-6 依存分析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/16/吴恩达神经网络与深度学习-Week-4-学习记录/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">吴恩达神经网络与深度学习 Week-4 学习记录</div>
+      <div class="article-nav-title">【论文笔记】Distributed Representations of Sentences and Documents</div>
     </a>
   
 </nav>
