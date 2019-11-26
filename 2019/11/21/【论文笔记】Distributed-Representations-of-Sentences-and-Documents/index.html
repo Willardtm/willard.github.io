@@ -29,14 +29,14 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/M5zMZt.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/MIx4l4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/21/MIS9Sg.png">
-<meta property="og:image" content="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/39B1342D8F8F4E7294D4C255214D656E">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/26/MzRw8O.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/26/Mzg1iT.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/26/MzgNLR.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/26/MxUquF.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/26/MxaS9x.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/26/MxaTIA.png">
 <meta property="og:image" content="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/85BABBADC8E0409D810A3BC90BE155DB">
-<meta property="og:updated_time" content="2019-11-26T07:25:29.491Z">
+<meta property="og:updated_time" content="2019-11-26T07:28:44.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文笔记】Distributed Representations of Sentences and Documents">
 <meta name="twitter:description" content="这篇笔记是基于Mikolov大神的论文《Distributed Representations of Sentences and Documents》，句子和文档的分布式表示。">
@@ -80,9 +80,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -173,7 +173,7 @@
 <p>我们的段落向量模型的超参数的选择方式与以前的任务相同。特别是，我们交叉验证了窗口的大小，最优的窗口大小是10字。T型向分类器提出的矢量是两个向量的级联，一个来自PV-DBOW，另一个来自PV-DM。在PV-DBOW中，学习到的向量表示有400维.在PV-DM中，学习向量表示对于单词和文档都有400个维度。为了预测第10个单词，我们将段落向量和单词向量连接起来。特殊字符，如，!?被视为正常的单词。如果文档少于9个单词，我们使用一个特殊的空单词符号NULL进行预填充。</p>
 <h4 id="IMDB情感分析实验结果"><a href="#IMDB情感分析实验结果" class="headerlink" title="IMDB情感分析实验结果"></a>IMDB情感分析实验结果</h4><p>实验结果如下表所示：<br><img src="https://s2.ax1x.com/2019/11/21/MIS9Sg.png" width="400" height="400" div="" align="center/"></p>
 <p>论文复现这块一直是个人的弱点，所以本篇论文着重于论文复现上。</p>
-<h2 id="论文复现"><a href="#论文复现" class="headerlink" title="论文复现"></a>论文复现</h2><h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><p>确定使用的数据库是IMDB数据库，数据库中有25000条训练数据，25000条测试数据，还有50000条未标记数据，每条评论单独放在一个.txt文件中。<br>按照我之前的理解，英文的分词使用split(‘ ‘)就可以解决了，实际则不是，英文中包含的连写，比如 I’m 如果单纯的使用空格的来切分则处理得不到位，可以使用NLTK库来处理。<br><img src="39B1342D8F8F4E7294D4C255214D656E" alt="image"><br>前面四个步骤属于NLP语料库预处理的常规操作部分，第五步窗口数据集构建，假如窗口大小为10，也就是需要要前9个单词来预测第10个单词。<br>在本文中，每个样本就相当于用前9个词和一个句向量(Paragraph Vector)来预测第10个词，第10个词也就是所谓的标签(Label)。</p>
+<h2 id="论文复现"><a href="#论文复现" class="headerlink" title="论文复现"></a>论文复现</h2><h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><p>确定使用的数据库是IMDB数据库，数据库中有25000条训练数据，25000条测试数据，还有50000条未标记数据，每条评论单独放在一个.txt文件中。<br>按照我之前的理解，英文的分词使用split(‘ ‘)就可以解决了，实际则不是，英文中包含的连写，比如 I’m 如果单纯的使用空格的来切分则处理得不到位，可以使用NLTK库来处理。<br><img src="https://s2.ax1x.com/2019/11/26/MzRw8O.png" alt=""><br>前面四个步骤属于NLP语料库预处理的常规操作部分，第五步窗口数据集构建，假如窗口大小为10，也就是需要要前9个单词来预测第10个单词。<br>在本文中，每个样本就相当于用前9个词和一个句向量(Paragraph Vector)来预测第10个词，第10个词也就是所谓的标签(Label)。</p>
 <h3 id="切词"><a href="#切词" class="headerlink" title="切词"></a>切词</h3><p>nltk.word_tokenize处理之后得到的是一个list类型的数据，其中包含切分后的结果。<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def get_data(self, <span class="built_in">path</span>):</span><br><span class="line">    datas = []</span><br><span class="line">    paths = <span class="built_in">os</span>.listdir(<span class="built_in">path</span>)</span><br><span class="line">    paths = [<span class="built_in">path</span> + filename <span class="keyword">for</span> filename <span class="keyword">in</span> paths]</span><br><span class="line">    <span class="keyword">for</span> i, file <span class="keyword">in</span> enumerate(paths):</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">1000</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">'当前读取评论条数: '</span>, i, <span class="string">' / '</span>, <span class="built_in">len</span>(paths))</span><br><span class="line">        data = <span class="built_in">open</span>(file, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>).<span class="built_in">read</span>()</span><br><span class="line">        data = data.<span class="built_in">lower</span>()</span><br><span class="line">        data = nltk.word_tokenize(data)</span><br><span class="line">        datas.append(data)</span><br><span class="line">    <span class="keyword">return</span> datas</span><br></pre></td></tr></table></figure></p>
 <h3 id="统计单词并构建词表"><a href="#统计单词并构建词表" class="headerlink" title="统计单词并构建词表"></a>统计单词并构建词表</h3><p>这个属于常规操作，之前在复现Word2Vec的过程中有涉及到。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_all_words</span><span class="params">(self, train_datas, train_unsup)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    从训练集句子和无监督句子中统计所有出现过的词以及它们的频率并取出频率最高的29998个词加上pad和unk</span></span><br><span class="line"><span class="string">    来构建一个大小为30000的词表</span></span><br><span class="line"><span class="string">    :return: 大小为30000的词表及每个词对应的id</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    all_words = []</span><br><span class="line">    <span class="keyword">for</span> sentence <span class="keyword">in</span> train_datas:</span><br><span class="line">        all_words.extend(sentence)</span><br><span class="line">    <span class="keyword">for</span> sentence <span class="keyword">in</span> train_unsup:</span><br><span class="line">        all_words.extend(sentence)</span><br><span class="line">    count = Counter(all_words)</span><br><span class="line">    count = dict(count.most_common(<span class="number">29998</span>))</span><br><span class="line">    word2id = &#123;<span class="string">'&lt;pad&gt;'</span>: <span class="number">0</span>, <span class="string">'&lt;unk&gt;'</span>: <span class="number">1</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> count:</span><br><span class="line">        word2id[word] = len(word2id)</span><br><span class="line">    <span class="keyword">return</span> word2id</span><br></pre></td></tr></table></figure></p>
 <h3 id="编号表示"><a href="#编号表示" class="headerlink" title="编号表示"></a>编号表示</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert_data_word_to_id</span><span class="params">(self, word2id, datas)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    :param word2id: 包含30000词的词表及其编号</span></span><br><span class="line"><span class="string">    :param datas: 需要转化为序号表示的句子</span></span><br><span class="line"><span class="string">    :return:转化完成后的句子集合</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">for</span> i, sentence <span class="keyword">in</span> enumerate(datas):</span><br><span class="line">        <span class="keyword">for</span> j, word <span class="keyword">in</span> enumerate(sentence):</span><br><span class="line">            datas[i][j] = word2id.get(word, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> datas</span><br></pre></td></tr></table></figure>
@@ -204,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" data-id="ck3fjd5zr003490v4elw5q9yq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" data-id="ck3fjh9oy0032ekv4v1gon2rl" class="article-share-link">Compartir</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -216,7 +216,7 @@
 <nav id="article-nav">
   
     <a href="/2019/11/25/【论文笔记】Skip-Thought-Vectors/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">Nuevo</strong>
       <div class="article-nav-title">
         
           【论文笔记】Skip-Thought Vectors
@@ -226,7 +226,7 @@
   
   
     <a href="/2019/11/05/从零实现基于医疗知识图谱的问答系统目录及总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Viejo</strong>
       <div class="article-nav-title">从零实现基于医疗知识图谱的问答系统目录及总结</div>
     </a>
   
@@ -270,7 +270,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nube de Tags</h3>
     <div class="widget tagcloud">
       <a href="/tags/Algorithm/" style="font-size: 15px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 18.33px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 11.67px;">Python</a> <a href="/tags/SQL-injection/" style="font-size: 13.33px;">SQL_injection</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 11.67px;">大数据</a> <a href="/tags/数据挖掘/" style="font-size: 11.67px;">数据挖掘</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/神经网络/" style="font-size: 16.67px;">神经网络</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a> <a href="/tags/统计学习/" style="font-size: 10px;">统计学习</a>
     </div>
@@ -279,7 +279,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archivos</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -289,7 +289,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Posts recientes</h3>
     <div class="widget">
       <ul>
         
@@ -337,7 +337,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2019 Klaus<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Construido por <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
