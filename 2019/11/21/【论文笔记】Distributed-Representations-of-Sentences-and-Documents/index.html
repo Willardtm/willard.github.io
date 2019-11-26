@@ -35,8 +35,8 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/26/MxUquF.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/26/MxaS9x.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/11/26/MxaTIA.png">
-<meta property="og:image" content="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/85BABBADC8E0409D810A3BC90BE155DB">
-<meta property="og:updated_time" content="2019-11-26T07:35:09.906Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/26/MzWWwR.png">
+<meta property="og:updated_time" content="2019-11-26T07:36:09.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文笔记】Distributed Representations of Sentences and Documents">
 <meta name="twitter:description" content="这篇笔记是基于Mikolov大神的论文《Distributed Representations of Sentences and Documents》，句子和文档的分布式表示。">
@@ -198,13 +198,13 @@
 <p>所以，下面需要对分类器进行设置。<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 分类器训练</span></span><br><span class="line"><span class="meta"># 原先的para_input的大小是batch_size*1*400</span></span><br><span class="line">mlp_input=tf.reshape(para_input,[<span class="number">-1</span>,<span class="number">400</span>])</span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">'classification_parameters'</span>):</span><br><span class="line">    h1=tf.layers.dense(mlp_input,units=<span class="number">50</span>,activation=<span class="string">'relu'</span>,trainable=<span class="literal">True</span>,name=<span class="string">'h1'</span>)</span><br><span class="line">    <span class="meta"># 情感分类的结果是二分类结果</span></span><br><span class="line">    mlp_output=tf.layers.dense(h1,<span class="number">2</span>,trainable=<span class="literal">True</span>,name=<span class="string">'mlp_output'</span>)</span><br></pre></td></tr></table></figure></p>
 <h3 id="训练情感分类器"><a href="#训练情感分类器" class="headerlink" title="训练情感分类器"></a>训练情感分类器</h3><p>首先设置label，损失函数，分类器参数，优化损失函数，最后通过tf.argmax得出结果。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mlp_labels = tf.one_hot(self<span class="selector-class">.label</span>, <span class="number">2</span>)</span><br><span class="line">self<span class="selector-class">.mlp_loss_op</span> = tf.reduce_mean(tf<span class="selector-class">.nn</span><span class="selector-class">.softmax_cross_entropy_with_logits_v2</span></span><br><span class="line">                                  (labels=mlp_labels, logits=mlp_output))</span><br><span class="line">classification_var = tf.get_collection(tf<span class="selector-class">.GraphKeys</span><span class="selector-class">.TRAINABLE_VARIABLES</span>, <span class="string">"classification_parameters"</span>)</span><br><span class="line">self<span class="selector-class">.mlp_train_op</span> = tf<span class="selector-class">.train</span><span class="selector-class">.AdamOptimizer</span>(learning_rate=<span class="number">0.02</span>). \</span><br><span class="line">    minimize(self<span class="selector-class">.mlp_loss_op</span>, var_list=classification_var)</span><br><span class="line"></span><br><span class="line">self<span class="selector-class">.predict_op</span> = tf.argmax(mlp_output, axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
 <h2 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h2><p>训练的过程包含了训练句向量以及训练分类两部分，根据需要进行训练即可。<br>注：其中batch_size可调。</p>
-<h2 id="运行过程"><a href="#运行过程" class="headerlink" title="运行过程"></a>运行过程</h2><p><img src="85BABBADC8E0409D810A3BC90BE155DB" alt="image"><br>注：这里训练模型的部分可以在原来的基础上进行训练这点需要弄清楚。</p>
+<h2 id="运行过程"><a href="#运行过程" class="headerlink" title="运行过程"></a>运行过程</h2><p><img src="https://s2.ax1x.com/2019/11/26/MzWWwR.png" alt=""><br>注：这里训练模型的部分可以在原来的基础上进行训练这点需要弄清楚。</p>
 <h2 id="测试模型"><a href="#测试模型" class="headerlink" title="测试模型"></a>测试模型</h2><p>这里测试的是情感分类过程，也就是将句子根据batch_size放入模型中进行训练，将预测的结果单独保存下来，再通过skit-learn 的 accuracy_score函数计算出准确率。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" data-id="ck3fjh9oy0032ekv4v1gon2rl" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" data-id="ck3fjqsev003z1gv48hfv13qw" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
