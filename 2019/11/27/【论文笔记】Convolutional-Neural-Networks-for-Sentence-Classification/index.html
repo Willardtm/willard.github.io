@@ -5,15 +5,29 @@
   
 
   
-  <title>Kategorie: Python | Klaus&#39;s Blog</title>
+  <title>【论文笔记】Convolutional Neural Networks for Sentence Classification | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Klaus&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/categories/Python/index.html">
+  <meta name="description" content="这篇笔记是基于Yoon Kim大神的论文《Convolutional Neural Networks for Sentence Classification》，TextCNN。本文为使用神经网络进行文本分类的开山之作。">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文笔记】Convolutional Neural Networks for Sentence Classification">
+<meta property="og:url" content="http://yoursite.com/2019/11/27/【论文笔记】Convolutional-Neural-Networks-for-Sentence-Classification/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
+<meta property="og:description" content="这篇笔记是基于Yoon Kim大神的论文《Convolutional Neural Networks for Sentence Classification》，TextCNN。本文为使用神经网络进行文本分类的开山之作。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/27/Qpu7NT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/27/QpuOgJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/27/QpuvuR.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/27/QpuxD1.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/27/QpKC4O.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/27/QpKkgH.png">
+<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/6/6c/Convolution_schematic.gif">
+<meta property="og:image" content="https://s2.ax1x.com/2019/11/27/QpKZDI.png">
+<meta property="og:updated_time" content="2019-11-26T19:04:57.816Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Klaus&#39;s Blog">
+<meta name="twitter:title" content="【论文笔记】Convolutional Neural Networks for Sentence Classification">
+<meta name="twitter:description" content="这篇笔记是基于Yoon Kim大神的论文《Convolutional Neural Networks for Sentence Classification》，TextCNN。本文为使用神经网络进行文本分类的开山之作。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/11/27/Qpu7NT.png">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -64,40 +78,76 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/08/20/Python-logging模块简述/" class="archive-article-date">
-  <time datetime="2018-08-20T00:48:53.000Z" itemprop="datePublished">Aug 20</time>
+        <section id="main"><article id="post-【论文笔记】Convolutional-Neural-Networks-for-Sentence-Classification" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/27/【论文笔记】Convolutional-Neural-Networks-for-Sentence-Classification/" class="article-date">
+  <time datetime="2019-11-26T18:27:39.000Z" itemprop="datePublished">2019-11-27</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/20/Python-logging模块简述/">Python logging模块简述</a>
+    <h1 class="article-title" itemprop="name">
+      【论文笔记】Convolutional Neural Networks for Sentence Classification
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前期知识补充"><span class="toc-number">1.</span> <span class="toc-text">前期知识补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文本分类"><span class="toc-number">1.1.</span> <span class="toc-text">文本分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文本表示"><span class="toc-number">1.2.</span> <span class="toc-text">文本表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于规则的文本分类"><span class="toc-number">1.3.</span> <span class="toc-text">基于规则的文本分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于特征的文本分类"><span class="toc-number">1.4.</span> <span class="toc-text">基于特征的文本分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于神经网络的文本分类"><span class="toc-number">1.5.</span> <span class="toc-text">基于神经网络的文本分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卷积神经网络之卷积"><span class="toc-number">1.6.</span> <span class="toc-text">卷积神经网络之卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卷积神经网络之池化"><span class="toc-number">1.7.</span> <span class="toc-text">卷积神经网络之池化</span></a></li></ol></li></ol>
+		  </div>
+		
+        <p>这篇笔记是基于Yoon Kim大神的论文《Convolutional Neural Networks for Sentence Classification》，TextCNN。<br>本文为使用神经网络进行文本分类的开山之作。<br><a id="more"></a></p>
+<p><font color="red"><b>注：笔记学习参考深度之眼人工智能Paper训练营NLP方向第八课时课程。</b></font><br>-w-这篇文章简直可以算是我接触神经网络在NLP上应用的第一篇论文了，记忆深刻，这次学习是重新温习一遍文中的细节并且完成论文的复现。<br>第一次我看这篇论文的阅读笔记时来自这篇笔记<a href="http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/" target="_blank" rel="noopener">Implementing a CNN for Text Classification in TensorFlow</a>.</p>
+<h2 id="前期知识补充"><a href="#前期知识补充" class="headerlink" title="前期知识补充"></a>前期知识补充</h2><h3 id="文本分类"><a href="#文本分类" class="headerlink" title="文本分类"></a>文本分类</h3><p>文本分类即给定分类体系，将文本分类到某个或者某几个类。情感分析也就是文本分类下面一个细节。<br>文本分类涵盖了二分类，多分类，多标签分类等，其中多标签分类指的是一个文本可能属于多个标签类别。<br><img src="https://s2.ax1x.com/2019/11/27/Qpu7NT.png" alt=""></p>
+<h3 id="文本表示"><a href="#文本表示" class="headerlink" title="文本表示"></a>文本表示</h3><p>文本表示即通过某种编码方式将文本处理为计算机可以处理的形式（向量），在前面的笔记中已经提到过以下几种编码方式：<br>(1)One-Hot.<br>(2)Word2Vec.</p>
+<h3 id="基于规则的文本分类"><a href="#基于规则的文本分类" class="headerlink" title="基于规则的文本分类"></a>基于规则的文本分类</h3><p>基于规则的文本分类流程如下:<br><img src="https://s2.ax1x.com/2019/11/27/QpuOgJ.png" alt=""></p>
+<p>规则的设定包括特定的词语，短语或者模式，当句子符合这些规则时就将其判断为对应的类别。</p>
+<h3 id="基于特征的文本分类"><a href="#基于特征的文本分类" class="headerlink" title="基于特征的文本分类"></a>基于特征的文本分类</h3><p>通过人工设计和提取特征（词法特征，句法特征）等，使用机器学习模型来捕获句子中的关键信息，从而减少噪声词对最终结果的影响。<br><img src="https://s2.ax1x.com/2019/11/27/QpuvuR.png" alt=""></p>
+<h3 id="基于神经网络的文本分类"><a href="#基于神经网络的文本分类" class="headerlink" title="基于神经网络的文本分类"></a>基于神经网络的文本分类</h3><p>流程如下：<br><img src="https://s2.ax1x.com/2019/11/27/QpuxD1.png" alt=""></p>
+<h3 id="卷积神经网络之卷积"><a href="#卷积神经网络之卷积" class="headerlink" title="卷积神经网络之卷积"></a>卷积神经网络之卷积</h3><p>关于CNN还是首先推荐这位大神的博客：(卷积神经网络在NLP的应用)[<a href="http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/]。" target="_blank" rel="noopener">http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/]。</a><br>OK，回到课程笔记。<br>卷积神经网络：多层感知机是一种全连接的结构，但是全连接的网络会存在一定程度的冗余，卷积神经网络通过局部连接和权重共享的方法来实现对多层感知机的共享。<br><img src="https://s2.ax1x.com/2019/11/27/QpKC4O.png" alt=""></p>
+<p>卷积的操作就是把当前感受野内的所有输入与滤波器对应位置的权重相乘后求和，在每一个时刻滤波器都会按照一定的步长向前移动。<br><img src="https://s2.ax1x.com/2019/11/27/QpKkgH.png" alt=""></p>
+<p>图像示意：<br><img src="http://deeplearning.stanford.edu/wiki/images/6/6c/Convolution_schematic.gif" alt=""></p>
+<h3 id="卷积神经网络之池化"><a href="#卷积神经网络之池化" class="headerlink" title="卷积神经网络之池化"></a>卷积神经网络之池化</h3><p>池化操作的意义就是降低特征维度并保留有效信息。<br><img src="https://s2.ax1x.com/2019/11/27/QpKZDI.png" alt=""><br>在NLP中，池化操作可以将任意长度的输入转化为固定长度的输入。</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/27/【论文笔记】Convolutional-Neural-Networks-for-Sentence-Classification/" data-id="ck3g8gmi7002r9sv4o3746vej" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/25/【论文笔记】Skip-Thought-Vectors/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">【论文笔记】Skip-Thought Vectors</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
