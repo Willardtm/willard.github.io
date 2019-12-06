@@ -5,15 +5,26 @@
   
 
   
-  <title>Kategorie: Python | Klaus&#39;s Blog</title>
+  <title>【论文笔记】Character-level Convolutional Networks for Text Classification | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Klaus&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/categories/Python/index.html">
+  <meta name="description" content="本篇论文笔记基于《Character-level Convolutional Networks for Text Classification》。">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文笔记】Character-level Convolutional Networks for Text Classification">
+<meta property="og:url" content="http://yoursite.com/2019/12/05/【论文笔记】Character-level-Convolutional-Networks-for-Text-Classification/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
+<meta property="og:description" content="本篇论文笔记基于《Character-level Convolutional Networks for Text Classification》。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/05/QGai28.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/06/QJAOpV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/06/QJEN7j.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/06/QJELEd.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/06/QJEvCt.png">
+<meta property="og:updated_time" content="2019-12-06T02:33:16.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Klaus&#39;s Blog">
+<meta name="twitter:title" content="【论文笔记】Character-level Convolutional Networks for Text Classification">
+<meta name="twitter:description" content="本篇论文笔记基于《Character-level Convolutional Networks for Text Classification》。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/05/QGai28.png">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -64,40 +75,74 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/08/20/Python-logging模块简述/" class="archive-article-date">
-  <time datetime="2018-08-20T00:48:53.000Z" itemprop="datePublished">Aug 20</time>
+        <section id="main"><article id="post-【论文笔记】Character-level-Convolutional-Networks-for-Text-Classification" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/05/【论文笔记】Character-level-Convolutional-Networks-for-Text-Classification/" class="article-date">
+  <time datetime="2019-12-05T13:43:19.000Z" itemprop="datePublished">2019-12-05</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/20/Python-logging模块简述/">Python logging模块简述</a>
+    <h1 class="article-title" itemprop="name">
+      【论文笔记】Character-level Convolutional Networks for Text Classification
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前期知识补充"><span class="toc-number">1.</span> <span class="toc-text">前期知识补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文本分类"><span class="toc-number">1.1.</span> <span class="toc-text">文本分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机器学习"><span class="toc-number">1.2.</span> <span class="toc-text">机器学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#论文主要内容"><span class="toc-number">2.</span> <span class="toc-text">论文主要内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型主要模块"><span class="toc-number">2.1.</span> <span class="toc-text">模型主要模块</span></a></li></ol></li></ol>
+		  </div>
+		
+        <p>本篇论文笔记基于《Character-level Convolutional Networks for Text Classification》。<br><a id="more"></a></p>
+<font color="red"><b>注：笔记学习参考深度之眼人工智能Paper训练营NLP方向第九课时课程。</b></font>
 
+<h2 id="前期知识补充"><a href="#前期知识补充" class="headerlink" title="前期知识补充"></a>前期知识补充</h2><h3 id="文本分类"><a href="#文本分类" class="headerlink" title="文本分类"></a>文本分类</h3><p>文本分类就是根据文本内容将其分到合适的类别。</p>
+<p>文本分类发展历史如下：<br><img src="https://s2.ax1x.com/2019/12/05/QGai28.png" width="700" height="300"></p>
+<h3 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h3><p>人工特征工程：<br>1.设计特征<br>(1) 统计词表内所有词在文本中出现的频率；<br>(2 )计算词表中每个词在文本中的TF-IDF；<br>(3) 统计N-gram词组信息；</p>
+<p>2.特征选择和特征降维<br>(1) 信息增益，互信息等；<br>(2) PCA,SVD；</p>
+<p>浅层分类模型：<br>SVM，KNN，决策树。</p>
+<p>注：一般机器学习的方法可以作为baseline来体现深度学习的优势。</p>
+<h2 id="论文主要内容"><a href="#论文主要内容" class="headerlink" title="论文主要内容"></a>论文主要内容</h2><h3 id="模型主要模块"><a href="#模型主要模块" class="headerlink" title="模型主要模块"></a>模型主要模块</h3><p>主要组件是时间卷积模块，它简单地计算一维卷积。<br>假如有一个离散输入函数：<br><img src="https://s2.ax1x.com/2019/12/06/QJAOpV.png" width="150" height="80"><br>还有一个离散的核函数：<br><img src="https://s2.ax1x.com/2019/12/06/QJEN7j.png" width="150" height="80"><br>然后卷积：<br><img src="https://s2.ax1x.com/2019/12/06/QJELEd.png" width="150" height="100"><br>是基于f(x)和g(x)之间，并且步长d定义为：<br><img src="https://s2.ax1x.com/2019/12/06/QJEvCt.png" width="150" height="1500"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/05/【论文笔记】Character-level-Convolutional-Networks-for-Text-Classification/" data-id="ck3tjbz4n002xhgv4xtd99s8y" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/27/【论文笔记】Convolutional-Neural-Networks-for-Sentence-Classification/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">【论文笔记】Convolutional Neural Networks for Sentence Classification</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         

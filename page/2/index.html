@@ -53,9 +53,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -65,6 +65,53 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-Skip-Gram模型与CBOW模型代码实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/18/Skip-Gram模型与CBOW模型代码实现/" class="article-date">
+  <time datetime="2019-10-18T03:20:32.000Z" itemprop="datePublished">2019-10-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/18/Skip-Gram模型与CBOW模型代码实现/">Skip-Gram模型与CBOW模型代码实现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>词向量是NLP的基础，也是NLP学习中更重要的组成部分，在补基础的过程中我觉得这两个模型有必要自己学习并且写一遍才能更好的理解相关概念。<br>Skip-Gram模型与CBOW模型出自于:<a href="https://arxiv.org/abs/1301.3781" target="_blank" rel="noopener">Efficient Estimation of Word Representations in<br>Vector Space</a> Mikolov大神是真的强，学习之。<br>先前学习word2vec的学习笔记链接：<br><a href="http://klausvon.cn/2019/08/08/cs224n-Lecture-2-%E8%AF%8D%E5%90%91%E9%87%8F%E8%A1%A8%E7%A4%BA%EF%BC%9Aword2vec/" target="_blank" rel="noopener">cs224n-Lecture-2 词向量表示：word2vec</a><br><a href="http://klausvon.cn/2019/08/14/cs224n-Lecture-3-%E9%AB%98%E7%BA%A7%E8%AF%8D%E5%90%91%E9%87%8F%E8%A1%A8%E7%A4%BA/" target="_blank" rel="noopener">cs224n-Lecture-3 高级词向量表示</a><br>
+        
+          <p class="article-more-link">
+            <a href="/2019/10/18/Skip-Gram模型与CBOW模型代码实现/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/18/Skip-Gram模型与CBOW模型代码实现/" data-id="ck3tjbz3m001bhgv49ja69x14" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-《统计学习方法》第四章-朴素贝叶斯法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -101,7 +148,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/14/《统计学习方法》第四章-朴素贝叶斯法/" data-id="ck3so7962003yl4v4rxlwv2os" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2019/10/14/《统计学习方法》第四章-朴素贝叶斯法/" data-id="ck3tjbz4i002phgv4jmzdtv8c" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/统计学习/">统计学习</a></li></ul>
@@ -148,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/11/cs224n-2019-Lecture-7-梯度消失和有趣的RNN/" data-id="ck3so793u001ul4v4417t4me9" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2019/10/11/cs224n-2019-Lecture-7-梯度消失和有趣的RNN/" data-id="ck3tjbz3w001phgv4f9g39m6j" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -195,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/05/cs224n-Lecture-8-RNN和语言模式/" data-id="ck3so794a002hl4v4qhkl4yy2" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2019/09/05/cs224n-Lecture-8-RNN和语言模式/" data-id="ck3tjbz48002bhgv4jm4jefsf" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -242,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/05/cs224n-Lecture-7-TensorFlow入门/" data-id="ck3so7948002dl4v4zuilm74u" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2019/09/05/cs224n-Lecture-7-TensorFlow入门/" data-id="ck3tjbz4c002fhgv4yjhaa41n" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -289,7 +336,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/28/cs224n-Lecture-6-依存分析/" data-id="ck3so79450029l4v429bu78cc" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2019/08/28/cs224n-Lecture-6-依存分析/" data-id="ck3tjbz460028hgv4idr9sied" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -336,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/17/Softmax的交叉熵损失函数求导推导/" data-id="ck3so793g001al4v460yrqs5i" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2019/08/17/Softmax的交叉熵损失函数求导推导/" data-id="ck3tjbz3o001fhgv4gcbrzqqo" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/神经网络/">神经网络</a></li></ul>
@@ -383,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/16/吴恩达神经网络与深度学习-Week-4-学习记录/" data-id="ck3so79780056l4v4quk9qepw" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2019/08/16/吴恩达神经网络与深度学习-Week-4-学习记录/" data-id="ck3tjbz6z0056hgv4linp1zq7" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/神经网络/">神经网络</a></li></ul>
@@ -430,7 +477,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/15/吴恩达神经网络与深度学习-Week-3-学习记录/" data-id="ck3so79760054l4v4acp0guwz" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2019/08/15/吴恩达神经网络与深度学习-Week-3-学习记录/" data-id="ck3tjbz6w0054hgv4f1uaz9u6" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/神经网络/">神经网络</a></li></ul>
@@ -477,54 +524,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/15/cs224n-Lecture-5-反向传播和项目建议/" data-id="ck3so79410025l4v4dksis9kt" class="article-share-link">Partager</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-cs224n-Lecture-4-Word-Window分类与神经网络" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/14/cs224n-Lecture-4-Word-Window分类与神经网络/" class="article-date">
-  <time datetime="2019-08-14T13:51:21.000Z" itemprop="datePublished">2019-08-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/NLP/">NLP</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/14/cs224n-Lecture-4-Word-Window分类与神经网络/">cs224n-Lecture-4 Word Window分类与神经网络</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>第四讲也是各种各样的数学知识，看来时候买本李航老师的统计学习来学一遍了！<br>
-        
-          <p class="article-more-link">
-            <a href="/2019/08/14/cs224n-Lecture-4-Word-Window分类与神经网络/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/14/cs224n-Lecture-4-Word-Window分类与神经网络/" data-id="ck3so793z0021l4v4ufgt4p6s" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2019/08/15/cs224n-Lecture-5-反向传播和项目建议/" data-id="ck3tjbz440023hgv4i0soki9j" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -540,7 +540,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Précédent</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Suivant &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">weiter &raquo;</a>
   </nav>
 
 </section>
@@ -568,7 +568,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Mot-clés</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF-Web/">CTF_Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL-injection/">SQL_injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/凸包算法/">凸包算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境配置/">环境配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神经网络/">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法考核/">算法考核</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学习/">统计学习</a></li></ul>
     </div>
@@ -578,7 +578,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
       <a href="/tags/Algorithm/" style="font-size: 15px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 18.33px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 11.67px;">Python</a> <a href="/tags/SQL-injection/" style="font-size: 13.33px;">SQL_injection</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 11.67px;">大数据</a> <a href="/tags/数据挖掘/" style="font-size: 11.67px;">数据挖掘</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/神经网络/" style="font-size: 16.67px;">神经网络</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a> <a href="/tags/统计学习/" style="font-size: 10px;">统计学习</a>
     </div>
@@ -587,9 +587,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
   </div>
 
@@ -597,9 +597,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/12/05/【论文笔记】Character-level-Convolutional-Networks-for-Text-Classification/">【论文笔记】Character-level Convolutional Networks for Text Classification</a>
+          </li>
         
           <li>
             <a href="/2019/11/27/【论文笔记】Convolutional-Neural-Networks-for-Sentence-Classification/">【论文笔记】Convolutional Neural Networks for Sentence Classification</a>
@@ -615,10 +619,6 @@
         
           <li>
             <a href="/2019/11/05/从零实现基于医疗知识图谱的问答系统目录及总结/">从零实现基于医疗知识图谱的问答系统目录及总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/04/从零实现基于医疗知识图谱的问答系统-四/">从零实现基于医疗知识图谱的问答系统(四)-构建回答</a>
           </li>
         
       </ul>
@@ -645,7 +645,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2019 Klaus<br>
-      Propulsé par <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
