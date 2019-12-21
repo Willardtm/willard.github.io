@@ -5,20 +5,26 @@
   
 
   
-  <title>一些假期电影杂谈 | Klaus&#39;s Blog</title>
+  <title>【论文笔记】Convolutional Sequence to Sequence Learning | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="假期回家以后又再一次地病倒了orz…丧失编程能力与思考能力的我在家补了好几天的老电影，主要是姜文大大的电影，之所以今天写观影感悟，是因为家里wifi坏了…开着热点啥都干不了，电视都看不了了（网络电视一时爽，wifi断网火葬场…）">
-<meta name="keywords" content="杂谈">
+  <meta name="description" content="本篇笔记基于《Convolutional Sequence to Sequence Learning》。">
+<meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一些假期电影杂谈">
-<meta property="og:url" content="http://yoursite.com/2018/07/23/一些假期电影杂谈/index.html">
+<meta property="og:title" content="【论文笔记】Convolutional Sequence to Sequence Learning">
+<meta property="og:url" content="http://yoursite.com/2019/12/21/【论文笔记】Convolutional-Sequence-to-Sequence-Learning/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
-<meta property="og:description" content="假期回家以后又再一次地病倒了orz…丧失编程能力与思考能力的我在家补了好几天的老电影，主要是姜文大大的电影，之所以今天写观影感悟，是因为家里wifi坏了…开着热点啥都干不了，电视都看不了了（网络电视一时爽，wifi断网火葬场…）">
+<meta property="og:description" content="本篇笔记基于《Convolutional Sequence to Sequence Learning》。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-25T09:10:54.277Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/21/Qv2ka4.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/21/Qv2YRI.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/21/Qv2WLT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/21/QvRMpn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/21/QvRw11.png">
+<meta property="og:updated_time" content="2019-12-21T12:29:43.247Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一些假期电影杂谈">
-<meta name="twitter:description" content="假期回家以后又再一次地病倒了orz…丧失编程能力与思考能力的我在家补了好几天的老电影，主要是姜文大大的电影，之所以今天写观影感悟，是因为家里wifi坏了…开着热点啥都干不了，电视都看不了了（网络电视一时爽，wifi断网火葬场…）">
+<meta name="twitter:title" content="【论文笔记】Convolutional Sequence to Sequence Learning">
+<meta name="twitter:description" content="本篇笔记基于《Convolutional Sequence to Sequence Learning》。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/21/Qv2ka4.png">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -69,12 +75,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-一些假期电影杂谈" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-【论文笔记】Convolutional-Sequence-to-Sequence-Learning" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/23/一些假期电影杂谈/" class="article-date">
-  <time datetime="2018-07-23T13:33:23.000Z" itemprop="datePublished">2018-07-23</time>
+    <a href="/2019/12/21/【论文笔记】Convolutional-Sequence-to-Sequence-Learning/" class="article-date">
+  <time datetime="2019-12-21T12:15:41.000Z" itemprop="datePublished">2019-12-21</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -83,7 +93,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      一些假期电影杂谈
+      【论文笔记】Convolutional Sequence to Sequence Learning
     </h1>
   
 
@@ -95,25 +105,23 @@
 		
 		  <div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前期知识补充"><span class="toc-number">1.</span> <span class="toc-text">前期知识补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#序列到序列结构"><span class="toc-number">1.1.</span> <span class="toc-text">序列到序列结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#seq2seq的发展历史"><span class="toc-number">1.2.</span> <span class="toc-text">seq2seq的发展历史</span></a></li></ol></li></ol>
 		  </div>
 		
-        <p>假期回家以后又再一次地病倒了orz…丧失编程能力与思考能力的我在家补了好几天的老电影，主要是姜文大大的电影，之所以今天写观影感悟，是因为家里wifi坏了…开着热点啥都干不了，电视都看不了了（网络电视一时爽，wifi断网火葬场…）</p>
-<a id="more"></a>
-<p>那就从刚刚上映的《邪不压正》说起，北洋三部曲的最后一部，围绕着李天然（彭于晏）的复仇故事说起，年少时被叛徒师兄朱潜龙（廖凡）带着日本人根本一郎屠杀师门，作为唯一的幸存者，被蓝青峰（姜文）救下，后作为亨德勒大夫的儿子送往美国学习，终于一天被电话召回国内复仇，亨德勒大夫竭力阻止李天然复仇，李天然坚持要杀掉朱潜龙和根本，此时的朱潜龙是北京警察局副局长，并且把李天然诬陷为灭门凶手，同时一心想要借助日本人光复明朝。<br>随后蓝青峰和朱潜龙交易，他让朱潜龙杀掉根本，自己则把李天然交给朱潜龙，倒是算盘打砸了，最后被朱潜龙狠揍（此处为我姜文大大捂脸）。<br>这部片子以复仇为主旋律，以李天然心态的转变与成长，最终复仇成功，虽然结尾有点草率，但是剧中老北京的建筑风格确实惊艳，电影是姜文的风格，硬气，江湖情感，正如剧中姜文所说：“为了这点醋，我才包的这一桌饺子。”个人打9分，电影值得一看，我决定去二刷！</p>
-<p>接下来就到北洋三部曲的第二部《一步之遥》，这部剧在豆瓣评分不高，我记得只有6.8，这是一部荒诞剧，武七拜托马走日（姜文）给他洗钱，马走日和项飞田（葛优）筹办了一场花域大选来洗钱，然而赢回来的钱全被完颜（舒淇）给捐了，大选白办，马走日随后在与完颜出游过程中开车出车祸，导致了完颜的死亡，马走日光鲜体面的人生就此颠覆，沦为逃犯，昔日好友项飞田成为追捕他的主要警官，后面的电影主要以枪毙马走日为主题展开，最终马走日和武六（周韵）有机会逃脱，但是马走日放弃了，最终在一架风车下，马走日被乱枪打死，掉下去的时候有一段马走日的独白。<br>看电影的时候有一点黑色幽默，全剧充满充满浪漫与疯狂的幻想，基本故事剧情我看懂了，但是姜文大大具体要表达什么，这个我确实没懂，之前传闻姜文先生的剧含有大量的隐喻，姜文表示《一步之遥》一如既往讲了一个惩恶扬善的故事，每个人物都会在一场生命冒险中明白生命的价值。<br>《一步之遥》不论在投资、制作、阵容方面都刷新了国产电影制作规模，各项标准誓与好莱坞齐平。而从商业模式上说，《一步之遥》延续了历来大片“大导演+大投资者+大明星”的传统，姜文与葛优再次联手，在技术层面，IMAX《一步之遥》同样有高水准，所以电影的票房基本有了保证。<br>说到这里，姜文先生知道拍什么电影观众会喜欢，但是姜文选择去按照自己的思路和风格去拍，不去刻意迎合观众，这或许就是大佬的任性？</p>
-<p>啊哈，下面可以说《让子弹飞》了，这个片子，经典，当年的票房第二，仅次于《唐山大地震》1千万票房，张牧之（姜文），汤师爷（葛优）和黄四郎（周润发）斗智斗勇，三位影帝同台飙戏，全程高潮，精彩得不要不要的，没什么说的了，强推！</p>
-<p>后来看了姜文主演的《寻枪》，这个片子看得我很揪心，能切实体会到马山（姜文）作为一名警察把枪丢了是一件多严重的的事情，那种找枪时的焦虑和绝望，就像日常生活中把什么重要的东西弄丢了的感觉一样，整个电影就是讲了一件事，找枪，耐人寻味，推荐，看完以后能理解姜文作为一名警察的尽职尽责，同时我觉得吧我以后得把东西好好收好，不然真的造孽。</p>
-<p>现在来讲讲《太阳照常升起》，电影讲了四个故事，第一个故事主要讲了一个村里神经失常的女人，让儿子退学，自己造房子，刨树，跟猫说话，在家里摔碗，结局只剩下她的衣服随着河流飘远；第二个故事主要讲了大学里很多女性喜欢黄秋生，晚上操场放电影时黄秋生摸了一下女生的屁股而受到审查，姜文努力为他澄清，最后无奈的黄秋生把自己吊死在水塔上面；第三个故事，姜文因为黄秋生的事被下放到农村，他在村里的主要工作是打猎，然而回家的时候发现自己被小队长（房祖名）给绿了，姜文听到自己的老婆跟房祖名说：“我老公说我的肚子象天鹅绒。”第二天姜文在水田边上端着枪指向房祖名的脑袋，但是房祖名居然问姜文“什么是天鹅绒”，姜文转回北京去找天鹅绒，没找到，房祖名找回来了，并且告诉姜文，“你老婆的肚子根本不像天鹅绒”，随后姜文朝他开枪；第四个故事几乎解答了前面所有的疑问。<br>港真这部片子我真的没看懂，除了剧情以外都是懵的，所以要多看点书，不然姜文先生的电影都看不懂（哭），我觉得下面这个答案说得特别好，看完以后我终于姜文要表达什么了，链接如下：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>www.zhihu.com<span class="regexp">/question/</span><span class="number">20656609</span><span class="regexp">/answer/</span><span class="number">32669735</span></span><br></pre></td></tr></table></figure></p>
-<p>后面看的电影像《秦颂》和《芙蓉镇》，《无问西东》等等改天再写，先去睡了，养病为重2333<br>顺便安利一部日漫《幻界战线》，敲好看！</p>
+        <p>本篇笔记基于《Convolutional Sequence to Sequence Learning》。<br><a id="more"></a></p>
+<font color="red"><b>注：笔记学习参考深度之眼人工智能Paper训练营NLP方向第十六课时课程。</b></font>
+
+<h2 id="前期知识补充"><a href="#前期知识补充" class="headerlink" title="前期知识补充"></a>前期知识补充</h2><h3 id="序列到序列结构"><a href="#序列到序列结构" class="headerlink" title="序列到序列结构"></a>序列到序列结构</h3><p>Sequence-to-Sequence(seq2seq)模型，它的输入是一个序列，输出也是一个序列，例如输入是英文句子，输出则是翻译的中文。seq2seq可以用在很多方面：机器翻译，QA系统，文档摘要生成等。<br><img src="https://s2.ax1x.com/2019/12/21/Qv2ka4.png" alt=""></p>
+<p>比如这种结构就是典型的seq2seq结构。<br><img src="https://s2.ax1x.com/2019/12/21/Qv2YRI.png" width="500" height="300"><br><img src="https://s2.ax1x.com/2019/12/21/Qv2WLT.png" width="500" height="300"><br><img src="https://s2.ax1x.com/2019/12/21/QvRMpn.png" width="500" height="400"></p>
+<h3 id="seq2seq的发展历史"><a href="#seq2seq的发展历史" class="headerlink" title="seq2seq的发展历史"></a>seq2seq的发展历史</h3><p><img src="https://s2.ax1x.com/2019/12/21/QvRw11.png" width="800" height="300"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/23/一些假期电影杂谈/" data-id="ck4fn86k0004k6kv445edi9x8" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2019/12/21/【论文笔记】Convolutional-Sequence-to-Sequence-Learning/" data-id="ck4fn86jk00416kv46huminis" class="article-share-link">Teilen</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
 
     </footer>
   </div>
@@ -121,19 +129,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/08/20/Python-logging模块简述/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          Python logging模块简述
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/15/C-STL相关库应用实例/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/12/18/【论文笔记】Neural-Relation-Extraction-with-Selective-Attention-over-Instances/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">C++ STL相关库应用实例</div>
+      <div class="article-nav-title">【论文笔记】Neural Relation Extraction with Selective Attention over Instances</div>
     </a>
   
 </nav>
