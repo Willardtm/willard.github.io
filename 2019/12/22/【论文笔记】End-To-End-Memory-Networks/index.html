@@ -5,20 +5,33 @@
   
 
   
-  <title>Python logging模块简述 | Klaus&#39;s Blog</title>
+  <title>【论文笔记】End-To-End Memory Networks | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。">
-<meta name="keywords" content="Python">
+  <meta name="description" content="本篇笔记基于《End-To-End Memory Networks》。">
+<meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python logging模块简述">
-<meta property="og:url" content="http://yoursite.com/2018/08/20/Python-logging模块简述/index.html">
+<meta property="og:title" content="【论文笔记】End-To-End Memory Networks">
+<meta property="og:url" content="http://yoursite.com/2019/12/22/【论文笔记】End-To-End-Memory-Networks/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
-<meta property="og:description" content="Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。">
+<meta property="og:description" content="本篇笔记基于《End-To-End Memory Networks》。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-20T01:44:47.879Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/Qx6cgP.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxzbDK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/Qzpksx.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QzpYTS.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/Qzp2Y4.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/Qz9SnP.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/Qz9nBV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/Qz9sgA.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/Qz9OET.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QzCPDx.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QzC1Vf.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QzisgJ.png">
+<meta property="og:updated_time" content="2019-12-22T07:52:12.997Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python logging模块简述">
-<meta name="twitter:description" content="Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。">
+<meta name="twitter:title" content="【论文笔记】End-To-End Memory Networks">
+<meta name="twitter:description" content="本篇笔记基于《End-To-End Memory Networks》。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/22/Qx6cgP.png">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -69,14 +82,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Python-logging模块简述" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-【论文笔记】End-To-End-Memory-Networks" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/08/20/Python-logging模块简述/" class="article-date">
-  <time datetime="2018-08-20T00:48:53.000Z" itemprop="datePublished">2018-08-20</time>
+    <a href="/2019/12/22/【论文笔记】End-To-End-Memory-Networks/" class="article-date">
+  <time datetime="2019-12-22T03:40:06.000Z" itemprop="datePublished">2019-12-22</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Python/">Python</a>
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
   </div>
 
   </div>
@@ -87,7 +100,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Python logging模块简述
+      【论文笔记】End-To-End Memory Networks
     </h1>
   
 
@@ -99,28 +112,33 @@
 		
 		  <div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前期知识补充"><span class="toc-number">1.</span> <span class="toc-text">前期知识补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#记忆网络"><span class="toc-number">1.1.</span> <span class="toc-text">记忆网络</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#论文主要内容"><span class="toc-number">2.</span> <span class="toc-text">论文主要内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#论文概述"><span class="toc-number">2.1.</span> <span class="toc-text">论文概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型结构"><span class="toc-number">2.2.</span> <span class="toc-text">模型结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单跳模型结构"><span class="toc-number">2.3.</span> <span class="toc-text">单跳模型结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多跳模型结构"><span class="toc-number">2.4.</span> <span class="toc-text">多跳模型结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实验部分"><span class="toc-number">2.5.</span> <span class="toc-text">实验部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#训练细节"><span class="toc-number">2.6.</span> <span class="toc-text">训练细节</span></a></li></ol></li></ol>
 		  </div>
 		
-        <p>Python的logging模块，其实就是日志模块，我在训练wiki的中文语料库时看到一个前辈写的代码里涉及到了logging块的使用，鉴于这个库我也不会用，那就学习一下好了。<br><a id="more"></a></p>
-<p><b>logging.getLogger()</b>:返回一个logger对象。<br>举个栗子：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line">import logging</span><br><span class="line">import sys</span><br><span class="line">import os.path</span><br><span class="line"> </span><br><span class="line"><span class="attribute">program</span>=os.path.basename(sys.argv[0])</span><br><span class="line"><span class="attribute">logger</span>=logging.getLogger(program)</span><br><span class="line"><span class="builtin-name">print</span>(logger)</span><br></pre></td></tr></table></figure></p>
-<p>运行结果,可以看到这里的logger对象就是本次运行的test.py<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS E:\NLP_Program\wiki&gt; python3 .\test.py</span><br><span class="line">&lt;Logger test<span class="selector-class">.py</span> (WARNING)&gt;</span><br></pre></td></tr></table></figure></p>
-<p><b>logging.DEBUG,logging.INFO,logging.WARNING,logging.ERROR,logging.CRITICAL</b><br>这几个模块属于设定logging下面的等级，依次是10,20,30,40,50.<br>代码演示：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line">import logging</span><br><span class="line">import sys</span><br><span class="line">import os.path</span><br><span class="line"> </span><br><span class="line"><span class="builtin-name">print</span>(logging.DEBUG)</span><br><span class="line"><span class="builtin-name">print</span>(logging.INFO)</span><br><span class="line"><span class="builtin-name">print</span>(logging.WARNING)</span><br><span class="line"><span class="builtin-name">print</span>(logging.ERROR)</span><br><span class="line"><span class="builtin-name">print</span>(logging.CRITICAL)</span><br></pre></td></tr></table></figure></p>
-<p>运行结果：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PS E:<span class="symbol">\N</span>LP_Program<span class="symbol">\w</span>iki&gt; python3 .<span class="symbol">\t</span>est.py10</span><br><span class="line">20</span><br><span class="line">30</span><br><span class="line">40</span><br><span class="line">50</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DEBUG	详细信息，典型地调试问题时会感兴趣。</span><br><span class="line">INFO	证明事情按预期工作。</span><br><span class="line">WARNING	表明发生了一些意外，或者不久的将来会发生问题（如‘磁盘满了’）。软件还是在正常工作。</span><br><span class="line"><span class="keyword">ERROR	</span>由于更严重的问题，软件已不能执行一些功能了。</span><br><span class="line">CRITICAL	严重错误，表明软件已不能继续运行了。</span><br></pre></td></tr></table></figure>
-<p>知道这些参数的值以后，下面就应该是看这些值的作用是什么~<br>设定等级值使用的是logging.setLevel()，setLevel里面的参数是level，低于设定值的级别将被忽略，下面举个栗子<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line">import logging</span><br><span class="line">import sys</span><br><span class="line">import os.path</span><br><span class="line"> </span><br><span class="line"><span class="attribute">program</span>=os.path.basename(sys.argv[0])</span><br><span class="line"><span class="attribute">logger</span>=logging.getLogger(program)</span><br><span class="line">logger.setLevel(<span class="attribute">level</span>=logging.DEBUG)</span><br></pre></td></tr></table></figure></p>
-<p>这里设定的level是logging.DEBUG,是最低的级别，可以根据需求换成上述需要的级别。</p>
-<p>同时，logging下面可以设置提示信息，举个栗子(这里偷个懒直接在cmd里模拟了<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; import logging</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; logging.warning(<span class="string">'This is a warning message'</span>)</span></span><br><span class="line">WARNING:root:This is a warning message</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; logging.debug(<span class="string">'This is a debug message'</span>)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; logging.critical(<span class="string">'This is a critical message'</span>)</span></span><br><span class="line">CRITICAL:root:This is a critical message</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; logging.error(<span class="string">'This is a error message'</span>)</span></span><br><span class="line">ERROR:root:This is a error message</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; logging.info(<span class="string">'This is a info message'</span>)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><b>logging.info()</b>主要用于在控制台输出日志信息。</p>
-<p><b>logging.basicConfig()</b>：用于设置基本信息，比如输出消息的基本格式。<br>比如这样<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logging.basicConfig(<span class="attribute">format</span>=<span class="string">'%(asctime)s: %(levelname)s: %(message)s'</span>)</span><br></pre></td></tr></table></figure></p>
+        <p>本篇笔记基于《End-To-End Memory Networks》。<br><a id="more"></a></p>
+<font color="red"><b>注：笔记学习参考深度之眼人工智能Paper训练营NLP方向第二十课时课程。</b></font>
+
+<h2 id="前期知识补充"><a href="#前期知识补充" class="headerlink" title="前期知识补充"></a>前期知识补充</h2><h3 id="记忆网络"><a href="#记忆网络" class="headerlink" title="记忆网络"></a>记忆网络</h3><p>记忆网络是通过设计记忆模块存储序列模型的中间结果以防止丢失信息。<br>意义：可以解决RNN中信息丢失的问题。<br><img src="https://s2.ax1x.com/2019/12/22/Qx6cgP.png" width="500" height="300"></p>
+<h2 id="论文主要内容"><a href="#论文主要内容" class="headerlink" title="论文主要内容"></a>论文主要内容</h2><h3 id="论文概述"><a href="#论文概述" class="headerlink" title="论文概述"></a>论文概述</h3><p>作者提出了一个端到端的记忆神经网络模型，它属于先前记忆模型的改进，可以从端到端进行直接训练，拥有更大的记忆并且需要更少的监督，同时在QA系统和语言模型上都取得了较好的结果。</p>
+<h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><p>文章提出的模型如下：<br><img src="https://s2.ax1x.com/2019/12/22/QxzbDK.png" width="600" height="400"></p>
+<p>这个模型的特点在于其多跳结构，图左边部分只包含一跳结构，右边部分结构为3跳。</p>
+<h3 id="单跳模型结构"><a href="#单跳模型结构" class="headerlink" title="单跳模型结构"></a>单跳模型结构</h3><p>整个模型由<b>I,G,O</b>四个部分组成：<br><b>input memory representation</b>：给定的输入x1,x2,…,xi被转换为记忆向量mi存储到记忆模块中，记忆模块的大小是dxV，也就是矩阵A。同时问题q也进行矩阵嵌入作为B，大小和矩阵A相同来获得一个内部状态u。通过u和mi的计算来得到一个内部输出p:<br><img src="https://s2.ax1x.com/2019/12/22/Qzpksx.png" width="200" height="120"></p>
+<p><b>Output memeory representation</b>：每个xi都有一个对应的ci向量形成另外一个嵌入矩阵C，对应的输出通过输入的权重p相乘得到：<br><img src="https://s2.ax1x.com/2019/12/22/QzpYTS.png" width="160" height="80"></p>
+<p><b>Generating the final prediction</b>：在单层结构中，输出向量o和输入的嵌入u的和通过最后的权重矩阵W（Vxd）和一个softmax层来输出预测标签：<br><img src="https://s2.ax1x.com/2019/12/22/Qzp2Y4.png" width="200" height="120"></p>
+<h3 id="多跳模型结构"><a href="#多跳模型结构" class="headerlink" title="多跳模型结构"></a>多跳模型结构</h3><p>现在将单跳模型扩展为多跳模型，也就是上图中的右半部分。<br>上一输出的ok和uk通过k层生成一个新的状态uk+1：<br><img src="https://s2.ax1x.com/2019/12/22/Qz9SnP.png" width="200" height="120"><br>每一层都有通过xi生成自己的嵌入矩阵Ak和Ck，但是，如下文所述，它们受到限制，以方便培训和减少参数数。<br>最顶层的记忆模块计算如下：<br><img src="https://s2.ax1x.com/2019/12/22/Qz9nBV.png" width="380" height="170"></p>
+<p>多跳结构中包含两种模型：<br><b>Adjacent</b>：当前的输入矩阵是上一层的输出矩阵：<br><img src="https://s2.ax1x.com/2019/12/22/Qz9sgA.png" width="100" height="80"><br>同样也限制了最后的权重矩阵Wt=Ck。(b)问题嵌入，以匹配第一层的输入嵌入，即B=A1。</p>
+<p><b>Layer-wise(RNN-like)</b>：即不同的输入和输出层都是一样的，共享同一套参数。<br><img src="https://s2.ax1x.com/2019/12/22/Qz9OET.png" width="180" height="100"><br><img src="https://s2.ax1x.com/2019/12/22/QzCPDx.png" width="180" height="100"></p>
+<h3 id="实验部分"><a href="#实验部分" class="headerlink" title="实验部分"></a>实验部分</h3><p>问答对实验：<br><img src="https://s2.ax1x.com/2019/12/22/QzC1Vf.png" alt=""></p>
+<p>语言模型实验：<br><img src="https://s2.ax1x.com/2019/12/22/QzisgJ.png" alt=""></p>
+<h3 id="训练细节"><a href="#训练细节" class="headerlink" title="训练细节"></a>训练细节</h3><p>10%的bAbI数据集被划分出来作为验证集。学习率设置为0.01，每训练25个epoch，学习率减半，一共训练100个epoch。没有动量和权重设置。权重为初始化的高斯正态分布，δ=0.1。所有的训练的batch-size都是32.梯度中使用了L2范式，大于40的标量会被除以40.当验证损失停止下降时，重新插入Softmax层并重新开始训练。我们称之为线性开始(LS)训练。在LS训练中，初始学习率为设置为η=0.005。记忆能力仅限于最近的50句话。由于句子的数量和每个句子的字数因问题而异，所以空符号把它们都垫到一个固定的大小。空符号的嵌入被限制为零。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/20/Python-logging模块简述/" data-id="ck4gpsq9m00119cv4f3x3qisn" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2019/12/22/【论文笔记】End-To-End-Memory-Networks/" data-id="ck4gpsqbo003p9cv4s04olv48" class="article-share-link">Teilen</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
 
     </footer>
   </div>
@@ -128,19 +146,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/09/18/HDOJ-基础题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          HDOJ 基础题
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/23/一些假期电影杂谈/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/12/21/【论文笔记】Convolutional-Sequence-to-Sequence-Learning/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">一些假期电影杂谈</div>
+      <div class="article-nav-title">【论文笔记】Convolutional Sequence to Sequence Learning</div>
     </a>
   
 </nav>
