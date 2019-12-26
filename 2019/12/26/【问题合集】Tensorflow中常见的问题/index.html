@@ -5,30 +5,20 @@
   
 
   
-  <title>【论文笔记】Hierarchical Attention Networks for Document Classification | Klaus&#39;s Blog</title>
+  <title>【问题合集】Tensorflow中常见的问题 | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本篇笔记基于论文《Hierarchical Attention Networks for Document Classification》。">
+  <meta name="description" content="写这篇博客的目的，是因为我自己在使用tensorflow框架中遇到了许多的问题，这些问题也阻碍过我对论文进行复现。所以，我把这些问题整理起来，同时附上理解的链接，希望这篇文章能帮助到和我有一样问题的朋友。博客会持续更新，各位大佬见笑了。">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【论文笔记】Hierarchical Attention Networks for Document Classification">
-<meta property="og:url" content="http://yoursite.com/2019/12/14/【论文笔记】Hierarchical-Attention-Networks-for-Document-Classification/index.html">
+<meta property="og:title" content="【问题合集】Tensorflow中常见的问题">
+<meta property="og:url" content="http://yoursite.com/2019/12/26/【问题合集】Tensorflow中常见的问题/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
-<meta property="og:description" content="本篇笔记基于论文《Hierarchical Attention Networks for Document Classification》。">
+<meta property="og:description" content="写这篇博客的目的，是因为我自己在使用tensorflow框架中遇到了许多的问题，这些问题也阻碍过我对论文进行复现。所以，我把这些问题整理起来，同时附上理解的链接，希望这篇文章能帮助到和我有一样问题的朋友。博客会持续更新，各位大佬见笑了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/14/QRquAf.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/14/QRqTKA.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/14/QRL1IK.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/14/QRL2ss.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/14/QRXuAx.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/14/QRXv8O.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/14/QRvSYV.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/14/QRvEwR.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/14/QRzHSK.png">
-<meta property="og:updated_time" content="2019-12-14T12:47:26.313Z">
+<meta property="og:updated_time" content="2019-12-26T13:13:16.015Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【论文笔记】Hierarchical Attention Networks for Document Classification">
-<meta name="twitter:description" content="本篇笔记基于论文《Hierarchical Attention Networks for Document Classification》。">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/14/QRquAf.png">
+<meta name="twitter:title" content="【问题合集】Tensorflow中常见的问题">
+<meta name="twitter:description" content="写这篇博客的目的，是因为我自己在使用tensorflow框架中遇到了许多的问题，这些问题也阻碍过我对论文进行复现。所以，我把这些问题整理起来，同时附上理解的链接，希望这篇文章能帮助到和我有一样问题的朋友。博客会持续更新，各位大佬见笑了。">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -79,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-【论文笔记】Hierarchical-Attention-Networks-for-Document-Classification" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-【问题合集】Tensorflow中常见的问题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/12/14/【论文笔记】Hierarchical-Attention-Networks-for-Document-Classification/" class="article-date">
-  <time datetime="2019-12-14T11:53:05.000Z" itemprop="datePublished">2019-12-14</time>
+    <a href="/2019/12/26/【问题合集】Tensorflow中常见的问题/" class="article-date">
+  <time datetime="2019-12-26T13:08:40.000Z" itemprop="datePublished">2019-12-26</time>
 </a>
     
   <div class="article-category">
@@ -97,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【论文笔记】Hierarchical Attention Networks for Document Classification
+      【问题合集】Tensorflow中常见的问题
     </h1>
   
 
@@ -109,23 +99,18 @@
 		
 		  <div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#论文主要内容"><span class="toc-number">1.</span> <span class="toc-text">论文主要内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#论文模型概述"><span class="toc-number">1.1.</span> <span class="toc-text">论文模型概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GRU设置"><span class="toc-number">1.2.</span> <span class="toc-text">GRU设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意力机制编码"><span class="toc-number">1.3.</span> <span class="toc-text">注意力机制编码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#词语编码"><span class="toc-number">1.3.1.</span> <span class="toc-text">词语编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#词语注意力机制"><span class="toc-number">1.3.2.</span> <span class="toc-text">词语注意力机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#句子编码"><span class="toc-number">1.3.3.</span> <span class="toc-text">句子编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#句子的注意力机制"><span class="toc-number">1.3.4.</span> <span class="toc-text">句子的注意力机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型参数设置"><span class="toc-number">1.4.</span> <span class="toc-text">模型参数设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实验结果"><span class="toc-number">1.5.</span> <span class="toc-text">实验结果</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-nn-embedding-lookup维度变化问题"><span class="toc-number">1.</span> <span class="toc-text">tf.nn.embedding_lookup维度变化问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tensorflow中axis的理解"><span class="toc-number">2.</span> <span class="toc-text">Tensorflow中axis的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-nn-softmax的axis的理解"><span class="toc-number">3.</span> <span class="toc-text">tf.nn.softmax的axis的理解</span></a></li></ol>
 		  </div>
 		
-        <p>本篇笔记基于论文《Hierarchical Attention Networks for Document Classification》。<br><a id="more"></a></p>
-<h2 id="论文主要内容"><a href="#论文主要内容" class="headerlink" title="论文主要内容"></a>论文主要内容</h2><h3 id="论文模型概述"><a href="#论文模型概述" class="headerlink" title="论文模型概述"></a>论文模型概述</h3><p>首先简单的概括一下这个模型，这篇论文提出的模型有点意思，他是先将词向量构建为句向量，再把句向量构造成文章向量，其中通过注意力机制来捕获重要的单词和句子，最后通过softmax在文本向量的基础上进行分类，文章模型结构如下：<br><img src="https://s2.ax1x.com/2019/12/14/QRquAf.png" alt=""></p>
-<h3 id="GRU设置"><a href="#GRU设置" class="headerlink" title="GRU设置"></a>GRU设置</h3><p>根据上图中的模型设置，首先需要处理词模型。作者使用了双向GRU来训练词向量，另外一种方式是直接使用word2vec的方式来处理词向量。在GRU中作者设置了两个门，一个r门和一个z门，r门用来控制上次输入保留的内容数目，z门用来决定先前细胞中的内容有多少会进入新的输出中。<br>GRU计算新状态的方式：<br><img src="https://s2.ax1x.com/2019/12/14/QRqTKA.png" alt=""><br>z门的控制方式如下,其中xt是序列向量在t时候的状态：<br><img src="https://s2.ax1x.com/2019/12/14/QRL1IK.png" alt=""><br>r门的控制方式如下：<br><img src="https://s2.ax1x.com/2019/12/14/QRL2ss.png" alt=""></p>
-<h3 id="注意力机制编码"><a href="#注意力机制编码" class="headerlink" title="注意力机制编码"></a>注意力机制编码</h3><h4 id="词语编码"><a href="#词语编码" class="headerlink" title="词语编码"></a>词语编码</h4><p>给定一个有T个词语的句子，通过一个嵌入矩阵W来得到词向量。双向GRU从正向和反向来收集词语信息。<br><img src="https://s2.ax1x.com/2019/12/14/QRXuAx.png" alt=""></p>
-<h4 id="词语注意力机制"><a href="#词语注意力机制" class="headerlink" title="词语注意力机制"></a>词语注意力机制</h4><p>并不是所有的词语都对构建句子有相同的作用，所以作者在通过词语构建句子的过程中添加了一层注意力机制，并将这些重要的词语聚集在一起：<br><img src="https://s2.ax1x.com/2019/12/14/QRXv8O.png" alt=""><br>其中uw可以被视为当前单词的高质量的上下文表示，uw可以随机初始化，在训练过程中优化。</p>
-<h4 id="句子编码"><a href="#句子编码" class="headerlink" title="句子编码"></a>句子编码</h4><p>假如给定句子si，同样可以使用GRU来进行训练：<br><img src="https://s2.ax1x.com/2019/12/14/QRvSYV.png" alt=""><br>hi收集了当前句子邻边的句子信息但是主要专注于当前的句子。</p>
-<h4 id="句子的注意力机制"><a href="#句子的注意力机制" class="headerlink" title="句子的注意力机制"></a>句子的注意力机制</h4><p>这个和先前的单词注意力机制很像，不过最后生成的v是文本向量。<br><img src="https://s2.ax1x.com/2019/12/14/QRvEwR.png" alt=""></p>
-<h3 id="模型参数设置"><a href="#模型参数设置" class="headerlink" title="模型参数设置"></a>模型参数设置</h3><p>作者在Section 3中的3.3部分主要讲了模型的参数设置，私以为在复现论文的过程中，参数非常重要。<br>(1)词嵌入维度为200；<br>(2)GRU维度为50，一个包含前向和后向传播的GRU的总维度就是100;<br>(3)句子和单词上下文的维度也是100;<br>(4)batch_size为64;<br>(5)momentum的值设置为0.9.</p>
-<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>这篇文章结果很好的，比起先前的各种方法在数据集上取得的结果都要好得多。<br><img src="https://s2.ax1x.com/2019/12/14/QRzHSK.png" alt=""></p>
+        <p>写这篇博客的目的，是因为我自己在使用tensorflow框架中遇到了许多的问题，这些问题也阻碍过我对论文进行复现。<br>所以，我把这些问题整理起来，同时附上理解的链接，希望这篇文章能帮助到和我有一样问题的朋友。<br>博客会持续更新，各位大佬见笑了。<br><a id="more"></a></p>
+<h2 id="tf-nn-embedding-lookup维度变化问题"><a href="#tf-nn-embedding-lookup维度变化问题" class="headerlink" title="tf.nn.embedding_lookup维度变化问题"></a>tf.nn.embedding_lookup维度变化问题</h2><p>解决链接：<a href="https://blog.csdn.net/taolusi/article/details/81227565" target="_blank" rel="noopener">https://blog.csdn.net/taolusi/article/details/81227565</a></p>
+<h2 id="Tensorflow中axis的理解"><a href="#Tensorflow中axis的理解" class="headerlink" title="Tensorflow中axis的理解"></a>Tensorflow中axis的理解</h2><p>解决链接：<a href="https://blog.csdn.net/a6840231/article/details/88359778" target="_blank" rel="noopener">https://blog.csdn.net/a6840231/article/details/88359778</a></p>
+<h2 id="tf-nn-softmax的axis的理解"><a href="#tf-nn-softmax的axis的理解" class="headerlink" title="tf.nn.softmax的axis的理解"></a>tf.nn.softmax的axis的理解</h2><p>解决链接：<a href="https://blog.csdn.net/guotong1988/article/details/82914064" target="_blank" rel="noopener">https://blog.csdn.net/guotong1988/article/details/82914064</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/14/【论文笔记】Hierarchical-Attention-Networks-for-Document-Classification/" data-id="ck4mqzwu3003dvgv4yn1t1cx9" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2019/12/26/【问题合集】Tensorflow中常见的问题/" data-id="ck4mqzwuc003ovgv4id8kvxw9" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -136,19 +121,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/12/18/【论文笔记】Neural-Relation-Extraction-with-Selective-Attention-over-Instances/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          【论文笔记】Neural Relation Extraction with Selective Attention over Instances
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/09/【论文笔记】A-Convolutional-Neural-Network-for-Modelling-Sentences/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/12/22/【论文笔记】End-To-End-Memory-Networks/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">【论文笔记】A Convolutional Neural Network for Modelling Sentences</div>
+      <div class="article-nav-title">【论文笔记】End-To-End Memory Networks</div>
     </a>
   
 </nav>
