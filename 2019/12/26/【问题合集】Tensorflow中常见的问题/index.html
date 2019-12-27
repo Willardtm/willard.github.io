@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Klaus&#39;s Blog">
 <meta property="og:description" content="写这篇博客的目的，是因为我自己在使用tensorflow框架中遇到了许多的问题，这些问题也阻碍过我对论文进行复现。所以，我把这些问题整理起来，同时附上理解的链接，希望这篇文章能帮助到和我有一样问题的朋友。博客会持续更新，各位大佬见笑了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-26T13:35:34.153Z">
+<meta property="og:updated_time" content="2019-12-27T07:33:53.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【问题合集】Tensorflow中常见的问题">
 <meta name="twitter:description" content="写这篇博客的目的，是因为我自己在使用tensorflow框架中遇到了许多的问题，这些问题也阻碍过我对论文进行复现。所以，我把这些问题整理起来，同时附上理解的链接，希望这篇文章能帮助到和我有一样问题的朋友。博客会持续更新，各位大佬见笑了。">
@@ -60,7 +60,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -99,7 +99,7 @@
 		
 		  <div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-nn-embedding-lookup维度变化问题"><span class="toc-number">1.</span> <span class="toc-text">tf.nn.embedding_lookup维度变化问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tensorflow中axis的理解"><span class="toc-number">2.</span> <span class="toc-text">Tensorflow中axis的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-nn-softmax的axis的理解"><span class="toc-number">3.</span> <span class="toc-text">tf.nn.softmax的axis的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三维向量运算相关"><span class="toc-number">4.</span> <span class="toc-text">三维向量运算相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-matmul计算多维矩阵"><span class="toc-number">5.</span> <span class="toc-text">tf.matmul计算多维矩阵</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-nn-embedding-lookup维度变化问题"><span class="toc-number">1.</span> <span class="toc-text">tf.nn.embedding_lookup维度变化问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tensorflow中axis的理解"><span class="toc-number">2.</span> <span class="toc-text">Tensorflow中axis的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-nn-softmax的axis的理解"><span class="toc-number">3.</span> <span class="toc-text">tf.nn.softmax的axis的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三维向量运算相关"><span class="toc-number">4.</span> <span class="toc-text">三维向量运算相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-matmul计算多维矩阵"><span class="toc-number">5.</span> <span class="toc-text">tf.matmul计算多维矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-concat"><span class="toc-number">6.</span> <span class="toc-text">tf.concat</span></a></li></ol>
 		  </div>
 		
         <p>写这篇博客的目的，是因为我自己在使用tensorflow框架中遇到了许多的问题，这些问题也阻碍过我对论文进行复现。<br>所以，我把这些问题整理起来，同时附上理解的链接，希望这篇文章能帮助到和我有一样问题的朋友。<br>博客会持续更新，各位大佬见笑了。<br><a id="more"></a></p>
@@ -108,11 +108,12 @@
 <h2 id="tf-nn-softmax的axis的理解"><a href="#tf-nn-softmax的axis的理解" class="headerlink" title="tf.nn.softmax的axis的理解"></a>tf.nn.softmax的axis的理解</h2><p>解决链接：<a href="https://blog.csdn.net/guotong1988/article/details/82914064" target="_blank" rel="noopener">https://blog.csdn.net/guotong1988/article/details/82914064</a></p>
 <h2 id="三维向量运算相关"><a href="#三维向量运算相关" class="headerlink" title="三维向量运算相关"></a>三维向量运算相关</h2><p>解决链接：<a href="https://blog.csdn.net/zhangSMILE123456/article/details/48711719" target="_blank" rel="noopener">https://blog.csdn.net/zhangSMILE123456/article/details/48711719</a></p>
 <h2 id="tf-matmul计算多维矩阵"><a href="#tf-matmul计算多维矩阵" class="headerlink" title="tf.matmul计算多维矩阵"></a>tf.matmul计算多维矩阵</h2><p>两个三维矩阵的乘法怎样计算呢?我通过实验发现，tensorflow把前面的维度当成是batch，对最后两维进行普通的矩阵乘法。也就是说，最后两维之前的维度，都需要相同。<br>解决链接：<a href="https://blog.csdn.net/weixin_42445581/article/details/82791811" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42445581/article/details/82791811</a></p>
+<h2 id="tf-concat"><a href="#tf-concat" class="headerlink" title="tf.concat"></a>tf.concat</h2><p>解决链接：<a href="https://blog.csdn.net/leviopku/article/details/82380118" target="_blank" rel="noopener">https://blog.csdn.net/leviopku/article/details/82380118</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/【问题合集】Tensorflow中常见的问题/" data-id="ck4mrsg50004l2kv4qia4sevd" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2019/12/26/【问题合集】Tensorflow中常见的问题/" data-id="ck4mrsg50004l2kv4qia4sevd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -125,7 +126,7 @@
   
   
     <a href="/2019/12/22/【论文笔记】End-To-End-Memory-Networks/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">【论文笔记】End-To-End Memory Networks</div>
     </a>
   
@@ -178,7 +179,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -188,7 +189,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
