@@ -5,20 +5,15 @@
   
 
   
-  <title>【论文笔记】Skip-Thought Vectors | Klaus&#39;s Blog</title>
+  <title>Kategorie: NLP,知识图谱 | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本篇笔记基于《Skip-Thought Vectors》论文编写。">
-<meta name="keywords" content="NLP">
-<meta property="og:type" content="article">
-<meta property="og:title" content="【论文笔记】Skip-Thought Vectors">
-<meta property="og:url" content="http://yoursite.com/2019/11/25/【论文笔记】Skip-Thought-Vectors/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Klaus&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/categories/NLP-知识图谱/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
-<meta property="og:description" content="本篇笔记基于《Skip-Thought Vectors》论文编写。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-25T08:30:04.174Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【论文笔记】Skip-Thought Vectors">
-<meta name="twitter:description" content="本篇笔记基于《Skip-Thought Vectors》论文编写。">
+<meta name="twitter:title" content="Klaus&#39;s Blog">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -69,83 +64,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-【论文笔记】Skip-Thought-Vectors" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/25/【论文笔记】Skip-Thought-Vectors/" class="article-date">
-  <time datetime="2019-11-25T08:20:40.000Z" itemprop="datePublished">2019-11-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/NLP/">NLP</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      【论文笔记】Skip-Thought Vectors
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2019/10/23/从零实现基于医疗知识图谱的问答系统-一/" class="archive-article-date">
+  <time datetime="2019-10-23T08:28:21.000Z" itemprop="datePublished">Oct 23</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/10/23/从零实现基于医疗知识图谱的问答系统-一/">从零实现基于医疗知识图谱的问答系统(一)-数据收集</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-	  <!-- Table of Contents -->
-		
-		  <div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前期知识补充"><span class="toc-number">1.</span> <span class="toc-text">前期知识补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#词表示加权-gt-句子表示"><span class="toc-number">1.1.</span> <span class="toc-text">词表示加权-&gt;句子表示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TF-IDF"><span class="toc-number">1.1.1.</span> <span class="toc-text">TF-IDF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SIF"><span class="toc-number">1.1.2.</span> <span class="toc-text">SIF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于神经网络的词表示"><span class="toc-number">1.2.</span> <span class="toc-text">基于神经网络的词表示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mikolov提出的Sentence-Embedding"><span class="toc-number">1.2.1.</span> <span class="toc-text">Mikolov提出的Sentence Embedding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于复述句匹配的句表示"><span class="toc-number">1.2.2.</span> <span class="toc-text">基于复述句匹配的句表示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两类方法对比"><span class="toc-number">1.3.</span> <span class="toc-text">两类方法对比</span></a></li></ol></li></ol>
-		  </div>
-		
-        <p>本篇笔记基于《Skip-Thought Vectors》论文编写。<br><a id="more"></a></p>
-<font color="red"><b>注：笔记学习参考深度之眼人工智能Paper训练营NLP方向第七课时课程。</b></font>
-
-<h2 id="前期知识补充"><a href="#前期知识补充" class="headerlink" title="前期知识补充"></a>前期知识补充</h2><h3 id="词表示加权-gt-句子表示"><a href="#词表示加权-gt-句子表示" class="headerlink" title="词表示加权-&gt;句子表示"></a>词表示加权-&gt;句子表示</h3><p>词向量的加权方式一般遵循一个准则：越常见的词权重越小。</p>
-<h4 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h4><p>TF-IDF(x)=TF(x)*IDF(x)<br>TF(x)=x 表示x在语料库中出现的次数,x即词语<br>IDF(x)=log(N/N(x))<br>N是语料库中的句子总数,N(x)位当前语料库中出现x的句子个数</p>
-<h4 id="SIF"><a href="#SIF" class="headerlink" title="SIF"></a>SIF</h4><p>SIF(x)=α/(TF(x)+α)<br>其中α是为了防止TF(x)等于0的情况</p>
-<h3 id="基于神经网络的词表示"><a href="#基于神经网络的词表示" class="headerlink" title="基于神经网络的词表示"></a>基于神经网络的词表示</h3><h4 id="Mikolov提出的Sentence-Embedding"><a href="#Mikolov提出的Sentence-Embedding" class="headerlink" title="Mikolov提出的Sentence Embedding"></a>Mikolov提出的Sentence Embedding</h4><h4 id="基于复述句匹配的句表示"><a href="#基于复述句匹配的句表示" class="headerlink" title="基于复述句匹配的句表示"></a>基于复述句匹配的句表示</h4><p>·测试数据集包含情感分类、主题分类、语义相似性度量、复述句检测、文本蕴含等<br>·测试方法为：固定句表示，在对应任务等训练数据集上学习分类器</p>
-<font color="##0099ff">需要补充复述句相关的材料</font>
-
-<h3 id="两类方法对比"><a href="#两类方法对比" class="headerlink" title="两类方法对比"></a>两类方法对比</h3><p>(1)基于语言模型的句子表示，利用了词与词之间的共现信息，可大规模训练:<br>-优点：可以利用无监督预料，成本低.<br>-缺点：忽略了句子间的语义信息.<br>(2)基于复述句对的句表示方法,预料可通过机器翻译大规模获得，建模句对关系:<br>-优点：建模了句对之间的相似与不相似关系.<br>-缺点：仅仅建模了相关性，忽略了句子间复杂的语义关系.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/25/【论文笔记】Skip-Thought-Vectors/" data-id="ck70a73d7003ubcv486rcdm80" class="article-share-link">Teilen</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/11/27/【论文笔记】Convolutional-Neural-Networks-for-Sentence-Classification/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          【论文笔记】Convolutional Neural Networks for Sentence Classification
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/11/21/【论文笔记】Distributed-Representations-of-Sentences-and-Documents/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">【论文笔记】Distributed Representations of Sentences and Documents</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         
