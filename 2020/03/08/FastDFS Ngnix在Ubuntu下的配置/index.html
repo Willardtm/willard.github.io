@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3zoOZn.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3zTMsH.png">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/09/8Sifdx.md.png">
-<meta property="og:updated_time" content="2020-03-08T17:43:50.419Z">
+<meta property="og:updated_time" content="2020-03-08T17:44:57.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FastDFS Ngnix在Ubuntu下的配置">
 <meta name="twitter:description" content="今天时间基本浪费在这个配置上了，踩了不少坑，留个记录，以便后续查阅。">
@@ -156,11 +156,12 @@
 <p>修改完以后，进入nginx目录<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>sbin</span><br><span class="line">./nginx -s stop</span><br><span class="line"><span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>sbin<span class="regexp">/nginx -c /</span>usr<span class="regexp">/local/</span>nginx<span class="regexp">/conf/</span>nginx.conf</span><br><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure></p>
 <p>再次访问：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span><span class="number">192.168</span>.<span class="number">126.130</span>:<span class="number">8888</span><span class="regexp">/group1/</span>M00<span class="regexp">/00/</span><span class="number">00</span><span class="regexp">/wKh-gl5lIt2AIdwxAA1R9JjVfKU654.jpg</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://s2.ax1x.com/2020/03/09/8Sifdx.md.png" alt=""></p>
+<p>关于问题排查，这里还有一份写得很清晰的博客：<a href="https://blog.csdn.net/qq_37495786/article/details/84330699?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">FastDFS 文件上传成功，访问404</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/08/FastDFS Ngnix在Ubuntu下的配置/" data-id="ck7j5tc0q0003x4v4y7ip9uva" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2020/03/08/FastDFS Ngnix在Ubuntu下的配置/" data-id="ck7jbuep300037ov4jj4ykxhh" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发/">开发</a></li></ul>
