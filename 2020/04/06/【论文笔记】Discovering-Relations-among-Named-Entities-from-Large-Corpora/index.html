@@ -5,27 +5,22 @@
   
 
   
-  <title>【论文笔记】Convolutional Sequence to Sequence Learning | Klaus&#39;s Blog</title>
+  <title>【论文笔记】Discovering Relations among Named Entities from Large Corpora | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本篇笔记基于《Convolutional Sequence to Sequence Learning》。">
+  <meta name="description" content="ACL-2004 Discovering Relations among Named Entities from Large Corpora">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【论文笔记】Convolutional Sequence to Sequence Learning">
-<meta property="og:url" content="http://yoursite.com/2019/12/21/【论文笔记】Convolutional-Sequence-to-Sequence-Learning/index.html">
+<meta property="og:title" content="【论文笔记】Discovering Relations among Named Entities from Large Corpora">
+<meta property="og:url" content="http://yoursite.com/2020/04/06/【论文笔记】Discovering-Relations-among-Named-Entities-from-Large-Corpora/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
-<meta property="og:description" content="本篇笔记基于《Convolutional Sequence to Sequence Learning》。">
+<meta property="og:description" content="ACL-2004 Discovering Relations among Named Entities from Large Corpora">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/21/Qv2ka4.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/21/Qv2YRI.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/21/Qv2WLT.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/21/QvRMpn.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/21/QvRw11.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/12/22/QxyUoj.png">
-<meta property="og:updated_time" content="2019-12-22T03:36:12.811Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/07/G601Z6.png">
+<meta property="og:updated_time" content="2020-04-06T16:55:06.374Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【论文笔记】Convolutional Sequence to Sequence Learning">
-<meta name="twitter:description" content="本篇笔记基于《Convolutional Sequence to Sequence Learning》。">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/12/21/Qv2ka4.png">
+<meta name="twitter:title" content="【论文笔记】Discovering Relations among Named Entities from Large Corpora">
+<meta name="twitter:description" content="ACL-2004 Discovering Relations among Named Entities from Large Corpora">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/07/G601Z6.png">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -76,10 +71,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-【论文笔记】Convolutional-Sequence-to-Sequence-Learning" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-【论文笔记】Discovering-Relations-among-Named-Entities-from-Large-Corpora" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/12/21/【论文笔记】Convolutional-Sequence-to-Sequence-Learning/" class="article-date">
-  <time datetime="2019-12-21T12:15:41.000Z" itemprop="datePublished">2019-12-21</time>
+    <a href="/2020/04/06/【论文笔记】Discovering-Relations-among-Named-Entities-from-Large-Corpora/" class="article-date">
+  <time datetime="2020-04-06T15:19:55.000Z" itemprop="datePublished">2020-04-06</time>
 </a>
     
   <div class="article-category">
@@ -94,7 +89,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【论文笔记】Convolutional Sequence to Sequence Learning
+      【论文笔记】Discovering Relations among Named Entities from Large Corpora
     </h1>
   
 
@@ -104,24 +99,37 @@
       
 	  <!-- Table of Contents -->
 		
-		  <div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前期知识补充"><span class="toc-number">1.</span> <span class="toc-text">前期知识补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#序列到序列结构"><span class="toc-number">1.1.</span> <span class="toc-text">序列到序列结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#seq2seq的发展历史"><span class="toc-number">1.2.</span> <span class="toc-text">seq2seq的发展历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#seq2seq的类型"><span class="toc-number">1.3.</span> <span class="toc-text">seq2seq的类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#论文主要内容"><span class="toc-number">2.</span> <span class="toc-text">论文主要内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型结构"><span class="toc-number">2.1.</span> <span class="toc-text">模型结构</span></a></li></ol></li></ol>
-		  </div>
-		
-        <p>本篇笔记基于《Convolutional Sequence to Sequence Learning》。<br><a id="more"></a></p>
-<font color="red"><b>注：笔记学习参考深度之眼人工智能Paper训练营NLP方向第十六课时课程。</b></font>
-
-<h2 id="前期知识补充"><a href="#前期知识补充" class="headerlink" title="前期知识补充"></a>前期知识补充</h2><h3 id="序列到序列结构"><a href="#序列到序列结构" class="headerlink" title="序列到序列结构"></a>序列到序列结构</h3><p>Sequence-to-Sequence(seq2seq)模型，它的输入是一个序列，输出也是一个序列，例如输入是英文句子，输出则是翻译的中文。seq2seq可以用在很多方面：机器翻译，QA系统，文档摘要生成等。<br><img src="https://s2.ax1x.com/2019/12/21/Qv2ka4.png" alt=""></p>
-<p>比如这种结构就是典型的seq2seq结构。<br><img src="https://s2.ax1x.com/2019/12/21/Qv2YRI.png" width="500" height="300"><br><img src="https://s2.ax1x.com/2019/12/21/Qv2WLT.png" width="500" height="300"><br><img src="https://s2.ax1x.com/2019/12/21/QvRMpn.png" width="500" height="400"></p>
-<h3 id="seq2seq的发展历史"><a href="#seq2seq的发展历史" class="headerlink" title="seq2seq的发展历史"></a>seq2seq的发展历史</h3><p><img src="https://s2.ax1x.com/2019/12/21/QvRw11.png" width="800" height="300"></p>
-<h3 id="seq2seq的类型"><a href="#seq2seq的类型" class="headerlink" title="seq2seq的类型"></a>seq2seq的类型</h3><p>(1)RNN;<br>(2)RNN N VS 1;<br>(3)RNN 1 VS N;</p>
-<h2 id="论文主要内容"><a href="#论文主要内容" class="headerlink" title="论文主要内容"></a>论文主要内容</h2><h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><p>论文的模型结构图如下所示：<br><img src="https://s2.ax1x.com/2019/12/22/QxyUoj.png" alt=""></p>
+        <p>ACL-2004 Discovering Relations among Named Entities from Large Corpora</p>
+<a id="more"></a>
+<h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><p>关键思想是根据插入命名实体之间的上下文词的相似性将成对的命名实体聚类。<br>作者使用一年的报纸数据进行的实验表明，不仅可以以较高的召回率（recall）和准确性来检测命名实体之间的关系，而且可以自动为关系提供适当的标签。</p>
+<h2 id="论文模型"><a href="#论文模型" class="headerlink" title="论文模型"></a>论文模型</h2><p>方法主要基于上下文的实体对聚类。<br>假设可以将在相似上下文中出现的成对实体进行聚类，并且聚类中的每对实体都是相同关系的一个实例。 通过此聚类过程发现实体之间的关系。 在链接一对实体的上下文表达多个关系的情况下，我们期望该对实体要么根本不被聚类，要么被放置在与其最频繁表达的关系相对应的聚类中，因为它的上下文不会 与情境较不频繁的情况足够相似。 作者假设有用的关系将在大型语料库中经常提及，相反，提到一次或两次的关系不太重要。</p>
+<p>基本研究思路：<br>1.标注语料库中的命名实体；</p>
+<ol>
+<li>获取命名实体及其上下文的共现对；</li>
+<li>测量命名实体对之间的上下文相似性；<br>4.对成对的命名实体做聚类；</li>
+<li>标注每一组命名实体对.</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/04/07/G601Z6.png" alt=""></p>
+<p>首先找到 组织对（pair of PRGANIZATIONs，ORG）A和B，以及C和D，然后运行报纸中的报纸语料库中的命名标识器。</p>
+<p>收集在彼此之间一定距离内发生的A和B对的所有实例。 然后，累加介于A和B之间的上下文词，例如“be offer to buy”，“谈判获得”。以同样的方式，累加介于C和D之间的上下文词。 A和B以及C和D的相似，这两个对放置在同一群集中。 A – B和C – D将处于相同的关系，在这种情况下，是并购（M＆A）。 也就是说，我们可以发现这些组织之间的关系。</p>
+<h3 id="命名体标记"><a href="#命名体标记" class="headerlink" title="命名体标记"></a>命名体标记</h3><p>本文纯无监督操作，只需要一个命名体标注器来标注命名实体。</p>
+<h3 id="命名体对和上下文"><a href="#命名体对和上下文" class="headerlink" title="命名体对和上下文"></a>命名体对和上下文</h3><p>共现实体的定义：出现在相同的句子，并且中间插入的单词最多不能超过N个。为每个共现收集的插入词被视作上下文词的词干。命名实体的不同出现顺序也被视为不同的上下文。例如，e1,…,e2和e2,…,e1被收集为不同的上下文，其中e1和e2是命名体。</p>
+<p>应消除频率较低的一对命名体，因为它们在学习关系中可能不太可靠。 因此，设置了频率阈值以移除这些对。</p>
+<p>命名体对间上下文相似度</p>
+<p> 采用向量空间模型和余弦相似性来计算NE对上下文集之间的相似性。<br>作者只比较类型相同的实体对，比如 PERSON-GPE，必须检测Person-GPE域中Person和GPE之间的关系。</p>
+<p>在制作上下文向量之前要删除停用词，并行表达式中的单词以及特定源文档所特有的表达式（以下示例），因为这些表达式会在计算相似度时引入噪音。</p>
+<p>每个NE对的上下文向量由由两个命名实体的所有同时出现的所有中间单词构成的词袋（bag of words）组成。 上下文向量的每个单词都由tf <em> idf加权，tf </em> idf是项频率和文档反向频率的乘积。 词频是收集的上下文单词中单词的出现次数。 还考虑了命名实体的共现顺序。</p>
+<p>如果一个单词 wi 在上下文 e1,…,e2 中出现了L次，在 e2,…,e1中出现了M次，wi 的 tfi 频率被定义为L-M，e1和e2是命名体。</p>
+<p>作者认为，如果关系的自变量具有相同的NE类型，则该单词以不同顺序出现的频率会有效地检测关系的方向。 文件频率是包含单词的文件数量。</p>
+<p>如果由于缺少内容词而导致上下文|α|向量的范数α非常小，则该向量与其他向量之间的余弦相似度可能不可靠。 因此，作者还预先定义了一个范数阈值以消除短上下文向量。<br>上下文向量之间的余弦相似度θ由以下公式计算得出。</p>
+<p><image src="https://s1.ax1x.com/2020/04/07/G60Ddf.png" style="text-align:center;width:400px;height:80px;"><br>余弦相似度从1到-1不等。 余弦相似度为1表示这些NE对具有完全相同的上下文词，并且主要以相同的顺序出现；余弦相似度为-1意味着这些NE对具有与相同的上下文词完全相同的上下文词，且主要出现在NE中相反的顺序。</image></p>
+<h3 id="命名体聚类"><a href="#命名体聚类" class="headerlink" title="命名体聚类"></a>命名体聚类</h3><p>在计算出NE对的上下文向量之间的相似度之后，我们根据相似度对NE对进行聚类。 我们不知道我们应该预先建立多少个聚类，因此作者采用分层聚类。 提出了许多用于分层聚类的聚类方法，但是作者采用完全链接，因为它在创建聚类中比较保守。 聚类之间的距离被视为完全链接中群集之间最远节点的距离。</p>
+<h3 id="聚类标签"><a href="#聚类标签" class="headerlink" title="聚类标签"></a>聚类标签</h3><p>如果同一群集中的大多数NE对具有相同的单词，则这些通用单词将代表该群集的特征。 换句话说，可以将常用词视为特定关系的表征。 只计算同一聚类中NE对的所有组合中公共词的频率。 频率通过组合数量标准化。 如果群集中包含相同关系的网元对，则群集中的常见词将成为群集的标签，即它们将成为关系的标签。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/21/【论文笔记】Convolutional-Sequence-to-Sequence-Learning/" data-id="ck8opv3eu003qq4v4qmfv51of" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2020/04/06/【论文笔记】Discovering-Relations-among-Named-Entities-from-Large-Corpora/" data-id="ck8opv3ez003xq4v47pofoh1u" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -132,19 +140,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/12/22/【论文笔记】End-To-End-Memory-Networks/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          【论文笔记】End-To-End Memory Networks
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/18/【论文笔记】Neural-Relation-Extraction-with-Selective-Attention-over-Instances/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/04/05/【论文笔记】Convolutional-Hierarchical-Attention-Network-for-Query-Focused-Video/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">【论文笔记】Neural Relation Extraction with Selective Attention over Instances</div>
+      <div class="article-nav-title">【论文笔记】Convolutional Hierarchical Attention Network for Query-Focused Video Summmarization</div>
     </a>
   
 </nav>
