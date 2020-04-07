@@ -5,20 +5,22 @@
   
 
   
-  <title>【问题合集】Tensorflow中常见的问题 | Klaus&#39;s Blog</title>
+  <title>【论文笔记】Semantic Compositionality through Recursive Matrix-Vector Spaces | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写这篇博客的目的，是因为我自己在使用tensorflow框架中遇到了许多的问题，这些问题也阻碍过我对论文进行复现。所以，我把这些问题整理起来，同时附上理解的链接，希望这篇文章能帮助到和我有一样问题的朋友。博客会持续更新，各位大佬见笑了。">
+  <meta name="description" content="EMNLP 2012 Semantic Compositionality through Recursive Matrix-Vector Spaces论文的代码实现：https://github.com/github-pengge/MV_RNN">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【问题合集】Tensorflow中常见的问题">
-<meta property="og:url" content="http://yoursite.com/2019/12/26/【问题合集】Tensorflow中常见的问题/index.html">
+<meta property="og:title" content="【论文笔记】Semantic Compositionality through Recursive Matrix-Vector Spaces">
+<meta property="og:url" content="http://yoursite.com/2020/04/07/【论文笔记】Semantic-Compositionality-through-Recursive-Matrix-Vector-Spaces/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
-<meta property="og:description" content="写这篇博客的目的，是因为我自己在使用tensorflow框架中遇到了许多的问题，这些问题也阻碍过我对论文进行复现。所以，我把这些问题整理起来，同时附上理解的链接，希望这篇文章能帮助到和我有一样问题的朋友。博客会持续更新，各位大佬见笑了。">
+<meta property="og:description" content="EMNLP 2012 Semantic Compositionality through Recursive Matrix-Vector Spaces论文的代码实现：https://github.com/github-pengge/MV_RNN">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-27T07:33:53.970Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/08/G2oYnI.png">
+<meta property="og:updated_time" content="2020-04-07T16:48:27.923Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【问题合集】Tensorflow中常见的问题">
-<meta name="twitter:description" content="写这篇博客的目的，是因为我自己在使用tensorflow框架中遇到了许多的问题，这些问题也阻碍过我对论文进行复现。所以，我把这些问题整理起来，同时附上理解的链接，希望这篇文章能帮助到和我有一样问题的朋友。博客会持续更新，各位大佬见笑了。">
+<meta name="twitter:title" content="【论文笔记】Semantic Compositionality through Recursive Matrix-Vector Spaces">
+<meta name="twitter:description" content="EMNLP 2012 Semantic Compositionality through Recursive Matrix-Vector Spaces论文的代码实现：https://github.com/github-pengge/MV_RNN">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/08/G2oYnI.png">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -69,16 +71,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-【问题合集】Tensorflow中常见的问题" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-【论文笔记】Semantic-Compositionality-through-Recursive-Matrix-Vector-Spaces" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/12/26/【问题合集】Tensorflow中常见的问题/" class="article-date">
-  <time datetime="2019-12-26T13:08:40.000Z" itemprop="datePublished">2019-12-26</time>
+    <a href="/2020/04/07/【论文笔记】Semantic-Compositionality-through-Recursive-Matrix-Vector-Spaces/" class="article-date">
+  <time datetime="2020-04-07T12:39:13.000Z" itemprop="datePublished">2020-04-07</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/NLP/">NLP</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -87,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【问题合集】Tensorflow中常见的问题
+      【论文笔记】Semantic Compositionality through Recursive Matrix-Vector Spaces
     </h1>
   
 
@@ -97,23 +95,37 @@
       
 	  <!-- Table of Contents -->
 		
-		  <div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-nn-embedding-lookup维度变化问题"><span class="toc-number">1.</span> <span class="toc-text">tf.nn.embedding_lookup维度变化问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tensorflow中axis的理解"><span class="toc-number">2.</span> <span class="toc-text">Tensorflow中axis的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-nn-softmax的axis的理解"><span class="toc-number">3.</span> <span class="toc-text">tf.nn.softmax的axis的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三维向量运算相关"><span class="toc-number">4.</span> <span class="toc-text">三维向量运算相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-matmul计算多维矩阵"><span class="toc-number">5.</span> <span class="toc-text">tf.matmul计算多维矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tf-concat"><span class="toc-number">6.</span> <span class="toc-text">tf.concat</span></a></li></ol>
-		  </div>
-		
-        <p>写这篇博客的目的，是因为我自己在使用tensorflow框架中遇到了许多的问题，这些问题也阻碍过我对论文进行复现。<br>所以，我把这些问题整理起来，同时附上理解的链接，希望这篇文章能帮助到和我有一样问题的朋友。<br>博客会持续更新，各位大佬见笑了。<br><a id="more"></a></p>
-<h2 id="tf-nn-embedding-lookup维度变化问题"><a href="#tf-nn-embedding-lookup维度变化问题" class="headerlink" title="tf.nn.embedding_lookup维度变化问题"></a>tf.nn.embedding_lookup维度变化问题</h2><p>解决链接：<a href="https://blog.csdn.net/taolusi/article/details/81227565" target="_blank" rel="noopener">https://blog.csdn.net/taolusi/article/details/81227565</a></p>
-<h2 id="Tensorflow中axis的理解"><a href="#Tensorflow中axis的理解" class="headerlink" title="Tensorflow中axis的理解"></a>Tensorflow中axis的理解</h2><p>解决链接：<a href="https://blog.csdn.net/a6840231/article/details/88359778" target="_blank" rel="noopener">https://blog.csdn.net/a6840231/article/details/88359778</a></p>
-<h2 id="tf-nn-softmax的axis的理解"><a href="#tf-nn-softmax的axis的理解" class="headerlink" title="tf.nn.softmax的axis的理解"></a>tf.nn.softmax的axis的理解</h2><p>解决链接：<a href="https://blog.csdn.net/guotong1988/article/details/82914064" target="_blank" rel="noopener">https://blog.csdn.net/guotong1988/article/details/82914064</a></p>
-<h2 id="三维向量运算相关"><a href="#三维向量运算相关" class="headerlink" title="三维向量运算相关"></a>三维向量运算相关</h2><p>解决链接：<a href="https://blog.csdn.net/zhangSMILE123456/article/details/48711719" target="_blank" rel="noopener">https://blog.csdn.net/zhangSMILE123456/article/details/48711719</a></p>
-<h2 id="tf-matmul计算多维矩阵"><a href="#tf-matmul计算多维矩阵" class="headerlink" title="tf.matmul计算多维矩阵"></a>tf.matmul计算多维矩阵</h2><p>两个三维矩阵的乘法怎样计算呢?我通过实验发现，tensorflow把前面的维度当成是batch，对最后两维进行普通的矩阵乘法。也就是说，最后两维之前的维度，都需要相同。<br>解决链接：<a href="https://blog.csdn.net/weixin_42445581/article/details/82791811" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42445581/article/details/82791811</a></p>
-<h2 id="tf-concat"><a href="#tf-concat" class="headerlink" title="tf.concat"></a>tf.concat</h2><p>解决链接：<a href="https://blog.csdn.net/leviopku/article/details/82380118" target="_blank" rel="noopener">https://blog.csdn.net/leviopku/article/details/82380118</a></p>
+        <p>EMNLP 2012 Semantic Compositionality through Recursive Matrix-Vector Spaces<br>论文的代码实现：<a href="https://github.com/github-pengge/MV_RNN" target="_blank" rel="noopener">https://github.com/github-pengge/MV_RNN</a></p>
+<a id="more"></a>
+<h2 id="论文改进点"><a href="#论文改进点" class="headerlink" title="论文改进点"></a>论文改进点</h2><p>单个词向量模型能够成功学习到词汇信息。然而他们并不能获取长短语的组合信息，这一点阻碍了词向量理解语言的深层信息。<br>因此，本文提出了一个RNN模型，可以学习任意句法类型和长度的短语及句子的组合向量表示。</p>
+<h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><p>作者提出的模型为解析树上的每一个结点都分配了一个向量和一个矩阵：向量捕获成分的固有信息，而矩阵捕获其如何改变相邻单词或短语的含义。 如下图所示，每一个成分（一个单词或长短语）都有一个矩阵向量（Matrix-Vector,MV）表示。<br><img src="https://s1.ax1x.com/2020/04/08/G2oYnI.png" alt=""><br>Figure 1. 一个循环神经网络在一个树结构上学习短语中的语义表示。每个词和短语都是用一个向量和一个矩阵来进行表示，例如 very=(a,A)，其中，矩阵应用于相邻向量表示。相同的方式被重复应用以结合短语 very good 和 movie.</p>
+<p> 根据解析树的句法结构，递归地将单词组合起来，从下往上计算一个较长短语的表示。</p>
+<h2 id="模型-MV-RNN"><a href="#模型-MV-RNN" class="headerlink" title="模型-MV-RNN"></a>模型-MV-RNN</h2><p>从单个单词向量表示中构建多单词单元表示的主要方法是形成单个单词表示的线性组合，例如求和或加权平均值，这发生在信息检索和基于以下内容的各种文本相似性函数中 词汇相似性。 当文本的含义从字面上看是“其部分的总和”时，这些方法可以很好地工作，但是当单词充当修改另一个单词的含义的运算符时，这些方法将失败：无法将“extremely strong”的含义捕捉为 用词表示“extremely”和“strong”。</p>
+<p>最近的工作（截止至2012年）已经开始捕捉自然语言算子在语义向量空间中的行为，将它们建模为矩阵，而作者希望使用非线性函数来计算多单词短语或完整句子的组成含义表示。</p>
+<p>因此，MV-RNN结合了这两种思想的优点，方法是：<br>(1) 为每个单词分配一个向量和一个矩阵；<br>(2) 学习特定于输入的非线性合成函数，以计算任何语法类型的多词序列的向量和矩阵表示。</p>
+<p>将向量矩阵表示分配给所有单词，而不是只分配给一个词性类别的单词，可以获得更大的灵活性，从而有利于性能。如果单词缺乏运算符语义，则其矩阵可以是一个单位矩阵。 但是，如果某个单词主要充当运算符（例如“extremely”），则其向量可能会接近零，而其矩阵会获得清晰的运算符含义，从而在postive和negative两个方向上都放大了修饰词的含义 。</p>
+<h3 id="矩阵向量在自然词汇上的表示"><a href="#矩阵向量在自然词汇上的表示" class="headerlink" title="矩阵向量在自然词汇上的表示"></a>矩阵向量在自然词汇上的表示</h3><p>作者表示一个词使用了一个连续的向量和一个矩阵，初始化所有的向量 x ∈R[n] ，x是只有50维的经过预训练的词向量。<br>与其他基于局部共现的向量空间模型相似，得到的词向量捕获句法和语义信息。 每个单词也与矩阵X相关联。在所有的实验中，作者初始化矩阵 X=I+ε，加上了一小部分高斯噪声。如果向量维度是n，那么每个单词的矩阵维度就是 X ∈ R[n x n]。<br>尽管初始化是随机的，但随后将对向量和矩阵进行修改，以使一系列单词构成一个可以预测语义标签分布的向量。 此后，将长度为m的任何短语或句子表示为向量矩阵对((a，A),…,(m，M))的有序列表，其中每对词组或句子都是基于该位置的单词检索的 。</p>
+<h3 id="两个单词的组成模型"><a href="#两个单词的组成模型" class="headerlink" title="两个单词的组成模型"></a>两个单词的组成模型</h3><p>首先回顾两个词的组合功能。 为了从两个连续的单词及其各自的向量a和b计算父向量p，Mitchell和Lapata（2010）给出了它们最通用的函数：p = f(a，b，R，K)，其中R是 先验已知的句法关系，K是背景知识。<br>f有许多可能的功能。 对于我们的模型，p有一个约束，那就是它与每个输入向量具有相同的维数。 这样，我们可以轻松地将p与它的子级进行比较，并且p可以是另一个单词组成的输入。<br>我们将探索不需要任何人工设计的语义资源作为背景知识K的方法。不使用有关关系类型R的显式知识。 相反，我们希望模型通过学习的矩阵隐式捕获此信息。 我们提出以下取决于输入的组合功能：</p>
+<image src="https://s1.ax1x.com/2020/04/08/G2osjs.png" style="text-align:center;width:550px;height:80px;">
 
+<p>其中A和B是单个单词的矩阵，全局W∈R[n x 2n]，将两个映射的单词转换到相同的n维空间。</p>
+<p>逐元素函数g可以简单地是恒等函数，但作者改用非线性，例如sigmoid或双曲正切tanh。 这种非线性将使模型能够近似于除纯线性函数以外的更广泛的函数。 也可以在应用g之前添加一个偏差项，但是为了清楚起见，可以省略它。 将两个变换后的向量重写为一个向量z，我们得到p = g（W z），这是一个单层神经网络。 在此模型中，单词矩阵可以捕获特定于每个单词的自觉效果，而W可以捕获一般的组合功能。<br>该功能建立在文献上的几种最新模型的基础上并加以概括。 最相关的工作是（Mitchell和Lapata，2010年； Zanzotto等人，2010年），他们介绍并探索了词对的合成函数p = Ba + Ab，这个模型是式子2的一个特殊类型。当设置W=[II]（将两个初始化矩阵连接起来），g(x)=x。</p>
+<h3 id="多种词和短语的递归构成"><a href="#多种词和短语的递归构成" class="headerlink" title="多种词和短语的递归构成"></a>多种词和短语的递归构成</h3><p>主要思想是将相同的函数f应用于解析树中的成对成分。 为此，我们需要将短语或句子的二进制分析树作为输入，并在每个非终端父节点上计算矩阵。 函数f可以递归兼容（p具有与其子代相同的维数），因此可以很容易地用于短语向量。 为了计算非终结短语矩阵，定义函数：</p>
+<p><image src="https://s1.ax1x.com/2020/04/08/G2oIgJ.png" style="text-align:center;width:350px;height:80px;"><br>WM ∈ R [ n x 2n ]，所以 P ∈[n x n]，类似于每一个输入矩阵。</image></p>
+<h3 id="训练目标功能"><a href="#训练目标功能" class="headerlink" title="训练目标功能"></a>训练目标功能</h3><p>我们通过在每个父节点上添加一个简单的Softmax分类器来训练这些表示，以预测类分布，例如情感类或关系类：d(p)=softmax( W[label]p ).如果有K个标签，那么d∈R[K]，是一个K维的多项式分布。<br>对于下面的应用（excluding logic），为句子s及其树t最小化的相应误差函数E(s，t，θ)是所有节点处的交叉熵误差之和。</p>
+<h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><p><image src="https://s1.ax1x.com/2020/04/08/G2TPbt.png" style="text-align:center;width:300px;height:50px;"><br>将θ和λ向量作为规划饭的模型参数并应用到模型当中。L和LM是所有词向量和词矩阵。总体目标函数J的梯度变为：</image></p>
+<image src="https://s1.ax1x.com/2020/04/08/G2Tmvj.png" style="text-align:center;width:400px;height:80px;">
+
+<p>为了计算这个梯度，首先要自底向上计算所有的树结点(pi,Pi)，然后对每个节点的softmax分类器进行自顶向上求导。</p>
+<p>低秩矩阵近似</p>
+<p>如果每个单词都由n维向量表示，并且另外由n×n矩阵表示，则在n = 100的常用向量大小下，整个模型的维数可能会变得太大。为了减少参数的数量 ，我们通过以下低阶加对角线近似表示单词矩阵：</p>
+<p><image src="https://s1.ax1x.com/2020/04/08/G2TY24.png" style="text-align:center;width:300px;height:50px;"><br>U∈R[n x r]，V∈R[ r x n ] ，a∈R[n]，对于所有的实验，r=3。</image></p>
+<h3 id="讨论：评估和普遍性"><a href="#讨论：评估和普遍性" class="headerlink" title="讨论：评估和普遍性"></a>讨论：评估和普遍性</h3><p>合成向量空间的评估是一个复杂的任务。大多数相关工作将无监督模型的相似性判断与人类判断的相似性进行比较，并力求高度相关。这些评估可以提供重要的见解。但是，即使具有良好的相关性，问题仍然在于这些模型将如何在下游NLP任务（例如情感检测）上执行。作者通过让MV RNN在正确的上下文中预测单词来对通用矢量矩阵表示形式进行无监督学习的实验。使用这些一般表示来初始化模型并不能提高我们考虑的任务的性能。对于情感分析，这并不令人意外，因为由于局部句法上下文的高度相似性，反义词在从同现的无监督学习中经常会得到相似的向量。在实验中，较高的预测性能来自使用标记数据对含义表示进行监督学习。尽管这些表示形式是特定于任务的，但它们可以在多任务学习设置中的各个任务之间使用。但是，为了公平地与相关工作进行比较，仅使用每个任务的监督数据。</p>
+</image></image>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/【问题合集】Tensorflow中常见的问题/" data-id="ck8q5209l004mzcv4qzy1z7ij" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2020/04/07/【论文笔记】Semantic-Compositionality-through-Recursive-Matrix-Vector-Spaces/" data-id="ck8q5209g004fzcv494yyoeox" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -124,19 +136,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/02/19/Windows下搭建virtualenv-Django开发环境/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          Windows&amp;Ubuntu下搭建virtualenv Django开发环境
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/22/【论文笔记】End-To-End-Memory-Networks/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/04/06/【论文笔记】Discovering-Relations-among-Named-Entities-from-Large-Corpora/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">【论文笔记】End-To-End Memory Networks</div>
+      <div class="article-nav-title">【论文笔记】Discovering Relations among Named Entities from Large Corpora</div>
     </a>
   
 </nav>
