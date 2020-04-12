@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/12/GL4Iz9.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/12/GL4jiD.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/12/GL5ZWQ.png">
-<meta property="og:updated_time" content="2020-04-12T07:26:14.345Z">
+<meta property="og:updated_time" content="2020-04-12T07:29:04.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文笔记】Preemptive Information Extraction using Unrestricted Relation Discovery">
 <meta name="twitter:description" content="2006 NAACL Preemptive Information Extraction using Unrestricted Relation Discovery使用无限制关系发现的抢先信息提取">
@@ -109,6 +109,11 @@
     <div class="article-entry" itemprop="articleBody">
       
 	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#核心思想"><span class="toc-number">1.</span> <span class="toc-text">核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本思想"><span class="toc-number">2.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#增加基本模式"><span class="toc-number">3.</span> <span class="toc-text">增加基本模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型实现"><span class="toc-number">4.</span> <span class="toc-text">模型实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络爬虫和Basic-Clustering"><span class="toc-number">4.1.</span> <span class="toc-text">网络爬虫和Basic Clustering</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parsing-和-GLARFing"><span class="toc-number">4.2.</span> <span class="toc-text">Parsing 和 GLARFing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命名体标注和共指解析"><span class="toc-number">4.3.</span> <span class="toc-text">命名体标注和共指解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本模式生成"><span class="toc-number">4.4.</span> <span class="toc-text">基本模式生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Metaclustering"><span class="toc-number">4.5.</span> <span class="toc-text">Metaclustering</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验与评估"><span class="toc-number">5.</span> <span class="toc-text">实验与评估</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#评估方法"><span class="toc-number">5.1.</span> <span class="toc-text">评估方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结果"><span class="toc-number">5.2.</span> <span class="toc-text">结果</span></a></li></ol></li></ol>
+		  </div>
 		
         <p>2006 NAACL Preemptive Information Extraction using Unrestricted Relation Discovery<br>使用无限制关系发现的抢先信息提取<br><a id="more"></a></p>
 <h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><p>作者正在尝试扩展信息提取（IE）系统的边界。 现有的IE系统需要大量时间和人力来适应新的情况。 抢先信息提取是尝试事先自动创建所有可行的IE系统，而无需人工干预。 于是提出了一种称为“无限制关系发现”的技术，该技术涵盖了文本中所有可能的关系，并将其显示为表格。 再提出了一个预审系统，该系统获得了相当不错的效果。</p>
