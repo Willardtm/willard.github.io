@@ -5,15 +5,20 @@
   
 
   
-  <title>Tag: JavaScript | Klaus&#39;s Blog</title>
+  <title>【统计自然语言处理】形式语言与自动机 | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Klaus&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/JavaScript/index.html">
+  <meta name="description" content="博客主要参考宗成庆老师《统计自然语言处理》一书第二版。">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【统计自然语言处理】形式语言与自动机">
+<meta property="og:url" content="http://yoursite.com/2020/04/14/【统计自然语言处理】形式语言与自动机/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
+<meta property="og:description" content="博客主要参考宗成庆老师《统计自然语言处理》一书第二版。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-14T07:21:53.249Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Klaus&#39;s Blog">
+<meta name="twitter:title" content="【统计自然语言处理】形式语言与自动机">
+<meta name="twitter:description" content="博客主要参考宗成庆老师《统计自然语言处理》一书第二版。">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -64,40 +69,71 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/19/JavaScript基础学习/" class="archive-article-date">
-  <time datetime="2018-03-19T11:12:57.000Z" itemprop="datePublished">Mar 19</time>
+        <section id="main"><article id="post-【统计自然语言处理】形式语言与自动机" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/14/【统计自然语言处理】形式语言与自动机/" class="article-date">
+  <time datetime="2020-04-14T06:34:46.000Z" itemprop="datePublished">2020-04-14</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/19/JavaScript基础学习/">JavaScript基础学习</a>
+    <h1 class="article-title" itemprop="name">
+      【统计自然语言处理】形式语言与自动机
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图"><span class="toc-number">1.1.</span> <span class="toc-text">图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#树"><span class="toc-number">1.2.</span> <span class="toc-text">树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串"><span class="toc-number">1.3.</span> <span class="toc-text">字符串</span></a></li></ol></li></ol>
+		  </div>
+		
+        <p>博客主要参考宗成庆老师《统计自然语言处理》一书第二版。<br><a id="more"></a><br>害，写一系列博客的目标，一是作为读书笔记，以后自己哪块部分忘了回来翻翻就完事了；二是起到一个监督作用，毕竟作为一个懒鬼哪天看着看着书不小心就鸽了。</p>
+<p>形式语言理论是自然语言描述和分析的基础，主要包括：<br>(1) 词法分析；<br>(2) 拼写检查；<br>(3) 短语识别；</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><p>图的本质内容是二元关系。图又分为无向图和有向图两种。主要包括<br>(1) 无向图：可以直接定义为一个二元组，(ni,nj)=(nj,ni)，n表示图中的结点；<br>(2) 有向图：也可以定义为一个二元组，但是(ni,nj)≠(nj,ni)；<br>(3) 连通图：连通图是一个无向图G=(N,E)或有向图D=(N,E)，N表示节点，E表示关系。对于N中的任意两个顶点ns和nt，存在一个顶点的序列P，使得ns=n(i0),n(i1),…,n(ik)=nt均属于N，且ej=(ni(j),ni(i+1))(j=0,1,…,k-1)均属于E(对于有向图D，任意ej=(ni(j),ni(j+1))均属于E)。P也被称为图G或D的一条路径或通路。<br>(4) 回路：即开始和终结于同一顶点的通路成为回路。</p>
+<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>一个无回路的无向图称为森林。一个无回路的连通无向图称为树（或自由树）。如果树中有一个结点被特别地标记为根节点，那么，这棵树成为根树。<br>从逻辑结构上讲，树是包含n个结点的有穷集合S(n&gt;0)，且在S上定义了一个关系R，R满足以下三个条件：<br>(1) 有且仅有一个结点t0∈S，该结点对于R来说没有前驱，结点t0称作树根；<br>(2) 除了结点t0以外，S中的每个结点对于R来说，都有且仅有一个直接前驱；<br>(3) 除了结点t0以外的任何结点t∈S，都存在一个结点序列t0,t1,…,tk，使得t0为树的根，tk=t，有序对<t(i-1),t>∈R(1≤i≤k)，则该结点称为从根结点t0到结点t的一条路径。</t(i-1),t></p>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>“连接”和“闭包”是字符串操作中的两种基本运算。</p>
+<p>(1) 字符串连接：假设x,y是字符合集中的字符串，则xy即为两个字符串的连接。<br>eg. x=abc,y=cba,xy=abccba<br>(2) 符号串集合的乘积：设A,B是字符表上的符号串的集合，则A和B的乘积定义为：AB={xy|x∈A,y∈B}<br>(3) 闭包运算：字符表上的符号串集合V的闭包定义为：V*=V0 U V1 U V2 U …,V+ = V1 U V2 U…,V+ = V* - {ε}。<br>eg. 如果V={a,b}，那么，根据定义有：<br>V*={ε,a,b,aa,ab,bb,ba,aaa,…}<br>V+={a,b,aa,ab,bb,ba,aaa,…}</p>
+<p>一般地，通常用|x|表示字符串的长度，即字符串x中包含字符的个数。</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/14/【统计自然语言处理】形式语言与自动机/" data-id="ck8zkw3dn0033r8v48nm3e77k" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/09/【论文笔记】Preemptive-Information-Extraction-using-Unrestricted-Relation-Discovery/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">【论文笔记】Preemptive Information Extraction using Unrestricted Relation Discovery</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
