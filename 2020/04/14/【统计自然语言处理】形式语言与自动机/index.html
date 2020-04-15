@@ -15,10 +15,21 @@
 <meta property="og:site_name" content="Klaus&#39;s Blog">
 <meta property="og:description" content="博客主要参考宗成庆老师《统计自然语言处理》一书第二版。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-14T07:21:53.249Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/15/J94Ujf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/15/J942vV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/15/J94o59.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/15/J95dR1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/15/JCUnK0.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/15/JCdS78.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/15/JC0Ml9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/15/JCrL9S.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/15/JCyUsJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/15/JC63md.png">
+<meta property="og:updated_time" content="2020-04-15T07:41:03.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【统计自然语言处理】形式语言与自动机">
 <meta name="twitter:description" content="博客主要参考宗成庆老师《统计自然语言处理》一书第二版。">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/15/J94Ujf.png">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -60,7 +71,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -99,7 +110,7 @@
 		
 		  <div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图"><span class="toc-number">1.1.</span> <span class="toc-text">图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#树"><span class="toc-number">1.2.</span> <span class="toc-text">树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串"><span class="toc-number">1.3.</span> <span class="toc-text">字符串</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图"><span class="toc-number">1.1.</span> <span class="toc-text">图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#树"><span class="toc-number">1.2.</span> <span class="toc-text">树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串"><span class="toc-number">1.3.</span> <span class="toc-text">字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#形式语言"><span class="toc-number">2.</span> <span class="toc-text">形式语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">2.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#形式语法的定义"><span class="toc-number">2.2.</span> <span class="toc-text">形式语法的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#形式语言的类型"><span class="toc-number">2.3.</span> <span class="toc-text">形式语言的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#正则文法"><span class="toc-number">2.3.1.</span> <span class="toc-text">正则文法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#上下文无关文法"><span class="toc-number">2.3.2.</span> <span class="toc-text">上下文无关文法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#上下文有关文法"><span class="toc-number">2.3.3.</span> <span class="toc-text">上下文有关文法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#无约束文法"><span class="toc-number">2.3.4.</span> <span class="toc-text">无约束文法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CFG识别句子的派生树表示"><span class="toc-number">2.4.</span> <span class="toc-text">CFG识别句子的派生树表示</span></a></li></ol></li></ol>
 		  </div>
 		
         <p>博客主要参考宗成庆老师《统计自然语言处理》一书第二版。<br><a id="more"></a><br>害，写一系列博客的目标，一是作为读书笔记，以后自己哪块部分忘了回来翻翻就完事了；二是起到一个监督作用，毕竟作为一个懒鬼哪天看着看着书不小心就鸽了。</p>
@@ -109,11 +120,29 @@
 <h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>“连接”和“闭包”是字符串操作中的两种基本运算。</p>
 <p>(1) 字符串连接：假设x,y是字符合集中的字符串，则xy即为两个字符串的连接。<br>eg. x=abc,y=cba,xy=abccba<br>(2) 符号串集合的乘积：设A,B是字符表上的符号串的集合，则A和B的乘积定义为：AB={xy|x∈A,y∈B}<br>(3) 闭包运算：字符表上的符号串集合V的闭包定义为：V*=V0 U V1 U V2 U …,V+ = V1 U V2 U…,V+ = V* - {ε}。<br>eg. 如果V={a,b}，那么，根据定义有：<br>V*={ε,a,b,aa,ab,bb,ba,aaa,…}<br>V+={a,b,aa,ab,bb,ba,aaa,…}</p>
 <p>一般地，通常用|x|表示字符串的长度，即字符串x中包含字符的个数。</p>
+<h2 id="形式语言"><a href="#形式语言" class="headerlink" title="形式语言"></a>形式语言</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>乔姆斯基把语言定义为：按照一定规律构成的句子和符号串的有限或无限的集合。</p>
+<p>一般地，描述一种语言可以有三种途径：<br>(1) 穷举法：枚举出语言中所有的句子，但这种方法仅适合于句子数目有限的语言。<br>(2) 文法(产生式系统)描述：语言中的每个句子用严格定义的规则来构造，利用规则构造语言中合法的句子。文法用来精确地描述语言及其结构，用文法来定义语言的优点：由文法给予语言中的句子以结构，各成分之间的结构关系清楚、明了。<br>(3) 自动机法：通过对输入的句子进行合法性检验，区别哪些是语言中的句子，哪些不是语言中的句子。对于自动机，识别一个字符串是否属于该语言相对简单，但是很难描述语言的结构。</p>
+<p>因此，自然语言处理中的识别和分析算法，大多兼取二者之长。</p>
+<h3 id="形式语法的定义"><a href="#形式语法的定义" class="headerlink" title="形式语法的定义"></a>形式语法的定义</h3><p>形式语言是用来精确地描述语言（包括人工语言和自然语言）及其结构的手段。形式语言学也称代数语言学。</p>
+<p><b>(1)形式语法:</b>形式语法就是一个四员组G=(N,∑,P,S),其中，N是非终结符的有限集合(有时也称为变量集或句法种类集)；∑是终结符号的有限集合。V=N U ∑ 称为总词汇表；P是一组重写规则的有限集合（一组字符串不断地应用重写规则，就可以得到另外一个字符串；利用不同的规则来生成字符串同理。）P是一组重写规则的有限集合；S∈N称为句子符或初始符。</p>
+<p><b>(2)推导:</b>如果αβγ是(NU∑)*中的符号串，且β-&gt;δ是P中的一个产生式，那么αβγ=&gt;αδγ.<br>如果每次推导都只修改最左边的那个非终结符，这种推导称为“最左推导”。反之，称为最右推导。<br>eg.给定文法G(S)的一组规则：<br><img src="https://s1.ax1x.com/2020/04/15/J94Ujf.png" alt=""><br>则字符串”关于鲁迅先生的文章”的最左推导为：<br><img src="https://s1.ax1x.com/2020/04/15/J942vV.png" alt=""><br>同理，字符串”关于鲁迅先生的文章”的最右推导为：<br><img src="https://s1.ax1x.com/2020/04/15/J94o59.png" alt=""></p>
+<p>(仿佛回到大一被离散数学支配的恐惧（后面要抽时间安排再过一遍离散数学了…</p>
+<p><b>(3)句子:</b>文法G=(N,∑,P,S)的句子形式（句型）通过如下递归方式定义：<br>a. S是一个句子形式；<br>b. 如果γβα是一个句子形式，且β-&gt;δ是P中的产生式，那么， γδα也是一个句子形式。<br>由文法G生成的句子的合集，记作L(G):<br><img src="https://s1.ax1x.com/2020/04/15/J95dR1.png" alt=""></p>
+<h3 id="形式语言的类型"><a href="#形式语言的类型" class="headerlink" title="形式语言的类型"></a>形式语言的类型</h3><p>在乔姆斯基的语法理论中，文法被划分为4种类型：3型文法，2型文法，1型文法，0型文法，分别对应的是正则文法，上下文无关文法，上下文相关文法和无约束文法。</p>
+<h4 id="正则文法"><a href="#正则文法" class="headerlink" title="正则文法"></a>正则文法</h4><p>如果文法G的规则集P中规则均满足如下形式：A-&gt;Bx或A-&gt;x，其中，A,B∈N，x∈∑，则称该文法G为正则文法，或称3型文法。<br>eg. G＝（N，Σ，P，S），其中，N＝{S，A，B}，Σ＝{a, b}, P：<br>（1）S-&gt;aA<br>（2）A-&gt;aA<br>（3）A-&gt;bbB<br>（4）B-&gt;bB<br>（5）B-&gt;b<br>该文法形式上似乎不满足上述正则文法定义的条件（第3条规 则），但规则（3）可以改写成如下两条规则： A-&gt;bB′ B′-&gt;bB<br>因此，该文法修改后为右线性正则文法，它所识别的语言为：<br><img src="https://s1.ax1x.com/2020/04/15/JCUnK0.png" alt=""></p>
+<p>(有这么一瞬间我怀疑我在看编译原理…</p>
+<h4 id="上下文无关文法"><a href="#上下文无关文法" class="headerlink" title="上下文无关文法"></a>上下文无关文法</h4><p>如果文法G的规则集P中所有规则均满足如下形式：A-&gt;α，其中，A∈N，α∈(NU∑)*,则称文法G为上下文无关文法（Context-free grammer,CFG）,或称2型文法。<br>eg. G＝（N，Σ，P，S），其中，N＝{S，A，B，C}，Σ＝{a, b, c}，P：<br>（1）S-&gt;ABC<br>（2）A→aA|a<br>（3）B→bB|b<br>（4）C→BA|c<br>显然，该文法为上下文无关文法，可识别的语言为:<br><img src="https://s1.ax1x.com/2020/04/15/JCdS78.png" alt=""><br>从定义可以看出，2型文法比3型文法少了一层限制，其规则右端的格式没有约束。也就是说，规则左部的非终结符可以被改写成任何形式。</p>
+<h4 id="上下文有关文法"><a href="#上下文有关文法" class="headerlink" title="上下文有关文法"></a>上下文有关文法</h4><p>如果文法G的规则集P中所有规则满 足如下形式：αAβ→αγβ，其中，A∈N，α，β，γ∈（NUΣ）*，且γ至少 包含一个字符，则称文法G为上下文有关文法（context-sensitive grammar, CSG），或称1型文法。<br>从上述定义可以看出，字符串αAβ中的A被改写成γ时需要有上文语 境α和下文语境β，这体现了上下文相关的含义。当然，α和β可以为空字 符ε，如果α和β同时为空时，1型文法变成了2型文法。也就是说，2型文 法是1型文法的特例。因此，1型文法可识别的语言集合比2型文法可识 别的语言集合更大。</p>
+<p>eg. G＝（N，Σ，P，S），其中，N＝{S，A，B，C}，Σ＝{a, b, c}，P：<br>（1）S-&gt;ABC<br>（2）A-&gt;aA|a<br>（3）B-&gt;bB|b<br>（4）BC-&gt;Bcc<br>根据第（4）条规则可以断定该文法为上下文有关文法，所识别的语言为:<br><img src="https://s1.ax1x.com/2020/04/15/JC0Ml9.png" alt=""><br>通过这个例子我们可以看到，规则左部不一定仅为一个非终结符， 可以有上下文限制。</p>
+<h4 id="无约束文法"><a href="#无约束文法" class="headerlink" title="无约束文法"></a>无约束文法</h4><p>如果文法G的规则集P中所有规则满足如 下形式：α→β，其中，α∈（NUΣ）+，β∈（NUΣ）*，则称G为无约束 文法或无限制重写系统，也称0型文法。 </p>
+<p>根据上述定义我们不难看出，从0型文法到3型文法，对规则的约束 越来越多，每一个正则文法都是上下文无关文法，每一个上下无关文法 都是上下文有关文法，而每一个上下文有关文法都可以认为是0型文 法。因此，从0型文法到3型文法所识别的语言集合越来越小。如果用 G0、G1、G2和G3分别表示0型、1型、2型和3型文法，那么，<br><img src="https://s1.ax1x.com/2020/04/15/JCrL9S.png" alt=""><br>我们约定，如果一个文法的产生式集合P中，有分属于不同类型文 法的产生式，则把属于包含最广类型文法的那条产生式所属的类型作为 这个文法的类型。比如说，某个文法的全部规则分别属于1型文法、2型 文法和3型文法，则我们称这个文法为1型文法。同理，如果一种语言能 够由几种文法所产生，则把这种语言称为在这几种文法中受限制最多的 那种文法所产生的语言。</p>
+<h3 id="CFG识别句子的派生树表示"><a href="#CFG识别句子的派生树表示" class="headerlink" title="CFG识别句子的派生树表示"></a>CFG识别句子的派生树表示</h3><p>一个上下文无关文法G＝（N，Σ，P，S）产生句子的过程可以由派 生树表示。派生树也称语法树（syntactic tree），或分析树（parsing tree）、推导树等。派生树的构造步骤如下：<br>（1）对于任意x∈N∪Σ，给一个标记作为结点，令文法的初始符号S作为树的根结点；<br>（2）如果一个结点的标记为A，且至少有一个除它自身以外的后裔，那么A∈N；<br>（3）如果一个结点的标记为A，它的k（k＞0）个直接后裔结点按 从左到右的顺序依次标记为A1，A2，…，Ak，则A-&gt;A1，A2，…，Ak一定是P中的一个产生式。<br>所以，句子 “关于鲁迅先生的文章”对应的派生树如下所示：<br><img src="https://s1.ax1x.com/2020/04/15/JCyUsJ.png" alt=""></p>
+<p>如果文法G对于同一个句子存在两棵或 两棵以上不同的分析树，那么，该句子是二义性的，文法G为二义性文法。<br>如果将文法G（S）稍微修改一下，增加一条规则S→PP Aux NP，那么，规则集包含如下规则：<br>S-&gt;PNP|PP Aux NP   PP-&gt;PNP<br>NP-&gt;NN|NP Aux NP   P-&gt;关于<br>NN-&gt;鲁迅|文章      Aux-&gt;的<br>所以，”关于鲁迅先生的文章”还有另外一种分析树：<br><img src="https://s1.ax1x.com/2020/04/15/JC63md.png" alt=""><br>因此，增加规则后的文法将变成二义性文法。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/14/【统计自然语言处理】形式语言与自动机/" data-id="ck8zkw3dn0033r8v48nm3e77k" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2020/04/14/【统计自然语言处理】形式语言与自动机/" data-id="ck9112459003gfwv40di08gqc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
@@ -126,7 +155,7 @@
   
   
     <a href="/2020/04/09/【论文笔记】Preemptive-Information-Extraction-using-Unrestricted-Relation-Discovery/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">【论文笔记】Preemptive Information Extraction using Unrestricted Relation Discovery</div>
     </a>
   
@@ -179,7 +208,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -189,7 +218,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
