@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/05/18/YfMLc9.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/05/18/YfQkjA.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/05/18/Yf7ceU.png">
-<meta property="og:updated_time" content="2020-05-18T09:05:50.061Z">
+<meta property="og:updated_time" content="2020-05-19T09:00:53.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django在开发中的基本操作小结">
 <meta name="twitter:description" content="预感到以后会经常和Django打交道，写个备忘吧，什么时候忘了什么时候回来翻。">
@@ -70,9 +70,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSSフィード"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="検索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -107,10 +107,10 @@
 		
 		  <div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Django项目创建"><span class="toc-number">1.</span> <span class="toc-text">Django项目创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Django项目下创建应用"><span class="toc-number">2.</span> <span class="toc-text">Django项目下创建应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Django创建超级管理员"><span class="toc-number">3.</span> <span class="toc-text">Django创建超级管理员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Django创建视图"><span class="toc-number">4.</span> <span class="toc-text">Django创建视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础视图创建"><span class="toc-number">4.1.</span> <span class="toc-text">基础视图创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级视图创建"><span class="toc-number">4.2.</span> <span class="toc-text">高级视图创建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用户登录与退出"><span class="toc-number">4.2.1.</span> <span class="toc-text">用户登录与退出</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Django与MySQL进行交互"><span class="toc-number">5.</span> <span class="toc-text">Django与MySQL进行交互</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Django项目创建"><span class="toc-number">1.</span> <span class="toc-text">Django项目创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Django项目下创建应用"><span class="toc-number">2.</span> <span class="toc-text">Django项目下创建应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Django创建超级管理员"><span class="toc-number">3.</span> <span class="toc-text">Django创建超级管理员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Django创建视图"><span class="toc-number">4.</span> <span class="toc-text">Django创建视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础视图创建"><span class="toc-number">4.1.</span> <span class="toc-text">基础视图创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级视图创建"><span class="toc-number">4.2.</span> <span class="toc-text">高级视图创建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用户登录与退出"><span class="toc-number">4.2.1.</span> <span class="toc-text">用户登录与退出</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Django与MySQL进行交互"><span class="toc-number">5.</span> <span class="toc-text">Django与MySQL进行交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在外部文件中调用Django的model"><span class="toc-number">6.</span> <span class="toc-text">在外部文件中调用Django的model</span></a></li></ol>
 		  </div>
 		
-        <p>预感到以后会经常和Django打交道，写个备忘吧，什么时候忘了什么时候回来翻。<br><a id="more"></a><br>开发基于Windows。</p>
+        <p>预感到以后会经常和Django打交道，写个备忘吧，什么时候忘了什么时候回来翻。<br><a id="more"></a><br>开发基于Windows。<br>p.s. 由于懒，示例代码大部分截取自我的毕设。</p>
 <h2 id="Django项目创建"><a href="#Django项目创建" class="headerlink" title="Django项目创建"></a>Django项目创建</h2><p>直接进入cmd环境，在需要开发应用的文件夹下面执行如下命令：<br><figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-<span class="literal">admin</span> startproject 项目名称</span><br></pre></td></tr></table></figure></p>
 <p>创建好的django文件夹如下图所示：<br><img src="https://s1.ax1x.com/2020/05/18/YfeJHS.png" alt=""></p>
 <p>Django项目文件夹review_django下文件包括一个同名的项目文件夹review_django和manage.py文件。<br>分别说明：</p>
@@ -163,11 +163,14 @@
 <p>tco取出的就是一整列，使用tco.count，就是取出这行中列名为count得全部数据值。</p>
 <p>然后通过构建上下文的方式将值传回给前端。<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构建上下文</span></span><br><span class="line"><span class="built_in">context</span>=&#123;</span><br><span class="line">    <span class="string">'team_name'</span>: <span class="keyword">json.dumps(team_name),</span></span><br><span class="line"><span class="keyword"> </span>   <span class="string">'team_value'</span>: <span class="keyword">json.dumps(team_value)</span></span><br><span class="line"><span class="keyword"> </span>   &#125;</span><br><span class="line"></span><br><span class="line">return render(request,<span class="string">'admin_team_question.html'</span>,<span class="built_in">context</span>=<span class="built_in">context</span>)</span><br></pre></td></tr></table></figure></p>
 <p>核心就两个功能：<br>(1) values_list;<br>(2) get.</p>
+<h2 id="在外部文件中调用Django的model"><a href="#在外部文件中调用Django的model" class="headerlink" title="在外部文件中调用Django的model"></a>在外部文件中调用Django的model</h2><p>Django这个model是真的方便啊，直接类名+objects+get就能取出来了，其他的多麻烦…<br>但是这个引用，是需要在头部加一些参数的，不然报错报得你一个头两个大。<br>直接放定义文件：<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">os</span></span><br><span class="line">import sys</span><br><span class="line">import django</span><br><span class="line"></span><br><span class="line">pathname = <span class="built_in">os</span>.<span class="built_in">path</span>.dirname(<span class="built_in">os</span>.<span class="built_in">path</span>.abspath(__file__))</span><br><span class="line">sys.<span class="built_in">path</span>.<span class="built_in">insert</span>(<span class="number">0</span>, pathname)</span><br><span class="line"># 项目所在文件夹的相对于需要引入文件的相对地址</span><br><span class="line">sys.<span class="built_in">path</span>.<span class="built_in">insert</span>(<span class="number">0</span>, <span class="built_in">os</span>.<span class="built_in">path</span>.abspath(<span class="built_in">os</span>.<span class="built_in">path</span>.join(pathname, <span class="string">'..'</span>)))</span><br><span class="line"><span class="built_in">os</span>.environ.setdefault(<span class="string">"DJANGO_SETTINGS_MODULE"</span>, <span class="string">"django项目名.settings"</span>)</span><br><span class="line"></span><br><span class="line">django.setup()</span><br></pre></td></tr></table></figure></p>
+<p>引入完毕，下面直接<br><figure class="highlight capnproto"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> user.models <span class="keyword">import</span> Django应用中model的定义类</span><br></pre></td></tr></table></figure></p>
+<p>歪瑞古德，歪瑞方便。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/18/Django在开发中的基本操作小结/" data-id="ckac9kfkt0008xwv45oavvido" class="article-share-link">共有</a>
+      <a data-url="http://yoursite.com/2020/05/18/Django在开发中的基本操作小结/" data-id="ckadp00zi0004pkv4uc014xu0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发/">开发</a></li></ul>
@@ -178,9 +181,18 @@
     
 <nav id="article-nav">
   
+    <a href="/2020/05/19/JavaScript在开中的基本操作小结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript在开中的基本操作小结
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/04/26/TensorFlow-2-0-使用指南/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前の記事</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">TensorFlow 2.0 使用指南 (2020.5.4完结)</div>
     </a>
   
@@ -214,7 +226,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">タグ</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF-Web/">CTF_Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL-injection/">SQL_injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VQA/">VQA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/凸包算法/">凸包算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发/">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数学学习/">数学学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境配置/">环境配置</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/知识图谱/">知识图谱</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神经网络/">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法考核/">算法考核</a></li></ul>
     </div>
@@ -224,16 +236,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">タグクラウド</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Algorithm/" style="font-size: 14.29px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 18.57px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 11.43px;">Python</a> <a href="/tags/SQL-injection/" style="font-size: 12.86px;">SQL_injection</a> <a href="/tags/VQA/" style="font-size: 10px;">VQA</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 11.43px;">大数据</a> <a href="/tags/开发/" style="font-size: 14.29px;">开发</a> <a href="/tags/数学学习/" style="font-size: 11.43px;">数学学习</a> <a href="/tags/数据挖掘/" style="font-size: 11.43px;">数据挖掘</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/知识图谱/" style="font-size: 17.14px;">知识图谱</a> <a href="/tags/神经网络/" style="font-size: 15.71px;">神经网络</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a>
+      <a href="/tags/Algorithm/" style="font-size: 14.29px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF-Web/" style="font-size: 18.57px;">CTF_Web</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 11.43px;">Python</a> <a href="/tags/SQL-injection/" style="font-size: 12.86px;">SQL_injection</a> <a href="/tags/VQA/" style="font-size: 10px;">VQA</a> <a href="/tags/XXE/" style="font-size: 10px;">XXE</a> <a href="/tags/凸包算法/" style="font-size: 10px;">凸包算法</a> <a href="/tags/大数据/" style="font-size: 11.43px;">大数据</a> <a href="/tags/开发/" style="font-size: 15.71px;">开发</a> <a href="/tags/数学学习/" style="font-size: 11.43px;">数学学习</a> <a href="/tags/数据挖掘/" style="font-size: 11.43px;">数据挖掘</a> <a href="/tags/环境配置/" style="font-size: 10px;">环境配置</a> <a href="/tags/知识图谱/" style="font-size: 17.14px;">知识图谱</a> <a href="/tags/神经网络/" style="font-size: 15.71px;">神经网络</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/算法考核/" style="font-size: 10px;">算法考核</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">アーカイブ</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
@@ -243,9 +255,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">最近の投稿</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/05/19/JavaScript在开中的基本操作小结/">JavaScript在开中的基本操作小结</a>
+          </li>
         
           <li>
             <a href="/2020/05/18/Django在开发中的基本操作小结/">Django在开发中的基本操作小结</a>
@@ -261,10 +277,6 @@
         
           <li>
             <a href="/2020/04/09/【论文笔记】Preemptive-Information-Extraction-using-Unrestricted-Relation-Discovery/">【论文笔记】Preemptive Information Extraction using Unrestricted Relation Discovery</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/07/【论文笔记】Semantic-Compositionality-through-Recursive-Matrix-Vector-Spaces/">【论文笔记】Semantic Compositionality through Recursive Matrix-Vector Spaces</a>
           </li>
         
       </ul>
