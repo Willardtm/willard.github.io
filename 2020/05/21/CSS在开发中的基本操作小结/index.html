@@ -5,15 +5,20 @@
   
 
   
-  <title>Kategorie: NLP | Klaus&#39;s Blog</title>
+  <title>CSS在开发中的基本操作小结 | Klaus&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Klaus&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/categories/NLP/index.html">
+  <meta name="description" content="本篇主要基于CSS在开发中的常用操作进行小结。">
+<meta name="keywords" content="开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS在开发中的基本操作小结">
+<meta property="og:url" content="http://yoursite.com/2020/05/21/CSS在开发中的基本操作小结/index.html">
 <meta property="og:site_name" content="Klaus&#39;s Blog">
+<meta property="og:description" content="本篇主要基于CSS在开发中的常用操作进行小结。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-21T14:41:23.526Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Klaus&#39;s Blog">
+<meta name="twitter:title" content="CSS在开发中的基本操作小结">
+<meta name="twitter:description" content="本篇主要基于CSS在开发中的常用操作进行小结。">
   
     <link rel="alternate" href="/atom.xml" title="Klaus&#39;s Blog" type="application/atom+xml">
   
@@ -64,226 +69,68 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/26/TensorFlow-2-0-使用指南/" class="archive-article-date">
-  <time datetime="2020-04-26T06:06:19.000Z" itemprop="datePublished">Apr 26</time>
+        <section id="main"><article id="post-CSS在开发中的基本操作小结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/21/CSS在开发中的基本操作小结/" class="article-date">
+  <time datetime="2020-05-21T13:49:54.000Z" itemprop="datePublished">2020-05-21</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发/">开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/26/TensorFlow-2-0-使用指南/">TensorFlow 2.0 使用指南 (2020.5.4完结)</a>
+    <h1 class="article-title" itemprop="name">
+      CSS在开发中的基本操作小结
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  <!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS写法"><span class="toc-number">1.</span> <span class="toc-text">CSS写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS文本设置"><span class="toc-number">2.</span> <span class="toc-text">CSS文本设置</span></a></li></ol>
+		  </div>
+		
+        <p>本篇主要基于CSS在开发中的常用操作进行小结。<br><a id="more"></a></p>
+<h2 id="CSS写法"><a href="#CSS写法" class="headerlink" title="CSS写法"></a>CSS写法</h2><p>1、外联式：通过link标签，链接到外部样式表。<br>在外部的css文件中根据class或是id定位到元素然后设置样式。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link <span class="attribute">rel</span>=<span class="string">"stylesheet"</span> <span class="attribute">type</span>=<span class="string">"text/css"</span> <span class="attribute">href</span>=<span class="string">"css/main.css"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>2、嵌入式：通过style标签，在网页上创建嵌入的样式表。<br>注意：这个是放在head标签下的。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">    <span class="selector-tag">div</span>&#123; <span class="attribute">width</span>:<span class="number">100px</span>; <span class="attribute">height</span>:<span class="number">100px</span>; <span class="attribute">color</span>:red &#125;</span></span><br><span class="line"><span class="undefined">    ......</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>3、内联式：通过标签的style属性，在标签内直接写样式。<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=<span class="string">"width:100px; height:100px; color:red "</span>&gt;......&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="CSS文本设置"><a href="#CSS文本设置" class="headerlink" title="CSS文本设置"></a>CSS文本设置</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/21/CSS在开发中的基本操作小结/" data-id="ckagvyeyx00005ov4zvu9dm6m" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发/">开发</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/20/HTML在开发中的基本操作小结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">HTML在开发中的基本操作小结</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/14/【统计自然语言处理】形式语言与自动机/" class="archive-article-date">
-  <time datetime="2020-04-14T06:34:46.000Z" itemprop="datePublished">Apr 14</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/14/【统计自然语言处理】形式语言与自动机/">【统计自然语言处理】形式语言与自动机</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/09/【论文笔记】Preemptive-Information-Extraction-using-Unrestricted-Relation-Discovery/" class="archive-article-date">
-  <time datetime="2020-04-08T16:33:49.000Z" itemprop="datePublished">Apr 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/09/【论文笔记】Preemptive-Information-Extraction-using-Unrestricted-Relation-Discovery/">【论文笔记】Preemptive Information Extraction using Unrestricted Relation Discovery</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/06/【论文笔记】Discovering-Relations-among-Named-Entities-from-Large-Corpora/" class="archive-article-date">
-  <time datetime="2020-04-06T15:19:55.000Z" itemprop="datePublished">Apr 6</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/06/【论文笔记】Discovering-Relations-among-Named-Entities-from-Large-Corpora/">【论文笔记】Discovering Relations among Named Entities from Large Corpora</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/02/29/基于知识图谱的问答系统构建流程/" class="archive-article-date">
-  <time datetime="2020-02-29T12:50:32.000Z" itemprop="datePublished">Feb 29</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/29/基于知识图谱的问答系统构建流程/">基于知识图谱的问答系统构建流程</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/26/【问题合集】Tensorflow中常见的问题/" class="archive-article-date">
-  <time datetime="2019-12-26T13:08:40.000Z" itemprop="datePublished">Dec 26</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/26/【问题合集】Tensorflow中常见的问题/">【问题合集】Tensorflow中常见的问题</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/22/【论文笔记】End-To-End-Memory-Networks/" class="archive-article-date">
-  <time datetime="2019-12-22T03:40:06.000Z" itemprop="datePublished">Dec 22</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/22/【论文笔记】End-To-End-Memory-Networks/">【论文笔记】End-To-End Memory Networks</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/21/【论文笔记】Convolutional-Sequence-to-Sequence-Learning/" class="archive-article-date">
-  <time datetime="2019-12-21T12:15:41.000Z" itemprop="datePublished">Dec 21</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/21/【论文笔记】Convolutional-Sequence-to-Sequence-Learning/">【论文笔记】Convolutional Sequence to Sequence Learning</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/18/【论文笔记】Neural-Relation-Extraction-with-Selective-Attention-over-Instances/" class="archive-article-date">
-  <time datetime="2019-12-18T14:49:58.000Z" itemprop="datePublished">Dec 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/18/【论文笔记】Neural-Relation-Extraction-with-Selective-Attention-over-Instances/">【论文笔记】Neural Relation Extraction with Selective Attention over Instances</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/14/【论文笔记】Hierarchical-Attention-Networks-for-Document-Classification/" class="archive-article-date">
-  <time datetime="2019-12-14T11:53:05.000Z" itemprop="datePublished">Dec 14</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/14/【论文笔记】Hierarchical-Attention-Networks-for-Document-Classification/">【论文笔记】Hierarchical Attention Networks for Document Classification</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/categories/NLP/page/2/">2</a><a class="page-number" href="/categories/NLP/page/3/">3</a><a class="page-number" href="/categories/NLP/page/4/">4</a><a class="extend next" rel="next" href="/categories/NLP/page/2/">weiter &raquo;</a>
-  </nav>
 
 </section>
         
